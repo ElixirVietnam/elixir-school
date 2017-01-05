@@ -12,14 +12,14 @@ Mnesia là một hệ thống nặng kí trong việc quản trị cơ sở dữ
 
 ## Tổng quan
 
-Mnesia là hệ quản trị cơ sở dữ liệu (DBMS) được lấy từ Erlang Runtime System và có thể sử dụng thuần thuật trong Elixir. Mnesia là _relational and object hybrid data model_ được phát triển để phù hợp với các ứng dụng phân tán dù lớn hay nhỏ.
+Mnesia là hệ quản trị cơ sở dữ liệu (DBMS) được lấy từ Erlang Runtime System và có thể sử dụng thuần thục trong Elixir. Mnesia là _relational and object hybrid data model_ được phát triển để phù hợp với các ứng dụng phân tán dù lớn hay nhỏ.
 
 ## Khi nào thì sử dụng
 
 Lựa chọn việc sử dụng một công nghệ nào thường khá là rối rắm. Nếu bạn có thể trả lời 'Yes' cho bất kì câu hỏi sau, thì đó là tín hiệu tốt cho việc sử dụng Mnesia mà không phải là ETS hay DETS.
 
   - Tôi có cần chuyển về các transactions cũ không?
-  - Liệu tôi có muốn dễ dàng trong việc sử dụng cú pháp cho đọc và ghi? 
+  - Liệu tôi có muốn dễ dàng trong việc sử dụng cú pháp cho đọc và ghi?
   - Tôi có nên lưu trữ dữ liệu ở nhiều nodes, thay vì một?
   - Tôi có cần lựa chọn nơi nào để lưu trữ thông tin (RAM or disk)?
 
@@ -37,7 +37,7 @@ iex> alias :mnesia, as: Mnesia
 iex> Mnesia.create_schema([node()])
 ```
 
-Với vị dụ này, chúng ta sẽ chọn hướng tiếp cận sau khi làm việc với Mnesia API. `Mnesia.create_schema/1` khởi tạo một schema mới và rỗng sau đó truyền tới Node List. Trong trường hợp này, chúng ta truyền những node liên quan trong IEx session của ta:
+Với ví dụ này, chúng ta sẽ chọn hướng tiếp cận sau khi làm việc với Mnesia API. `Mnesia.create_schema/1` khởi tạo một schema mới và rỗng sau đó truyền tới Node List. Trong trường hợp này, chúng ta truyền những node liên quan trong IEx session của ta:
 
 ## Nodes
 
@@ -155,7 +155,7 @@ Nếu bạn muốn truy vấn thông tin không tồn tại Mnesia sẽ trả v�
 
 ## Transactions
 
-Thông thường chúng ta sử dụng **transactions** để đóng gói lại những truy vấn đọc và ghi tới database. Transactions là một phần quan trọng trong việc thiết kế kháng lỗi, đặc biệt trong hệ thống phân tán. Mnesia *transaction là một phương pháp mà cho phép một nhóm cách thao tác database có thể thực thi trong một function block*. Đầu tiên chúng ta tạo một function nặc danh, trong trường hợp này `data_to_write` và sau đó truyền nó vào `Mnesia.transaction`.
+Thông thường chúng ta sử dụng **transactions** để đóng gói lại những truy vấn đọc và ghi tới database. Transactions là một phần quan trọng trong việc thiết kế chống chịu lỗi, đặc biệt trong hệ thống phân tán. Mnesia *transaction là một phương pháp mà cho phép một nhóm cách thao tác database có thể thực thi trong một function block*. Đầu tiên chúng ta tạo một function nặc danh, trong trường hợp này `data_to_write` và sau đó truyền nó vào `Mnesia.transaction`.
 
 ```elixir
 iex> data_to_write = fn ->
@@ -238,7 +238,7 @@ iex> Mnesia.transaction(
 {:atomic, [{Person, 4, "Marge Simpson", "home maker"}]}
 ```
 
-`Mnesia.select/2` cho phép bạn dùng một câu truy vấn có tuỳ chỉnh cái mà sử dụng bất kì thao tác hoặc function trong Elixir ( hoặc Erlang). Cùng xem ví dụ sau để lấy tất cả các dữ liệu có khoá lỡn hơn 3:
+`Mnesia.select/2` cho phép bạn dùng một câu truy vấn có tuỳ chỉnh cái mà sử dụng bất kì thao tác hoặc function trong Elixir (hoặc Erlang). Cùng xem ví dụ sau để lấy tất cả các dữ liệu có khoá lớn hơn 3:
 
 ```elixir
 iex> Mnesia.transaction(

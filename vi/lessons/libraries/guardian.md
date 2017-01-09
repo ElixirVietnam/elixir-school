@@ -1,67 +1,67 @@
 ---
 layout: page
-title: Guardian (Basics)
-category: libraries
+title: Guardian (Cơ bản)
+category: Thư viện
 order: 1
 lang: vi
 ---
 
-[Guardian](https://github.com/ueberauth/guardian) is a widely used authentication library based on [JWT](https://jwt.io/) (Javascript Web Token).
+[Guardian](https://github.com/ueberauth/guardian) là một thư viện xác thực danh tính người dùng được sử dụng rộng rãi dựa trên chuẩn [JWT](https://jwt.io/) (Javascript Web Token).
 
 {% include toc.html %}
 
 ## JWTs
 
-A JWT can provide a rich token for authentication. Where many authentication systems provide access to only a subject identifier for the resource, JWTs provide this along with other information like:
+Một chuẩn JWT cung cấp lượng token phong phú dành cho xác thực danh tính người dùng. Nhiều hệ thống xác thực danh tính một chủ thể tới tài nguyên máy tính, JWTs cho chúng ta các thông tin khác như :
 
-* Who issued the token
-* Who is the token for
-* Which system should use the token
-* What time was it issued
-* What time does the token expire
+* Ai đã tạo token
+* Token đó dùng cho ai
+* Hệ thống nào sử dụng token
+* Thời điểm issued được tạo
+* Thời điểm issue hết hạn
 
-In addition to these fields Guardian provides some other fields to facilitate additional functionality:
+Bổ sung thêm Guardian cung cấp các tính năng tiện lợi :
 
-* What type is the token
-* What permissions does the bearer have
+* Kiểu của token là gì
+* Những hành vi nào được làm
 
-These are just the basic fields in a JWT. You're free to add any additional information that your application requires. Just remember to keep it short, as JWT has to fit in the HTTP header.
+Đây là các fields cơ bản trong JWT. Bạn tùy ý thêm bất cứ thông tin nào cần cho ứng dụng của bạn. Nhớ điều là keep it short, là JWT đặt vừa vặn trong HTTP header.
 
-This richness means that you can pass JWTs around in your system as a fully contained unit of credentials.
+Sự phong phú này cho phép bạn đặt JWTs khắp hệ thống của bạn.
 
-### Where to use them
+### Sử dụng chúng ở đâu
 
-JWT tokens can be used to authenticate any part of your application.
+JWT tokens có thể sử dụng xác thực định danh ở bộ phận bất kỳ của ứng dụng.
 
-* Single page applications
-* Controllers (via browser session)
-* Controllers (via authorization headers - API)
-* Phoenix Channels
-* Service to Service requests
+* Các ứng dụng Single page
+* Các controllers (qua phiên làm việc trình duyệt)
+* Các controllers (qua authorization headers - API)
+* Các kênh Phoenix
+* Các request Service to service
 * Inter-process
-* 3rd Party access (OAuth)
-* Remember me functionality
-* Other interfaces - raw TCP, UDP, CLI, etc
+* Chứng thực bởi bên thứ 3
+* Chức năng nhớ tự động
+* Các giao diện khác - raw TCP, UDP, CLI, etc
 
-JWT tokens can be used everywhere in your application where you need to provide verifiable authentication.
+JWT tokens có thể sử dụng ở bất cứ chỗ nào trong ứng dụng cần thực hiện hành vi xác thực định danh.
 
-### Do I have to use a database?
+### Tôi có sử dụng cho một cơ sở dữ liệu không?
 
-You do not need to track JWT via a database. You can simply rely on the issued and expiry timestamps for controlling access. Often you'll end up using a database to look up your user resource but the JWT itself does not require it.
+Bạn không cần kiểm tra JWT qua một cơ sở dữ liệu. Cách đơn giản bạn dựa trên thời điểm tạo và thời điểm hết hạn để điều khiển truy cập. Thường thi bạn sẽ mở cơ sở dữ liệu để tra cứu người dùng nào đó nhưng JWT tự thân nó không cần điều này.
 
-For example, if you were going to use JWT to authenticate communication on a UDP socket you likely wouldn't use a database. Encode all the information you need directly into the token when you issue it. Once you verify it (check that it's signed correctly) you're good to go.
+Ví dụ, nếu bạn lên kế hoạch sử dụng JWT để thực hiện chứng thực qua socket dùng giao thức UDP thay vì bạn sử dụng một cơ sở dữ liệu. Nén tất cả thông tin bạn cần một cách trực tiếp vào token khi bạn khởi tạo nó. Bạn xác minh nó (kiểm tra xem nó hợp lệ).
 
-You _can_ however use a database to track JWT. If you do, you gain the ability to verify that the token is still valid - that is - it has not been revoked. Or you could use the records in the DB to force a log out of all tokens for user 5. This is made simple in Guardian by using [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb uses Guardians 'Hooks' to perform validation checks, save and delete from the DB. We'll cover that later.
+Bạn có thể tuy nhiên sử dụng 1 cơ sở dữ liệu kiểm soát JWT. Nếu bạn thực hiện, bạn chứng thực token vẫn hợp lệ. Hoặc bạn có thể sử dụng các bản ghi trong DB để giải phóng tất cả token của user. Điều này khá dễ dàng trong Guardian bởi sử dụng [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb sử dụng Guardians 'Hooks' để thực hiện kiểm tra xác thực, lưu và xóa khỏi DB. Chúng ta sẽ đề cập nó sau.
 
-## Setup
+## Thiết lập
 
-There are many options for setting up Guardian. We'll cover them at some point but let's start with a very simple setup.
+Có nhiều lựa chọn cho việc thiết lập Guardian. Chúng ta đề cập tới chúng ở vài điểm nhưng chỉ ở mức rất đơn giản.
 
-### Minimal Setup
+### Thiết lập tối giản
 
-To get started there are a handful of things that you'll need.
+Để bắt đầu đơn giản bạn chỉ cần vài thứ.
 
-#### Configuration
+#### Cấu hình
 
 `mix.exs`
 
@@ -86,11 +86,11 @@ end
 ```elixir
 config :guardian, Guardian,
   issuer: "MyAppId",
-  secret_key: Mix.env, # in each environment config file you should overwrite this if it's external
+  secret_key: Mix.env, # trong mỗi tệp tin cấu hình từng môi trường bạn nên ghi đè nó nếu nó là ngoại vi
   serializer: MyApp.GuardianSerializer
 ```
 
-This is the minimum set of information you need to provide Guardian with to operate. You shouldn't encode your secret key directly into your top-level config. Instead, each environment should have its own key. It's common to use the Mix environment for secrets in dev and test. Staging and production, however, must use strong secrets. (e.g. generated with `mix phoenix.gen.secret`)
+Đây chỉ là thiết lập ở mức tối thiểu để bạn sử dụng Guardian. Bạn không nên nén khóa bí mật - secret key một cách thô bạo ở phạm vi rộng. Thay vào đó, mỗi môi trường lựa chọn khóa bí mật của riêng nó. Thường thì ta cất khóa bí mật ở môi trường Mix cho môi trường phát triển và kiểm thử - dev và test. Tuy nhiên riêng ở Staging and production khóa bí mật yêu cầu phải cất giữ tối mật. (ví dụ: được kèm theo `mix phoenix.gen.secret`)
 
 `lib/my_app/guardian_serializer.ex`
 
@@ -108,30 +108,30 @@ defmodule MyApp.GuardianSerializer do
   def from_token(_), do: { :error, "Unknown resource type" }
 end
 ```
-Your serializer is responsible for finding the resource identified in the `sub` (subject) field. This could be a lookup from a db, an API, or even a simple string.
-It's also responsible for serializing a resource into the `sub` field.
+Serializer của bạn đảm nhiệm phần tìm kiếm tài nguyên ở trong trường `sub` (subject). Nó có thể tìm trong DB, một API hoặc thậm chí trong nội dung một chuỗi dữ liệu.
+Nó tìm kiếm từng tài nguyên đơn lẻ ở trường `sub`.
 
-That's it for the minimum configuration. There's plenty more you can do if you need to but to get started that's enough.
+Đó là những cấu hình đơn giản nhất. Thực tế có thể có nhiều mã phức tạp hơn nhưng vừa đủ cho ta bắt đầu.
 
-#### Application Usage
+#### Sử dụng trong ứng dụng
 
-Now that we have the configuration in place to use Guardian, we need to integrate it into the application. Since this is the minimum setup, let's first consider HTTP requests.
+Lúc này chúng ta đang đăng ký sử dụng Guardian trong file cấu hình, chúng ta cần gọi nó trong ứng dụng. Khi ta đang thiết lập mức đơn giản nhất, chúng ta bắt đầu với các yêu cầu chạy trong giao thức HTTP.
 
-## HTTP requests
+## Các yêu cầu trong giao thức HTTP
 
-Guardian provides a number of Plugs to facilitate integration into HTTP requests. You can learn about Plug in a [separate lesson](../specifics/plug/). Guardian doesn't require Phoenix, but using Phoenix in the following examples will be easiest to demonstrate.
+Guardian cung cấp một số Plugs để dễ dàng nhúng vào HTTP requests. Bạn có thể học ở đây về Plug [separate lesson](../specifics/plug/). Đặc điểm cần nhớ Guardian làm việc không nhất thiết cần Phoenix, nhưng chúng ta sử dụng Phoenix trong ví dụ dưới đây sẽ dễ dàng mô tả cách hoạt động.
 
-The easiest way to integrate into HTTP is via the router. Since Guardian's HTTP integrations are all based on plugs, you can use these anywhere a plug could be used.
+Dễ nhất là sử dụng HTTP qua một thiết bị định hướng gói tin - router. Khi Guardian tích hợp HTTP hoàn toàn dựa trên plugs, bạn có thể sử dụng nó bất kỳ chỗ nào có sử dụng plug.
 
-The general flow of Guardian plug is:
+Pha tiến trình chung của Guardian plug là:
 
-1. Find a token in the request (somewhere) and verify it: `Verify*` plugs
-2. Optionally load the resource identified in the token: `LoadResource` plug
-3. Ensure that there is a valid token for the request and refuse access if not. `EnsureAuthenticated` plug
+1. Tìm ra một token trong request và xác minh nó : `Verify*` plugs
+2. Tìm ra tài nguyên tương ứng với mỗi token: `LoadResource` plug
+3. Đảm bảo tính hợp lệ của token đó nếu không từ chối nó. `EnsureAuthenticated` plug
 
-To meet all the needs of application developers, Guardian implements these phases separately. To find the token use the `Verify*` plugs.
+Đáp ứng tất cả các nhu cầu của các nhà phát triển ứng dụng, Guardian hiện thực các pha riêng rẽ. Để tìm token sử dụng `Verify*` plugs.
 
-Let's create some pipelines.
+Để tạo một số pipelines.
 
 ```elixir
 pipeline :maybe_browser_auth do
@@ -145,9 +145,9 @@ pipeline :ensure_authed_access do
 end
 ```
 
-These pipelines can be used to compose different authentication requirements. The first pipeline tries to find a token first in the session and then falls back to a header. If it finds one, it will load the resource for you.
+Các pipelines có thể được sử dụng để tạo các yêu cầu xác thực khác nhau. Pipeline thứ nhất cố gắng tìm kiếm ra token đầu tiên trong phiên làm việc và sau đó tới header. Nếu nó tìm thấy token, nó sẽ đọc/ghi các thông tin cho bạn.
 
-The second pipeline requires that there is a valid, verified token present and that it is of type "access". To use these, add them to your scope.
+Pipeline thứ 2 cần token hợp lệ, xác nhận hợp lệ token hiện tại và đánh dấu nó "access". Để sử dụng nó, ta thêm chúng vào scope.
 
 ```elixir
 scope "/", MyApp do
@@ -165,19 +165,19 @@ scope "/", MyApp do
 end
 ```
 
-The login routes above will have the authenticated user if there is one. The second scope ensures that there is a valid token passed for all actions.
-You don't _have_ to put them in pipelines, you could put them in your controllers for super flexible customization but we're doing a minimal setup.
+Các login routes ở trên sẽ chứng thực danh tính của user nếu cùng một đối tượng. Ở trong scope thứ 2 đó là một token hợp lệ tất cả các actions.
+Bạn không đưa chúng vào trong một pipelines, bạn có thể đưa chúng vào trong controller của bạn sao cho việc điều chỉnh mã lệnh lắt léo hơn nhưng chúng ta đang nói cách thiết lập tối giản.
 
-We're missing one piece so far. The error handler we added on the `EnsureAuthenticated` plug. This is a very simple module that responds to
+Chúng ta chưa nói phần mã sau này dùng. Đó là bắt các lỗi xảy ra khi ấy thêm `EnsureAuthenticated` plug. Đây là một module rất đơn giản trả về tới user
 
 * `unauthenticated/2`
 * `unauthorized/2`
 
-Both these functions receive a Plug.Conn struct and a params map and should handle their respective errors. You can even use a Phoenix controller!
+Cả hai chức năng nhận một struct Plug.Conn và các parameter đầu vào sẽ có các lỗi tương ứng xảy ra. Bạn thậm chí có thể sử dụng một Phoenix controller!
 
-#### In the controller
+#### Bên trong controller
 
-Inside the controller, there are a couple of options for how to access the currently logged in user. Let's start with the simplest.
+Bên trong controller, đó là vài xử lý khi user đã đăng nhập. Bắt đầu với ví dụ đơn giản nhất.
 
 ```elixir
 defmodule MyApp.MyController do
@@ -185,14 +185,14 @@ defmodule MyApp.MyController do
   use Guardian.Phoenix.Controller
 
   def some_action(conn, params, user, claims) do
-    # do stuff
+    # làm gì đó
   end
 end
 ```
 
-By using the `Guardian.Phoenix.Controller` module, your actions will receive two additional arguments that you can pattern match on. Remember, if you didn't use `EnsureAuthenticated` you may have a nil user and claims.
+Bằng việc sử dụng `Guardian.Phoenix.Controller` module, các action sẽ nhận 2 tham trị mà bạn tùy ý sử dụng pattern match cho chúng. Nên nhớ, nếu bạn không sử dụng `EnsureAuthenticated` bạn có thể nhận giá trị nil cho user và claims.
 
-The other - more flexible/verbose version - is to use plug helpers.
+Mặt khác - chúng ta có cách viết lắt léo/rườm rà hơn sau - là để sử dụng plug helpers.
 
 ```elixir
 defmodule MyApp.MyController do
@@ -202,25 +202,25 @@ defmodule MyApp.MyController do
     if Guardian.Plug.authenticated?(conn) do
       user = Guardian.Plug.current_resource(conn)
     else
-      # No user
+      # Không phải user
     end
   end
 end
 ```
 
-#### Login/Logout
+#### Đăng nhập/Thoát
 
-Logging in and out of a browser session is very simple. In your login controller:
+Đăng nhập và thoát của phiên làm việc trên trình duyệt là rất đơn giản. Trong controller login ta viết như sau:
 
 ```elixir
 def create(conn, params) do
   case find_the_user_and_verify_them_from_params(params) do
     {:ok, user} ->
       conn
-      |> Guardian.Plug.sign_in(user, :access) # Use access tokens. Other tokens can be used, like :refresh etc
+      |> Guardian.Plug.sign_in(user, :access) # Ở đây ta dùng access. Các token khác có thể sử dụng, như :resfresh vân vân
       |> respond_somehow()
     {:error, reason} ->
-      # handle not verifying the user's credentials
+      # xử lý xảy ra lỗi xác minh user
   end
 end
 
@@ -231,8 +231,7 @@ def delete(conn, params) do
 end
 ```
 
-When using API login, it's slightly different because there's no session and you need to provide the raw token back to the client.
-For API login you'll likely use the `Authorization` header to provide the token to your application. This method is useful when you do not intend on using a session.
+Khi sử dụng API đăng nhập, nó có chút khác biệt bởi vì ở đó không có dựa trên session và bạn cần cung cấp một raw token - token gốc trở về lại cho người dùng. Hàm này tiện lợi khi bạn không có ý định cho việc sử dụng một session.
 
 ```elixir
 def create(conn, params) do
@@ -242,7 +241,7 @@ def create(conn, params) do
       conn
       |> respond_somehow({token: jwt})
     {:error, reason} ->
-      # handle not verifying the user's credentials
+      # xử lý xảy ra lỗi xác minh user
   end
 end
 
@@ -253,4 +252,4 @@ def delete(conn, params) do
 end
 ```
 
-The browser session login calls `encode_and_sign` under the hood so you can use them the same way.
+Bản chất việc session đăng nhập trình duyệt gọi `encode_and_sign` vẫn thế vì vậy bạn có thể sử dụng chúng khá tương tự.

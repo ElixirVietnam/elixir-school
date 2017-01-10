@@ -12,7 +12,7 @@ lang: vi
 
 ## JWTs
 
-Một chuẩn JWT cung cấp lượng token phong phú dành cho xác thực danh tính người dùng. Nhiều hệ thống xác thực danh tính một chủ thể tới tài nguyên máy tính, JWTs cho chúng ta các thông tin khác như :
+Một JWT cung cấp một token với nhiều thông tin để xác thực danh tính người dùng. Trong khi nhiều hệ thống xác thực khác, chỉ cung cấp truy cập tới chủ thể của token, JWT còn cho chúng ta các thông tin khác như :
 
 * Ai đã tạo token
 * Token đó dùng cho ai
@@ -20,18 +20,18 @@ Một chuẩn JWT cung cấp lượng token phong phú dành cho xác thực dan
 * Thời điểm issued được tạo
 * Thời điểm issue hết hạn
 
-Bổ sung thêm Guardian cung cấp các tính năng tiện lợi :
+Guardian cung cấp thêm một số tính năng khác như :
 
 * Kiểu của token là gì
 * Những hành vi nào được làm
 
-Đây là các fields cơ bản trong JWT. Bạn tùy ý thêm bất cứ thông tin nào cần cho ứng dụng của bạn. Nhớ điều là keep it short, là JWT đặt vừa vặn trong HTTP header.
+Đây là các fields cơ bản trong JWT. Bạn tùy ý thêm bất cứ thông tin nào cần cho ứng dụng của bạn. Nhớ rằng, nên giữ cho JWT không có quá nhiều trường, để JWT có thể vừa vặn trong HTTP header.
 
-Sự phong phú này cho phép bạn đặt JWTs khắp hệ thống của bạn.
+Sự phong phú này cho phép bạn truyền JWTs khắp hệ thống của bạn.
 
 ### Sử dụng chúng ở đâu
 
-JWT tokens có thể sử dụng xác thực định danh ở bộ phận bất kỳ của ứng dụng.
+JWT tokens có thể sử dụng xác thực danh tính ở bộ phận bất kỳ của ứng dụng.
 
 * Các ứng dụng Single page
 * Các controllers (qua phiên làm việc trình duyệt)
@@ -43,15 +43,15 @@ JWT tokens có thể sử dụng xác thực định danh ở bộ phận bất 
 * Chức năng nhớ tự động
 * Các giao diện khác - raw TCP, UDP, CLI, etc
 
-JWT tokens có thể sử dụng ở bất cứ chỗ nào trong ứng dụng cần thực hiện hành vi xác thực định danh.
+JWT tokens có thể sử dụng ở bất cứ chỗ nào trong ứng dụng cần thực hiện hành vi xác thực danh tính.
 
 ### Tôi có sử dụng cho một cơ sở dữ liệu không?
 
 Bạn không cần kiểm tra JWT qua một cơ sở dữ liệu. Cách đơn giản bạn dựa trên thời điểm tạo và thời điểm hết hạn để điều khiển truy cập. Thường thi bạn sẽ mở cơ sở dữ liệu để tra cứu người dùng nào đó nhưng JWT tự thân nó không cần điều này.
 
-Ví dụ, nếu bạn lên kế hoạch sử dụng JWT để thực hiện chứng thực qua socket dùng giao thức UDP thay vì bạn sử dụng một cơ sở dữ liệu. Nén tất cả thông tin bạn cần một cách trực tiếp vào token khi bạn khởi tạo nó. Bạn xác minh nó (kiểm tra xem nó hợp lệ).
+Ví dụ, nếu bạn sử dụng JWT để xác thực danh tính thông qua giao thức UDP, bạn có thể không cần dùng cơ sở dữ liệu. Nén tất cả thông tin bạn cần một cách trực tiếp vào token khi bạn khởi tạo nó. Sau đó bạn có thể kiểm tra tính hợp lệ của token bằng cách kiểm tra xem nó có được mã hoá đúng hay không.
 
-Bạn có thể tuy nhiên sử dụng 1 cơ sở dữ liệu kiểm soát JWT. Nếu bạn thực hiện, bạn chứng thực token vẫn hợp lệ. Hoặc bạn có thể sử dụng các bản ghi trong DB để giải phóng tất cả token của user. Điều này khá dễ dàng trong Guardian bởi sử dụng [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb sử dụng Guardians 'Hooks' để thực hiện kiểm tra xác thực, lưu và xóa khỏi DB. Chúng ta sẽ đề cập nó sau.
+Tuy nhiên bạn có thể sử dụng một cơ sở dữ liệu kiểm soát JWT. Nếu sử dụng cơ sở dữ liệu, bạn có khả năng kiểm tra xem token có còn hợp lệ hay không - tức là nó vẫn chưa bị huỷ bỏ. Hoặc bạn có thể sử dụng các bản ghi trong cơ sở dữ liệu để bắt tất cả các token của user 5 là sẽ bị log out. Điều này khá dễ dàng trong Guardian bởi sử dụng [GuardianDb](https://github.com/hassox/guardian_db). GuardianDb sử dụng Guardians 'Hooks' để thực hiện kiểm tra xác thực, lưu và xóa khỏi DB. Chúng ta sẽ đề cập nó sau.
 
 ## Thiết lập
 
@@ -90,7 +90,7 @@ config :guardian, Guardian,
   serializer: MyApp.GuardianSerializer
 ```
 
-Đây chỉ là thiết lập ở mức tối thiểu để bạn sử dụng Guardian. Bạn không nên nén khóa bí mật - secret key một cách thô bạo ở phạm vi rộng. Thay vào đó, mỗi môi trường lựa chọn khóa bí mật của riêng nó. Thường thì ta cất khóa bí mật ở môi trường Mix cho môi trường phát triển và kiểm thử - dev và test. Tuy nhiên riêng ở Staging and production khóa bí mật yêu cầu phải cất giữ tối mật. (ví dụ: được kèm theo `mix phoenix.gen.secret`)
+Đây chỉ là thiết lập ở mức tối thiểu để bạn sử dụng Guardian. Bạn không nên để khoá bí mật của bạn trực tiếp trong file config.exs. Thay vì đó, mỗi một trường nên có một khoá bí mật riêng. Điều này có thể thực hiện bằng cách thiết lập trong các file config/dev.exs, config/test.exs. Với môi trường staging và production, các khoá này cần phải là các khoá mạnh (e.g: sử dụng `mix phoenix.gen.secret` để sinh ra)
 
 `lib/my_app/guardian_serializer.ex`
 
@@ -108,30 +108,30 @@ defmodule MyApp.GuardianSerializer do
   def from_token(_), do: { :error, "Unknown resource type" }
 end
 ```
-Serializer của bạn đảm nhiệm phần tìm kiếm tài nguyên ở trong trường `sub` (subject). Nó có thể tìm trong DB, một API hoặc thậm chí trong nội dung một chuỗi dữ liệu.
-Nó tìm kiếm từng tài nguyên đơn lẻ ở trường `sub`.
+Serializer của bạn đảm nhiệm phần tìm kiếm tài nguyên ở trong trường `sub` (subject). Nó có thể tìm trong DB, một API hoặc thậm chí trong nội dung một chuỗi đơn giản.
+Nó cũng chịu trách nhiệm cho việc serializer các tài nguyên trong trường `sub`.
 
-Đó là những cấu hình đơn giản nhất. Thực tế có thể có nhiều mã phức tạp hơn nhưng vừa đủ cho ta bắt đầu.
+Đây là cấu hình đơn giản nhất, đủ để chúng ta bắt đầu. Trên thực tế, bạn có thể làm được rất nhiều thứ nếu bạn muốn.
 
 #### Sử dụng trong ứng dụng
 
-Lúc này chúng ta đang đăng ký sử dụng Guardian trong file cấu hình, chúng ta cần gọi nó trong ứng dụng. Khi ta đang thiết lập mức đơn giản nhất, chúng ta bắt đầu với các yêu cầu chạy trong giao thức HTTP.
+Lúc này chúng ta đã cấu hình xong Guardian, chúng ta cần tích hợp nó vào trong ứng dụng. Bởi vì đây chỉ là cấu hình đơn giản nhất, chúng ta sẽ bắt đầu bằng việc xem xét các request HTTP.
 
 ## Các yêu cầu trong giao thức HTTP
 
-Guardian cung cấp một số Plugs để dễ dàng nhúng vào HTTP requests. Bạn có thể học ở đây về Plug [separate lesson](../specifics/plug/). Đặc điểm cần nhớ Guardian làm việc không nhất thiết cần Phoenix, nhưng chúng ta sử dụng Phoenix trong ví dụ dưới đây sẽ dễ dàng mô tả cách hoạt động.
+Guardian cung cấp một số Plugs để dễ dàng nhúng vào HTTP requests. Bạn có thể học về Plug tại đây [separate lesson](../specifics/plug/). Guardian làm việc không nhất thiết cần Phoenix, nhưng chúng ta sử dụng Phoenix trong ví dụ dưới đây sẽ dễ dàng mô tả cách hoạt động.
 
-Dễ nhất là sử dụng HTTP qua một thiết bị định hướng gói tin - router. Khi Guardian tích hợp HTTP hoàn toàn dựa trên plugs, bạn có thể sử dụng nó bất kỳ chỗ nào có sử dụng plug.
+Dễ nhất là sử dụng HTTP qua router - module route của Phoenix. Bởi vì Guardian tích hợp HTTP hoàn toàn dựa trên plugs, bạn có thể sử dụng nó bất kỳ chỗ nào có sử dụng plug.
 
-Pha tiến trình chung của Guardian plug là:
+Luồng tiến trình chung của Guardian plug là:
 
 1. Tìm ra một token trong request và xác minh nó : `Verify*` plugs
 2. Tìm ra tài nguyên tương ứng với mỗi token: `LoadResource` plug
 3. Đảm bảo tính hợp lệ của token đó nếu không từ chối nó. `EnsureAuthenticated` plug
 
-Đáp ứng tất cả các nhu cầu của các nhà phát triển ứng dụng, Guardian hiện thực các pha riêng rẽ. Để tìm token sử dụng `Verify*` plugs.
+Để đáp ứng tất cả các nhu cầu của các nhà phát triển ứng dụng, Guardian hiện thực các pha riêng rẽ. Để tìm token sử dụng `Verify*` plugs.
 
-Để tạo một số pipelines.
+Hãy cùng tạo một số pipelines.
 
 ```elixir
 pipeline :maybe_browser_auth do
@@ -145,7 +145,7 @@ pipeline :ensure_authed_access do
 end
 ```
 
-Các pipelines có thể được sử dụng để tạo các yêu cầu xác thực khác nhau. Pipeline thứ nhất cố gắng tìm kiếm ra token đầu tiên trong phiên làm việc và sau đó tới header. Nếu nó tìm thấy token, nó sẽ đọc/ghi các thông tin cho bạn.
+Các pipelines có thể được sử dụng để tạo các yêu cầu xác thực khác nhau. Pipeline thứ nhất cố gắng tìm kiếm ra token đầu tiên trong phiên làm việc, nếu không có, nó sẽ tìm token trong header. Nếu nó tìm thấy token, nó sẽ đọc/ghi các thông tin cho bạn.
 
 Pipeline thứ 2 cần token hợp lệ, xác nhận hợp lệ token hiện tại và đánh dấu nó "access". Để sử dụng nó, ta thêm chúng vào scope.
 
@@ -165,8 +165,8 @@ scope "/", MyApp do
 end
 ```
 
-Các login routes ở trên sẽ chứng thực danh tính của user nếu cùng một đối tượng. Ở trong scope thứ 2 đó là một token hợp lệ tất cả các actions.
-Bạn không đưa chúng vào trong một pipelines, bạn có thể đưa chúng vào trong controller của bạn sao cho việc điều chỉnh mã lệnh lắt léo hơn nhưng chúng ta đang nói cách thiết lập tối giản.
+Các login routes ở trên sẽ chứng thực danh tính của user nếu cùng một đối tượng. Scope thứ hai đảm bảo rằng có một token hợp lệ được truyền cho tất cả các actions.
+Bạn không nhất thiết phải đặt chúng trong các pipelines. Bạn có thể đặt chúng trong các controller để có thể tuỳ biến một cách linh hoạt, tuy nhiên, ở đây chúng ta đã sử dụng cấu hình đơn giản nhất.
 
 Chúng ta chưa nói phần mã sau này dùng. Đó là bắt các lỗi xảy ra khi ấy thêm `EnsureAuthenticated` plug. Đây là một module rất đơn giản trả về tới user
 
@@ -177,7 +177,7 @@ Cả hai chức năng nhận một struct Plug.Conn và các parameter đầu v�
 
 #### Bên trong controller
 
-Bên trong controller, đó là vài xử lý khi user đã đăng nhập. Bắt đầu với ví dụ đơn giản nhất.
+Bên trong controller, để truy cập vào user hiện tại đang logged in, chúng ta có một vài cách. Hãy bắt đầu với cách đơn giản nhất.
 
 ```elixir
 defmodule MyApp.MyController do

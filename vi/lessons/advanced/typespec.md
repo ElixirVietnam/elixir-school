@@ -95,7 +95,7 @@ def sum_times(a, params) do
 end
 ```
 
-tương đương với:
+TTương đương với:
 
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer

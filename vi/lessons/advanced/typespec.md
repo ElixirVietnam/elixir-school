@@ -14,7 +14,7 @@ Trong bài học này, chúng ta sẽ học về cú pháp `@spec` và `@type`. 
 
 Thông thường, bạn sẽ muốn mô tả giao diện cho hàm của bạn. Tất nhiện bạn có thể sử dụng [@doc annotation](../../basics/documentation), tuy nhiên nó chỉ là các thông tin cho các lập trình viên khác, mà không được kiểm tra trong lúc biên dịch. Cho mục đích này, Elixir cung cấp `@spec` annotation để mô tả các đặc tả của hàm sẽ được kiểm tra bởi trình biên dịch
 
-Tuy nhiên, trong một số trường hợp, các đặc tả sẽ trở nên khá lớn và phức tạp. Nếu bạn muốn giảm bớt tính phức tạp, nhưng vẫn muốn đưa ra định nghĩa cho các kiểu mới, Elixir cung cấp `@type` annotation để làm việc này. Nói cách khác, Elixir vẫn là một dynamic language. Nghĩa là tất cả các thông tin về kiểu sẽ bị trình biên dịch bỏ qua, nhưng nó có thể được sử dụng bởi các công cụ khác.
+Tuy nhiên, trong một số trường hợp, các đặc tả sẽ trở nên khá lớn và phức tạp. Nếu bạn muốn giảm bớt tính phức tạp, nhưng vẫn muốn đưa ra định nghĩa cho các kiểu mới, Elixir cung cấp anotiation(tạm dịch là ký tự chú thích)`@type` để làm việc này. Nói cách khác, Elixir vẫn là một ngôn ngữ kiểu động (dynamic language). Nghĩa là tất cả các thông tin về kiểu sẽ bị trình biên dịch bỏ qua, nhưng nó có thể được sử dụng bởi các công cụ khác.
 
 ## Đặc tả
 
@@ -33,7 +33,7 @@ def sum_product(a) do
 end
 ```
 
-Mọi thứ trông vẫn tốt, và khi chúng ta gọi hàm này, một giá trị hợp lệ sẽ được trả về, nhưng hàm `Enum.sum` trả về `number` chứ không phải là `integer` như chúng ta mong muốn ở trong `@spec`. Đây có thể nguồn gốc của bugs! Có những công cụ như Dialyzer để phân tích tĩnh (static analysis) code có thể giúp chúng ta tìm những lỗi kiểu này. Chúng ta sẽ nói về chúng trong một bài học khác.
+Mọi thứ trông vẫn tốt, và khi chúng ta gọi hàm này, một giá trị hợp lệ sẽ được trả về, nhưng hàm `Enum.sum` trả về `number` chứ không phải là `integer` như chúng ta mong muốn ở trong `@spec`. Đây có thể nguồn gốc của các lỗi! Có những công cụ như Dialyzer để phân tích tĩnh (static analysis) code có thể giúp chúng ta tìm những lỗi kiểu này. Chúng ta sẽ nói về chúng trong một bài học khác.
 
 ## Kiểu tuỳ biến
 
@@ -95,7 +95,7 @@ def sum_times(a, params) do
 end
 ```
 
-TTương đương với:
+Tương đương với:
 
 ```elixir
 @spec sum_times(integer, Examples.t(integer, integer)) :: integer

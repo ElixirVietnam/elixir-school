@@ -50,7 +50,7 @@ Có một vài cách tiếp cận để quản lý việc các tiến trình con
 
 + `:temporary` - Tiến trình con không bao giờ được khởi động lại.
 
-+ `:transient` - Tiến trình con chỉ dược khởi động lại, nếu như nó bị tắt một cách không bình thường.
++ `:transient` - Tiến trình con chỉ được khởi động lại, nếu như nó bị tắt một cách không bình thường.
 
 Giá trị mặc định là `:permanent`.
 

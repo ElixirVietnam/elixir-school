@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lecciones acerca del lenguaje de programación Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/es/lessons/advanced/error-handling/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Manejo de errores &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lecciones acerca del lenguaje de programación Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Manejo de errores &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lecciones acerca del lenguaje de programación Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Básico</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/basics/basics/">Básico</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/basics/collections/">Colecciones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/basics/pattern-matching/">Coincidencia de Patrones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/es/lessons/basics/control-structures/">Estructuras de control</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/es/lessons/basics/functions/">Funciones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/es/lessons/basics/pipe-operator/">Operador Pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/es/lessons/basics/modules/">Composición</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/es/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/es/lessons/basics/testing/">Pruebas</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Avanzado</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/advanced/erlang/">Interoperabilidad Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/es/lessons/advanced/error-handling/">Manejo de errores</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/advanced/escripts/">Ejecutables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/advanced/concurrency/">Concurrencia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Específico</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/specifics/eex/">Elixir Embebido (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/specifics/ets/">Almacenamiento de términos de Erlang (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/error-handling/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/error-handling/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/error-handling/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/error-handling/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/error-handling/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/error-handling/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/error-handling/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/error-handling/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/error-handling/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/error-handling/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/error-handling/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/error-handling/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/error-handling/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/error-handling/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/error-handling/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/error-handling/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/error-handling/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/error-handling/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/error-handling/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/error-handling/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/error-handling/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Manejo de errores</h1>
+  <p>Aunque es más común devolver una tupla <code class="highlighter-rouge"><span class="p">{</span><span class="err">:error,</span><span class="w"> </span><span class="err">reason</span><span class="p">}</span></code>, Elixir soporta excepciones, y en esta lección revisaremos como manejar errores y los diferentes mecanismos a nuestra disposición.</p>
+
+<p>En general la convención en Elixir es crear una función (<code class="highlighter-rouge">example/1</code>) que devuelve <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">result</span><span class="p">}</span></code> y <code class="highlighter-rouge"><span class="p">{</span><span class="err">:error,</span><span class="w"> </span><span class="err">reason</span><span class="p">}</span></code> y una función distinta (<code class="highlighter-rouge">example!/1</code>) que devuelve el resultado <code class="highlighter-rouge">result</code> sin envolver o levanta un error.</p>
+
+<p>Esta lección se enfocará en interactuar con la segunda forma.</p>
+
+<h2>Tabla de contenidos</h2>
+<div id="toc"></div>
+
+<h2 id="manejo-de-errores">Manejo de errores</h2>
+
+<p>Antes de que podamos manejar errores necesitamos crearlos, y la manera más simple de hacer esto es con <code class="highlighter-rouge">raise/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">raise</span> <span class="sd">"</span><span class="s2">Oh no!"</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">RuntimeError</span><span class="p">)</span> <span class="no">Oh</span> <span class="n">no!</span>
+</code></pre>
+</div>
+
+<p>Si queremos especificar el tipo y mensaje, necesitamos usar <code class="highlighter-rouge">raise/2</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="ss">message:</span> <span class="sd">"</span><span class="s2">the argument value is invalid"</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span> <span class="n">the</span> <span class="n">argument</span> <span class="n">value</span> <span class="n">is</span> <span class="n">invalid</span>
+</code></pre>
+</div>
+
+<p>Cuando sabemos que un error puede ocurrir, podemos manejarlo usando <code class="highlighter-rouge">try/rescue</code> y coincidencia de patrones:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">raise</span> <span class="sd">"</span><span class="s2">Oh no!"</span>
+<span class="o">...&gt;</span> <span class="k">rescue</span>
+<span class="o">...&gt;</span>   <span class="n">e</span> <span class="ow">in</span> <span class="no">RuntimeError</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">An error occurred: "</span> <span class="o">&lt;&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="no">An</span> <span class="n">error</span> <span class="ss">occurred:</span> <span class="no">Oh</span> <span class="n">no!</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>Es posible coincidir múltiples errores en un solo <code class="highlighter-rouge">rescue</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">try</span> <span class="k">do</span>
+  <span class="n">opts</span>
+  <span class="o">|&gt;</span> <span class="no">Keyword</span><span class="o">.</span><span class="n">fetch!</span><span class="p">(</span><span class="ss">:source_file</span><span class="p">)</span>
+  <span class="o">|&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">read!</span>
+<span class="k">rescue</span>
+  <span class="n">e</span> <span class="ow">in</span> <span class="no">KeyError</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">missing :source_file option"</span>
+  <span class="n">e</span> <span class="ow">in</span> <span class="no">File</span><span class="o">.</span><span class="no">Error</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">unable to read source file"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="after">After</h2>
+
+<p>A veces es necesario realizar alguna acción después de nuestro <code class="highlighter-rouge">try/rescue</code> independientemente de si hubo o no error. Para esto tenemos <code class="highlighter-rouge">try/after</code>. Si estás familiarizado con Ruby, esto es similar a <code class="highlighter-rouge">begin/rescue/ensure</code> o en Java a <code class="highlighter-rouge">try/catch/finally</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">raise</span> <span class="sd">"</span><span class="s2">Oh no!"</span>
+<span class="o">...&gt;</span> <span class="k">rescue</span>
+<span class="o">...&gt;</span>   <span class="n">e</span> <span class="ow">in</span> <span class="no">RuntimeError</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">An error occurred: "</span> <span class="o">&lt;&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">after</span>
+<span class="o">...&gt;</span>   <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">The end!"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="no">An</span> <span class="n">error</span> <span class="ss">occurred:</span> <span class="no">Oh</span> <span class="n">no!</span>
+<span class="no">The</span> <span class="n">end!</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>Esto es más comúnmente usado con archivos o conexiones que deberían ser cerradas:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">file</span><span class="p">}</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span> <span class="sd">"</span><span class="s2">example.json"</span>
+<span class="k">try</span> <span class="k">do</span>
+   <span class="c1"># Do hazardous work</span>
+<span class="k">after</span>
+   <span class="no">File</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="nuevos-errores">Nuevos errores</h2>
+
+<p>Pese a que elixir incluye un número de errores predefinidos como <code class="highlighter-rouge">RuntimeError</code>, mantenemos la habilidad de crear los nuestros si necesitamos algo específico. Crear un nuevo error es fácil con la macro <code class="highlighter-rouge">defexception/1</code>, que convenientemente acepta la opción <code class="highlighter-rouge">:message</code> para definir un mensaje de error por defecto:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleError</span> <span class="k">do</span>
+  <span class="k">defexception</span> <span class="ss">message:</span> <span class="sd">"</span><span class="s2">an example error has occurred"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Llevemos nuestro nuevo error a dar una vuelta:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">raise</span> <span class="no">ExampleError</span>
+<span class="o">...&gt;</span> <span class="k">rescue</span>
+<span class="o">...&gt;</span>   <span class="n">e</span> <span class="ow">in</span> <span class="no">ExampleError</span> <span class="o">-&gt;</span> <span class="n">e</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="p">%</span><span class="no">ExampleError</span><span class="p">{</span><span class="ss">message:</span> <span class="sd">"</span><span class="s2">an example error has occurred"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="throws">Throws</h2>
+
+<p>Otro mecanismo para trabajar con errores en Elixir es <code class="highlighter-rouge">throw</code> y <code class="highlighter-rouge">catch</code>. En la práctica, estos ocurren muy inusualmente en código de Elixir más nuevo, pero es importante conocerlos y entenderlos.</p>
+
+<p>La función <code class="highlighter-rouge">throw/1</code> nos da la habilidad de salir de la ejecución con un valor específico que podemos capturar con <code class="highlighter-rouge">catch</code> y luego utilizar:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">0</span><span class="o">..</span><span class="m">10</span> <span class="k">do</span>
+<span class="o">...&gt;</span>     <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="m">5</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="k">throw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="o">...&gt;</span>     <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="k">catch</span>
+<span class="o">...&gt;</span>   <span class="n">x</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Caught: </span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="m">0</span>
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="m">4</span>
+<span class="sd">"</span><span class="s2">Caught: 5"</span>
+</code></pre>
+</div>
+
+<p>Como se mencionó, <code class="highlighter-rouge">throw/catch</code> son muy poco comunes y típicamente existen como recurso provisional cuando las bibliotecas fallan en proveer APIs adecuadas.</p>
+
+<h2 id="salir">Salir</h2>
+
+<p>El último mecanismo de error que Elixir nos provee es <code class="highlighter-rouge">exit</code>. Las señales de salida ocurren cuando un proceso muere y son una parte importante de la tolerancia a fallos en Elixir.</p>
+
+<p>Para salir de manera explícita podemos usar <code class="highlighter-rouge">exit/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">spawn_link</span> <span class="k">fn</span> <span class="o">-&gt;</span> <span class="k">exit</span><span class="p">(</span><span class="sd">"</span><span class="s2">oh no"</span><span class="p">)</span> <span class="k">end</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">EXIT</span> <span class="n">from</span> <span class="c1">#PID&lt;0.101.0&gt;) "oh no"</span>
+</code></pre>
+</div>
+
+<p>Pese a que es posible manejar una salida con <code class="highlighter-rouge">try/catch</code>, hacerlo es <em>extremadamente</em> raro. En casi todos los casos es ventajoso permitir al supervisor manejar la salida del proceso:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">exit</span> <span class="sd">"</span><span class="s2">oh no!"</span>
+<span class="o">...&gt;</span> <span class="k">catch</span>
+<span class="o">...&gt;</span>   <span class="ss">:exit</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">exit blocked"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">exit blocked"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/es/lessons/advanced/error-handling/&title=Manejo de errores&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/es/lessons/advanced/error-handling/&via=elixirschool&text=ElixirSchool: Manejo de errores&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/es/lessons/advanced/error-handling/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/es/lessons/advanced/error-handling/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/es/lessons/advanced/error-handling/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Manejo de errores" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/es/lessons/advanced/error-handling/&title=ElixirSchool: Manejo de errores&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/es/lessons/advanced/error-handling/&title=ElixirSchool: Manejo de errores&description=Check out 'Manejo de errores' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Manejo de errores&body=Check out 'Manejo de errores' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/es/lessons/advanced/error-handling/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

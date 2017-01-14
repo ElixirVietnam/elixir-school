@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Уроки программирования на языке Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ru/lessons/advanced/gen-stage/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  GenStage &middot; Elixir School
+
+">
+  <meta property="og:description" content="Уроки программирования на языке Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  GenStage &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Уроки программирования на языке Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Основы</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ru/lessons/basics/basics/">Основы</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ru/lessons/basics/collections/">Коллекции</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ru/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ru/lessons/basics/pattern-matching/">Сопоставление с образцом</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ru/lessons/basics/control-structures/">Управляющие конструкции</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ru/lessons/basics/functions/">Функции</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ru/lessons/basics/pipe-operator/">Оператор конвейера</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ru/lessons/basics/modules/">Композиция</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ru/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ru/lessons/basics/sigils/">Строковые метки</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ru/lessons/basics/documentation/">Документирование</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ru/lessons/basics/testing/">Тестирование</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ru/lessons/basics/comprehensions/">Списковые включения</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ru/lessons/basics/strings/">Строки</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ru/lessons/basics/mix-tasks/">Пользовательские Mix задачи</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Продвинутый</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ru/lessons/advanced/erlang/">Взаимодействие с Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ru/lessons/advanced/error-handling/">Обработка ошибок</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ru/lessons/advanced/escripts/">Исполняемые файлы</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ru/lessons/advanced/concurrency/">Параллелизм</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ru/lessons/advanced/otp-concurrency/">Параллелизм в OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ru/lessons/advanced/otp-supervisors/">OTP Супервизоры</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ru/lessons/advanced/metaprogramming/">Метапрограммирование</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ru/lessons/advanced/umbrella-projects/">Зонтичные проекты</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ru/lessons/advanced/typespec/">Cпецификации и типы</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson  active" href="/ru/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Специфика</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ru/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ru/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ru/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ru/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ru/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/gen-stage/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/gen-stage/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/gen-stage/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/gen-stage/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/gen-stage/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/gen-stage/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/gen-stage/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/gen-stage/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/gen-stage/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/gen-stage/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/gen-stage/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/gen-stage/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/gen-stage/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/gen-stage/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/gen-stage/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/gen-stage/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/gen-stage/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/gen-stage/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/gen-stage/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/gen-stage/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/gen-stage/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">GenStage</h1>
+  <p>В этом уроке мы поближе рассмотрим GenStage, узнаем, какую роль он выполняет, и как мы можем использовать его в наших приложениях.</p>
+
+<h2>Содержание</h2>
+<div id="toc"></div>
+
+<h2 id="section">Вступление</h2>
+
+<p>Так что же такое GenStage? В официальной документации написано, что это “спецификация и поток вычислений для Elixir”, но что это означает для нас?</p>
+
+<p>Это означает, что GenStage предоставляет нам возможность определить конвейер задач, который будет выполняться независимыми шагами (или этапами) в отдельных процессах. Если вы уже работали с конвейерами, тогда некоторые из этих понятий могут быть вам знакомы.</p>
+
+<p>Чтобы лучше понять, как это работает, давайте визуализируем простой поток производитель-потребитель:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[A] -&gt; [B] -&gt; [C]
+</code></pre>
+</div>
+
+<p>В этом примере у нас три стадии: <code class="highlighter-rouge">A</code> — производитель, <code class="highlighter-rouge">B</code> — производитель-потребитель, и <code class="highlighter-rouge">C</code> — потребитель. <code class="highlighter-rouge">A</code> производит значение, которое потребляет <code class="highlighter-rouge">B</code>, <code class="highlighter-rouge">B</code> выполняет какую-то работу и возвращает значение, которое отправляется нашему потребителю <code class="highlighter-rouge">C</code>. Роль стадии важна, что мы увидим в следующей секции.</p>
+
+<p>Пока в нашем примере производитель относится к потребителю один к одному, но можно одновременно иметь несколько производителей и множество потребителей на любой стадии.</p>
+
+<p>Чтобы лучше проиллюстрировать эти понятия, мы построим конвейер с помощью GenStage, но сначала давайте рассмотрим чуть подробнее роли, на которые GenStage опирается.</p>
+
+<h2 id="section-1">Производитель и потребитель</h2>
+
+<p>Как мы уже рассмотрели, роль которую мы даем нашей стадии важна. Спецификация GenStage принимает три роли:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">:producer</code> — Источник данных. Производители ждут требования от потребителей и реагируют, выполняя запрошенные действия.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:producer_consumer</code> — И источник, и потребитель. Производитель-потребитель может как реагировать на требования от потребителей, так и запрашивать выполнение действий от производителей.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:consumer</code> — Потребитель. Потребитель запрашивает и получает данные от производителя.</p>
+  </li>
+</ul>
+
+<p>Заметили, что производители <em>ожидают</em> требования? Благодаря GenStage наши потребители посылают требование вверх по потоку и обрабатывают данные от производителя. Это облегчает использование механизма, который называется обратное давление. Обратное давление перекладывает ответственность на неперегруженного производителя, когда потребители заняты.</p>
+
+<p>Теперь, когда мы рассмотрели роли в GenStage, займёмся нашим приложением.</p>
+
+<h2 id="section-2">Начало работы</h2>
+
+<p>В этом примере мы напишем GenStage приложение, которое генерирует числа, выбирает четные и в конце печатает их.</p>
+
+<p>Для нашего приложения мы будем использовать все три GenStage роли. Производитель будет отвечать за подсчет и генерацию чисел. Мы будем использовать производителя-потребителя, чтобы отфильтровать только четные числа, а затем реагировать на запросы, которые приходят снизу потока. Последним мы добавим потребителя, который будет отображать результат.</p>
+
+<p>Мы начнем с создания проекта с деревом надзора:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new genstage_example --sup
+<span class="gp">$ </span><span class="nb">cd </span>genstage_example
+</code></pre>
+</div>
+
+<p>Давайте обновим наши зависимости в <code class="highlighter-rouge">mix.exs</code>, добавив <code class="highlighter-rouge">gen_stage</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+    <span class="p">[</span>
+      <span class="p">{</span><span class="ss">:gen_stage</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 0.7"</span><span class="p">},</span>
+    <span class="p">]</span>
+  <span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Мы должны скачать зависимости и скомпилировать их прежде чем двигаться дальше:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix <span class="k">do </span>deps.get, compile
+</code></pre>
+</div>
+
+<p>Теперь мы готовы к созданию нашего приложения!</p>
+
+<h2 id="section-3">Производитель</h2>
+
+<p>Первый шаг нашего GenStage приложения — это создание нашего производителя. Как мы обсуждали ранее, мы хотим создать производителя, который генерирует постоянный поток чисел. Давайте создадим файл для этого производителя:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mkdir lib/genstage_example
+<span class="gp">$ </span>touch lib/genstage_example/producer.ex
+</code></pre>
+</div>
+
+<p>Теперь мы можем добавить код:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Experimental</span><span class="o">.</span><span class="no">GenStage</span>
+
+  <span class="kn">use</span> <span class="no">GenStage</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">initial</span> <span class="p">\\</span> <span class="m">0</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">GenStage</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:producer</span><span class="p">,</span> <span class="n">counter</span><span class="p">}</span>
+
+  <span class="k">def</span> <span class="n">handle_demand</span><span class="p">(</span><span class="n">demand</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="no">Enum</span><span class="o">.</span><span class="n">to_list</span><span class="p">(</span><span class="n">state</span><span class="o">..</span><span class="n">state</span> <span class="o">+</span> <span class="n">demand</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span>
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="p">(</span><span class="n">state</span> <span class="o">+</span> <span class="n">demand</span><span class="p">)}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Две важные части, которые нужно принять к сведению — <code class="highlighter-rouge">init/1</code> и <code class="highlighter-rouge">handle_demand/2</code>. В <code class="highlighter-rouge">init/1</code> мы устанавливаем начальное состояние, как мы делали в наших GenServer, но, что более важно, мы помечаем запускаемый процесс производителем. На основе результата вызова функции <code class="highlighter-rouge">init/1</code> GenStage классифицирует процесс.</p>
+
+<p>В функции <code class="highlighter-rouge">handle_demand/2</code> находится основная часть нашего производителя, и она должна быть реализована всеми производителями GenStage. Здесь мы возвращаем множество чисел, затребованных потребителями, и увеличиваем счетчик. Требование от потребителей (<code class="highlighter-rouge">demand</code> в нашем коде) представляется в виде целого числа, соответствующего числу событий, которые они могут обрабатывать, по умолчанию 1000.</p>
+
+<h2 id="section-4">Производитель-потребитель</h2>
+
+<p>Теперь, когда у нас есть производитель, генерирующий числа, перейдем к нашему производителю-потребителю. Мы хотим запрашивать числа от производителя, фильтровать от нечетных и реагировать на требования.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>touch lib/genstage_example/producer_consumer.ex
+</code></pre>
+</div>
+
+<p>Обновим наш файл:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span>  <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Experimental</span><span class="o">.</span><span class="no">GenStage</span>
+  <span class="kn">use</span> <span class="no">GenStage</span>
+
+  <span class="kn">require</span> <span class="no">Integer</span>
+
+  <span class="k">def</span> <span class="n">start_link</span> <span class="k">do</span>
+    <span class="no">GenStage</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:state_doesnt_matter</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:producer_consumer</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">subscribe_to:</span> <span class="p">[</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_events</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">numbers</span> <span class="o">=</span>
+      <span class="n">events</span>
+      <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">&amp;</span><span class="no">Integer</span><span class="o">.</span><span class="n">is_even</span><span class="o">/</span><span class="m">1</span><span class="p">)</span>
+
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">numbers</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Вы могли заметить, что вместе с нашим производителем-потребителем мы ввели новую функцию <code class="highlighter-rouge">handle_events/3</code> и опцию в <code class="highlighter-rouge">init/1</code>. С помощью опции <code class="highlighter-rouge">subscribe_to</code> мы поручаем GenStage связать нас с конкретным производителем.</p>
+
+<p>Метод <code class="highlighter-rouge">handle_events/3</code> — наша рабочая лошадка, где мы получаем наши входящие события, обрабатываем их и возвращаем преобразованный набор. Как мы увидим, потребители реализуются во многом таким же образом, но есть важное отличие — что именно <code class="highlighter-rouge">handle_events/3</code> возвращает и как это используется. Когда мы назначаем наш процесс потребителем, второй аргумент кортежа, <code class="highlighter-rouge">numbers</code> в нашем случае, используется для удовлетворения требования потребителей ниже по потоку. В потребителях это значение сбрасывается.</p>
+
+<h2 id="section-5">Потребитель</h2>
+
+<p>Остался последний по порядку, но не по важности процесс — потребитель. Начнём:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>touch lib/genstage_example/consumer.ex
+</code></pre>
+</div>
+
+<p>Поскольку потребитель и производитель-потребитель очень схожи, наш код не будет сильно отличаться:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Experimental</span><span class="o">.</span><span class="no">GenStage</span>
+  <span class="kn">use</span> <span class="no">GenStage</span>
+
+  <span class="k">def</span> <span class="n">start_link</span> <span class="k">do</span>
+    <span class="no">GenStage</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:state_doesnt_matter</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:consumer</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">subscribe_to:</span> <span class="p">[</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_events</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">event</span> <span class="o">&lt;-</span> <span class="n">events</span> <span class="k">do</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">inspect</span> <span class="p">{</span><span class="n">self</span><span class="p">(),</span> <span class="n">event</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+    <span class="k">end</span>
+
+    <span class="c1"># Так как мы потребители, мы не создаем события</span>
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="p">[],</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Как мы рассмотрели в предыдущем разделе, потребитель не создает события, так что второе значение в нашем кортеже будут отброшено.</p>
+
+<h2 id="section-6">Собираем все вместе</h2>
+
+<p>Теперь, когда мы создали производителя, производитель-потребителя и потребителя, мы готовы соединить это все вместе.</p>
+
+<p>Давайте откроем файл <code class="highlighter-rouge">lib/genstage_example.ex</code> и добавим наши новые процессы в дерево надзора:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+  <span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span><span class="p">,</span> <span class="ss">warn:</span> <span class="no">false</span>
+
+  <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span><span class="p">,</span> <span class="p">[</span><span class="m">0</span><span class="p">]),</span>
+    <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span><span class="p">,</span> <span class="p">[]),</span>
+    <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span><span class="p">,</span> <span class="p">[]),</span>
+  <span class="p">]</span>
+
+  <span class="n">opts</span> <span class="o">=</span> <span class="p">[</span><span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">]</span>
+  <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Если все правильно, мы можем запустить наш проект и мы должны увидеть что все работает:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix run --no-halt
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 2, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 4, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 6, :state_doesnt_matter}</span>
+...
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 229062, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 229064, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 229066, :state_doesnt_matter}</span>
+</code></pre>
+</div>
+
+<p>Мы сделали это! Как мы и ожидали, наше приложение пропускает только четные числа и делает это <em>быстро</em>.</p>
+
+<p>На данный момент у нас есть рабочий конвейер. Производитель генерирует числа, производитель-потребитель отбрасывает нечетные числа и потребитель отображает все это и продолжает процесс. Мы уже упоминали во вступлении, что возможно реализовать более одного производителя или потребителя. Давайте взглянем на это.</p>
+
+<p>Если мы рассмотрим вывод <code class="highlighter-rouge">IO.inspect/1</code> из нашего приложения, мы увидим, что все события обрабатываются одним PID. Давайте внесем некоторые корректировки для нескольких работников путем изменения <code class="highlighter-rouge">lib/genstage_example.ex</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span><span class="p">,</span> <span class="p">[</span><span class="m">0</span><span class="p">]),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span><span class="p">,</span> <span class="p">[]),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">id:</span> <span class="m">1</span><span class="p">),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">id:</span> <span class="m">2</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Теперь, когда мы настроили два потребителя, давайте посмотрим, что мы получим, если мы запустим наше приложение:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix run --no-halt
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 2, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.121.0&gt;, 4, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 6, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 8, :state_doesnt_matter}</span>
+...
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 86478, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.121.0&gt;, 87338, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 86480, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 86482, :state_doesnt_matter}</span>
+</code></pre>
+</div>
+
+<p>Как вы можете видеть, мы получили параллельную обработку в нескольких процессах, просто добавив строку кода и назначив нашим потребителям ID.</p>
+
+<h2 id="section-7">Сценарии использования</h2>
+
+<p>Только что мы рассмотрели GenStage и построили наше первое приложение. А в каких случаях можно <em>реально</em> использовать GenStage?</p>
+
+<ul>
+  <li>
+    <p>Конвейер преобразования данных — производителям не обязательно быть простыми генераторами чисел, мы могли бы создавать события из базы данных или даже из другого источника, например из Apache Kafka. Благодаря сочетанию производителей-потребителей и потребителей мы могли бы обрабатывать, сортировать, каталогизировать и хранить метрики как только они становятся доступными.</p>
+  </li>
+  <li>
+    <p>Очередь работ — поскольку события могут быть чем угодно, мы могли бы производить набор последовательных операций, которые должны быть завершены серией потребителей.</p>
+  </li>
+  <li>
+    <p>Обработка событий — по аналогии с конвейером данных, мы могли бы получать, обрабатывать, сортировать и принимать решения по событиям, переданным в режиме реального времени от наших источников.</p>
+  </li>
+</ul>
+
+<p>Это всего лишь <em>некоторые</em> возможности GenStage.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Поделиться
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ru/lessons/advanced/gen-stage/&title=GenStage&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ru/lessons/advanced/gen-stage/&via=elixirschool&text=ElixirSchool: GenStage&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ru/lessons/advanced/gen-stage/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ru/lessons/advanced/gen-stage/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ru/lessons/advanced/gen-stage/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: GenStage" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ru/lessons/advanced/gen-stage/&title=ElixirSchool: GenStage&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ru/lessons/advanced/gen-stage/&title=ElixirSchool: GenStage&description=Check out 'GenStage' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: GenStage&body=Check out 'GenStage' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ru/lessons/advanced/gen-stage/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

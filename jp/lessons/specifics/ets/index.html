@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="プログラミング言語Elixirのレッスン">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/jp/lessons/specifics/ets/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Erlang Term Storage (ETS) &middot; Elixir School
+
+">
+  <meta property="og:description" content="プログラミング言語Elixirのレッスン">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Erlang Term Storage (ETS) &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">プログラミング言語Elixirのレッスン</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>基礎</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/basics/basics/">基本</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/basics/collections/">コレクション</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/basics/pattern-matching/">パターンマッチング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/basics/control-structures/">制御構造</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/basics/functions/">関数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/basics/pipe-operator/">パイプライン演算子</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/basics/modules/">モジュール</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/jp/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/jp/lessons/basics/documentation/">ドキュメント</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/jp/lessons/basics/testing/">テスト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/jp/lessons/basics/comprehensions/">内包表記</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/jp/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/jp/lessons/basics/mix-tasks/">カスタムMixタスク</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>上級</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/advanced/erlang/">Erlangとの相互運用</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/advanced/error-handling/">エラーハンドリング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/advanced/escripts/">実行ファイル</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/advanced/concurrency/">並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-concurrency/">OTPの並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-supervisors/">OTPスーパーバイザ</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/advanced/metaprogramming/">メタプログラミング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/advanced/umbrella-projects/">アンブレラプロジェクト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/advanced/typespec/">仕様と型</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>詳細</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/specifics/eex/">埋め込みElixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson  active" href="/jp/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/ets/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/ets/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/ets/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/ets/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/ets/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/ets/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/ets/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/ets/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/ets/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/ets/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/ets/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/ets/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/ets/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/ets/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/ets/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/ets/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/ets/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/ets/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/ets/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/ets/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/ets/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Erlang Term Storage (ETS)</h1>
+  <p>Erlang Term Storage、略してETSは、OTP内部に組み込まれている強力なストレージエンジンで、Elixirから利用することができます。このレッスンではETSを呼び出す方法と、アプリケーションで使用する方法を見ていきます。</p>
+
+<h2>目次</h2>
+<div id="toc"></div>
+
+<h2 id="section">概要</h2>
+
+<p>ETSは堅牢なインメモリストアで、ElixirやErlangのオブジェクトを保管するためのものです。ETSはとても大きなデータを格納し、定数時間でのデータアクセスを提供します。</p>
+
+<p>ETSのテーブルは個々のプロセスによって生成、所有されています。テーブルを所有しているプロセスが死ぬと、テーブルは破壊されます。初期状態では、ETSはノードにつき1400テーブルに制限されています。</p>
+
+<h2 id="section-1">テーブルの作成</h2>
+
+<p>テーブルは<code class="highlighter-rouge">new/2</code>で作成します。この関数はテーブル名と、一連のオプションを受け取り、以降の操作で用いることのできるテーブルのIDを返します。</p>
+
+<p>例としてユーザをニックネームで管理し、検索するテーブルを作ります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">table</span> <span class="o">=</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">[</span><span class="ss">:set</span><span class="p">,</span> <span class="ss">:protected</span><span class="p">])</span>
+<span class="m">8212</span>
+</code></pre>
+</div>
+
+<p>GenServerと同じように、IDの代わりに名前でETSテーブルにアクセスする方法があります。<code class="highlighter-rouge">:named_table</code>をオプションに含めることで、名前を用いて直接テーブルにアクセスできます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">[</span><span class="ss">:set</span><span class="p">,</span> <span class="ss">:protected</span><span class="p">,</span> <span class="ss">:named_table</span><span class="p">])</span>
+<span class="ss">:user_lookup</span>
+</code></pre>
+</div>
+
+<h3 id="section-2">テーブルの型</h3>
+
+<p>ETSで利用できるテーブルの型は4つあります:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">set</code> - デフォルトのテーブル型です。キー毎に1つの値を持ち、キーは一意です。</li>
+  <li><code class="highlighter-rouge">ordered_set</code> - <code class="highlighter-rouge">set</code>に似ていますがErlang/Elixirの条件で順序付けされます。重要なので注記しておくと、キーの比較は<code class="highlighter-rouge">ordered_set</code>の内部では他と異なります。等値であるとみなされるキーは個別にマッチしません。1と1.0は同じキーであるとみなされます。</li>
+  <li><code class="highlighter-rouge">bag</code> - キー毎に複数のオブジェクトを持てるが、1つのオブジェクトにつき1つのインスタンスのみです。</li>
+  <li><code class="highlighter-rouge">duplicate_bag</code> - キー毎に複数のオブジェクトが持て、重複が許されます。</li>
+</ul>
+
+<h3 id="section-3">アクセス制御</h3>
+
+<p>ETSでのアクセス制御はモジュール内部のアクセス制御と似ています:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">public</code> - 全てのプロセスで読み/書きが可能です。</li>
+  <li><code class="highlighter-rouge">protected</code> - 全てのプロセスで読み込みが可能です。所有プロセスによってのみ書き込みができます。これがデフォルトです。</li>
+  <li><code class="highlighter-rouge">private</code> - 読み/書きは所有プロセスに限定されます。</li>
+</ul>
+
+<h2 id="section-4">データの挿入</h2>
+
+<p>ETSはスキーマを持ちません。唯一の制限は、データは最初の項がキーであるタプルとして格納されなくてはいけないというものです。新しいデータを追加するには<code class="highlighter-rouge">insert/2</code>を用います:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]})</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">insert/2</code>を<code class="highlighter-rouge">set</code>や<code class="highlighter-rouge">ordered_set</code>に用いると、既存のデータは置換されます。これを避けるため、キーが存在している場合に<code class="highlighter-rouge">false</code>を返してくれる<code class="highlighter-rouge">insert_new/2</code>があります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">insert_new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]})</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">insert_new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">3100"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">]})</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h2 id="section-5">データの検索</h2>
+
+<p>ETSは格納したデータを検索するために便利で柔軟な方法をいくつか提供しています。データの検索をキーや異なった形式のパターンマッチングで行う方法について見ていきます。</p>
+
+<p>最も効率が良く、理想的な検索方法はキーによる探索です。便利ではあるものの、マッチングはテーブルを反復するので、特に巨大なデータセットに対しては慎重に用いるべきです。</p>
+
+<h3 id="section-6">キー探索</h3>
+
+<p>キーが与えられる場合は、<code class="highlighter-rouge">lookup/2</code>を用いて全レコードを検索することができます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">)</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<h3 id="section-7">単純なマッチ</h3>
+
+<p>ETSはErlangで作られているため、マッチ変数が <em>少しだけ</em> ダサく見えることを警告しておきます。</p>
+
+<p>マッチ内で変数を指定するには、<code class="highlighter-rouge">:"$1"</code>、<code class="highlighter-rouge">:"$2"</code>、<code class="highlighter-rouge">:"$3"</code>などのアトムを用います。変数の数字は結果の位置を示していて、マッチの位置ではありません。興味のない値については、<code class="highlighter-rouge">:"_"</code>変数を用います。</p>
+
+<p>値もマッチングで用いることはできますが、変数だけが結果として返ってきます。値と変数を一緒に使ってみて、どうなるかを見てみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">})</span>
+<span class="p">[[</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">]]</span>
+</code></pre>
+</div>
+
+<p>変数が結果リストの順番にどう影響するか、他の例を見てみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$99"</span><span class="p">,</span> <span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">})</span>
+<span class="p">[[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">],</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">],</span>
+ <span class="p">[</span><span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">],</span> <span class="sd">"</span><span class="s2">3100"</span><span class="p">]]</span>
+</code></pre>
+</div>
+
+<p>リストではなく、元のオブジェクトが欲しい場合はどうするのが良いでしょう。<code class="highlighter-rouge">match_object/2</code>を用いることができます。これは変数に関わらず、オブジェクト全体を返します:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match_object</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">})</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]},</span>
+ <span class="p">{</span><span class="sd">"</span><span class="s2">3100"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">]}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match_object</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"_"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">})</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<h3 id="section-8">発展的な探索</h3>
+
+<p>単純なマッチのケースを学びましたが、何かもっとSQLクエリのようなものがあると良いでしょうか。ありがたいことに、もっとしっかりとした構文が利用できます。データを<code class="highlighter-rouge">select/2</code>で探索するには、3つの引数を持つタプルのリストを作る必要があります。これらのタプルはパターン、0以上のガード節、そして戻り値のフォーマットを表します。</p>
+
+<p>マッチ変数と2つの新しい変数、<code class="highlighter-rouge">:"$$"</code>と<code class="highlighter-rouge">:"$_"</code>は戻り値を作るのに用いることが出来ます。この新しい変数は戻り値のフォーマット用のショートカットで、<code class="highlighter-rouge">:"$$"</code>は結果をリストで、<code class="highlighter-rouge">:$_</code>は元のデータオブジェクトで取得します。</p>
+
+<p>先ほどの<code class="highlighter-rouge">match/2</code>の例を、<code class="highlighter-rouge">select/2</code>に置き換えましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match_object</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">})</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]},</span>
+ <span class="p">{</span><span class="sd">"</span><span class="s2">3100"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">]}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">[{{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">},</span> <span class="p">[],</span> <span class="p">[</span><span class="ss">:"$_"</span><span class="p">]}])</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]},</span>
+ <span class="p">{</span><span class="sd">"</span><span class="s2">spork"</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elixir"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">select/2</code>はレコードのどれをどう扱うかについて先ほどよりはまともな管理を可能にしますが、構文は極めて不親切ですし、後々もっとひどくなるはずです。これを制御するため、ETSモジュールは<code class="highlighter-rouge">fun2ms/1</code>を備えています。これは関数をマッチスペック(match_spec)に置き換えるものです。<code class="highlighter-rouge">fun2ms/1</code>を使うとより親しみやすい関数の構文を用いてクエリを作成することができます。</p>
+
+<p><code class="highlighter-rouge">fun2ms/1</code>と<code class="highlighter-rouge">select/2</code>を用いて、2言語以上を知っている全てのユーザ名を探してみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">fun</span> <span class="o">=</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">fun2ms</span><span class="p">(</span><span class="k">fn</span> <span class="p">{</span><span class="n">username</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">langs</span><span class="p">}</span> <span class="ow">when</span> <span class="n">length</span><span class="p">(</span><span class="n">langs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">2</span> <span class="o">-&gt;</span> <span class="n">username</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[{{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$2"</span><span class="p">},</span> <span class="p">[{</span><span class="ss">:&gt;</span><span class="p">,</span> <span class="p">{</span><span class="ss">:length</span><span class="p">,</span> <span class="ss">:"$2"</span><span class="p">},</span> <span class="m">2</span><span class="p">}],</span> <span class="p">[</span><span class="ss">:"$1"</span><span class="p">]}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="n">fun</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">3100"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>マッチスペックについてもっと学びたいですか？Erlangの公式ドキュメントから<a href="http://www.erlang.org/doc/apps/erts/match_spec.html">match_spec</a>を確認してください。</p>
+
+<h2 id="section-9">データの削除</h2>
+
+<h3 id="section-10">レコードの除去</h3>
+
+<p>レコードの除去は<code class="highlighter-rouge">insert/2</code>や<code class="highlighter-rouge">lookup/2</code>と同じように直接的です。<code class="highlighter-rouge">delete/2</code>でテーブルとキーを指定するだけです。この関数は指定されたキーと値の両方を削除します:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="section-11">テーブルの除去</h3>
+
+<p>ETSテーブルは親が消滅するまではガベージコレクトされません。所有プロセスを殺すことなく、テーブル全体を削除する必要がある場合もあります。そうした時のために、<code class="highlighter-rouge">delete/1</code>を用いることができます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h2 id="ets">ETSの使用例</h2>
+
+<p>ここまで学んだことをうまく活かして、高コストな処理用の単純なキャッシュを作ってみましょう。モジュールと関数、引数、オプションを受け取る<code class="highlighter-rouge">get/4</code>関数を実装します。オプションについては今のところ<code class="highlighter-rouge">:ttl</code>だけを気にするようにしておきます。</p>
+
+<p>この例では、ETSテーブルはスーパーバイザといった他のプロセスの一部として作られます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleCache</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  高コストな関数呼び出し用の、単純なETSベースのキャッシュ
+  """</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  キャッシュされた値を検索するか、与えられた関数をキャッシュして
+  結果を返します。
+  """</span>
+  <span class="k">def</span> <span class="n">get</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">opts</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="k">case</span> <span class="n">lookup</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="k">do</span>
+      <span class="no">nil</span> <span class="o">-&gt;</span>
+        <span class="n">ttl</span> <span class="o">=</span> <span class="no">Keyword</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">opts</span><span class="p">,</span> <span class="ss">:ttl</span><span class="p">,</span> <span class="m">3600</span><span class="p">)</span>
+        <span class="n">cache_apply</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ttl</span><span class="p">)</span>
+      <span class="n">result</span> <span class="o">-&gt;</span> <span class="n">result</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  キャッシュされた結果を探索し、期限切れかどうかを確認します
+  """</span>
+  <span class="k">defp</span> <span class="n">lookup</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">case</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="ss">:simple_cache</span><span class="p">,</span> <span class="p">[</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">])</span> <span class="k">do</span>
+      <span class="p">[</span><span class="n">result</span><span class="o">|</span><span class="n">_</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">check_freshness</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+      <span class="p">[]</span> <span class="o">-&gt;</span> <span class="no">nil</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  結果の期限時刻を現在のシステム時刻と比較します。
+  """</span>
+  <span class="k">defp</span> <span class="n">check_freshness</span><span class="p">({</span><span class="n">mfa</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">expiration</span><span class="p">})</span> <span class="k">do</span>
+    <span class="k">cond</span> <span class="k">do</span>
+      <span class="n">expiration</span> <span class="o">&gt;</span> <span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">(</span><span class="ss">:seconds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">result</span>
+      <span class="ss">:else</span> <span class="o">-&gt;</span> <span class="no">nil</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  関数を追加し、期限を計算し、結果をキャッシュします。
+  """</span>
+  <span class="k">defp</span> <span class="n">cache_apply</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ttl</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">apply</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">expiration</span> <span class="o">=</span> <span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">(</span><span class="ss">:seconds</span><span class="p">)</span> <span class="o">+</span> <span class="n">ttl</span>
+    <span class="ss">:ets</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="ss">:simple_cache</span><span class="p">,</span> <span class="p">{[</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span> <span class="n">expiration</span><span class="p">})</span>
+    <span class="n">result</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>キャッシュをデモするため、システム時刻と10秒のTTL(生存時間)を返す関数を使用します。以下の例のように、値が破棄されるまではキャッシュされた結果が帰ります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+    <span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">(</span><span class="ss">:seconds</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:simple_cache</span><span class="p">,</span> <span class="p">[</span><span class="ss">:named_table</span><span class="p">])</span>
+<span class="ss">:simple_cache</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089115</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleCache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">ExampleApp</span><span class="p">,</span> <span class="ss">:test</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">ttl:</span> <span class="m">10</span><span class="p">)</span>
+<span class="m">1451089119</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089123</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089127</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleCache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">ExampleApp</span><span class="p">,</span> <span class="ss">:test</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">ttl:</span> <span class="m">10</span><span class="p">)</span>
+<span class="m">1451089119</span>
+</code></pre>
+</div>
+
+<p>10秒後に再度試行すれば、新しい結果を得るはずです:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089131</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleCache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">ExampleApp</span><span class="p">,</span> <span class="ss">:test</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">ttl:</span> <span class="m">10</span><span class="p">)</span>
+<span class="m">1451089134</span>
+</code></pre>
+</div>
+
+<p>ここまで見たように、スケール可能で高速なキャッシュを外部の依存なしに実装することが可能です。これはETSの多くの用途のほんの一部分に過ぎません。</p>
+
+<h2 id="ets-1">ディスクを用いたETS</h2>
+
+<p>ETSはインメモリのデータストレージ用だとわかりましたが、ディスクを用いるストレージが必要な場合はどうでしょうか。こうした用途にはディスクベースのストレージ、DETSがあります。ETSとDETSのAPIはテーブルの作成を除いて互換性があります。DETSは<code class="highlighter-rouge">open_file/2</code>を使用し、<code class="highlighter-rouge">:named_table</code>オプションは必要ありません:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">table</span><span class="p">}</span> <span class="o">=</span> <span class="ss">:dets</span><span class="o">.</span><span class="n">open_file</span><span class="p">(</span><span class="ss">:disk_storage</span><span class="p">,</span> <span class="p">[</span><span class="ss">type:</span> <span class="ss">:set</span><span class="p">])</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="ss">:disk_storage</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:dets</span><span class="o">.</span><span class="n">insert_new</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]})</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">select_all</span> <span class="o">=</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">fun2ms</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span>
+<span class="p">[{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="ss">:"$1"</span><span class="p">]}]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:dets</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">select_all</span><span class="p">)</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">iex</code>を終了したらローカルディレクトリを見てください。<code class="highlighter-rouge">disk_storage</code>というファイルが新しく存在するはずです:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ls | grep -c disk_storage
+1
+</code></pre>
+</div>
+
+<p>最後に注記しておきますが、DETSはETSと異なり<code class="highlighter-rouge">orderd_set</code>には対応していません。<code class="highlighter-rouge">set</code>、<code class="highlighter-rouge">bag</code>、そして<code class="highlighter-rouge">duplicate_bag</code>にのみ対応しています。</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    このページをシェアする
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/jp/lessons/specifics/ets/&title=Erlang Term Storage (ETS)&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/jp/lessons/specifics/ets/&via=elixirschool&text=ElixirSchool: Erlang Term Storage (ETS)&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/jp/lessons/specifics/ets/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/jp/lessons/specifics/ets/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/jp/lessons/specifics/ets/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Erlang Term Storage (ETS)" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/jp/lessons/specifics/ets/&title=ElixirSchool: Erlang Term Storage (ETS)&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/jp/lessons/specifics/ets/&title=ElixirSchool: Erlang Term Storage (ETS)&description=Check out 'Erlang Term Storage (ETS)' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Erlang Term Storage (ETS)&body=Check out 'Erlang Term Storage (ETS)' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/jp/lessons/specifics/ets/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lecciones acerca del lenguaje de programación Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/es/lessons/basics/pipe-operator/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Operador Pipe &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lecciones acerca del lenguaje de programación Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Operador Pipe &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lecciones acerca del lenguaje de programación Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Básico</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/basics/basics/">Básico</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/basics/collections/">Colecciones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/basics/pattern-matching/">Coincidencia de Patrones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/es/lessons/basics/control-structures/">Estructuras de control</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/es/lessons/basics/functions/">Funciones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson  active" href="/es/lessons/basics/pipe-operator/">Operador Pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/es/lessons/basics/modules/">Composición</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/es/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/es/lessons/basics/testing/">Pruebas</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Avanzado</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/advanced/erlang/">Interoperabilidad Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/advanced/error-handling/">Manejo de errores</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/advanced/escripts/">Ejecutables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/advanced/concurrency/">Concurrencia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Específico</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/specifics/eex/">Elixir Embebido (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/specifics/ets/">Almacenamiento de términos de Erlang (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/pipe-operator/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/pipe-operator/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/pipe-operator/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/pipe-operator/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/pipe-operator/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/pipe-operator/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/pipe-operator/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/pipe-operator/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/pipe-operator/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/pipe-operator/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/pipe-operator/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/pipe-operator/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/pipe-operator/ ">my</a>
+      
+        <a href=" /no/lessons/basics/pipe-operator/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/pipe-operator/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/pipe-operator/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/pipe-operator/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/pipe-operator/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/pipe-operator/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/pipe-operator/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/pipe-operator/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Operador Pipe</h1>
+  <p>El operador pipe <code class="highlighter-rouge">|&gt;</code> pasa el resultado de una expresión como el primer parámetro de otra expresión.</p>
+
+<h2>Tabla de contenidos</h2>
+<div id="toc"></div>
+
+<h2 id="introduccin">Introducción</h2>
+
+<p>La programación puede ser desordenada. De hecho, las llamadas de función que están contenidas dentro de otra función se vuelven muy difíciles de seguir. Por ejemplo, tome las siguientes funciones anidadas en consideración:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">foo</span><span class="p">(</span><span class="n">bar</span><span class="p">(</span><span class="n">baz</span><span class="p">(</span><span class="n">nueva_function</span><span class="p">(</span><span class="n">otra_function</span><span class="p">()))))</span>
+</code></pre>
+</div>
+
+<p>Aquí, pasamos el valor de <code class="highlighter-rouge">otra_function/1</code> a <code class="highlighter-rouge">nueva_function/1</code>, y de <code class="highlighter-rouge">nueva_function/1</code> a <code class="highlighter-rouge">baz/1</code>, <code class="highlighter-rouge">baz/1</code> a <code class="highlighter-rouge">bar/1</code>, y finalmente el resultado de <code class="highlighter-rouge">bar/1</code> a <code class="highlighter-rouge">foo/1</code>. Elixir adopta un enfoque pragmático a este caos sintáctico al darnos el operador pipe. El operador pipe que luce así <code class="highlighter-rouge">|&gt;</code> <em>toma el resultado de una expresión, y se lo pasa a la siguiente</em>. Vamos a echar otro vistazo al código anterior reescrito con el operador pipe.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">otra_function</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">nueva_function</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">baz</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">bar</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">foo</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p>El operador lleva el resultado de la izquierda, y lo pasa a la derecha.</p>
+
+<h2 id="ejemplos">Ejemplos</h2>
+
+<p>Para este grupo de ejemplos, usaremos el módulo String de elixir.</p>
+
+<ul>
+  <li>Separar Cadenas (Tokenize String)</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span><span class="s2">"Elixir language"</span> |&gt; String.split
+<span class="o">[</span><span class="s2">"Elixir"</span>, <span class="s2">"language"</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Mayúsculas a todos los caracteres (Uppercase all the tokens)</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span><span class="s2">"Elixir language"</span> |&gt; String.split |&gt; Enum.map<span class="o">(</span> &amp;String.upcase/1 <span class="o">)</span>
+<span class="o">[</span><span class="s2">"ELIXIR"</span>, <span class="s2">"LANGUAGE"</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Comparar terminación de una cadena (Check ending)</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span><span class="s2">"elixir"</span> |&gt; String.ends_with?<span class="o">(</span><span class="s2">"ixir"</span><span class="o">)</span>
+<span class="nb">true</span>
+</code></pre>
+</div>
+
+<h2 id="buenas-prcticas">Buenas Prácticas</h2>
+
+<p>Si la función recibe más de 1 parámetro, asegúrese de usar paréntesis. Honestamente no importa mucho en elixir, pero es importante para otros programadores que pueden malinterpretar nuestro código. Si en el tercer ejemplo eliminamos los paréntesis de <code class="highlighter-rouge">String.ends_with?</code>, tendríamos la siguiente advertencia.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span><span class="s2">"elixir"</span> |&gt; String.ends_with? <span class="s2">"ixir"</span>
+warning: parentheses are required when piping into a <span class="k">function </span>call. For example:
+
+  foo 1 |&gt; bar 2 |&gt; baz 3
+
+is ambiguous and should be written as
+
+  foo<span class="o">(</span>1<span class="o">)</span> |&gt; bar<span class="o">(</span>2<span class="o">)</span> |&gt; baz<span class="o">(</span>3<span class="o">)</span>
+
+<span class="nb">true</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/es/lessons/basics/pipe-operator/&title=Operador Pipe&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/es/lessons/basics/pipe-operator/&via=elixirschool&text=ElixirSchool: Operador Pipe&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/es/lessons/basics/pipe-operator/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/es/lessons/basics/pipe-operator/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/es/lessons/basics/pipe-operator/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Operador Pipe" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/es/lessons/basics/pipe-operator/&title=ElixirSchool: Operador Pipe&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/es/lessons/basics/pipe-operator/&title=ElixirSchool: Operador Pipe&description=Check out 'Operador Pipe' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Operador Pipe&body=Check out 'Operador Pipe' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/es/lessons/basics/pipe-operator/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

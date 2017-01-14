@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/basics/strings/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  문자열 &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  문자열 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson  active" href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/strings/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/strings/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/strings/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/strings/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/strings/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/strings/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/strings/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/strings/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/strings/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/strings/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/strings/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/strings/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/strings/ ">my</a>
+      
+        <a href=" /no/lessons/basics/strings/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/strings/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/strings/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/strings/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/strings/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/strings/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/strings/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/strings/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">문자열</h1>
+  <p>Elixir에서의 문자열, 문자 리스트, 문자소, 코드 포인트에 대해 다뤄 보겠습니다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="elixir-">Elixir에서의 문자열</h2>
+
+<p>Elixir에서 문자열은 바이트 시퀀스에 불과합니다. 다음의 예시를 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">string</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="m">104</span><span class="p">,</span><span class="m">101</span><span class="p">,</span><span class="m">108</span><span class="p">,</span><span class="m">108</span><span class="p">,</span><span class="m">111</span><span class="o">&gt;&gt;</span>
+<span class="sd">"</span><span class="s2">hello"</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>NOTE: « » 문법을 이용함으로써, 컴파일러에게 이 기호들로 감싸진 모든 원소들이 전부 바이트라고 알립니다.</p>
+</blockquote>
+
+<h2 id="section">문자 리스트</h2>
+
+<p>Elixir 내부에서, 문자열은 문자의 배열이라기보다는 바이트의 시퀀스로 나타납니다. 물론, 문자 리스트 타입은 별도로 있습니다. Elixir에서 문자열은 큰따옴표로 생성이 되지만, 문자 리스트는 작은따옴표로 생성됩니다.</p>
+
+<p>과연 무슨 차이가 있을까요? 문자 리스트의 각 항목은 각 문자의 ASCII 값으로 나타납니다. 그 내부를 보도록 하죠.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">char_list</span> <span class="o">=</span> <span class="s1">'hello'</span>
+<span class="s1">'hello'</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">hd</span><span class="o">|</span><span class="n">tl</span><span class="p">]</span> <span class="o">=</span> <span class="n">char_list</span>
+<span class="s1">'hello'</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="n">hd</span><span class="p">,</span> <span class="n">tl</span><span class="p">}</span>
+<span class="p">{</span><span class="m">104</span><span class="p">,</span> <span class="s1">'ello'</span><span class="p">}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">char_list</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="k">fn</span> <span class="n">char</span><span class="p">,</span> <span class="n">acc</span> <span class="o">-&gt;</span> <span class="n">acc</span> <span class="o">&lt;&gt;</span> <span class="n">to_string</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">,"</span> <span class="k">end</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">104,101,108,108,111,"</span>
+</code></pre>
+</div>
+
+<p>Elixir로 프로그래밍할 때, 문자 리스트보다는 문자열을 자주 사용하게 됩니다. 문자 리스트의 지원은 몇몇 얼랭 모듈에 필요하기 때문에 포함되어 있습니다.</p>
+
+<h2 id="section-1">문자소와 코드 포인트</h2>
+
+<p>코드 포인트는 UTF-8 인코딩에 따라 하나 이상의 바이트로 나타낼 수 있는 유니코드 문자입니다. US ASCII 문자 집합에 속하지 않는 문자들은 항상 둘 이상의 바이트로 인코딩됩니다. 예를 들어, 물결 표시와 강조 부호가 들어간 라틴 문자(<code class="highlighter-rouge">á, ñ, è</code>)들은 보통 2바이트로 인코딩됩니다. 아시아 언어에서 사용하는 문자들은 보통 3 또는 4바이트로 인코딩됩니다. 문자소는 하나의 문자로 렌더링되는 여러 개의 코드 포인트로 구성되어 있습니다.</p>
+
+<p>문자열 모듈은 이것들을 가져오기 위해, <code class="highlighter-rouge">graphemes/1</code>와 <code class="highlighter-rouge">codepoints/1</code>, 이렇게 두 가지 메서드를 제공합니다. 다음의 예제에서 살펴보죠.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">string</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">\u0061\u0301"</span>
+<span class="sd">"</span><span class="s2">á"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">codepoints</span> <span class="n">string</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">a"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">́"</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">graphemes</span> <span class="n">string</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">á"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="section-2">문자열 함수</h2>
+
+<p>문자열 모듈에서 가장 중요하고 쓸만한 몇 가지 함수들을 살펴보도록 합시다. 이 강좌에서는 사용할 수 있는 함수의 일부만 다룹니다. 사용할 수 있는 함수의 전체 목록을 보시려면, 공식 <a href="http://elixir-lang.org/docs/stable/elixir/String.html"><code class="highlighter-rouge">String</code></a> 문서를 확인하세요.</p>
+
+<h3 id="length1"><code class="highlighter-rouge">length/1</code></h3>
+
+<p>문자열이 가지는 문자소의 개수를 반환합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span> <span class="sd">"</span><span class="s2">Hello"</span>
+<span class="m">5</span>
+</code></pre>
+</div>
+
+<h3 id="replace4"><code class="highlighter-rouge">replace/4</code></h3>
+
+<p>문자열 내에서 발견되는 패턴을 다른 문자열로 치환하여 새 문자열을 반환합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">e"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">a"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hallo"</span>
+</code></pre>
+</div>
+
+<h3 id="duplicate2"><code class="highlighter-rouge">duplicate/2</code></h3>
+
+<p>n번 반복되는 새 문자열을 반환합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">duplicate</span> <span class="sd">"</span><span class="s2">Oh my "</span><span class="p">,</span> <span class="m">3</span>
+<span class="sd">"</span><span class="s2">Oh my Oh my Oh my "</span>
+</code></pre>
+</div>
+
+<h3 id="split2"><code class="highlighter-rouge">split/2</code></h3>
+
+<p>문자열을 패턴에 따라 분리해 문자열의 배열을 반환합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello World"</span><span class="p">,</span> <span class="sd">"</span><span class="s2"> "</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">World"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="section-3">연습</h2>
+
+<p>문자열을 다룰 준비가 되셨다면, 바로 2개의 간단한 예제들을 다루도록 하겠습니다!</p>
+
+<h3 id="section-4">애너그램</h3>
+
+<p>A와 B를 재정렬하여 서로 같다는 것을 보일 수 있다면, A와 B는 애너그램이라 합니다. 다음의 예시를 보죠.</p>
+
+<ul>
+  <li>A = super</li>
+  <li>B = perus</li>
+</ul>
+
+<p>문자열 A를 재정렬하면, 문자열 B를 얻을 수 있습니다. 반대로도 마찬가지입니다.</p>
+
+<p>자, 그러면 Elixir에서 두 문자열이 애너그램인지 확인하고자 할 때, 어떤 방법이 있을까요? 가장 쉬운 접근 방식은 문자열들을 알파벳 순서대로 정렬하여 서로 같은지 확인하는 것입니다. 다음의 예제에서 확인해보죠.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Anagram</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">anagrams?</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">sort_string</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">sort_string</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">sort_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">string</span>
+    <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">downcase</span>
+    <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">graphemes</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>먼저 <code class="highlighter-rouge">anagrams?/2</code>에 주목해보죠. 전달받고 있는 인자들이 2진수인지 아닌지 확인하고 있습니다. Elixir에서 전달받는 인자가 문자열인지 확인할 때 이렇게 한다고 보시면 됩니다.</p>
+
+<p>그러고 나서, 문자들을 소문자로 만듭니다. 해당 문자열의 문자소의 배열을 반환하는 <code class="highlighter-rouge">String.graphemes</code> 함수를 호출하고, 문자열들을 알파벳 순서대로 정렬하는 함수를 호출합니다. 정말 직관적이지 않나요?</p>
+
+<p>iex에서의 출력을 확인해봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">ohell"</span><span class="p">)</span>
+<span class="no">true</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="sd">"</span><span class="s2">María"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">íMara"</span><span class="p">)</span>
+<span class="no">true</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">FunctionClauseError</span><span class="p">)</span> <span class="n">no</span> <span class="n">function</span> <span class="n">clause</span> <span class="n">matching</span> <span class="ow">in</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="o">/</span><span class="m">2</span>
+    <span class="ss">iex:</span><span class="m">2</span><span class="p">:</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="o">**</span> <span class="p">[</span><span class="err">역주</span><span class="p">]</span> <span class="p">(</span><span class="err">함수절에러</span><span class="p">)</span> <span class="err">어떤</span> <span class="err">함수의</span> <span class="err">절도</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="o">/</span><span class="err">2에서</span> <span class="err">매치되지</span> <span class="err">않습니다</span>
+	<span class="ss">iex:</span><span class="m">2</span><span class="p">:</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>방금 보신 것처럼, 마지막에서 호출한 <code class="highlighter-rouge">anagrams?</code>는 FunctionClauseError를 일으킵니다. 이 에러는 2진수가 아닌 인자를 받는 패턴을 만족하는 함수가 모듈에 없다는 것을 알려줍니다. 이는 정확히 의도적인 것이고, 두 문자열만 전달받는 기능 외에는 필요 없습니다.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/basics/strings/&title=문자열&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/basics/strings/&via=elixirschool&text=ElixirSchool: 문자열&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/basics/strings/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/basics/strings/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/basics/strings/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 문자열" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/basics/strings/&title=ElixirSchool: 문자열&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/basics/strings/&title=ElixirSchool: 문자열&description=Check out '문자열' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 문자열&body=Check out '문자열' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/basics/strings/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

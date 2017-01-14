@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/advanced/error-handling/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  에러 처리 &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  에러 처리 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/error-handling/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/error-handling/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/error-handling/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/error-handling/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/error-handling/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/error-handling/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/error-handling/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/error-handling/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/error-handling/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/error-handling/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/error-handling/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/error-handling/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/error-handling/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/error-handling/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/error-handling/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/error-handling/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/error-handling/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/error-handling/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/error-handling/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/error-handling/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/error-handling/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">에러 처리</h1>
+  <p><code class="highlighter-rouge"><span class="p">{</span><span class="err">:error,</span><span class="w"> </span><span class="err">reason</span><span class="p">}</span></code> 튜플을 반환하는 것이 더 흔하지만, Elixir는 예외를 지원합니다. 이번 강의에서는 에러를 어떻게 처리할 것인지, 에러를 처리하는 다양한 원리들을 다룰 것입니다.</p>
+
+<p>일반적으로 Elixir에서는 <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">result</span><span class="p">}</span></code>와 <code class="highlighter-rouge"><span class="p">{</span><span class="err">:error,</span><span class="w"> </span><span class="err">reason</span><span class="p">}</span></code>을 반환하는 함수(<code class="highlighter-rouge">example/1</code>)와 각각 감싸지지 않은 <code class="highlighter-rouge">result</code>를 반환하는 함수와 에러를 발생시키는 함수(<code class="highlighter-rouge">example!/1</code>)를 생성하는 것이 관례입니다.</p>
+
+<p>이번 강의에서는 후자를 집중해서 다루겠습니다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="section">에러 처리</h2>
+
+<p>에러를 처리하기 전에, 에러를 생성해야 할 필요가 있습니다. 가장 간단한 방법은 <code class="highlighter-rouge">raise/1</code>를 사용하는 것입니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">raise</span> <span class="sd">"</span><span class="s2">Oh no!"</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">RuntimeError</span><span class="p">)</span> <span class="no">Oh</span> <span class="n">no!</span>
+</code></pre>
+</div>
+
+<p>에러의 유형과 메시지를 명시하고 싶다면, <code class="highlighter-rouge">raise/2</code>를 이용할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="ss">message:</span> <span class="sd">"</span><span class="s2">인자의 값이 올바르지 않습니다"</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span> <span class="err">인자의</span> <span class="err">값이</span> <span class="err">올바르지</span> <span class="err">않습니다</span>
+</code></pre>
+</div>
+
+<p>에러가 일어나는 시점을 알고 있다면, 이를 <code class="highlighter-rouge">try/rescue</code>와 패턴매칭으로 다룰 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">raise</span> <span class="sd">"</span><span class="s2">Oh no!"</span>
+<span class="o">...&gt;</span> <span class="k">rescue</span>
+<span class="o">...&gt;</span>   <span class="n">e</span> <span class="ow">in</span> <span class="no">RuntimeError</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">An error occurred: "</span> <span class="o">&lt;&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="no">An</span> <span class="n">error</span> <span class="ss">occurred:</span> <span class="no">Oh</span> <span class="n">no!</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>하나의 rescue로 여러 개의 에러를 매치하는 것도 가능합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">try</span> <span class="k">do</span>
+  <span class="n">opts</span>
+  <span class="o">|&gt;</span> <span class="no">Keyword</span><span class="o">.</span><span class="n">fetch!</span><span class="p">(</span><span class="ss">:source_file</span><span class="p">)</span>
+  <span class="o">|&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">read!</span>
+<span class="k">rescue</span>
+  <span class="n">e</span> <span class="ow">in</span> <span class="no">KeyError</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">missing :source_file option"</span>
+  <span class="n">e</span> <span class="ow">in</span> <span class="no">File</span><span class="o">.</span><span class="no">Error</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">unable to read source file"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="after">After</h2>
+
+<p>간혹, 에러 발생여부와 상관없이 <code class="highlighter-rouge">try/rescue</code>가 끝난 뒤에 추가적인 액션을 수행해야 할 수도 있습니다. 그럴 경우에는 <code class="highlighter-rouge">try/after</code>를 씁니다. Ruby에 익숙하다면 <code class="highlighter-rouge">begin/rescue/ensure</code>와 비슷하고, Java에 익숙하다면 <code class="highlighter-rouge">try/catch/finally</code>와 비슷하다고도 할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">raise</span> <span class="sd">"</span><span class="s2">Oh no!"</span>
+<span class="o">...&gt;</span> <span class="k">rescue</span>
+<span class="o">...&gt;</span>   <span class="n">e</span> <span class="ow">in</span> <span class="no">RuntimeError</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">An error occurred: "</span> <span class="o">&lt;&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">after</span>
+<span class="o">...&gt;</span>   <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">The end!"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="no">An</span> <span class="n">error</span> <span class="ss">occurred:</span> <span class="no">Oh</span> <span class="n">no!</span>
+<span class="no">The</span> <span class="n">end!</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>파일을 닫거나, 접속을 종료해야 할 때 가장 많이 사용됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">file</span><span class="p">}</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span> <span class="sd">"</span><span class="s2">example.json"</span>
+<span class="k">try</span> <span class="k">do</span>
+   <span class="c1"># 위험이 큰 함수를 실행</span>
+<span class="k">after</span>
+   <span class="no">File</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="section-1">새로운 에러</h2>
+
+<p>Elixir가 <code class="highlighter-rouge">RuntimeError</code>와 같은 내장 에러 타입을 여럿 포함하고 있지만, 필요하다면 그에 맞는 에러를 만들 수 있어야 합니다. <code class="highlighter-rouge">defexception/1</code> 매크로를 이용하여 새로운 에러를 쉽게 만들 수 있습니다. <code class="highlighter-rouge">defexception/1</code> 매크로는 <code class="highlighter-rouge">:message</code> 옵션을 인자로 받아, 편리하게 기본 에러 메시지를 설정할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleError</span> <span class="k">do</span>
+  <span class="k">defexception</span> <span class="ss">message:</span> <span class="sd">"</span><span class="s2">an example error has occurred"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>방금 정의한 새로운 에러를 접해보도록 하죠.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">raise</span> <span class="no">ExampleError</span>
+<span class="o">...&gt;</span> <span class="k">rescue</span>
+<span class="o">...&gt;</span>   <span class="n">e</span> <span class="ow">in</span> <span class="no">ExampleError</span> <span class="o">-&gt;</span> <span class="n">e</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="p">%</span><span class="no">ExampleError</span><span class="p">{</span><span class="ss">message:</span> <span class="sd">"</span><span class="s2">an example error has occurred"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="throws">Throws</h2>
+
+<p>Elixir에서 에러를 다루는 또 다른 방법은 <code class="highlighter-rouge">throw</code>와 <code class="highlighter-rouge">catch</code>입니다. 요즘 Elixir 코드에서는 많이 발견되지 않지만, 이들을 알고 이해하는 것이 중요합니다.</p>
+
+<p><code class="highlighter-rouge">throw/1</code> 함수는 <code class="highlighter-rouge">catch</code>에 특정한 값을 넘겨서 실행을 종료할 수 있게 합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">0</span><span class="o">..</span><span class="m">10</span> <span class="k">do</span>
+<span class="o">...&gt;</span>     <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="m">5</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="k">throw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="o">...&gt;</span>     <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="k">catch</span>
+<span class="o">...&gt;</span>   <span class="n">x</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Caught: </span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="m">0</span>
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="m">4</span>
+<span class="sd">"</span><span class="s2">Caught: 5"</span>
+</code></pre>
+</div>
+
+<p>위에서 언급했다시피, <code class="highlighter-rouge">throw/catch</code>는 그리 많이 쓰이지 않으며, 라이브러리가 적당한 API를 제공하지 못할 때 임시방편으로 많이 쓰입니다.</p>
+
+<h2 id="section-2">종료하기</h2>
+
+<p>마지막으로 다루게 되는 Elixir의 에러는 <code class="highlighter-rouge">exit</code> 입니다. 프로세스가 죽을 때마다 발생하는 Exit 시그널은 Elixir의 무정지성으로 직결되는 가장 중요한 부분이기도 합니다.</p>
+
+<p>명시적으로 종료하고자 할 때, <code class="highlighter-rouge">exit/1</code>을 쓸 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">spawn_link</span> <span class="k">fn</span> <span class="o">-&gt;</span> <span class="k">exit</span><span class="p">(</span><span class="sd">"</span><span class="s2">oh no"</span><span class="p">)</span> <span class="k">end</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">EXIT</span> <span class="n">from</span> <span class="c1">#PID&lt;0.101.0&gt;) "oh no"</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">try/catch</code>를 이용하여 종료를 잡아내는 것이 가능하지만, 그런 경우는 <em>극히</em> 드뭅니다. 대부분의 경우, 수퍼바이저가 프로세스 종료를 다루도록 하는 것이 유리합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">exit</span> <span class="sd">"</span><span class="s2">oh no!"</span>
+<span class="o">...&gt;</span> <span class="k">catch</span>
+<span class="o">...&gt;</span>   <span class="ss">:exit</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">exit blocked"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">exit blocked"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/advanced/error-handling/&title=에러 처리&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/advanced/error-handling/&via=elixirschool&text=ElixirSchool: 에러 처리&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/advanced/error-handling/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/advanced/error-handling/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/advanced/error-handling/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 에러 처리" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/advanced/error-handling/&title=ElixirSchool: 에러 처리&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/advanced/error-handling/&title=ElixirSchool: 에러 처리&description=Check out '에러 처리' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 에러 처리&body=Check out '에러 처리' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/advanced/error-handling/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/basics/mix-tasks/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  커스텀 Mix 태스크 &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  커스텀 Mix 태스크 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson  active" href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/mix-tasks/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/mix-tasks/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/mix-tasks/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/mix-tasks/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/mix-tasks/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/mix-tasks/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/mix-tasks/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/mix-tasks/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/mix-tasks/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/mix-tasks/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/mix-tasks/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/mix-tasks/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/mix-tasks/ ">my</a>
+      
+        <a href=" /no/lessons/basics/mix-tasks/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/mix-tasks/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/mix-tasks/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/mix-tasks/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/mix-tasks/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/mix-tasks/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/mix-tasks/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/mix-tasks/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">커스텀 Mix 태스크</h1>
+  <p>Elixir 프로젝트를 위한 커스텀 Mix 태스크 만들어 봅시다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="section">소개</h2>
+
+<p>애플리케이션에 커스텀 Mix 태스크를 추가하여 기능을 확장하고자 하는 것은 흔한 일입니다. 프로젝트에 어떻게 Mix 태스크를 추가하는지 배우기 전에, 기존의 태스크를 한 번 확인해 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix phoenix.new my_phoenix_app
+
+<span class="k">*</span> creating my_phoenix_app/config/config.exs
+<span class="k">*</span> creating my_phoenix_app/config/dev.exs
+<span class="k">*</span> creating my_phoenix_app/config/prod.exs
+<span class="k">*</span> creating my_phoenix_app/config/prod.secret.exs
+<span class="k">*</span> creating my_phoenix_app/config/test.exs
+<span class="k">*</span> creating my_phoenix_app/lib/my_phoenix_app.ex
+<span class="k">*</span> creating my_phoenix_app/lib/my_phoenix_app/endpoint.ex
+<span class="k">*</span> creating my_phoenix_app/test/views/error_view_test.exs
+...
+</code></pre>
+</div>
+
+<p>위의 셸 명령에서 보다시피, Phoenix 프레임워크에는 새로운 프로젝트를 생성하는 커스텀 Mix 태스크가 있습니다. 만약 프로젝트에 비슷한 것을 추가하고 싶다면 어떻게 해야 할까요? 좋은 소식은 할 수 있고 Elixir가 하기 쉽게 만들어 준다는 것입니다.</p>
+
+<h2 id="section-1">준비하기</h2>
+
+<p>매우 간단한 Mix 애플리케이션을 하나 만듭시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new hello
+
+<span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/hello.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/hello_test.exs
+
+Your Mix project was created successfully.
+You can use <span class="s2">"mix"</span> to compile it, <span class="nb">test </span>it, and more:
+
+<span class="nb">cd </span>hello
+mix <span class="nb">test
+
+</span>Run <span class="s2">"mix help"</span> <span class="k">for </span>more commands.
+</code></pre>
+</div>
+
+<p>이제 Mix가 생성해 준 <strong>lib/hello.ex</strong> 파일에서 “Hello, World!”를 출력하는 간단한 함수를 만들어 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Hello</span> <span class="k">do</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Output's `Hello, World!` everytime.
+  """</span>
+  <span class="k">def</span> <span class="n">say</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello, World!"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="mix-">커스텀 Mix 태스크</h2>
+
+<p>이제 커스텀 Mix 태스크를 만들어 봅시다. <strong>hello/lib/mix/tasks/hello.ex</strong>라는 디렉토리와 파일을 만들고, 그 안에 7 줄의 Elixir 코드를 넣으세요.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Tasks</span><span class="o">.</span><span class="no">Hello</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Task</span>
+
+  <span class="nv">@shortdoc</span> <span class="sd">"</span><span class="s2">Simply runs the Hello.say/0 command."</span>
+  <span class="k">def</span> <span class="n">run</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">Hello</span><span class="o">.</span><span class="n">say</span> <span class="c1"># 앞서 만든 Hello.say() 함수 호출하기</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>defmodule 구문을 <code class="highlighter-rouge">Mix.Tasks</code>와 명령줄에서 호출하고자 하는 이름으로 시작한다는 것에 주목하십시오. 두번째 줄에서는 <code class="highlighter-rouge">use Mix.Task</code>를 사용하여 이 네임스페이스에 <code class="highlighter-rouge">Mix.Task</code>의 동작을 가져옵니다. 그 다음에 run 함수를 선언하는데, 여기에서는 모든 매개변수를 무시합니다. 이 함수 안에서 <code class="highlighter-rouge">Hello</code> 모듈과 <code class="highlighter-rouge">say</code> 함수를 호출합니다.</p>
+
+<h2 id="mix--">Mix 태스크 사용하기</h2>
+
+<p>우리가 만든 Mix 태스크를 확인해 봅시다. 여러분이 프로젝트 디렉토리 내에 있으면 잘 작동할 것입니다. 명령줄에서 <code class="highlighter-rouge">mix hello</code>를 실행하면 다음과 같은 내용이 출력됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix hello
+Hello, World!
+</code></pre>
+</div>
+
+<p>Mix는 기본적으로 꽤 친절합니다. Mix는 모든 사람들이 가끔씩 철자를 틀리기도 한다는 것을 알고 있기 때문에 퍼지 문자열 매칭이라는 기술을 사용하여 명령어를 추천합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix hell
+<span class="k">**</span> <span class="o">(</span>Mix<span class="o">)</span> The task <span class="s2">"hell"</span> could not be found. Did you mean <span class="s2">"hello"</span>?
+</code></pre>
+</div>
+
+<p>또한, 앞의 코드에서 <code class="highlighter-rouge">@shortdoc</code>이라는 새로운 모듈 속성을 사용했다는 것을 알아채셨습니까? 이 속성은 애플리케이션을 배포할 때 유용할 것입니다. 예를 들면 사용자가 터미널에서 <code class="highlighter-rouge">mix help</code> 명령을 실행할 때 말이지요.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix <span class="nb">help
+
+</span>mix app.start         <span class="c"># Starts all registered apps</span>
+...
+mix hello             <span class="c"># Simply calls the Hello.say/0 function.</span>
+...
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/basics/mix-tasks/&title=커스텀 Mix 태스크&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/basics/mix-tasks/&via=elixirschool&text=ElixirSchool: 커스텀 Mix 태스크&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/basics/mix-tasks/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/basics/mix-tasks/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/basics/mix-tasks/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 커스텀 Mix 태스크" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/basics/mix-tasks/&title=ElixirSchool: 커스텀 Mix 태스크&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/basics/mix-tasks/&title=ElixirSchool: 커스텀 Mix 태스크&description=Check out '커스텀 Mix 태스크' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 커스텀 Mix 태스크&body=Check out '커스텀 Mix 태스크' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/basics/mix-tasks/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

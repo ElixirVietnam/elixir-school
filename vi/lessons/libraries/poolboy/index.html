@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/libraries/poolboy/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Poolboy &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Poolboy &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/libraries/poolboy/ ">en</a>
+      
+        <a href=" /jp/lessons/libraries/poolboy/ ">jp</a>
+      
+        <a href=" /cn/lessons/libraries/poolboy/ ">cn</a>
+      
+        <a href=" /es/lessons/libraries/poolboy/ ">es</a>
+      
+        <a href=" /pt/lessons/libraries/poolboy/ ">pt</a>
+      
+        <a href=" /vi/lessons/libraries/poolboy/ ">vi</a>
+      
+        <a href=" /ru/lessons/libraries/poolboy/ ">ru</a>
+      
+        <a href=" /sk/lessons/libraries/poolboy/ ">sk</a>
+      
+        <a href=" /fr/lessons/libraries/poolboy/ ">fr</a>
+      
+        <a href=" /gr/lessons/libraries/poolboy/ ">gr</a>
+      
+        <a href=" /it/lessons/libraries/poolboy/ ">it</a>
+      
+        <a href=" /pl/lessons/libraries/poolboy/ ">pl</a>
+      
+        <a href=" /my/lessons/libraries/poolboy/ ">my</a>
+      
+        <a href=" /no/lessons/libraries/poolboy/ ">no</a>
+      
+        <a href=" /ko/lessons/libraries/poolboy/ ">ko</a>
+      
+        <a href=" /id/lessons/libraries/poolboy/ ">id</a>
+      
+        <a href=" /uk/lessons/libraries/poolboy/ ">uk</a>
+      
+        <a href=" /tr/lessons/libraries/poolboy/ ">tr</a>
+      
+        <a href=" /bg/lessons/libraries/poolboy/ ">bg</a>
+      
+        <a href=" /de/lessons/libraries/poolboy/ ">de</a>
+      
+        <a href=" /bn/lessons/libraries/poolboy/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Poolboy</h1>
+  <p>Bạn có thể dễ dàng hao tổn hết tài nguyên của hệ thống nếu bạn cho phép các tiến trình đồng thời (concurrent process) chạy một cách tùy ý. Poolboy giúp chúng ta tránh việc hao tổn quá mức đó bằng cách tạo ra một tập worker (worker pool) để giới hạn các tiến trình đồng thời.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="v-sao-dng-poolboy">Vì sao dùng Poolboy?</h2>
+
+<p>Chúng ta hãy bàn về một ví dụ cụ thể. Bạn được giao nhiệm vụ phải thiết kế một ứng dụng để lưu thông tin tài khoản người dùng vào database. Nếu với mỗi lần user đăng ký bạn đều tạo một tiến trình, bạn sẽ không thể điều khiển được số lượng kết nối. Ở một thời điểm nào đó, những kết nối trên bắt đầu giành nhau những tài nguyên có hạn sẵn dùng trên database server. Chẳng mấy chốc thì ứng dụng của bạn bị timeout vì những overhead gây ra bởi việc tranh giành đó.</p>
+
+<p>Giải pháp cho vấn đề trên là dùng một tập worker (tiến trình) để giới hạn số lượng kết nối thay vì tạo ra một tiến trình cho mỗi lần user đăng ký. Như vậy bạn sẽ dễ dàng tránh được việc hao tổn tài nguyên hệ thống.</p>
+
+<p>Đó là lý do Poolboy tồn tại. Nó tạo một một tập các worker được quản lý bởi một <code class="highlighter-rouge">Supervisor</code> (và cái hay là bạn không cần phải tự tay làm nó). Có rất nhiều thư viên sử dụng Poolboy ở bên dưới nó như tập kết nối <code class="highlighter-rouge">postgrex</code> <em>(cái mà Ecto dùng để làm việc PostgreSQL)</em> và <code class="highlighter-rouge">redis_poolex</code> <em>(tập kết nối cho Redis)</em> là một trong những thư viện điển hình dùng Poolboy.</p>
+
+<h2 id="ci-t">Cài đặt</h2>
+
+<p>Cài đặt là việc quá dễ với mix. Đơn giản là thêm Poolboy làm thư viện trong file <code class="highlighter-rouge">mix.exs</code>.</p>
+
+<p>Trước hết ta hãy tạo một ứng dụng:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ mix new poolboy_app --sup
+$ mix deps.get
+</code></pre>
+</div>
+
+<p>Thêm Poolboy vào thư viện trong file <code class="highlighter-rouge">mix.exs</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:poolboy</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.5.1"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Thêm Poolboy vào ứng dụng OTP:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:logger</span><span class="p">,</span> <span class="ss">:poolboy</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="cc-ty-chn-ci-t">Các tùy chọn cài đặt</h2>
+
+<p>Chúng ta chỉ cần biết chút ít về các tùy chọn cài đặt để bắt đầu làm việc với Poolboy.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">:name</code> - tên của tập. Phạm vi (scope) có thể là <code class="highlighter-rouge">:local</code>, <code class="highlighter-rouge">:global</code> hoặc <code class="highlighter-rouge">:via</code>.</li>
+  <li><code class="highlighter-rouge">:worker_module</code> - tên module của worker.</li>
+  <li><code class="highlighter-rouge">:size</code> - kích thước tối đa của tập.</li>
+  <li><code class="highlighter-rouge">:max_overflow</code> - số worker tối đa sẽ được tạo khi tập không còn worker sẵn dùng. (không bắt buộc)</li>
+  <li><code class="highlighter-rouge">:strategy</code> - <code class="highlighter-rouge">:lifo</code> hoặc <code class="highlighter-rouge">:fifo</code>, định nghĩa việc các worker mới đăng ký sẽ được đặt trước hay đặt sau các worker có sẵn. Mặc định là <code class="highlighter-rouge">:lifo</code>. (không bắt buộc)</li>
+</ul>
+
+<h2 id="cu-hnh-poolboy">Cấu hình Poolboy</h2>
+
+<p>Trong ví dụ này ta sẽ tạo ra một tập worker để xử lý các yêu cầu tính căn của một số. Ta sẽ dùng ví dụ đơn giản để tập trung vào Poolboy.</p>
+
+<p>Ta hãy định nghĩa các tùy chọn cấu hình Poolboy và thêm nó là một worker con khi ứng dụng chạy.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">PoolboyApp</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Application</span>
+
+  <span class="k">defp</span> <span class="n">poolboy_config</span> <span class="k">do</span>
+    <span class="p">[{</span><span class="ss">:name</span><span class="p">,</span> <span class="p">{</span><span class="ss">:local</span><span class="p">,</span> <span class="ss">:worker</span><span class="p">}},</span>
+      <span class="p">{</span><span class="ss">:worker_module</span><span class="p">,</span> <span class="no">Worker</span><span class="p">},</span>
+      <span class="p">{</span><span class="ss">:size</span><span class="p">,</span> <span class="m">5</span><span class="p">},</span>
+      <span class="p">{</span><span class="ss">:max_overflow</span><span class="p">,</span> <span class="m">2</span><span class="p">}]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span><span class="p">,</span> <span class="ss">warn:</span> <span class="no">false</span>
+
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="ss">:poolboy</span><span class="o">.</span><span class="n">child_spec</span><span class="p">(</span><span class="ss">:worker</span><span class="p">,</span> <span class="n">poolboy_config</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="p">]</span>
+
+    <span class="n">opts</span> <span class="o">=</span> <span class="p">[</span><span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">PoolboyApp</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">]</span>
+    <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Thứ đầu tiên ta định nghĩa là tùy chọn cấu hình cho tập. Ta gán vào <code class="highlighter-rouge">:name</code> tên duy nhất của tập, cấu hình phạm vi <code class="highlighter-rouge">:scope</code> thành local và kích thước <code class="highlighter-rouge">:size</code> của tập là năm worker. Và trong trường hợp mọi worker đều đang bận, ta bảo nó tạo thêm hai worker khác để giúp đỡ bằng cách sử dụng tùy chọn <code class="highlighter-rouge">:max_overflow</code>. <em>(các worker <code class="highlighter-rouge">overflow</code> sẽ được xóa sau khi nó xong việc.)</em></p>
+
+<p>Sau đó ta thêm hàm <code class="highlighter-rouge">pollboy.child_spec/3</code> vào mảng các con để tập worker có thể chạy khi ứng dụng chạy.</p>
+
+<p>Hàm <code class="highlighter-rouge">child_spec/3</code> nhận ba tham số: Tên của tập, cấu hình của tập và tham số thứ ba là cái sẽ được truyền vào hàm <code class="highlighter-rouge">worker.start_link</code>. Trong trường hợp của chúng ta là một mảng rỗng.</p>
+
+<h2 id="to-worker">Tạo worker</h2>
+<p>Worker module sẽ là một GenServer đơn giản tính căn của một số, sleep một giây và sau đó in ra số pid của worker.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Worker</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="no">nil</span><span class="p">,</span> <span class="p">[])</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="no">nil</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">({</span><span class="ss">:square_root</span><span class="p">,</span> <span class="n">x</span><span class="p">},</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">process </span><span class="si">#{</span><span class="n">inspect</span> <span class="n">self</span><span class="si">}</span><span class="s2"> calculating square root of </span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">"</span>
+    <span class="ss">:timer</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">)</span>
+    <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="ss">:math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="dng-poolboy">Dùng Poolboy</h2>
+
+<p>Sau khi có <code class="highlighter-rouge">Worker</code>, ta có thể chạy thử Poolboy. Ta hãy tạo ra một module đơn giản để tạo ra các tiến trình đồng thời dùng hàm <code class="highlighter-rouge">:poolboy.transaction</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Test</span> <span class="k">do</span>
+  <span class="nv">@timeout</span> <span class="m">60000</span>
+
+  <span class="k">def</span> <span class="n">start</span> <span class="k">do</span>
+     <span class="n">tasks</span> <span class="o">=</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="m">1</span><span class="o">..</span><span class="m">20</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-&gt;</span>
+        <span class="no">Task</span><span class="o">.</span><span class="n">async</span><span class="p">(</span><span class="k">fn</span> <span class="o">-&gt;</span> <span class="ss">:poolboy</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span><span class="ss">:worker</span><span class="p">,</span>
+          <span class="o">&amp;</span><span class="p">(</span><span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">,</span> <span class="p">{</span><span class="ss">:square_root</span><span class="p">,</span> <span class="n">i</span><span class="p">})),</span> <span class="nv">@timeout</span><span class="p">)</span>
+        <span class="k">end</span><span class="p">)</span>
+     <span class="k">end</span><span class="p">)</span>
+     <span class="no">Enum</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="n">await</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="nv">@timeout</span><span class="p">))</span> <span class="k">end</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Nếu bạn không có các worker sẵn dùng trong tập, Poolboy sẽ timeout một thời gian mặc định (năm giây) và không nhận thêm yêu cầu mới nào cả. Ở ví dụ của chúng ta, việc ta tăng thời gian timeout lên một phút chỉ là để mô phỏng cách ta thay đổi giá trị mặc định của nó như thế nào.</p>
+
+<p>Ngay cả khi ta cố ý tạo ra nhiều tiến trình <em>(như ở trên có tổng cộng hai mươi cái)</em>, hàm <code class="highlighter-rouge">:poolboy.transaction</code> sẽ giới hạn số tiến trình được tạo ra là năm <em>(cộng thêm hai overflow worker nếu cần thiết)</em> như ta đã định nghĩa trong cấu hình. Tất cả yêu cầu sẽ được xử lý bởi tập worker thay vì tạo ra một tiến trình mới cho mỗi một yêu cầu.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/libraries/poolboy/&title=Poolboy&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/libraries/poolboy/&via=elixirschool&text=ElixirSchool: Poolboy&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/libraries/poolboy/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/libraries/poolboy/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/libraries/poolboy/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Poolboy" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/libraries/poolboy/&title=ElixirSchool: Poolboy&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/libraries/poolboy/&title=ElixirSchool: Poolboy&description=Check out 'Poolboy' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Poolboy&body=Check out 'Poolboy' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/libraries/poolboy/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

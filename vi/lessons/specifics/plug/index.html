@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/specifics/plug/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Plug &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Plug &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson  active" href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/plug/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/plug/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/plug/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/plug/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/plug/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/plug/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/plug/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/plug/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/plug/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/plug/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/plug/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/plug/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/plug/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/plug/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/plug/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/plug/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/plug/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/plug/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/plug/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/plug/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/plug/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Plug</h1>
+  <p>Nếu bạn biết Ruby bạn có thể nghĩ Plug như là Rack với một chút Sinatra. Nó cung cấp một đặc tả cho các thành phần ứng dụng web và kết nối nó với web servers. Tuy không nằm trong phần cốt lõi nhưng Plug là một dự án chính thức của Elixir.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="ci-t">Cài đặt</h2>
+
+<p>Cài đặt Plug với Mix khá đơn giản. Để cài đặt ta chỉ cần thay đổi hai chỗ trong file <code class="highlighter-rouge">mix.exs</code>. Đầu tiên là thêm Plug và một web server nào đó (ở đây ta dùng Cowboy) làm thư viện.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:cowboy</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.0.0"</span><span class="p">},</span>
+   <span class="p">{</span><span class="ss">:plug</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.0"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Cuối cùng là thêm cả web server lẫn Plug vào ứng dụng OTP.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:cowboy</span><span class="p">,</span> <span class="ss">:logger</span><span class="p">,</span> <span class="ss">:plug</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="c-t">Đặc tả</h2>
+
+<p>Trước khi tạo ra các plug thì ta cần biết về đặc tả của Plug. Nó chỉ gồm hai hàm chủ yếu: <code class="highlighter-rouge">init/1</code> và <code class="highlighter-rouge">call/2</code>.</p>
+
+<p>Hàm <code class="highlighter-rouge">init/1</code> được dùng để khởi tạo các tùy chọn cho Plug, thứ mà sau đó sẽ được truyền vào hàm <code class="highlighter-rouge">call/2</code> như là tham số thứ hai. Ngoài tùy chỉnh khởi tạo đó, hàm <code class="highlighter-rouge">call/2</code> còn nhận tham số đầu tiên có kiểu là <code class="highlighter-rouge">%Plug.Conn</code> và hàm này sẽ trả phải về một kết nối.</p>
+
+<p>Dưới đây là một Plug đơn giản trả về dòng chữ “Hello World!”:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">HelloWorldPlug</span> <span class="k">do</span>
+  <span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">options</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">options</span>
+
+  <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">_opts</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">conn</span>
+    <span class="o">|&gt;</span> <span class="n">put_resp_content_type</span><span class="p">(</span><span class="sd">"</span><span class="s2">text/plain"</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">send_resp</span><span class="p">(</span><span class="m">200</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hello World!"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="to-mt-plug">Tạo một Plug</h2>
+
+<p>Với ví dụ này ta sẽ viết một Plug để kiểm tra request có các tham số bắt buộc chưa. Cài đặt việc kiểm tra trong một Plug ta có thể biết chắc rằng chỉ có những request hợp lệ mới được đi vào ứng dụng. Plug của chúng ta sẽ được khởi tạo với hai tùy chọn: <code class="highlighter-rouge">:paths</code> và <code class="highlighter-rouge">:fields</code>. Chúng đại diện cho các đường dẫn mà ta sẽ áp dụng các logic vào và các trường cần thiết.</p>
+
+<p><em>Chú ý</em>: Plug được chạy cho tất cả request, đó là lý do vì sao ta phải lọc request và áp dụng logic vào phần đã được lọc. Để bỏ qua một request nào đó ta chỉ cần đơn giản trả về kết nối.</p>
+
+<p>Ta sẽ bắt đầu xem một Plug hoàn chỉnh và sau đó tìm hiểu cách nó hoạt động. Ta sẽ viết nó ở file <code class="highlighter-rouge">lib/plug/verify_request.ex</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">VerifyRequest</span> <span class="k">do</span>
+  <span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span>
+
+  <span class="k">defmodule</span> <span class="no">IncompleteRequestError</span> <span class="k">do</span>
+    <span class="nv">@moduledoc</span> <span class="sd">"""
+    Error raised when a required field is missing.
+    """</span>
+
+    <span class="k">defexception</span> <span class="ss">message:</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="ss">plug_status:</span> <span class="m">400</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">options</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">options</span>
+
+  <span class="k">def</span> <span class="n">call</span><span class="p">(%</span><span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span><span class="p">{</span><span class="ss">request_path:</span> <span class="n">path</span><span class="p">}</span> <span class="o">=</span> <span class="n">conn</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">[</span><span class="ss">:paths</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="n">verify_request!</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">body_params</span><span class="p">,</span> <span class="n">opts</span><span class="p">[</span><span class="ss">:fields</span><span class="p">])</span>
+    <span class="n">conn</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">verify_request!</span><span class="p">(</span><span class="n">body_params</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">verified</span> <span class="o">=</span> <span class="n">body_params</span>
+               <span class="o">|&gt;</span> <span class="no">Map</span><span class="o">.</span><span class="n">keys</span>
+               <span class="o">|&gt;</span> <span class="n">contains_fields?</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+    <span class="k">unless</span> <span class="n">verified</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="k">raise</span> <span class="no">IncompleteRequestError</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">contains_fields?</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">fields</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="no">Enum</span><span class="o">.</span><span class="n">all?</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">))</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Đầu tiên ta định nghĩa ra một kiểu lỗi mới tên <code class="highlighter-rouge">IncompleteRequestError</code> và một trong những tùy chọn của nó là <code class="highlighter-rouge">:plug_status</code>. Tùy chọn này sẽ được Plug dùng để cài đặt <em>HTTP status code</em> trong trường hợp có lỗi.</p>
+
+<p>Phần thứ hai của Plug là hàm <code class="highlighter-rouge">call/2</code>. Đây là nơi mà ta quyết định xem có áp dụng logic của chúng ta vào không. Chỉ khi nào request có chứa đường dẫn trong tùy chọn <code class="highlighter-rouge">:paths</code> ta mới gọi <code class="highlighter-rouge">verify_request!/2</code>.</p>
+
+<p>Phần cuối là hàm private <code class="highlighter-rouge">verify_request!/2</code>, nó sẽ kiểm tra liệu các trường bắt buộc đã có đầy đủ trong <code class="highlighter-rouge">:fields</code> chưa. Trong trường hợp bị thiếu, ta sẽ văng lỗi <code class="highlighter-rouge">IncompleteRequestError</code>.</p>
+
+<h2 id="dng-plugrouter">Dùng Plug.Router</h2>
+
+<p>Giờ ta đã có plug tên là <code class="highlighter-rouge">VerifyRequest</code>, ta có thể tiếp tục đi vào router (tạm dịch: bộ định tuyến). Với Plug thì trong Elixir ta không cần một framework như Sinatra nữa.</p>
+
+<p>Để bắt đầu ta tạo một file <code class="highlighter-rouge">lib/plug/router.ex</code> và copy đoạn code ở dưới vào:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Router</span>
+
+  <span class="n">plug</span> <span class="ss">:match</span>
+  <span class="n">plug</span> <span class="ss">:dispatch</span>
+
+  <span class="n">get</span> <span class="sd">"</span><span class="s2">/"</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">200</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Welcome"</span><span class="p">)</span>
+  <span class="n">match</span> <span class="n">_</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">404</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Oops!"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Đây là một Router tối thiểu nhưng code đọc cũng khá dễ hiểu. Ta đã kèm vào một số macros thông qua <code class="highlighter-rouge">use Plug.Router</code> và sau đó dùng hai Plug có sẵn là <code class="highlighter-rouge">:match</code> và <code class="highlighter-rouge">:dispatch</code>. Có hai đường dẫn được định nghĩa ở đây, một để xử lý các request GET ở root và một để match các request còn lại và trả về lỗi 404.</p>
+
+<p>Và ta thêm Plug của chúng ta vào router:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Router</span>
+
+  <span class="n">alias</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">VerifyRequest</span>
+
+  <span class="n">plug</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Parsers</span><span class="p">,</span> <span class="ss">parsers:</span> <span class="p">[</span><span class="ss">:urlencoded</span><span class="p">,</span> <span class="ss">:multipart</span><span class="p">]</span>
+  <span class="n">plug</span> <span class="no">VerifyRequest</span><span class="p">,</span> <span class="ss">fields:</span> <span class="p">[</span><span class="sd">"</span><span class="s2">content"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">mimetype"</span><span class="p">],</span>
+                      <span class="ss">paths:</span>  <span class="p">[</span><span class="sd">"</span><span class="s2">/upload"</span><span class="p">]</span>
+  <span class="n">plug</span> <span class="ss">:match</span>
+  <span class="n">plug</span> <span class="ss">:dispatch</span>
+
+  <span class="n">get</span> <span class="sd">"</span><span class="s2">/"</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">200</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Welcome"</span><span class="p">)</span>
+  <span class="n">post</span> <span class="sd">"</span><span class="s2">/upload"</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">201</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Uploaded"</span><span class="p">)</span>
+  <span class="n">match</span> <span class="n">_</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">404</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Oops!"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Xong! Ta đã cài đặt Plug của chúng ta để kiểm tra tất cả những request vào <code class="highlighter-rouge">/upload</code> để đảm bảo chúng có cả <code class="highlighter-rouge">"content"</code> lần <code class="highlighter-rouge">"mimetype"</code>. Kế đến ta sẽ chạy đoạn code router.</p>
+
+<p>Lúc này thì đường dẫn <code class="highlighter-rouge">/upload</code> không thực sự hữu dụng lắm nhưng ta đã biết cách tạo và tích hợp Plug vào như thế nào.</p>
+
+<h2 id="chy-ng-dng-web">Chạy ứng dụng web</h2>
+
+<p>Trước khi ta có thể chạy ứng dụng ta cần cài đặt và cấu hình web server, ở đây là Cowboy. Hiện tại thì ta chỉ đủ viết code để chạy mọi thứ, ta sẽ tìm hiểu sâu hơn trong những bài học tiếp theo.</p>
+
+<p>Ta hãy bắt đầu bằng cách chỉnh sửa phần <code class="highlighter-rouge">application</code> trong <code class="highlighter-rouge">mix.exs</code> để thông báo cho Elixir về ứng dụng của chúng ta và tạo một biến môi trường. Code của chúng trông như sau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:cowboy</span><span class="p">,</span> <span class="ss">:plug</span><span class="p">],</span>
+   <span class="ss">mod:</span> <span class="p">{</span><span class="no">Example</span><span class="p">,</span> <span class="p">[]},</span>
+   <span class="ss">env:</span> <span class="p">[</span><span class="ss">cowboy_port:</span> <span class="m">8080</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Tiếp theo ta chỉnh <code class="highlighter-rouge">lib/example.ex</code> để bắt đầu và giám sát Cowboy:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Application</span>
+
+  <span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="no">Application</span><span class="o">.</span><span class="n">get_env</span><span class="p">(</span><span class="ss">:example</span><span class="p">,</span> <span class="ss">:cowboy_port</span><span class="p">,</span> <span class="m">8080</span><span class="p">)</span>
+
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="no">Plug</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Cowboy</span><span class="o">.</span><span class="n">child_spec</span><span class="p">(</span><span class="ss">:http</span><span class="p">,</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">port:</span> <span class="n">port</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>(Không bắt buộc) ta có thể thêm <code class="highlighter-rouge">:cowboy_port</code> vào <code class="highlighter-rouge">config/config.exs</code></p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">use</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Config</span>
+
+<span class="n">config</span> <span class="ss">:example</span><span class="p">,</span> <span class="ss">cowboy_port:</span> <span class="m">8080</span>
+</code></pre>
+</div>
+
+<p>Now to run our application we can use:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix run --no-halt
+</code></pre>
+</div>
+
+<h2 id="kim-th-plug">Kiểm thử Plug</h2>
+
+<p>Kiểm thử Plug khá đơn giản với <code class="highlighter-rouge">Plug.Test</code>. Nó chứa một số hàm tiện ích giúp việc kiểm thử trở nên dễ dàng.</p>
+
+<p>Xem qua đoạn code kiểm thử router ở dưới đây nhé:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">RouterTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="kn">use</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Test</span>
+
+  <span class="n">alias</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span>
+
+  <span class="nv">@content</span> <span class="sd">"</span><span class="s2">&lt;html&gt;&lt;body&gt;Hi!&lt;/body&gt;&lt;/html&gt;"</span>
+  <span class="nv">@mimetype</span> <span class="sd">"</span><span class="s2">text/html"</span>
+
+  <span class="nv">@opts</span> <span class="no">Router</span><span class="o">.</span><span class="n">init</span><span class="p">([])</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">returns welcome"</span> <span class="k">do</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="p">(</span><span class="ss">:get</span><span class="p">,</span> <span class="sd">"</span><span class="s2">/"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">)</span>
+           <span class="o">|&gt;</span> <span class="no">Router</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nv">@opts</span><span class="p">)</span>
+
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="ss">:sent</span>
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="m">200</span>
+  <span class="k">end</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">returns uploaded"</span> <span class="k">do</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="p">(</span><span class="ss">:post</span><span class="p">,</span> <span class="sd">"</span><span class="s2">/upload"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">content=</span><span class="si">#{</span><span class="nv">@content</span><span class="si">}</span><span class="s2">&amp;mimetype=</span><span class="si">#{</span><span class="nv">@mimetype</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+           <span class="o">|&gt;</span> <span class="n">put_req_header</span><span class="p">(</span><span class="sd">"</span><span class="s2">content-type"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">application/x-www-form-urlencoded"</span><span class="p">)</span>
+           <span class="o">|&gt;</span> <span class="no">Router</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nv">@opts</span><span class="p">)</span>
+
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="ss">:sent</span>
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="m">201</span>
+  <span class="k">end</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">returns 404"</span> <span class="k">do</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="p">(</span><span class="ss">:get</span><span class="p">,</span> <span class="sd">"</span><span class="s2">/missing"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">)</span>
+           <span class="o">|&gt;</span> <span class="no">Router</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nv">@opts</span><span class="p">)</span>
+
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="ss">:sent</span>
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="m">404</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="cc-plug-sn-dng">Các Plug sẵn dùng</h2>
+
+<p>Có một số Plug đã được viết sẵn, danh sách hoàn chỉnh bạn có thể tìm thấy trong tài liệu của Plug <a href="https://github.com/elixir-lang/plug#available-plugs">ở đây</a>.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/specifics/plug/&title=Plug&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/specifics/plug/&via=elixirschool&text=ElixirSchool: Plug&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/specifics/plug/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/specifics/plug/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/specifics/plug/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Plug" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/specifics/plug/&title=ElixirSchool: Plug&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/specifics/plug/&title=ElixirSchool: Plug&description=Check out 'Plug' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Plug&body=Check out 'Plug' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/specifics/plug/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

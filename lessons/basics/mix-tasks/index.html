@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lessons about the Elixir programming language">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/lessons/basics/mix-tasks/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Custom Mix Tasks &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lessons about the Elixir programming language">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Custom Mix Tasks &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lessons about the Elixir programming language</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Basics</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/basics/basics/">Basics</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/basics/control-structures/">Control Structures</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/basics/functions/">Functions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson  active" href="/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Advanced</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/advanced/error-handling/">Error Handling</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/advanced/escripts/">Executables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/advanced/concurrency/">Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/advanced/umbrella-projects/">Umbrella Projects</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/advanced/typespec/">Specifications and types</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Specifics</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Libraries</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/mix-tasks/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/mix-tasks/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/mix-tasks/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/mix-tasks/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/mix-tasks/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/mix-tasks/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/mix-tasks/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/mix-tasks/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/mix-tasks/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/mix-tasks/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/mix-tasks/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/mix-tasks/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/mix-tasks/ ">my</a>
+      
+        <a href=" /no/lessons/basics/mix-tasks/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/mix-tasks/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/mix-tasks/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/mix-tasks/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/mix-tasks/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/mix-tasks/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/mix-tasks/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/mix-tasks/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Custom Mix Tasks</h1>
+  <p>Creating custom Mix tasks for your Elixir projects.</p>
+
+<h2>Table of Contents</h2>
+<div id="toc"></div>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>It’s not uncommon to want to extend your Elixir applications functionality by adding custom Mix tasks. Before we learn about how to create specific Mix tasks for our projects, let’s look at one that already exists:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix phoenix.new my_phoenix_app
+
+<span class="k">*</span> creating my_phoenix_app/config/config.exs
+<span class="k">*</span> creating my_phoenix_app/config/dev.exs
+<span class="k">*</span> creating my_phoenix_app/config/prod.exs
+<span class="k">*</span> creating my_phoenix_app/config/prod.secret.exs
+<span class="k">*</span> creating my_phoenix_app/config/test.exs
+<span class="k">*</span> creating my_phoenix_app/lib/my_phoenix_app.ex
+<span class="k">*</span> creating my_phoenix_app/lib/my_phoenix_app/endpoint.ex
+<span class="k">*</span> creating my_phoenix_app/test/views/error_view_test.exs
+...
+</code></pre>
+</div>
+
+<p>As we can see from the shell command above, The Phoenix Framework has a custom Mix task to generate a new project. What if we could create something similar for our project? Well the great news is we can, and Elixir makes this easy for us to do.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>Let’s set up a very basic Mix application.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new hello
+
+<span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/hello.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/hello_test.exs
+
+Your Mix project was created successfully.
+You can use <span class="s2">"mix"</span> to compile it, <span class="nb">test </span>it, and more:
+
+<span class="nb">cd </span>hello
+mix <span class="nb">test
+
+</span>Run <span class="s2">"mix help"</span> <span class="k">for </span>more commands.
+</code></pre>
+</div>
+
+<p>Now, in our <strong>lib/hello.ex</strong> file that Mix generated for us, let’s create a simple function that will output “Hello, World!”</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Hello</span> <span class="k">do</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Output's `Hello, World!` everytime.
+  """</span>
+  <span class="k">def</span> <span class="n">say</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello, World!"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="custom-mix-task">Custom Mix Task</h2>
+
+<p>Let’s create our custom Mix task. Create a new directory and file <strong>hello/lib/mix/tasks/hello.ex</strong>. Within this file, let’s insert these 7 lines of Elixir.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Tasks</span><span class="o">.</span><span class="no">Hello</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Task</span>
+
+  <span class="nv">@shortdoc</span> <span class="sd">"</span><span class="s2">Simply runs the Hello.say/0 command."</span>
+  <span class="k">def</span> <span class="n">run</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">Hello</span><span class="o">.</span><span class="n">say</span> <span class="c1"># calling our Hello.say() function from earlier</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Notice how we start the defmodule statement with <code class="highlighter-rouge">Mix.Tasks</code> and the name we want to call from the command line. On the second line we introduce the <code class="highlighter-rouge">use Mix.Task</code> which brings the <code class="highlighter-rouge">Mix.Task</code> behaviour into the namespace. We then declare a run function which ignores any arguments for now. Within this function, we call our <code class="highlighter-rouge">Hello</code> module and the <code class="highlighter-rouge">say</code> function.</p>
+
+<h2 id="mix-tasks-in-action">Mix Tasks in Action</h2>
+
+<p>Let’s checkout our mix task. As long as we are in the directory it should work. From the command line, run <code class="highlighter-rouge">mix hello</code>, and we should see the following:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix hello
+Hello, World!
+</code></pre>
+</div>
+
+<p>Mix is quite friendly by default. It knows that everyone can make a spelling error now and then, so it uses a technique called fuzzy string matching to make recommendations:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix hell
+<span class="k">**</span> <span class="o">(</span>Mix<span class="o">)</span> The task <span class="s2">"hell"</span> could not be found. Did you mean <span class="s2">"hello"</span>?
+</code></pre>
+</div>
+
+<p>Did you also notice that we introduced an new module attribute, <code class="highlighter-rouge">@shortdoc</code>? This comes in handy when shipping our application, such as when a user runs the <code class="highlighter-rouge">mix help</code> command from the terminal.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix <span class="nb">help
+
+</span>mix app.start         <span class="c"># Starts all registered apps</span>
+...
+mix hello             <span class="c"># Simply calls the Hello.say/0 function.</span>
+...
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/lessons/basics/mix-tasks/&title=Custom Mix Tasks&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/lessons/basics/mix-tasks/&via=elixirschool&text=ElixirSchool: Custom Mix Tasks&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/lessons/basics/mix-tasks/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/lessons/basics/mix-tasks/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/lessons/basics/mix-tasks/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Custom Mix Tasks" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/lessons/basics/mix-tasks/&title=ElixirSchool: Custom Mix Tasks&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/lessons/basics/mix-tasks/&title=ElixirSchool: Custom Mix Tasks&description=Check out 'Custom Mix Tasks' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Custom Mix Tasks&body=Check out 'Custom Mix Tasks' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/lessons/basics/mix-tasks/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

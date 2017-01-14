@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Leçons sur le langage de programmation Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/fr/lessons/basics/functions/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Fonctions &middot; Elixir School
+
+">
+  <meta property="og:description" content="Leçons sur le langage de programmation Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Fonctions &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Leçons sur le langage de programmation Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Bases</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/fr/lessons/basics/basics/">Bases</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/fr/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/fr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/fr/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/fr/lessons/basics/control-structures/">Structures de Contrôle</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson  active" href="/fr/lessons/basics/functions/">Fonctions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/fr/lessons/basics/pipe-operator/">L'opérateur Pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/fr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/fr/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/fr/lessons/basics/testing/">Tests</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/fr/lessons/basics/mix-tasks/">Tâches Mix Personnalisées</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/functions/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/functions/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/functions/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/functions/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/functions/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/functions/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/functions/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/functions/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/functions/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/functions/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/functions/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/functions/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/functions/ ">my</a>
+      
+        <a href=" /no/lessons/basics/functions/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/functions/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/functions/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/functions/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/functions/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/functions/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/functions/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/functions/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Fonctions</h1>
+  <p>En Elixir, comme dans tous les langages fonctionnels, les fonctions sont des citoyens de premier ordre. Nous verrons les différents types de fonctions en<br />
+Elixir, ce qui les rend différentes et comment les utiliser.</p>
+
+<h2>Table des matières</h2>
+<div id="toc"></div>
+
+<h2 id="fonctions-anonymes">Fonctions anonymes</h2>
+
+<p>Tout comme leur nom le sous-entend, les fonctions anonymes n’ont pas de nom. Tel que nous l’avons vu dans la leçon <code class="highlighter-rouge">Enum</code>, elles sont fréquemment passées à<br />
+d’autres fonctions. Pour définir une fonction anonyme en Elixir, nous avons besoin des mot-clés <code class="highlighter-rouge">fn</code> et <code class="highlighter-rouge">end</code>, à l’intérieur desquels nous pouvons définir<br />
+n’importe quel nombre de paramètres et de corps de fonction, séparés par <code class="highlighter-rouge">-&gt;</code>.<br />
+Jetons un coup d’œil à cet exemple :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="o">=</span> <span class="k">fn</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="k">end</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">sum</span><span class="o">.</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="m">5</span>
+</code></pre>
+</div>
+
+<h3 id="le-raccourci-">Le raccourci ‘&amp;’</h3>
+
+<p>Utiliser des fonctions anonymes est quelque chose de tellement courant en Elixir qu’il y a un raccourci pour le faire :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span> <span class="o">+</span> <span class="nv">&amp;2</span><span class="p">)</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">sum</span><span class="o">.</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="m">5</span>
+</code></pre>
+</div>
+
+<p>Comme vous avez peut-être déjà deviné, dans la version raccourcie nos paramètres sont disponibles en tant que <code class="highlighter-rouge">&amp;1</code>, <code class="highlighter-rouge">&amp;2</code>, <code class="highlighter-rouge">&amp;3</code>, etc.</p>
+
+<h2 id="pattern-matching">Pattern matching</h2>
+
+<p>Le Pattern matching (ou « Filtrage par motif » en Français) en Elixir ne se limite pas juste aux variables. Il peut être appliqué aux signatures de<br />
+fonctions, comme nous allons le voir dans cette section :</p>
+
+<p>Elixir utilise le pattern matching pour identifier le groupe de paramètres correspondant, et appelle le corps de fonction correspondant :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">handle_result</span> <span class="o">=</span> <span class="k">fn</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">result</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Handling result..."</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:error</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">An error has occurred!"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">some_result</span> <span class="o">=</span> <span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">handle_result</span><span class="o">.</span><span class="p">({</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">some_result</span><span class="p">})</span>
+<span class="no">Handling</span> <span class="n">result</span><span class="o">...</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">handle_result</span><span class="o">.</span><span class="p">({</span><span class="ss">:error</span><span class="p">})</span>
+<span class="no">An</span> <span class="n">error</span> <span class="n">has</span> <span class="n">occurred!</span>
+</code></pre>
+</div>
+
+<h2 id="fonctions-nommes">Fonctions nommées</h2>
+
+<p>Nous pouvons définir des fonctions nommées que nous pouvons appeler plus tard. Ces fonctions sont définies avec le mot-clé <code class="highlighter-rouge">def</code> au sein d’un<br />
+module. Nous en apprendrons plus au sujet des Modules dans les prochaines leçons. Pour l’instant, concentrons-nous seulement sur les fonctions nommées.</p>
+
+<p>Les fonctions définies au sein d’un module sont utilisables par les autres modules, et c’est un élément de langage particulièrement utile en Elixir.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+</code></pre>
+</div>
+
+<p>Si nos corps de fonction ne s’étendent que sur une ligne, nous pouvons les raccourcir encore plus avec le mot-clé <code class="highlighter-rouge">do:</code> :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Armés de notre connaissance du pattern matching, explorons maintenant la récursion en utilisant les fonctions :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Length</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">of</span><span class="p">([]),</span> <span class="k">do</span><span class="p">:</span> <span class="m">0</span>
+  <span class="k">def</span> <span class="n">of</span><span class="p">([</span><span class="n">_</span><span class="o">|</span><span class="n">t</span><span class="p">]),</span> <span class="k">do</span><span class="p">:</span> <span class="m">1</span> <span class="o">+</span> <span class="n">of</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Length</span><span class="o">.</span><span class="n">of</span> <span class="p">[]</span>
+<span class="m">0</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Length</span><span class="o">.</span><span class="n">of</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="m">3</span>
+</code></pre>
+</div>
+
+<h3 id="fonctions-prives">Fonctions privées</h3>
+<p>Lorsque nous ne voulons pas que d’autres modules aient accès à nos fonctions, nous pouvons utiliser des fonctions privées, qui sont seulement disponibles<br />
+au sein de leur propre module. Elles sont définies avec le mot-clé <code class="highlighter-rouge">defp</code> :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">phrase</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">phrase</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">UndefinedFunctionError</span><span class="p">)</span> <span class="n">undefined</span> <span class="ss">function:</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">phrase</span><span class="o">/</span><span class="m">0</span>
+    <span class="no">Greeter</span><span class="o">.</span><span class="n">phrase</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h3 id="guards">Guards</h3>
+
+<p>Nous avons brièvement couvert les guards (prosaïquement traduit par « gardes » dans <u>Programmer en Erlang</u>, Pearson, 2010) dans la leçon sur les<br />
+<a href="../control-structures">Structures de contrôle</a>.<br />
+Nous allons à présent voir comment nous pouvons les appliquer aux fonctions.</p>
+
+<p>L’exemple ci-dessous contient deux fonctions avec la même signature. Nous allons nous servir des guards pour déterminer laquelle des deux utiliser, en<br />
+nous basant sur le type des arguments :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_list</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">names</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">, "</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">hello</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">Hello, Sean, Steve"</span>
+</code></pre>
+</div>
+
+<h3 id="arguments-par-dfaut">Arguments par défaut</h3>
+
+<p>Si nous voulons donner une valeur par défaut pour un argument, nous utiliserons la syntaxe <code class="highlighter-rouge">arguments \\ valeur</code> :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span><span class="p">(</span><span class="n">country</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">en"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">es"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hola, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">es"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hola, Sean"</span>
+</code></pre>
+</div>
+
+<p>Quand nous combinons nos exemples de guards avec les arguments par défaut, nous rencontrons un problème. Regardons cela de plus près :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_list</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">names</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">, "</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">hello</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span><span class="p">(</span><span class="n">country</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">en"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">es"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hola, "</span>
+<span class="k">end</span>
+
+<span class="o">**</span> <span class="p">(</span><span class="no">CompileError</span><span class="p">)</span> <span class="k">def</span> <span class="n">hello</span><span class="o">/</span><span class="m">2</span> <span class="n">has</span> <span class="n">default</span> <span class="n">values</span> <span class="ow">and</span> <span class="n">multiple</span> <span class="n">clauses</span><span class="p">,</span> <span class="n">define</span> <span class="n">a</span> <span class="n">function</span> <span class="n">head</span> <span class="n">with</span> <span class="n">the</span> <span class="n">defaults</span>
+</code></pre>
+</div>
+
+<p>Elixir n’aime pas les arguments par défaut dans les fonctions avec plusieurs matchs, ça peut être déroutant. Pour gérer ceci, nous ajoutons une tête de fonction avec nos<br />
+arguments par défaut :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">country</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_list</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">names</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">, "</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">hello</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">country</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span><span class="p">(</span><span class="n">country</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">en"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">es"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hola, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">Hello, Sean, Steve"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">],</span> <span class="sd">"</span><span class="s2">es"</span>
+<span class="sd">"</span><span class="s2">Hola, Sean, Steve"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Partager cette page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/fr/lessons/basics/functions/&title=Fonctions&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/fr/lessons/basics/functions/&via=elixirschool&text=ElixirSchool: Fonctions&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/fr/lessons/basics/functions/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/fr/lessons/basics/functions/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/fr/lessons/basics/functions/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Fonctions" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/fr/lessons/basics/functions/&title=ElixirSchool: Fonctions&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/fr/lessons/basics/functions/&title=ElixirSchool: Fonctions&description=Check out 'Fonctions' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Fonctions&body=Check out 'Fonctions' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/fr/lessons/basics/functions/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Уроки программирования на языке Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ru/lessons/advanced/otp-concurrency/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Параллелизм в OTP &middot; Elixir School
+
+">
+  <meta property="og:description" content="Уроки программирования на языке Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Параллелизм в OTP &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Уроки программирования на языке Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Основы</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ru/lessons/basics/basics/">Основы</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ru/lessons/basics/collections/">Коллекции</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ru/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ru/lessons/basics/pattern-matching/">Сопоставление с образцом</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ru/lessons/basics/control-structures/">Управляющие конструкции</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ru/lessons/basics/functions/">Функции</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ru/lessons/basics/pipe-operator/">Оператор конвейера</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ru/lessons/basics/modules/">Композиция</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ru/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ru/lessons/basics/sigils/">Строковые метки</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ru/lessons/basics/documentation/">Документирование</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ru/lessons/basics/testing/">Тестирование</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ru/lessons/basics/comprehensions/">Списковые включения</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ru/lessons/basics/strings/">Строки</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ru/lessons/basics/mix-tasks/">Пользовательские Mix задачи</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Продвинутый</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ru/lessons/advanced/erlang/">Взаимодействие с Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ru/lessons/advanced/error-handling/">Обработка ошибок</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ru/lessons/advanced/escripts/">Исполняемые файлы</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ru/lessons/advanced/concurrency/">Параллелизм</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/ru/lessons/advanced/otp-concurrency/">Параллелизм в OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ru/lessons/advanced/otp-supervisors/">OTP Супервизоры</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ru/lessons/advanced/metaprogramming/">Метапрограммирование</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ru/lessons/advanced/umbrella-projects/">Зонтичные проекты</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ru/lessons/advanced/typespec/">Cпецификации и типы</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ru/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Специфика</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ru/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ru/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ru/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ru/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ru/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/otp-concurrency/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/otp-concurrency/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/otp-concurrency/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/otp-concurrency/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/otp-concurrency/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/otp-concurrency/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/otp-concurrency/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/otp-concurrency/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/otp-concurrency/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/otp-concurrency/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/otp-concurrency/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/otp-concurrency/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/otp-concurrency/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/otp-concurrency/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/otp-concurrency/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/otp-concurrency/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/otp-concurrency/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/otp-concurrency/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/otp-concurrency/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/otp-concurrency/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/otp-concurrency/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Параллелизм в OTP</h1>
+  <p>Мы уже рассматривали абстракции языка Elixir для параллельного выполнения, но иногда нужна более широкая функциональность и тогда мы обращаемся к поведениям OTP в языке.</p>
+
+<p>В этом уроке мы сосредоточимся на двух важных частях: GenServer и GenEvent.</p>
+
+<h2>Содержание</h2>
+<div id="toc"></div>
+
+<h2 id="genserver">GenServer</h2>
+
+<p>Сервер OTP — это модуль с GenServer, который имплементирует набор функций обратного вызова (callback). На простейшем уровне GenServer — это цикл, который обрабатывает один запрос за итерацию, сохраняя обновленное состояние.</p>
+
+<p>Для демонстрации API GenServer мы реализуем базовую очередь для хранения и извлечения значений.</p>
+
+<p>Для создания GenServer нужно запустить его и позаботиться об инициализации. В большинстве случаев мы хотим связать процессы, потому используем <code class="highlighter-rouge">GenServer.start_link/3</code>. Мы передаем туда запускаемый GenServer модуль, начальные аргументы и набор настроек для самого GenServer. Эти настройки будут переданы в <code class="highlighter-rouge">GenServer.init/1</code>, который и задает начальное состояние с помощью возвращаемого значения. В этом примере аргументы и будут начальным состоянием:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleQueue</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Запуск и линковка нашей очереди. Это вспомогательный метод.
+  """</span>
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">state</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Функция обратного вызова для GenServer.init/1
+  """</span>
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section">Синхронные функции</h3>
+
+<p>Часто необходимо взаимодействовать с GenServer в синхронном формате, вызывая функцию и ожидая ее ответа. Для обработки синхронных запросов важно имплементировать метод <code class="highlighter-rouge">GenServer.handle_call/3</code>, который передает запрос, PID вызывающего процесса и текущее состояние. Ожидается, что будет возвращен кортеж <code class="highlighter-rouge"><span class="p">{</span><span class="err">:reply,</span><span class="w"> </span><span class="err">response,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code>.</p>
+
+<p>С помощью сопоставления с образцом можно определять функции обратного вызова для разных запросов и состояний. Полный список допустимых вариантов возврата есть в документации <a href="http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3"><code class="highlighter-rouge">GenServer.handle_call/3</code></a>.</p>
+
+<p>Для демонстрации синхронных запросов давайте добавим возможность отображать текущее состояние очереди и удаление значений:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleQueue</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="c1">### GenServer API</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Функция обратного вызова для GenServer.init/1
+  """</span>
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Функции обратного вызова для GenServer.handle_call/3
+  """</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[</span><span class="n">value</span><span class="o">|</span><span class="n">state</span><span class="p">])</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[]),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="no">nil</span><span class="p">,</span> <span class="p">[]}</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:queue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="c1">### Клиентский API</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">state</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">queue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:queue</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">dequeue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:dequeue</span><span class="p">)</span>
+<span class="k">end</span>
+
+</code></pre>
+</div>
+
+<p>Давайте запустим наш SimpleQueue и проверим как работает новая функциональность:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">start_link</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="c1">#PID&lt;0.90.0&gt;}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">dequeue</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">dequeue</span>
+<span class="m">2</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">queue</span>
+<span class="p">[</span><span class="m">3</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="section-1">Асинхронные функции</h3>
+
+<p>Асинхронные запросы обрабатываются функциями обратного вызова <code class="highlighter-rouge">handle_cast/2</code>. Это работает приблизительно так же как и <code class="highlighter-rouge">handle_call/3</code>, но не получает данных об отправителе и такой метод не обязан ничего отвечать.</p>
+
+<p>Мы реализуем функциональность добавления элемента в очередь асинхронно — обновляя очередь, но не блокируя вызывающий код:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleQueue</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="c1">### GenServer API</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Функция обратного вызова для GenServer.init/1
+  """</span>
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Функции обратного вызова для GenServer.handle_call/3
+  """</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[</span><span class="n">value</span><span class="o">|</span><span class="n">state</span><span class="p">])</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[]),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="no">nil</span><span class="p">,</span> <span class="p">[]}</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:queue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Функция обратного вызова для GenServer.handle_cast/2
+  """</span>
+  <span class="k">def</span> <span class="n">handle_cast</span><span class="p">({</span><span class="ss">:enqueue</span><span class="p">,</span> <span class="n">value</span><span class="p">},</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">state</span> <span class="o">++</span> <span class="p">[</span><span class="n">value</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="c1">### Клиентский API</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">state</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="n">queue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:queue</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">enqueue</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="p">{</span><span class="ss">:enqueue</span><span class="p">,</span> <span class="n">value</span><span class="p">})</span>
+  <span class="k">def</span> <span class="n">dequeue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:dequeue</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>И попробуем эту новую функциональность:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">start_link</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="c1">#PID&lt;0.100.0&gt;}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">queue</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
+<span class="ss">:ok</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">queue</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">20</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Для получения дополнительной информации можно обратиться к официальной документации <a href="http://elixir-lang.org/docs/stable/elixir/GenServer.html#content">GenServer</a>.</p>
+
+<h2 id="genevent">GenEvent</h2>
+
+<p>Мы уже изучили, что GenServer - это процессы, которые могут поддерживать состояние и обрабатывать синхронные и асинхронные запросы. Что же такое GenEvent? GenEvent — это обобщённые менеджеры событий, которые получают входящие сообщения и сообщают о них подписчикам. Они предоставляют механизм динамического добавления и удаления обработчиков к потоку событий.</p>
+
+<h3 id="section-2">Обработка событий</h3>
+
+<p>Самым важным обработчиком обратного вызова в GenEvent является <code class="highlighter-rouge">handle_event/2</code>. Он получает событие и текущее состояние обработчика. Предполагается, что он вернет кортеж <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code>.</p>
+
+<p>Для демонстрации функциональности GenEvent давайте начнем с создания двух обработчиков: одного для хранения истории сообщений и второго для их сохранения (теоретически):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">LoggerHandler</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenEvent</span>
+
+  <span class="k">def</span> <span class="n">handle_event</span><span class="p">({</span><span class="ss">:msg</span><span class="p">,</span> <span class="n">msg</span><span class="p">},</span> <span class="n">messages</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Вывожу новое сообщение: </span><span class="si">#{</span><span class="n">msg</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="p">[</span><span class="n">msg</span><span class="o">|</span><span class="n">messages</span><span class="p">]}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">defmodule</span> <span class="no">PersistenceHandler</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenEvent</span>
+
+  <span class="k">def</span> <span class="n">handle_event</span><span class="p">({</span><span class="ss">:msg</span><span class="p">,</span> <span class="n">msg</span><span class="p">},</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Сохраняю сообщение: </span><span class="si">#{</span><span class="n">msg</span><span class="si">}</span><span class="s2">"</span>
+
+    <span class="c1"># Сохранение сообщения</span>
+
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section-3">Вызов обработчиков</h3>
+
+<p>Вдобавок к <code class="highlighter-rouge">handle_event/2</code>, GenEvent кроме всего прочего поддерживает и <code class="highlighter-rouge">handle_call/2</code>. С помощью <code class="highlighter-rouge">handle_call/2</code> можно обработать особые синхронные сообщения.</p>
+
+<p>Давайте добавим к <code class="highlighter-rouge">LoggerHandler</code> метод для получения текущей истории сообщений:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">LoggerHandler</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenEvent</span>
+
+  <span class="k">def</span> <span class="n">handle_event</span><span class="p">({</span><span class="ss">:msg</span><span class="p">,</span> <span class="n">msg</span><span class="p">},</span> <span class="n">messages</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Вывожу новое сообщение: </span><span class="si">#{</span><span class="n">msg</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="p">[</span><span class="n">msg</span><span class="o">|</span><span class="n">messages</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:messages</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">messages</span><span class="p">),</span> <span class="n">messages</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="genevent-1">Использование GenEvent</h3>
+
+<p>С уже готовыми обработчиками нужно разобраться как использовать остальные функции GenEvent. Тремя основными функциями являются <code class="highlighter-rouge">add_handler/3</code>, <code class="highlighter-rouge">notify/2</code>, и <code class="highlighter-rouge">call/4</code>. Они соответственно позволяют: добавлять обработчики, рассылать новые сообщения и вызывать особые функции-обработчики.</p>
+
+<p>Если использовать их вместе, то можно увидеть наши обработчики в действии:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">start_link</span><span class="p">([])</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">add_handler</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="no">LoggerHandler</span><span class="p">,</span> <span class="p">[])</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">add_handler</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="no">PersistenceHandler</span><span class="p">,</span> <span class="p">[])</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="p">{</span><span class="ss">:msg</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hello World"</span><span class="p">})</span>
+<span class="err">Вывожу</span> <span class="err">новое</span> <span class="err">сообщение</span><span class="p">:</span> <span class="no">Hello</span> <span class="no">World</span>
+<span class="err">Сохраняю</span> <span class="err">сообщение</span><span class="p">:</span> <span class="no">Hello</span> <span class="no">World</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="no">LoggerHandler</span><span class="p">,</span> <span class="ss">:messages</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Hello World"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>В официальной документации по <a href="http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content">GenEvent</a> есть полный список функций обратного вызова и функциональности GenEvent.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Поделиться
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ru/lessons/advanced/otp-concurrency/&title=Параллелизм в OTP&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ru/lessons/advanced/otp-concurrency/&via=elixirschool&text=ElixirSchool: Параллелизм в OTP&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ru/lessons/advanced/otp-concurrency/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ru/lessons/advanced/otp-concurrency/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ru/lessons/advanced/otp-concurrency/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Параллелизм в OTP" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ru/lessons/advanced/otp-concurrency/&title=ElixirSchool: Параллелизм в OTP&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ru/lessons/advanced/otp-concurrency/&title=ElixirSchool: Параллелизм в OTP&description=Check out 'Параллелизм в OTP' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Параллелизм в OTP&body=Check out 'Параллелизм в OTP' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ru/lessons/advanced/otp-concurrency/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

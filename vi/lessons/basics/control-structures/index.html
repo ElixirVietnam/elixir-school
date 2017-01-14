@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/basics/control-structures/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Cấu trúc điều khiển &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Cấu trúc điều khiển &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/control-structures/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/control-structures/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/control-structures/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/control-structures/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/control-structures/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/control-structures/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/control-structures/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/control-structures/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/control-structures/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/control-structures/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/control-structures/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/control-structures/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/control-structures/ ">my</a>
+      
+        <a href=" /no/lessons/basics/control-structures/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/control-structures/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/control-structures/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/control-structures/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/control-structures/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/control-structures/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/control-structures/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/control-structures/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Cấu trúc điều khiển</h1>
+  <p>Trong bài này ta sẽ xem qua các loại cấu trúc điều khiểu có sẵn trong Elixir.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="if-v-unless"><code class="highlighter-rouge">if</code> và <code class="highlighter-rouge">unless</code></h2>
+
+<p>Hẳn là bạn đã từng biết đến <code class="highlighter-rouge">if/2</code> trước đây, và nếu bạn từng sử dụng Ruby hẳn bạn cũng chẳng lạ gì <code class="highlighter-rouge">unless/2</code>. Trong Elixir chúng vẫn được xử lý như thế nhưng khác ở chỗ chúng được định nghĩa như là marco, không phải cấu trúc ngôn ngữ. Bạn có thể xem cách cài đặt chúng tại <a href="http://elixir-lang.org/docs/stable/elixir/#!Kernel.html">Kernel module</a>.</p>
+
+<p>Chú ý là trong Elixir, giá trị mang tính phủ định là <code class="highlighter-rouge">nil</code> và boolean <code class="highlighter-rouge">false</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">if</span> <span class="no">String</span><span class="o">.</span><span class="n">valid?</span><span class="p">(</span><span class="sd">"</span><span class="s2">Xin chào!"</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Chuỗi hợp lệ!"</span>
+<span class="o">...&gt;</span> <span class="k">else</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Chuỗi không hợp lệ."</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Chuỗi hợp lệ!"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">if</span> <span class="sd">"</span><span class="s2">một giá trị chuỗi"</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Chuẩn quá!"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Chuẩn quá!"</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">unless/2</code> cũng được dùng giống như <code class="highlighter-rouge">if/2</code>, chỉ khác là nó xử lý ngược lại:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">unless</span> <span class="n">is_integer</span><span class="p">(</span><span class="sd">"</span><span class="s2">xin chào"</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Không phải Int"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Không phải Int"</span>
+</code></pre>
+</div>
+
+<h2 id="case"><code class="highlighter-rouge">case</code></h2>
+
+<p>Nếu cần thiết phải so trùng (match) nhiều mẫu (pattern) ta có thể dùng case:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Xin chào!"</span><span class="p">}</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">result</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="n">result</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:error</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Úi chà!"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Cân hết."</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Xin chào"</span>
+</code></pre>
+</div>
+
+<p>Việc bao gồm biến <code class="highlighter-rouge">_</code> là một phần quan trong mệnh đề <code class="highlighter-rouge">case</code>. Không có nó Elixir sẽ văng lỗi nếu không tìm thấy mẫu trùng khớp:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="ss">:cam</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="ss">:chanh</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Chanh"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">CaseClauseError</span><span class="p">)</span> <span class="n">no</span> <span class="k">case</span> <span class="n">clause</span> <span class="ss">matching:</span> <span class="ss">:cam</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="ss">:cam</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="ss">:chanh</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Chanh"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Không phải chanh"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Không phải chanh"</span>
+</code></pre>
+</div>
+
+<p>Có thể xem <code class="highlighter-rouge">_</code> như là <code class="highlighter-rouge">else</code>, nó sẽ khớp với mọi trường hợp ngoại lệ.<br />
+Vì <code class="highlighter-rouge">case</code> phụ thuộc vào pattern matching nên nó cũng có tất cả những luật và hạn chế tương tự. Nếu bạn muốn so trùng một biến đã tồn tại bạn phải dùng toán tử pin <code class="highlighter-rouge">^</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">sauce</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">nước tương"</span>
+<span class="sd">"</span><span class="s2">nước tương"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="sd">"</span><span class="s2">mắm tôm"</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="o">^</span><span class="n">sauce</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Không ngon lắm"</span>
+<span class="o">...&gt;</span>   <span class="n">sauce</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="si">#{</span><span class="n">sauce</span><span class="si">}</span><span class="s2"> ngon tuyệt"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">mắm tôm ngon tuyệt"</span>
+</code></pre>
+</div>
+
+<p>Một tính năng hay của <code class="highlighter-rouge">case</code> là nó hỗ trợ mệnh đề guard (guard clause):</p>
+
+<p><em>Ví dụ này được dẫn trực tiếp từ trang chủ của Elixir <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#case">Getting Started</a> guide.</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">}</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="m">3</span><span class="p">}</span> <span class="ow">when</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Trùng"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Không trùng"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Trùng"</span>
+</code></pre>
+</div>
+
+<p>Xem tài liệu tại trang chủ về <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses">Biểu thức hợp lệ trong mệnh đề guard</a>.</p>
+
+<h2 id="cond"><code class="highlighter-rouge">cond</code></h2>
+
+<p>Khi chúng ta cần so trùng điều kiện mà không phải giá trị, chúng ta chuyển sang dùng <code class="highlighter-rouge">cond</code>. Nó giống với <code class="highlighter-rouge">else if</code> hay <code class="highlighter-rouge">elsif</code> của các ngôn ngữ khác:</p>
+
+<p><em>Ví dụ này được dẫn trực tiếp từ trang chủ của Elixir <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#cond">Getting Started</a> guide.</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">cond</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="m">2</span> <span class="o">+</span> <span class="m">2</span> <span class="o">==</span> <span class="m">5</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Điều này không bao giờ đúng"</span>
+<span class="o">...&gt;</span>   <span class="m">2</span> <span class="o">*</span> <span class="m">2</span> <span class="o">==</span> <span class="m">3</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Điều này cũng không"</span>
+<span class="o">...&gt;</span>   <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">2</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Nhưng điều này thì chuẩn không cần chỉnh"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Nhưng điều này thì chuẩn không cần chỉnh"</span>
+</code></pre>
+</div>
+
+<p>Giống như <code class="highlighter-rouge">case</code>, <code class="highlighter-rouge">cond</code> cũng sẽ văng lỗi nếu không có mẫu trùng khớp. Để xử lý chuyện này, chúng ta định nghĩa ra một điều kiện là <code class="highlighter-rouge">true</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">cond</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="m">7</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">0</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Không đúng"</span>
+<span class="o">...&gt;</span>   <span class="no">true</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Luôn đúng"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Luôn đúng"</span>
+</code></pre>
+</div>
+
+<h2 id="with"><code class="highlighter-rouge">with</code></h2>
+
+<p><code class="highlighter-rouge">with</code> được dùng khi bạn muốn sử dụng một mệnh đề <code class="highlighter-rouge">case</code> lồng ghép hay những trường hợp không thể nó không thể kết nối lại một cách trơn tru được. Biểu thức <code class="highlighter-rouge">with</code> là sự kết hợp của từ khóa, generators và cuối cùng là một biểu thức.</p>
+
+<p>Chúng ta sẽ xem thêm về generators ở bài List Comprehensions nhưng bây giờ ta chỉ cần biết là chúng dùng pattern matching để so sánh biểu thức bên phải với biểu thức bên trái (cách nhau bởi dấu <code class="highlighter-rouge">&lt;-</code>)</p>
+
+<p>Chúng ta sẽ bắt đầu mới một ví dụ về <code class="highlighter-rouge">with</code>, sau đó xem qua các thứ khác:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">first:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">last:</span> <span class="sd">"</span><span class="s2">Callan"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">first:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">last:</span> <span class="sd">"</span><span class="s2">Callan"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">with</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">first</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:first</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">last</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:last</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="k">do</span><span class="p">:</span> <span class="n">last</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">, "</span> <span class="o">&lt;&gt;</span> <span class="n">first</span>
+<span class="sd">"</span><span class="s2">Callan, Sean"</span>
+</code></pre>
+</div>
+
+<p>Trường hợp mà một biểu thức không thể match được, giá trị không match được sẽ được trả về.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">first:</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">first:</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">with</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">first</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:first</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">last</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:last</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="k">do</span><span class="p">:</span> <span class="n">last</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">, "</span> <span class="o">&lt;&gt;</span> <span class="n">first</span>
+<span class="ss">:error</span>
+</code></pre>
+</div>
+
+<p>Chúng ta xem qua về một ví dụ không dùng <code class="highlighter-rouge">with</code> và sau đó là cách refactor nó:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">case</span> <span class="no">Repo</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">user</span><span class="p">}</span> <span class="o">-&gt;</span>
+    <span class="k">case</span> <span class="no">Guardian</span><span class="o">.</span><span class="n">encode_and_sign</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="ss">:token</span><span class="p">,</span> <span class="n">claims</span><span class="p">)</span> <span class="k">do</span>
+      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">}</span> <span class="o">-&gt;</span>
+        <span class="n">important_stuff</span><span class="p">(</span><span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">)</span>
+      <span class="n">error</span> <span class="o">-&gt;</span> <span class="n">error</span>
+    <span class="k">end</span>
+  <span class="n">error</span> <span class="o">-&gt;</span> <span class="n">error</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Khi chúng ta dùng <code class="highlighter-rouge">with</code>, code sẽ dễ đọc hơn và có ít dòng hơn:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">with</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">user</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Repo</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">changeset</span><span class="p">),</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Guardian</span><span class="o">.</span><span class="n">encode_and_sign</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:token</span><span class="p">),</span>
+  <span class="k">do</span><span class="p">:</span> <span class="n">important_stuff</span><span class="p">(</span><span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Với Elixir 1.3, biểu thức <code class="highlighter-rouge">with</code> bắt đầu hỗ trợ <code class="highlighter-rouge">else</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Integer</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">a:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">c:</span> <span class="m">3</span><span class="p">}</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">with</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">res</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="ss">:a</span><span class="p">),</span>
+  <span class="no">true</span> <span class="o">&lt;-</span> <span class="no">Integer</span><span class="o">.</span><span class="n">is_even</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Divided by 2 it is </span><span class="si">#{</span><span class="n">div</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">else</span>
+  <span class="ss">:error</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">We don't have this item in map"</span>
+  <span class="n">_</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">It's not odd"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Nó giúp việc xử lý lỗi dễ hơn bằng cách dùng pattern matching kiểu <code class="highlighter-rouge">case</code>. Giá trị truyền vào sẽ là biểu thức không match đầu tiên.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/basics/control-structures/&title=Cấu trúc điều khiển&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/basics/control-structures/&via=elixirschool&text=ElixirSchool: Cấu trúc điều khiển&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/basics/control-structures/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/basics/control-structures/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/basics/control-structures/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Cấu trúc điều khiển" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/basics/control-structures/&title=ElixirSchool: Cấu trúc điều khiển&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/basics/control-structures/&title=ElixirSchool: Cấu trúc điều khiển&description=Check out 'Cấu trúc điều khiển' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Cấu trúc điều khiển&body=Check out 'Cấu trúc điều khiển' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/basics/control-structures/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

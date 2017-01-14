@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lekcie o programovacom jazyku Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/sk/lessons/basics/pipe-operator/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Operátor pipe &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lekcie o programovacom jazyku Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Operátor pipe &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lekcie o programovacom jazyku Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Základy</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/sk/lessons/basics/basics/">Základy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/sk/lessons/basics/collections/">Kolekcie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/sk/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/sk/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/sk/lessons/basics/control-structures/">Riadiace štruktúry</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/sk/lessons/basics/functions/">Funkcie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson  active" href="/sk/lessons/basics/pipe-operator/">Operátor pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/sk/lessons/basics/modules/">Kompozícia</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/sk/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/sk/lessons/basics/sigils/">Sigily</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/sk/lessons/basics/documentation/">Dokumentácia</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/sk/lessons/basics/testing/">Testovanie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/sk/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/sk/lessons/basics/strings/">Reťazce</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/sk/lessons/basics/mix-tasks/">Mix tasky</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/pipe-operator/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/pipe-operator/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/pipe-operator/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/pipe-operator/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/pipe-operator/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/pipe-operator/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/pipe-operator/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/pipe-operator/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/pipe-operator/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/pipe-operator/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/pipe-operator/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/pipe-operator/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/pipe-operator/ ">my</a>
+      
+        <a href=" /no/lessons/basics/pipe-operator/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/pipe-operator/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/pipe-operator/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/pipe-operator/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/pipe-operator/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/pipe-operator/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/pipe-operator/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/pipe-operator/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Operátor pipe</h1>
+  <p>Operátor <code class="highlighter-rouge">|&gt;</code> posiela výstup výrazu ako prvý parameter do iného výrazu.</p>
+
+<h2>Obsah</h2>
+<div id="toc"></div>
+
+<h2 id="vod">Úvod</h2>
+
+<p>Vo funkcionálnom programovaní sa v praxi môžeme rýchlo zamotať do vnorených volaní funkcií. Pozrime sa na nasledujúci príklad:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">foo</span><span class="p">(</span><span class="n">bar</span><span class="p">(</span><span class="n">baz</span><span class="p">(</span><span class="n">new_function</span><span class="p">(</span><span class="n">other_function</span><span class="p">()))))</span>
+</code></pre>
+</div>
+
+<p>Návratovú hodnotu z <code class="highlighter-rouge">other_function</code> posielame do <code class="highlighter-rouge">new_function</code>, jej návratovú hodnotu zasa do <code class="highlighter-rouge">baz</code>, z nej do <code class="highlighter-rouge">bar</code> a nakoniec návratovú hodnotu z <code class="highlighter-rouge">bar</code> posielame do <code class="highlighter-rouge">foo</code>. Elixir má na tento chaos pragmatické riešenie v podobe operátora <em>pipe</em> - <code class="highlighter-rouge">|&gt;</code>. Tento zoberie návratovú hodnotu z výrazu na svojej ľavej strane a pošle ju ako prvý argument do výrazu na pravej strane. Pozrime sa na rovnaký príklad prepísaný pomocou operátora pipe:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">other_function</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">new_function</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">baz</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">bar</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">foo</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h2 id="prklady">Príklady</h2>
+
+<p>V nasledujúcich príkladoch budeme používať modul String v interaktívnom príkazovom riadku <code class="highlighter-rouge">iex</code>:</p>
+
+<ul>
+  <li>Rozdelenie reťazca na slová</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span><span class="s2">"Elixir rocks"</span> |&gt; String.split
+<span class="o">[</span><span class="s2">"Elixir"</span>, <span class="s2">"rocks"</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Prevedenie slov na veľké písmená</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span><span class="s2">"Elixir rocks"</span> |&gt; String.upcase |&gt; String.split
+<span class="o">[</span><span class="s2">"ELIXIR"</span>, <span class="s2">"ROCKS"</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Overovanie, či reťazec končí nejakým iným reťazcom</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span><span class="s2">"elixir"</span> |&gt; String.ends_with?<span class="o">(</span><span class="s2">"ixir"</span><span class="o">)</span>
+<span class="nb">true</span>
+</code></pre>
+</div>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<p>Ak je arita (počet argumentov) funkcie väčšia, než 1, použite vo volaní funkcie zátvorky. Ide hlavne o čitateľnosť pre ostatných programátorov, ktorým by chýbajúce zátvorky mohli spôsobiť zmätok pri čítaní nášho kódu. Ak si zoberieme tretí príklad a odstránime zátvorky z volania <code class="highlighter-rouge">String.ends_with?/2</code>, dostaneme nasledujúce varovanie o nejednoznačnosti volania:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span><span class="s2">"elixir"</span> |&gt; String.ends_with? <span class="s2">"ixir"</span>
+warning: parentheses are required when piping into a <span class="k">function </span>call. For example:
+
+  foo 1 |&gt; bar 2 |&gt; baz 3
+
+is ambiguous and should be written as
+
+  foo<span class="o">(</span>1<span class="o">)</span> |&gt; bar<span class="o">(</span>2<span class="o">)</span> |&gt; baz<span class="o">(</span>3<span class="o">)</span>
+
+<span class="nb">true</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Zdieľaj túto stránku
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/sk/lessons/basics/pipe-operator/&title=Operátor pipe&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/sk/lessons/basics/pipe-operator/&via=elixirschool&text=ElixirSchool: Operátor pipe&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/sk/lessons/basics/pipe-operator/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/sk/lessons/basics/pipe-operator/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/sk/lessons/basics/pipe-operator/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Operátor pipe" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/sk/lessons/basics/pipe-operator/&title=ElixirSchool: Operátor pipe&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/sk/lessons/basics/pipe-operator/&title=ElixirSchool: Operátor pipe&description=Check out 'Operátor pipe' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Operátor pipe&body=Check out 'Operátor pipe' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/sk/lessons/basics/pipe-operator/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

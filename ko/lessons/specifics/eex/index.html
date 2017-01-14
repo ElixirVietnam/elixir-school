@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/specifics/eex/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Embedded Elixir (EEx) &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Embedded Elixir (EEx) &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson  active" href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/eex/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/eex/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/eex/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/eex/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/eex/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/eex/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/eex/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/eex/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/eex/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/eex/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/eex/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/eex/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/eex/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/eex/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/eex/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/eex/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/eex/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/eex/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/eex/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/eex/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/eex/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Embedded Elixir (EEx)</h1>
+  <p>Ruby가 ERB를 Java가 JSP를 가지고 있는 것처럼, Elixir도 EEx, 내장 Elixir를 가지고 있습니다. EEx를 통해서 문자열로 된 Elixir 코드를 심거나 평가할 수 있습니다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="api">API</h2>
+
+<p>EEx API는 문자열이나 파일을 직접 사용할 수 있게끔 지원합니다. API는 크게 3개의 컴포넌트로 구성되어 있습니다. 단순 평가, 함수 정의, AST로 컴파일.</p>
+
+<h3 id="section">평가</h3>
+
+<p><code class="highlighter-rouge">eval_string/3</code>와 <code class="highlighter-rouge">eval_file/2</code>을 사용해서 문자열이나 파일에 대해서 단순 평가를 할 수 있습니다. 이는 가장 간단한 API이지만, 컴파일 없이 코드가 평가되기 때문에 가장 느립니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">EEx</span><span class="o">.</span><span class="n">eval_string</span> <span class="sd">"</span><span class="s2">Hi, &lt;%= name %&gt;"</span><span class="p">,</span> <span class="p">[</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">Hi, Sean"</span>
+</code></pre>
+</div>
+
+<h3 id="section-1">정의</h3>
+
+<p>EEx를 사용하는 방법 중 가장 빠르고, 선호되는 것은 컴파일될 수 있도록 템플릿을 모듈에 삽입하는 것입니다. 이를 위해서는 컴파일 시간에 템플릿과 <code class="highlighter-rouge">function_from_string/5</code>, <code class="highlighter-rouge">function_from_file/5</code> 매크로가 필요합니다.</p>
+
+<p>그럼 우리의 인사를 파일로 옮기고, 템플릿을 위한 함수를 생성해봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># greeting.eex</span>
+<span class="no">Hi</span><span class="p">,</span> <span class="o">&lt;%=</span> <span class="n">name</span> <span class="p">%</span><span class="o">&gt;</span>
+
+<span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="kn">require</span> <span class="no">EEx</span>
+  <span class="no">EEx</span><span class="o">.</span><span class="n">function_from_file</span> <span class="ss">:def</span><span class="p">,</span> <span class="ss">:greeting</span><span class="p">,</span> <span class="sd">"</span><span class="s2">greeting.eex"</span><span class="p">,</span> <span class="p">[</span><span class="ss">:name</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">greeting</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hi, Sean"</span>
+</code></pre>
+</div>
+
+<h3 id="section-2">컴파일</h3>
+
+<p>마지막으로, EEx는 <code class="highlighter-rouge">compile_string/2</code>이나 <code class="highlighter-rouge">compile_file/2</code>를 통해 문자열이나 파일에서 Elixir AST를 직접 생성할 방법을 제공합니다. 이 API는 주로 위에서 설명한 API에서 사용하고 있습니다만, 내장 Elixir를 처리를 직접 하고 싶은 경우에도 사용 가능합니다.</p>
+
+<h2 id="section-3">태그</h2>
+
+<p>EEx에서 기본으로 지원하는 것은 다음의 4개의 태그입니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="p">%</span> <span class="no">Elixir</span> <span class="err">표현식</span> <span class="o">-</span> <span class="err">출력물을</span> <span class="err">즉시</span> <span class="err">실행합니다</span> <span class="p">%</span><span class="o">&gt;</span>
+<span class="o">&lt;%=</span> <span class="no">Elixir</span> <span class="err">표현식</span> <span class="o">-</span> <span class="err">반환된</span> <span class="err">값으로</span> <span class="err">대체됩니다</span> <span class="p">%</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="p">%%</span> <span class="no">EEx</span> <span class="err">인용</span> <span class="o">-</span> <span class="err">안에</span> <span class="err">있는</span> <span class="err">것을</span> <span class="err">반환합니다</span> <span class="p">%</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="p">%</span><span class="c1"># 주석 - 코드에서 제거됩니다 %&gt;</span>
+</code></pre>
+</div>
+
+<p>결과물을 출력하고 싶은 모든 표현 식은 <strong>반드시</strong> 등호(<code class="highlighter-rouge">=</code>)를 사용해야 합니다. 다른 템플릿 언어에서는 <code class="highlighter-rouge">if</code>와 같은 철을 특별하게 처리하고 있지만, EEx는 그렇지 않기 때문에 중요합니다. <code class="highlighter-rouge">=</code>가 없다면 아무것도 출력되지 않을 것입니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;%=</span> <span class="k">if</span> <span class="no">true</span> <span class="k">do</span> <span class="p">%</span><span class="o">&gt;</span>
+  <span class="no">A</span> <span class="n">truthful</span> <span class="n">statement</span>
+<span class="o">&lt;</span><span class="p">%</span> <span class="k">else</span> <span class="p">%</span><span class="o">&gt;</span>
+  <span class="no">A</span> <span class="no">false</span> <span class="n">statement</span>
+<span class="o">&lt;</span><span class="p">%</span> <span class="k">end</span> <span class="p">%</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+<h2 id="section-4">엔진</h2>
+
+<p>Elixir는 <code class="highlighter-rouge">@name</code>과 같은 할당을 지원하는 <code class="highlighter-rouge">EEx.SmartEngine</code>을 기본으로 사용합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">EEx</span><span class="o">.</span><span class="n">eval_string</span> <span class="sd">"</span><span class="s2">Hi, &lt;%= @name %&gt;"</span><span class="p">,</span> <span class="ss">assigns:</span> <span class="p">[</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">Hi, Sean"</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">EEx.SmartEngine</code> 할당은 템플릿 컴파일 없이 할당하는 값을 변경할 수 있으므로 유용합니다.</p>
+
+<p>자신만의 엔진을 만드는 것에 흥미가 있으신가요? 무엇이 필요한지 알아보기 위해, <a href="http://elixir-lang.org/docs/v1.2/eex/EEx.Engine.html"><code class="highlighter-rouge">EEx.Engine</code></a>가 어떻게 동작하는지 확인해보세요.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/specifics/eex/&title=Embedded Elixir (EEx)&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/specifics/eex/&via=elixirschool&text=ElixirSchool: Embedded Elixir (EEx)&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/specifics/eex/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/specifics/eex/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/specifics/eex/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Embedded Elixir (EEx)" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/specifics/eex/&title=ElixirSchool: Embedded Elixir (EEx)&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/specifics/eex/&title=ElixirSchool: Embedded Elixir (EEx)&description=Check out 'Embedded Elixir (EEx)' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Embedded Elixir (EEx)&body=Check out 'Embedded Elixir (EEx)' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/specifics/eex/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

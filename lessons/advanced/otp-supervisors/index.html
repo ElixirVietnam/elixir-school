@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lessons about the Elixir programming language">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/lessons/advanced/otp-supervisors/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  OTP Supervisors &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lessons about the Elixir programming language">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  OTP Supervisors &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lessons about the Elixir programming language</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Basics</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/basics/basics/">Basics</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/basics/control-structures/">Control Structures</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/basics/functions/">Functions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Advanced</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/advanced/error-handling/">Error Handling</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/advanced/escripts/">Executables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/advanced/concurrency/">Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson  active" href="/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/advanced/umbrella-projects/">Umbrella Projects</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/advanced/typespec/">Specifications and types</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Specifics</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Libraries</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/otp-supervisors/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/otp-supervisors/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/otp-supervisors/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/otp-supervisors/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/otp-supervisors/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/otp-supervisors/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/otp-supervisors/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/otp-supervisors/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/otp-supervisors/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/otp-supervisors/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/otp-supervisors/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/otp-supervisors/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/otp-supervisors/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/otp-supervisors/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/otp-supervisors/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/otp-supervisors/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/otp-supervisors/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/otp-supervisors/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/otp-supervisors/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/otp-supervisors/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/otp-supervisors/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">OTP Supervisors</h1>
+  <p>Supervisors are specialized processes with one purpose: monitoring other processes. These supervisors enable us to create fault-tolerant applications by automatically restarting child processes when they fail.</p>
+
+<h2>Table of Contents</h2>
+<div id="toc"></div>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>The magic of Supervisors is in the <code class="highlighter-rouge">Supervisor.start_link/2</code> function.  In addition to starting our supervisor and children, it allows us to define the strategy our supervisor uses for managing child processes.</p>
+
+<p>Children are defined using a list and the <code class="highlighter-rouge">worker/3</code> function we imported from <code class="highlighter-rouge">Supervisor.Spec</code>.  The <code class="highlighter-rouge">worker/3</code> function takes a module, arguments, and a set of options.  Under the hood <code class="highlighter-rouge">worker/3</code> calls <code class="highlighter-rouge">start_link/3</code> with our arguments during initialization.</p>
+
+<p>Using the SimpleQueue from the <a href="../../advanced/otp-concurrency">OTP Concurrency</a> lesson let’s get started:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">SimpleQueue</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="ss">name:</span> <span class="no">SimpleQueue</span><span class="p">])</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>If our process were to crash or be terminated our Supervisor would automatically restart it as if nothing had happened.</p>
+
+<h3 id="strategies">Strategies</h3>
+
+<p>There are currently four different restart strategies available to supervisors:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">:one_for_one</code> - Only restart the failed child process.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:one_for_all</code> - Restart all child processes in the event of a failure.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:rest_for_one</code> - Restart the failed process and any process started after it.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:simple_one_for_one</code> - Best for dynamically attached children. Supervisor spec is required to contain only one child, but this child can be spawned multiple times. This strategy is intended to be used when you need to dynamically start and stop supervised children.</p>
+  </li>
+</ul>
+
+<h3 id="restart-values">Restart values</h3>
+
+<p>There are several approaches for handling child process crashes:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">:permanent</code> - Child is always restarted.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:temporary</code> - Child process is never restarted.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:transient</code> - Child process is restarted only if it terminates abnormally.</p>
+  </li>
+</ul>
+
+<p>It’s not a required option, by default it’s <code class="highlighter-rouge">:permanent</code>.</p>
+
+<h3 id="nesting">Nesting</h3>
+
+<p>In addition to worker processes, we can also supervise supervisors to create a supervisor tree.  The only difference to us is swapping <code class="highlighter-rouge">supervisor/3</code> for <code class="highlighter-rouge">worker/3</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">supervisor</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">ConnectionSupervisor</span><span class="p">,</span> <span class="p">[[</span><span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">ConnectionSupervisor</span><span class="p">]]),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">SimpleQueue</span><span class="p">,</span> <span class="p">[[],</span> <span class="p">[</span><span class="ss">name:</span> <span class="no">SimpleQueue</span><span class="p">]])</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="task-supervisor">Task Supervisor</h2>
+
+<p>Tasks have their own specialized Supervisor, the <code class="highlighter-rouge">Task.Supervisor</code>.  Designed for dynamically created tasks, the supervisor uses <code class="highlighter-rouge">:simple_one_for_one</code> under the hood.</p>
+
+<h3 id="setup">Setup</h3>
+
+<p>Including the <code class="highlighter-rouge">Task.Supervisor</code> is no different than other supervisors:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">supervisor</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">,</span> <span class="p">[[</span><span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">TaskSupervisor</span><span class="p">,</span> <span class="ss">restart:</span> <span class="ss">:transient</span><span class="p">]]),</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>The major difference between <code class="highlighter-rouge">Supervisor</code> and <code class="highlighter-rouge">Task.Supervisor</code> is that its default restart strategy is <code class="highlighter-rouge">:temporary</code> (tasks would never be restarted).</p>
+
+<h3 id="supervised-tasks">Supervised Tasks</h3>
+
+<p>With the supervisor started we can use the <code class="highlighter-rouge">start_child/2</code> function to create a supervised task:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="no">Supervisor</span><span class="o">.</span><span class="n">start_child</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">TaskSupervisor</span><span class="p">,</span> <span class="k">fn</span> <span class="o">-&gt;</span> <span class="n">background_work</span> <span class="k">end</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>If our task crashes prematurely it will be re-started for us.  This can be particularly useful when working with incoming connections or processing background work.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/lessons/advanced/otp-supervisors/&title=OTP Supervisors&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/lessons/advanced/otp-supervisors/&via=elixirschool&text=ElixirSchool: OTP Supervisors&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/lessons/advanced/otp-supervisors/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/lessons/advanced/otp-supervisors/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/lessons/advanced/otp-supervisors/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: OTP Supervisors" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/lessons/advanced/otp-supervisors/&title=ElixirSchool: OTP Supervisors&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/lessons/advanced/otp-supervisors/&title=ElixirSchool: OTP Supervisors&description=Check out 'OTP Supervisors' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: OTP Supervisors&body=Check out 'OTP Supervisors' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/lessons/advanced/otp-supervisors/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

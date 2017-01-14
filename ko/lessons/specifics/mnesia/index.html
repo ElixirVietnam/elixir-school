@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/specifics/mnesia/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Mnesia &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Mnesia &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/mnesia/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/mnesia/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/mnesia/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/mnesia/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/mnesia/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/mnesia/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/mnesia/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/mnesia/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/mnesia/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/mnesia/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/mnesia/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/mnesia/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/mnesia/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/mnesia/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/mnesia/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/mnesia/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/mnesia/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/mnesia/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/mnesia/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/mnesia/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/mnesia/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Mnesia</h1>
+  <p>Mnesia는 실시간 분산 데이터베이스 관리 시스템을 담당하고 있습니다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="section">개론</h2>
+
+<p>Mnesia는 Elixir에서 이미 사용하고 있는 Erlang 런타임 시스템에서 동작하는 데이터베이스 관리 시스템(DBMS)입니다. Mnesia의 <em>관계 모델과 객체 모델을 섞어둔 하이브리드 모델</em>은 어떤 크기의 분산 애플리케이션이든 개발할 수 있게 해줍니다.</p>
+
+<h2 id="section-1">언제 사용해야 하나요?</h2>
+
+<p>어떤 기술을 사용해야 하는지 결정하는 것은 무척 혼란스러운 과정입니다. 만약 아래의 질문들에서 ‘네’라고 대답할 수 있다면, ETS나 DETS 대신에 Mnesia를 사용할 타이밍이라는 좋은 신호라고 할 수 있습니다.</p>
+
+<ul>
+  <li>트랜잭션 롤백 기능이 필요한가요?</li>
+  <li>데이터를 읽고 쓸 때, 더 나은 문법을 원하시나요?</li>
+  <li>여러 노드에 걸쳐서 데이터를 저장해야 할 필요가 있나요?</li>
+  <li>정보를 어디(RAM이나 디스크)에 저장할지에 대한 옵션이 필요한가요?</li>
+</ul>
+
+<h2 id="section-2">스키마</h2>
+
+<p>Mnesia는 Elixir의 한 부분이라기보다는 Erlang 핵심의 일부이므로, 우리는 콜론 문법을 사용해야 합니다.(다음 강의를 참고하세요. <a href="../../advanced/erlang/">Erlang 상호운용</a>)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:mnesia</span><span class="o">.</span><span class="n">create_schema</span><span class="p">([</span><span class="n">node</span><span class="p">()])</span>
+
+<span class="c1"># 또는 Elixir처럼 사용하고 싶다면...</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">alias</span> <span class="ss">:mnesia</span><span class="p">,</span> <span class="ss">as:</span> <span class="no">Mnesia</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_schema</span><span class="p">([</span><span class="n">node</span><span class="p">()])</span>
+</code></pre>
+</div>
+
+<p>이 강의에서는 Mnesia API를 사용할 때에 후자의 방법을 사용할 것입니다. <code class="highlighter-rouge">Mnesia.create_schema/</code>는 새로운 스키마를 생성하며, 노드 리스트를 집어 넣습니다. 여기에서는 IEx 세션과 연결된 노드 리스트를 넘겼습니다.</p>
+
+<h2 id="section-3">노드들</h2>
+
+<p>일단 IEx를 통해 <code class="highlighter-rouge">Mnesia.create_schema([node()])</code>를 실행하면, <strong>Mnesia.nonode@nohost</strong>라고 불리는 폴더나 현재 작업 폴더와 비슷한 폴더를 볼 수 있을 것입니다. <strong>Mnesia.nonode@nohost</strong>가 무슨 의미인지 의문을 가질 수 있습니다만, 이는 이 노드에 이름이 없다는 의미입니다. 좀 더 자세히 살펴보죠.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>iex --help
+Usage: iex <span class="o">[</span>options] <span class="o">[</span>.exs file] <span class="o">[</span>data]
+
+  -v                버전을 출력합니다.
+  -e <span class="s2">"command"</span>      주어진 command를 실행합니다. <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -r <span class="s2">"file"</span>         주어진 파일/패턴을 불러옵니다. <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -S <span class="s2">"script"</span>       주어진 스크립트를 찾아서 실행합니다. <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -pr <span class="s2">"file"</span>        주어진 파일/패턴을 찾아서 병렬로 실행합니다. <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -pa <span class="s2">"path"</span>        주어진 경로를 Erlang 코드 경로의 앞에 추가합니다. <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -pz <span class="s2">"path"</span>        주어진 경로를 Erlang 코드 경로의 뒤에 추가합니다. <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --app <span class="s2">"app"</span>       주어진 앱과 그 의존성을 가지고 시작합니다. <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --erl <span class="s2">"switches"</span>  넘겨진 값들을 가지고 Erlang을 실행합니다. <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --name <span class="s2">"name"</span>     분산된 노드를 만들고 이름을 할당합니다.
+  --sname <span class="s2">"name"</span>    분산된 노드를 만들고 짧은 이름을 할당합니다.
+  --cookie <span class="s2">"cookie"</span> 이 분산된 노드를 위해 쿠키를 설정합니다.
+  --hidden          숨겨진 노드를 만듭니다.
+  --werl            Erlang의 GUI 윈도우 쉘을 사용합니다<span class="o">(</span>윈도우즈 전용<span class="o">)</span>
+  --detached        콘솔로부터 분리된 Erlang VM을 시작합니다.
+  --remsh <span class="s2">"name"</span>    원격 쉘을 사용하여 노드에 연결합니다.
+  --dot-iex <span class="s2">"path"</span>  .iex.exs 파일의 기본 설정을 덮어씁니다;
+                    경로는 공백일 수 있으며, 이 경우 아무 파일도 불러오지 않습니다.
+
+<span class="k">**</span> <span class="o">(</span><span class="k">*</span><span class="o">)</span> 표시가 된 경우 1개 이상의 옵션을 넘길 수 있습니다.
+<span class="k">**</span> .exs 파일이나 -- 뒤에 오는 옵션들은 실행된 코드에 넘겨집니다.
+<span class="k">**</span> ELIXIR_ERL_OPTIONS나 --erl 옵션을 통해서 VM에게 옵션을 넘길 수 있습니다.
+</code></pre>
+</div>
+
+<p>IEx에게 <code class="highlighter-rouge">--help</code> 옵션을 함께 넘기면, 가능한 모든 옵션의 목록을 확인할 수 있습니다. 이 목록 중에 노드에 정보를 추가하기 위한 <code class="highlighter-rouge">--name</code>와 <code class="highlighter-rouge">--sname</code>가 있는 것을 확인하실 수 있습니다. 노드는 그저 Erlang 가상머신의 통신, 가비지 컬렉션, 스케줄링, 메모리 등을 관리합니다. 이 노드의 이름은 기본값으로 <strong>nonode@nohost</strong>라고 지정되어 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>iex --name learner@elixirschool.com
+
+Erlang/OTP 18 <span class="o">[</span>erts-7.2.1] <span class="o">[</span><span class="nb">source</span><span class="o">]</span> <span class="o">[</span>64-bit] <span class="o">[</span>smp:4:4] <span class="o">[</span>async-threads:10] <span class="o">[</span>hipe] <span class="o">[</span>kernel-poll:false] <span class="o">[</span>dtrace]
+
+Interactive Elixir <span class="o">(</span>1.3.4<span class="o">)</span> - press Ctrl+C to <span class="nb">exit</span> <span class="o">(</span><span class="nb">type </span>h<span class="o">()</span> ENTER <span class="k">for </span><span class="nb">help</span><span class="o">)</span>
+<span class="gp">iex(learner@elixirschool.com)&gt; </span>Node.self
+:<span class="s2">"learner@elixirschool.com"</span>
+</code></pre>
+</div>
+
+<p>여기에서 볼 수 있듯, 지금 실행 중인 노드의 이름은  <code class="highlighter-rouge">:"learner@elixirschool.com"</code>라는 애텀입니다. 만약 우리가 <code class="highlighter-rouge">Mnesia.create_schema([node()])</code>를 다시 실행한다면 이제 <strong>Mnesia.learner@elixirschool.com</strong>라는 이름의 다른 폴더를 생성하는 것을 확인할 수 있습니다. 왜 이렇게 하는지는 무척 간단한 이유가 있습니다. Erlang에서의 노드는 (분산된) 정보나 자원을 공유하기 위해서 다른 노드들을 연결하곤 합니다. 이는 같은 기기에서 동작할 필요가 없으며, LAN이나 인터넷 등을 통해서 연결될 수도 있습니다.</p>
+
+<h2 id="mnesia-">Mnesia 시작하기</h2>
+
+<p>이제 기본 배경에 대한 것을 알게 되었으니, 데이터베이스를 만들고 Mnesia DBMS를 <code class="highlighter-rouge">Mnesia.start/0</code> 명령을 통해서 시작해보죠.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">alias</span> <span class="ss">:mnesia</span><span class="p">,</span> <span class="ss">as:</span> <span class="no">Mnesia</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_schema</span><span class="p">([</span><span class="n">node</span><span class="p">])</span>
+<span class="ss">:ok</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>분산 시스템을 2개 이상의 노드에서 동작시키는 경우, <code class="highlighter-rouge">Mnesia.start/1</code> 함수는 모든 노드에서 실행되어야 한다는 점을 잊지 마세요.</p>
+
+<h2 id="section-4">테이블 만들기</h2>
+
+<p><code class="highlighter-rouge">Mnesia.create_table/2</code> 함수는 데이터베이스에 테이블을 생성하기 위해서 사용됩니다. 다음을 통해서 <code class="highlighter-rouge">Person</code>이라는 테이블을 생성하고, 스키마를 정의하기 위해서 키워드 리스트를 넘겨보겠습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[</span><span class="ss">attributes:</span> <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">]])</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>애텀 <code class="highlighter-rouge">:id</code>, <code class="highlighter-rouge">:name</code>, <code class="highlighter-rouge">:job</code>를 사용해서 컬럼을 정의합니다. <code class="highlighter-rouge">Mnesia.create_table/2</code>를 실행하면 다음 중 하나가 응답으로 돌아올 것입니다.</p>
+
+<ul>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:atomic,</span><span class="w"> </span><span class="err">:ok</span><span class="p">}</span></code> 함수가 성공적으로 실행되었을 때.</li>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:aborted,</span><span class="w"> </span><span class="err">Reason</span><span class="p">}</span></code> 함수가 실패했을 때.</li>
+</ul>
+
+<p>일반적으로, 테이블이 이미 존재하면, <code class="highlighter-rouge"><span class="p">{</span><span class="err">:already_exists,</span><span class="w"> </span><span class="err">table</span><span class="p">}</span></code> 형식의 응답이 됩니다. 그래서 두 번째 생성을 시도한다면 이런 결과를 얻게 됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[</span><span class="ss">attributes:</span> <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">]])</span>
+<span class="p">{</span><span class="ss">:aborted</span><span class="p">,</span> <span class="p">{</span><span class="ss">:already_exists</span><span class="p">,</span> <span class="no">Person</span><span class="p">}}</span>
+</code></pre>
+</div>
+
+<h2 id="section-5">좋지 않은 방식</h2>
+
+<p>우선 Mnesia 테이블을 읽고 쓰는 좋지 않은 방식에 대해서 알아봅시다. 이는 실행 결과의 성공을 보장해주지 않기 때문에 특별한 이유가 없다면 사용을 피해야 합니다. 그렇지만 Mnesia를 사용해서 작업하는 방법을 배우고 익숙해지는 데에는 도움이 될 겁니다. 우선 <strong>Person</strong> 테이블에 정보를 추가해 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Seymour Skinner"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">})</span>
+<span class="ss">:ok</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Homer Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Safety Inspector"</span><span class="p">})</span>
+<span class="ss">:ok</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Moe Szyslak"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Bartender"</span><span class="p">})</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>…그리고 <code class="highlighter-rouge">Mnesia.dirty_read/1</code>을 사용해서 이 정보들을 가져와 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">})</span>
+<span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Seymour Skinner"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">2</span><span class="p">})</span>
+<span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Homer Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Safety Inspector"</span><span class="p">}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">3</span><span class="p">})</span>
+<span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Moe Szyslak"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Bartender"</span><span class="p">}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">})</span>
+<span class="p">[]</span>
+</code></pre>
+</div>
+
+<p>존재하지 않는 레코드에 대해서 질의를 던지면, Mnesia는 빈 리스트를 반환합니다.</p>
+
+<h2 id="section-6">트랜잭션</h2>
+
+<p>일반적으로 <strong>트랜잭션</strong>은 데이터베이스에 대한 읽기/쓰기 작업을 캡슐화하기 위해서 사용됩니다. 트랜잭션은 높은 장애 복원력과 고도로 분산된 시스템을 실현하기 위한 중요한 부분을 담당하고 있습니다. Mnesia의 <em>트랜잭션은 데이터베이스 조작 명령들을 하나의 함수 블록인 것처럼 동작합니다</em>. 우선 익명 함수를 하나 만들고, <code class="highlighter-rouge">date_to_write</code>라는 변수에 저장한 뒤, 이것을 <code class="highlighter-rouge">Mnesia.transaction</code>에 넘깁시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">data_to_write</span> <span class="o">=</span> <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">home maker"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hans Moleman"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">unknown"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Monty Burns"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Businessman"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Waylon Smithers"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Executive assistant"</span><span class="p">})</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="c1">#Function&lt;20.54118792/0 in :erl_eval.expr/5&gt;</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span><span class="n">data_to_write</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>이 트랜잭션 메시지를 통해서 데이터들이 안전하게 <code class="highlighter-rouge">Person</code> 테이블에 저장되었음을 추정할 수 있습니다. 그러면 확인을 위해서 데이터베이스에서 트랜잭션을 사용해서 데이터를 읽어봅시다. <code class="highlighter-rouge">Mnesia.read/1</code>를 통해서 데이터를 읽어올 수 있으며, 다시 한 번 강조하지만, 익명 함수로 감싸주세요.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">data_to_read</span> <span class="o">=</span> <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">6</span><span class="p">})</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="c1">#Function&lt;20.54118792/0 in :erl_eval.expr/5&gt;</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span><span class="n">data_to_read</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Monty Burns"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Businessman"</span><span class="p">}]}</span>
+</code></pre>
+</div>
+
+<p>데이터를 업데이트할 때, <code class="highlighter-rouge">Mnesia.write/1</code>만 존재하는 키로 호출하면 되는 것에 주의하세요. 그래서 Hans의 데이터를 업데이트하려면 이렇게 하면 됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hans Moleman"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ex-Mayor"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="section-7">인덱스 사용하기</h2>
+
+<p>Mnesia 키가 아닌 컬럼에 인덱스를 지원하고 이 데이터에 대해 쿼리를 던질 수 있습니다. <code class="highlighter-rouge">Person</code> 테이블의 <code class="highlighter-rouge">:job</code> 컬럼에 인덱스를 추가해 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Mnesia.create_table/2</code>의 결과와 비슷해 보입니다.</p>
+
+<ul>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:atomic,</span><span class="w"> </span><span class="err">:ok</span><span class="p">}</span></code> 함수가 성공적으로 실행됨</li>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:aborted,</span><span class="w"> </span><span class="err">Reason</span><span class="p">}</span></code> 함수가 실패함</li>
+</ul>
+
+<p>일반적으로 키가 이미 존재하면, <code class="highlighter-rouge"><span class="p">{</span><span class="err">:already_exists,</span><span class="w"> </span><span class="err">table,</span><span class="w"> </span><span class="err">attribute_index</span><span class="p">}</span></code> 형식의 응답이 돌아옵니다. 이 인덱스를 한번 더 넣으려 하면, 이런 결과를 받게 됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:aborted</span><span class="p">,</span> <span class="p">{</span><span class="ss">:already_exists</span><span class="p">,</span> <span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">}}</span>
+</code></pre>
+</div>
+
+<p>인덱스가 성공적으로 생성되면, 이를 읽을 수 있고, 모든 교장의 목록을 검색할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">index_read</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Seymour Skinner"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">}]}</span>
+</code></pre>
+</div>
+
+<h2 id="section-8">일치와 선택</h2>
+
+<p>Mnesia는 테이블에서 데이터를 검색하는 복잡한 쿼리를 매칭과 에드훅 형식의 함수로 지원합니다.</p>
+
+<p><code class="highlighter-rouge">Mnesia.match_object/1</code> 함수는 주어진 패턴으로 일치된 모든 데이터를 반환합니다. 테이블에 있는 인덱스를 가진 컬럼이라면 인덱스를 사용해 쿼리를 더 효과적으로 만들 수 있습니다. 일치에 사용하지 않는 컬럼은 특별한 애텀 <code class="highlighter-rouge">:_</code> 지정할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">match_object</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:_</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="ss">:_</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">home maker"</span><span class="p">}]}</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Mnesia.select/2</code> 함수로 Elixir(나 Erlang)의 연산자, 함수를 사용해 직접 쿼리를 정의할 수 있습니다. 키가 3보다 큰 모든 레코드를 찾는 예제를 살펴봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[{{</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"$2"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">},</span> <span class="p">[{</span><span class="ss">:&gt;</span><span class="p">,</span> <span class="ss">:"$1"</span><span class="p">,</span> <span class="m">3</span><span class="p">}],</span> <span class="p">[</span><span class="ss">:"$$"</span><span class="p">]}])</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[[</span><span class="m">7</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Waylon Smithers"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Executive assistant"</span><span class="p">],</span> <span class="p">[</span><span class="m">4</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">home maker"</span><span class="p">],</span> <span class="p">[</span><span class="m">6</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Monty Burns"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Businessman"</span><span class="p">],</span> <span class="p">[</span><span class="m">5</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hans Moleman"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">unknown"</span><span class="p">]]}</span>
+</code></pre>
+</div>
+
+<p>풀어 봅시다. 첫 번째 인자는 테이블 <code class="highlighter-rouge">Person</code> 입니다. 두 번째 인자는 <code class="highlighter-rouge"><span class="p">{</span><span class="err">match,</span><span class="w"> </span><span class="err">[guard],</span><span class="w"> </span><span class="err">[result]</span><span class="p">}</span></code> 형식입니다.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">match</code>는 <code class="highlighter-rouge">Mnesia.match_object/1</code> 함수에 넘기는 것과 동일합니다. 하지만 쿼리의 나머지에 사용하는 파라미터의 위치를 지정하는 특수 애텀 <code class="highlighter-rouge">:"$n"</code>에 주의하세요.</li>
+  <li><code class="highlighter-rouge">guard</code> 리스트는 적용할 가드 함수를 지정하는 튜플의 리스트입니다. 이 경우에는 <code class="highlighter-rouge">:&gt;</code> (크거나 같음) 빌트인 함수, 위치 파라미터 <code class="highlighter-rouge">:"$1"</code>, 상수 <code class="highlighter-rouge">3</code>이 인자로 사용되었습니다.</li>
+  <li><code class="highlighter-rouge">result</code> 리스트는 쿼리가 반환하는 필드 리스트입니다. 위치 파라미터 형식에서 특수 에텀 <code class="highlighter-rouge">:"$$"</code>은 참조할 수 있는 모든 필드를 나타냅니다. <code class="highlighter-rouge">[:"$1", :"$2"]</code>로 처음 두 필드만 반환하거나 <code class="highlighter-rouge">[:"$$"]</code>로 모든 필드를 반환할 수 있습니다.</li>
+</ul>
+
+<p>더 자세한 내용은 <a href="http://erlang.org/doc/man/mnesia.html#select-2">Erlang Mnesia 문서의 select/2</a>를 참조하세요.</p>
+
+<h2 id="section-9">데이터 초기화와 이관</h2>
+
+<p>모든 소프트웨어 제품이 그렇듯이 소프트웨어를 업그레이드하고 데이터베이스에 저장된 데이터를 이관해야할 때가 있습니다. 예를 들어 앱을 v2로 버전업하면서 <code class="highlighter-rouge">Person</code> 테이블의 <code class="highlighter-rouge">:age</code> 컬럼을 추가해야 한다고 해봅시다. 테이블이 이미 있으므로 <code class="highlighter-rouge">Person</code> 테이블을 만들수는 없지만 변환할 수는 있습니다. 이를 위해서는 테이블을 생성할 때 무엇을 할 수 있는 지, 언제 변환해야 하는 지 알아야 합니다. <code class="highlighter-rouge">Mnesia.table_info/2</code> 함수를 사용해 현재 테이블의 구조를 검색하고 <code class="highlighter-rouge">Mnesia.transform_table/3</code>로 새 구조로 변환할 수 있습니다.</p>
+
+<p>아래에 있는 코드는 다음 로직을 구현합니다.</p>
+
+<ul>
+  <li>v2 인자 <code class="highlighter-rouge">[:id, :name, :job, :age]</code>로 테이블 생성</li>
+  <li>생성 결과를 처리
+    <ul>
+      <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:atomic,</span><span class="w"> </span><span class="err">:ok</span><span class="p">}</span></code>: <code class="highlighter-rouge">:job</code>, <code class="highlighter-rouge">:age</code>에 인덱스를 생성해 테이블 초기화</li>
+      <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:aborted,</span><span class="w"> </span><span class="err">{:already_exists,</span><span class="w"> </span><span class="err">Person</span><span class="p">}</span><span class="err">}</span></code>: 현재 테이블에 어떤 인자가 있고 올바르게 동작하는지 확인
+        <ul>
+          <li>v1의 목록(<code class="highlighter-rouge">[:id, :name, :job]</code>)이라면 모든 레코드의 나이를 21를 설정하고 <code class="highlighter-rouge">:age</code>에 새 인덱스를 설정해 변환</li>
+          <li>v2의 목록이라면 아무것도 하지 않음</li>
+          <li>다른 결과면 종료</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><code class="highlighter-rouge">Mnesia.transform_table/3</code> 함수는 테이블 이름, 이전 레코드를 새 레코드로 변환하는 함수, 새 인자의 리스트를 인자로 받습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[</span><span class="ss">attributes:</span> <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">,</span> <span class="ss">:age</span><span class="p">]])</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:age</span><span class="p">)</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:aborted</span><span class="p">,</span> <span class="p">{</span><span class="ss">:already_exists</span><span class="p">,</span> <span class="no">Person</span><span class="p">}}</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="k">case</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">table_info</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:attributes</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">...&gt;</span>       <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">]</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>         <span class="no">Mnesia</span><span class="o">.</span><span class="n">transform_table</span><span class="p">(</span>
+<span class="o">...&gt;</span>           <span class="no">Person</span><span class="p">,</span>
+<span class="o">...&gt;</span>           <span class="k">fn</span> <span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">job</span><span class="p">})</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>             <span class="p">{</span><span class="no">Person</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">job</span><span class="p">,</span> <span class="m">21</span><span class="p">}</span>
+<span class="o">...&gt;</span>           <span class="k">end</span><span class="p">,</span>
+<span class="o">...&gt;</span>           <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">,</span> <span class="ss">:age</span><span class="p">]</span>
+<span class="o">...&gt;</span>           <span class="p">)</span>
+<span class="o">...&gt;</span>         <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:age</span><span class="p">)</span>
+<span class="o">...&gt;</span>       <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">,</span> <span class="ss">:age</span><span class="p">]</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>         <span class="ss">:ok</span>
+<span class="o">...&gt;</span>       <span class="n">other</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>         <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">other</span><span class="p">}</span>
+<span class="o">...&gt;</span>     <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/specifics/mnesia/&title=Mnesia&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/specifics/mnesia/&via=elixirschool&text=ElixirSchool: Mnesia&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/specifics/mnesia/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/specifics/mnesia/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/specifics/mnesia/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Mnesia" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/specifics/mnesia/&title=ElixirSchool: Mnesia&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/specifics/mnesia/&title=ElixirSchool: Mnesia&description=Check out 'Mnesia' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Mnesia&body=Check out 'Mnesia' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/specifics/mnesia/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

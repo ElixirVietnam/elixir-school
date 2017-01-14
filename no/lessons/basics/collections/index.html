@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Leksjoner i programmeringsspråket Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/no/lessons/basics/collections/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Kolleksjoner &middot; Elixir School
+
+">
+  <meta property="og:description" content="Leksjoner i programmeringsspråket Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Kolleksjoner &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Leksjoner i programmeringsspråket Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Grunnleggende</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/no/lessons/basics/basics/">Grunnleggende Elixir</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/no/lessons/basics/collections/">Kolleksjoner</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/no/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/no/lessons/basics/pattern-matching/">Mønstersammenligning</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/no/lessons/basics/control-structures/">Kontrollstrukturer</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/no/lessons/basics/pipe-operator/">Pipeoperatoren</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/no/lessons/basics/modules/">Moduler</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/no/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/no/lessons/basics/sigils/">Sigiler</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/no/lessons/basics/documentation/">Dokumentasjon</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/collections/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/collections/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/collections/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/collections/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/collections/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/collections/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/collections/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/collections/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/collections/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/collections/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/collections/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/collections/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/collections/ ">my</a>
+      
+        <a href=" /no/lessons/basics/collections/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/collections/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/collections/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/collections/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/collections/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/collections/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/collections/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/collections/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Kolleksjoner</h1>
+  <p>Lister, tupler, nøkkelord, kart og funksjonell kombinasjon.</p>
+
+<h2>Innholdsfortegnelse</h2>
+<div id="toc"></div>
+
+<h2 id="lister-lists">Lister (lists)</h2>
+
+<p>Lister er enkle kolleksjoner av verdier, som kan bestå av forskjellige typer. Listene kan inneholde ikke-unike verdier:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Elixir implementerer listene som lenkede lister. Dette betyr at for å få lengden av en liste, må man bruke en <code class="highlighter-rouge">O(n)</code> operasjon for å aksessere den.<br />
+På grunn av dette er det ofte raskere å foranstille enn å tilføye til listen.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="sd">"</span><span class="s2">π"</span><span class="p">]</span> <span class="o">++</span> <span class="n">list</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">π"</span><span class="p">,</span> <span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">++</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Cherry"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Cherry"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="listesammenfoslashyning-list-concatenation">Listesammenføyning (list concatenation)</h3>
+
+<p>For å sammenføye to lister bruker vi <code class="highlighter-rouge">++/2</code> operatoren:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span> <span class="o">++</span> <span class="p">[</span><span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">]</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="listesubtrahering-list-subtraction">Listesubtrahering (list subtraction)</h3>
+
+<p>For å trekke fra i ei liste bruker vi <code class="highlighter-rouge">--/2</code> operatoren. Det er trygt å trekke fra en verdi som ikke eksisterer:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="ss">:bar</span><span class="p">,</span> <span class="m">42</span><span class="p">]</span> <span class="o">--</span> <span class="p">[</span><span class="m">42</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">]</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="ss">:bar</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Vær oppmerksom på duplikate verdier. For hvert element på høyre side, så vil den første forekomsten av dette elementet bli fjernet fra venstre siden:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">]</span> <span class="o">--</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">]</span>
+<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p><strong>Merk:</strong>  Operatoren bruker <a href="../basics/#sammenligningsoperatorer">nøyaktig sammenligning</a> for å matche verdiene.</p>
+
+<h3 id="head--tail">Head / Tail</h3>
+
+<p>Når vi jobber med lister er det vanlig å referere til listens head og tail (hode og hale). Head er det første elementet i listen, mens tail er de resterende elementene. Elixir gir oss to hjelpsomme metoder - <code class="highlighter-rouge">hd</code> og <code class="highlighter-rouge">tl</code> som vi kan benytte oss av når vi jobber med head og tail i ei liste:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">hd</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">tl</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>I tillegg til de tidligere nevnte funksjonene, kan vi også bruke<br />
+cons operatoren <code class="highlighter-rouge">|</code> - Vi kommer tilbake til denne operatoren i en senere leksjon:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">h</span><span class="o">|</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">h</span>
+<span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="tupler-tuples">Tupler (tuples)</h2>
+
+<p>Tupler ligner på lister, men er lagret i datamaskinens minne. Dette gjør at vi raskt kan få tilgang til dem, men det gjør også endringer kostbare da tuppelen i sin helhet må kopieres tilbake i minnet.<br />
+Vi definerer tupler ved å skrive de mellom klammeparantes:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">}</span>
+<span class="p">{</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Tupler brukes ofte til å returnere tilleggsinformasjon fra funksjoner. Bruksnytten av dette vil bli tydeligere når vi starter med mønstergjenkjenning:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sd">"</span><span class="s2">path/to/existing/file"</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">... contents ..."</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sd">"</span><span class="s2">path/to/unknown/file"</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="ss">:enoent</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="nkkelordslister-keyword-lists">Nøkkelordslister (keyword lists)</h2>
+
+<p>Nøkkelord (keywords) og kart (maps) er assosiative kolleksjoner i Elixir.<br />
+Ei nøkkelordsliste er ei liste som består av tupler, hvor det første elementet (nøkkelen) er et atom. Nøkkelordslister har samme ytelse som ei vanlig liste:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+<span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[{</span><span class="ss">:foo</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">},</span> <span class="p">{</span><span class="ss">:hello</span><span class="p">,</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}]</span>
+<span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>I ei nøkkelordsliste er:</p>
+
+<ul>
+  <li>Nøklene atomer</li>
+  <li>Nøklene ikke unike</li>
+  <li>Nøklene i en rekkefølge</li>
+</ul>
+
+<p>På grunn av dette er det vanlig å bruke nøkkelordslister til å gi forskjellige innstillinger til funksjoner.</p>
+
+<h2 id="kart-maps">Kart (maps)</h2>
+
+<p>I tillegg til nøkkelordslister kan vi også benytte oss av kart. Kart lar oss lagre nøkler med forskjellige typer, og de følger heller ikke en bestemt rekkefølge.<br />
+Vi definerer kart ved å bruke syntaksen <code class="highlighter-rouge">%{}</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="ss">:world</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="ss">:world</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">[</span><span class="ss">:foo</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">bar"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">[</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">]</span>
+<span class="ss">:world</span>
+</code></pre>
+</div>
+
+<p>I Elixir 1.2 kan variabler brukes som kartnøkler:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">key</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">hello"</span>
+<span class="sd">"</span><span class="s2">hello"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="n">key</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Om et nøkkelduplikat blir lagt til kartet, vil den tidligere verdien bli erstattet:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">hello world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">hello world"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Som vi kan se fra eksemplene over, er det en spesiell syntaks for kart som kun inneholder atomnøkler:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span> <span class="o">==</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">:hello</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>En interessant egenskap ved kart er at de har en egen syntaks for å oppdatere og aksessere atomnøkler:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="n">map</span> <span class="o">|</span> <span class="ss">foo:</span> <span class="sd">"</span><span class="s2">baz"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">baz"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">.</span><span class="n">hello</span>
+<span class="sd">"</span><span class="s2">world"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Del denne siden
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/no/lessons/basics/collections/&title=Kolleksjoner&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/no/lessons/basics/collections/&via=elixirschool&text=ElixirSchool: Kolleksjoner&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/no/lessons/basics/collections/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/no/lessons/basics/collections/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/no/lessons/basics/collections/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Kolleksjoner" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/no/lessons/basics/collections/&title=ElixirSchool: Kolleksjoner&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/no/lessons/basics/collections/&title=ElixirSchool: Kolleksjoner&description=Check out 'Kolleksjoner' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Kolleksjoner&body=Check out 'Kolleksjoner' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/no/lessons/basics/collections/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

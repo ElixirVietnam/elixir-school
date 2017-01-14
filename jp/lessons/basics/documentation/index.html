@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="プログラミング言語Elixirのレッスン">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/jp/lessons/basics/documentation/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  ドキュメント &middot; Elixir School
+
+">
+  <meta property="og:description" content="プログラミング言語Elixirのレッスン">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  ドキュメント &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">プログラミング言語Elixirのレッスン</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>基礎</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/basics/basics/">基本</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/basics/collections/">コレクション</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/basics/pattern-matching/">パターンマッチング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/basics/control-structures/">制御構造</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/basics/functions/">関数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/basics/pipe-operator/">パイプライン演算子</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/basics/modules/">モジュール</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/jp/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson  active" href="/jp/lessons/basics/documentation/">ドキュメント</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/jp/lessons/basics/testing/">テスト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/jp/lessons/basics/comprehensions/">内包表記</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/jp/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/jp/lessons/basics/mix-tasks/">カスタムMixタスク</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>上級</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/advanced/erlang/">Erlangとの相互運用</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/advanced/error-handling/">エラーハンドリング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/advanced/escripts/">実行ファイル</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/advanced/concurrency/">並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-concurrency/">OTPの並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-supervisors/">OTPスーパーバイザ</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/advanced/metaprogramming/">メタプログラミング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/advanced/umbrella-projects/">アンブレラプロジェクト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/advanced/typespec/">仕様と型</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>詳細</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/specifics/eex/">埋め込みElixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/documentation/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/documentation/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/documentation/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/documentation/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/documentation/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/documentation/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/documentation/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/documentation/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/documentation/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/documentation/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/documentation/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/documentation/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/documentation/ ">my</a>
+      
+        <a href=" /no/lessons/basics/documentation/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/documentation/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/documentation/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/documentation/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/documentation/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/documentation/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/documentation/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/documentation/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">ドキュメント</h1>
+  <p>Elixir コードのドキュメント。</p>
+
+<h2>目次</h2>
+<div id="toc"></div>
+
+<h2 id="section">注釈</h2>
+
+<p>どれくらいコメントを書くとか、何がドキュメントの質を決めるとかいう話はプログラミングの世界では結論の出ていない問題です。しかし自身やそのコードベースに関わる人たちにとって大切だという点では、誰もが同意できるでしょう。</p>
+
+<p>Elixir はドキュメントを <em>第一級市民</em> として扱い、プロジェクトのドキュメントにアクセスしたり生成したりするために各種の関数を用意しています。Elixir コアはコードベースに注釈を付けるために多くの異なった属性を提供しています。3つの方法を見ていきましょう:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">#</code> - インラインドキュメント用。</li>
+  <li><code class="highlighter-rouge">@moduledoc</code> - モジュールレベルのドキュメント用。</li>
+  <li><code class="highlighter-rouge">@doc</code> - 関数レベルのドキュメント用。</li>
+</ul>
+
+<h3 id="section-1">インラインドキュメント</h3>
+
+<p>おそらく最も単純にコードコメントを付ける方法はインラインコメントを用いることです。Ruby や Python と同じように、Elixir のインラインコメントは <code class="highlighter-rouge">#</code> で示します。あなたがいた環境によって、よく<em>パウンド</em> や <em>ハッシュ</em> などとして知られています。</p>
+
+<p>この Elixir スクリプトを見てください (greeting.exs):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># コンソールに 'Hello, chum.' と出力します。</span>
+<span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">chum."</span>
+</code></pre>
+</div>
+
+<p>Elixirはこのスクリプトを実行する際に、<code class="highlighter-rouge">#</code> からその行末までを全て無視し、不要なデータとみなします。スクリプトの処理やパフォーマンスには影響しないかもしれませんが、コメントを読んだプログラマが挙動を理解するにはあまり明確ではないでしょう。単一行コメントの乱用は避けるように心がけてください！コードベースへのポイ捨ては誰かにとって好ましくない悪夢となるかもしれません。控えめに用いるのが最良です。</p>
+
+<h3 id="section-2">モジュールのドキュメント</h3>
+
+<p><code class="highlighter-rouge">@moduledoc</code> アノテータはインラインドキュメントをモジュールレベルで行うためのものです。通常はファイル最上部で <code class="highlighter-rouge">defmodule</code> の宣言をした直後に置かれます。次の例は <code class="highlighter-rouge">@moduledoc</code> 修飾子内の1行コメントを示します。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  ある人を歓迎する `hello/1` 関数を提供します
+  """</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>このモジュールドキュメントには、IEx 内で <code class="highlighter-rouge">h</code> ヘルパー関数を用いてアクセスすることができます。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="sd">"</span><span class="s2">greeter.ex"</span><span class="p">)</span>
+<span class="p">[</span><span class="no">Greeter</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">h</span> <span class="no">Greeter</span>
+
+                <span class="no">Greeter</span>
+
+<span class="err">ある人を歓迎する</span> <span class="err">`</span><span class="n">hello</span><span class="o">/</span><span class="m">1</span><span class="err">`</span> <span class="err">関数を提供します</span>
+</code></pre>
+</div>
+
+<h3 id="section-3">関数のドキュメント化</h3>
+
+<p>Elixir がモジュールレベルで注釈する機能を与えてくれるのと同じく、関数をドキュメント化するためにも似たような注釈が可能です。<code class="highlighter-rouge">@doc</code> アノテータは関数レベルでのインラインドキュメントを行うためのものです。 <code class="highlighter-rouge">@doc</code> アノテータは注釈を付けたい関数の直前に置かれます。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  ...
+  """</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Hello メッセージを表示します
+
+  ## パラメータ
+
+    - name: 人名を表現する文字です。
+
+  ## 例
+
+      iex&gt; Greeter.hello("Sean")
+      "Hello, Sean"
+
+      iex&gt; Greeter.hello("pete")
+      "Hello, pete"
+
+  """</span>
+  <span class="nv">@spec</span> <span class="n">hello</span><span class="p">(</span><span class="no">String</span><span class="o">.</span><span class="n">t</span><span class="p">)</span> <span class="p">::</span> <span class="no">String</span><span class="o">.</span><span class="n">t</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>IEx を再び起動し、上記の関数をモジュール名付きで ヘルパーコマンド (<code class="highlighter-rouge">h</code>) に渡すと、次のような結果が得られるはずです:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="sd">"</span><span class="s2">greeter.ex"</span><span class="p">)</span>
+<span class="p">[</span><span class="no">Greeter</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">h</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span>
+
+                <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="no">Hello</span> <span class="err">メッセージを表示します</span>
+
+<span class="err">パラメータ</span>
+
+  <span class="err">•</span> <span class="ss">name:</span> <span class="err">人名を表現する文字です。</span>
+
+<span class="err">例</span>
+
+    <span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+    <span class="sd">"</span><span class="s2">Hello, Sean"</span>
+
+    <span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">pete"</span><span class="p">)</span>
+    <span class="sd">"</span><span class="s2">Hello, pete"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+<p>ドキュメント内でマークアップが使え、ターミナルがきちんと描画したことに気づきましたか？本当にクールで、Elixir の広大なエコシステムへの素晴らしい追加機能であることは置いておくとしても、ExDoc がその場で HTML ドキュメントを生成してくれるのを見ると、人はより興味を持ちます。</p>
+
+<p><strong>注:</strong> <code class="highlighter-rouge">@spec</code>アノテーションはコードの静的解析に使われます。詳しい説明は<a href="../../advanced/typespec">仕様と型</a>を参照してください。</p>
+
+<h2 id="exdoc">ExDoc</h2>
+
+<p>ExDoc は公式の Elixir プロジェクトで、<a href="https://github.com/elixir-lang/ex_doc">GitHub</a> で見つけることができます。ExDoc は <strong>HTML (HyperText Markup Language) とオンラインドキュメント</strong> を生成します。最初に、アプリケーションのために Mix プロジェクトを作成しましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new greet_everyone
+
+<span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/greet_everyone.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/greet_everyone_test.exs
+
+Your Mix project was created successfully.
+You can use <span class="s2">"mix"</span> to compile it, <span class="nb">test </span>it, and more:
+
+    <span class="nb">cd </span>greet_everyone
+    mix <span class="nb">test
+
+</span>Run <span class="s2">"mix help"</span> <span class="k">for </span>more commands.
+
+<span class="gp">$ </span><span class="nb">cd </span>greet_everyone
+
+</code></pre>
+</div>
+
+<p>次に <code class="highlighter-rouge">@doc</code> アノテータのレッスンからコードをコピー &amp; ペーストして、 <code class="highlighter-rouge">lib/greeter.ex</code> ファイルに保存し、コマンドラインから全てがまだ動くことを確認します。Mix プロジェクト内で作業をするので IEx を先ほどとは若干異なり、 <code class="highlighter-rouge">iex -S mix</code> コマンドで起動する必要があります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span>h Greeter.hello
+
+                def hello<span class="o">(</span>name<span class="o">)</span>
+
+Hello メッセージを表示します
+
+パラメータ
+
+  • name: 人名を表現する文字です。
+
+例
+
+    iex&gt; Greeter.hello<span class="o">(</span><span class="s2">"Sean"</span><span class="o">)</span>
+    <span class="s2">"Hello, Sean"</span>
+
+    iex&gt; Greeter.hello<span class="o">(</span><span class="s2">"pete"</span><span class="o">)</span>
+    <span class="s2">"Hello, pete"</span>
+</code></pre>
+</div>
+
+<h3 id="section-4">インストール</h3>
+
+<p>全てがうまくいき、上記のような出力が表示されていれば、ExDoc の構築準備ができていることを意味します。 <code class="highlighter-rouge">mix.exs</code> ファイルに、 <code class="highlighter-rouge">:earmark</code> と <code class="highlighter-rouge">:ex_doc</code> の2つの必要な依存関係を追加してください:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="n">deps</span> <span class="k">do</span>
+    <span class="p">[{</span><span class="ss">:earmark</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 0.1"</span><span class="p">,</span> <span class="ss">only:</span> <span class="ss">:dev</span><span class="p">},</span>
+    <span class="p">{</span><span class="ss">:ex_doc</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 0.11"</span><span class="p">,</span> <span class="ss">only:</span> <span class="ss">:dev</span><span class="p">}]</span>
+  <span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">only: :dev</code>というキーバリューのペアを指定することで、本番環境ではこれらの依存パッケージをダウンロードしたりコンパイルしたりしないようにします。それはそれとして、Earmark はなぜ必要なのでしょう。これは Elixir プログラミング言語向けの Markdown パーサで、ExDoc が <code class="highlighter-rouge">@moduledoc</code> や <code class="highlighter-rouge">@doc</code> 内のドキュメントを綺麗な見た目の HTML に変換するためのものです。</p>
+
+<p>ここで注記しておくと、Earmark を使わなくても良いです。 Pandoc や Hoedown 、 Cmark といった他のマークアップツールに変更することもできます。ただし、<a href="https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool">ここ</a>を読み、若干の追加設定を行う必要があるでしょう。このチュートリアルでは、単に Earmark を用います。</p>
+
+<h3 id="section-5">ドキュメント生成</h3>
+
+<p>さて続けましょう。コマンドラインから次の2つのコマンドを実行してください:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix deps.get <span class="c"># ExDoc と Earmark を取得します。</span>
+<span class="gp">$ </span>mix docs <span class="c"># ドキュメントを作成します。</span>
+
+Docs successfully generated.
+View them at <span class="s2">"doc/index.html"</span>.
+</code></pre>
+</div>
+
+<p>全てが計画どおりなら、上記の例にあるような出力メッセージが表示されるでしょう。次に、Mix プロジェクト内部を見ていきましょう。 <strong>doc/</strong> ディレクトリがあるはずです。中身は生成されたドキュメントになります。インデックスページをブラウザで開くと、以下のように表示されるはずです:</p>
+
+<p><img src="https://elixirschool.com/assets/documentation_1.png" alt="ExDoc Screenshot 1" /></p>
+
+<p>Earmark がマークダウンを描画し、 ExDoc がわかりやすいフォーマットで表示してくれています。</p>
+
+<p><img src="https://elixirschool.com/assets/documentation_2.png" alt="ExDoc Screenshot 2" /></p>
+
+<p>これで Github や自身のウェブサイト、あるいは非常に一般的な <a href="https://hexdocs.pm/">HexDocs</a> へデプロイすることができるようになりました。</p>
+
+<h2 id="section-6">ベストプラクティス</h2>
+
+<p>ドキュメントの追加は、言語のベストプラクティスガイドラインに加えられるべきです。 Elixir はかなり若い言語なので、エコシステムの成長に伴っていまだに多くの新基準が発見されている状況です。それでも、 Elixir のコミュニティはベストプラクティスの確率に尽力しています。ベストプラクティスについてさらなる詳細を知りたい場合は、<a href="https://github.com/niftyn8/elixir_style_guide">The Elixir Style Guide</a> をご覧ください。</p>
+
+<ul>
+  <li>モジュールには常にドキュメントを書いてください。</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  これは良いドキュメントです。
+  """</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>モジュールのドキュメントを書くつもりがない場合は、空のままに<strong>してはいけません</strong>。以下のように、モジュールに <code class="highlighter-rouge">false</code> の注釈を付けることを検討してください:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="no">false</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>モジュールのドキュメントで関数に言及する場合は、以下のようにバッククォートを使用してください:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  ...
+
+  このモジュールには `hello/1` 関数もあります。
+  """</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>以下のように、<code class="highlighter-rouge">@moduledoc</code> 以下のコードは1行空けて区別してください:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  ...
+
+  このモジュールには `hello/1` 関数もあります。
+  """</span>
+
+  <span class="n">alias</span> <span class="no">Goodbye</span><span class="o">.</span><span class="n">bye_bye</span>
+  <span class="c1"># などなど...</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>関数内で markdown を使うと、 IEx や ExDoc で読みやすくなります。</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  ...
+  """</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Hello メッセージを表示します
+
+  ## パラメータ
+
+  - name: 人名を表現する文字です。
+
+  ## 例
+
+      iex&gt; Greeter.hello("Sean")
+      "Hello, Sean"
+
+      iex&gt; Greeter.hello("pete")
+      "Hello, pete"
+
+  """</span>
+  <span class="nv">@spec</span> <span class="n">hello</span><span class="p">(</span><span class="no">String</span><span class="o">.</span><span class="n">t</span><span class="p">)</span> <span class="p">::</span> <span class="no">String</span><span class="o">.</span><span class="n">t</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>ドキュメントにはいくつかコード例も含むように心がけてください。そうすることで、<a href="http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html">ExUnit.DocTest</a> を用いてモジュールや関数、マクロ内にあるコード例から自動テストを生成することもできるようになります。これには、テストケースから <code class="highlighter-rouge">doctest/1</code> マクロを呼び出し、ガイドラインに沿った例を書く必要があります。詳細は<a href="http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html">公式ドキュメント</a> にあります。</li>
+</ul>
+
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    このページをシェアする
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/jp/lessons/basics/documentation/&title=ドキュメント&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/jp/lessons/basics/documentation/&via=elixirschool&text=ElixirSchool: ドキュメント&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/jp/lessons/basics/documentation/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/jp/lessons/basics/documentation/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/jp/lessons/basics/documentation/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: ドキュメント" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/jp/lessons/basics/documentation/&title=ElixirSchool: ドキュメント&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/jp/lessons/basics/documentation/&title=ElixirSchool: ドキュメント&description=Check out 'ドキュメント' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: ドキュメント&body=Check out 'ドキュメント' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/jp/lessons/basics/documentation/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

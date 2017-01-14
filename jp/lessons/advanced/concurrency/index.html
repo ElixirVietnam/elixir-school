@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="プログラミング言語Elixirのレッスン">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/jp/lessons/advanced/concurrency/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  並行性 &middot; Elixir School
+
+">
+  <meta property="og:description" content="プログラミング言語Elixirのレッスン">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  並行性 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">プログラミング言語Elixirのレッスン</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>基礎</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/basics/basics/">基本</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/basics/collections/">コレクション</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/basics/pattern-matching/">パターンマッチング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/basics/control-structures/">制御構造</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/basics/functions/">関数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/basics/pipe-operator/">パイプライン演算子</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/basics/modules/">モジュール</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/jp/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/jp/lessons/basics/documentation/">ドキュメント</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/jp/lessons/basics/testing/">テスト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/jp/lessons/basics/comprehensions/">内包表記</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/jp/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/jp/lessons/basics/mix-tasks/">カスタムMixタスク</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>上級</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/advanced/erlang/">Erlangとの相互運用</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/advanced/error-handling/">エラーハンドリング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/advanced/escripts/">実行ファイル</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson  active" href="/jp/lessons/advanced/concurrency/">並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-concurrency/">OTPの並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-supervisors/">OTPスーパーバイザ</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/advanced/metaprogramming/">メタプログラミング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/advanced/umbrella-projects/">アンブレラプロジェクト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/advanced/typespec/">仕様と型</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>詳細</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/specifics/eex/">埋め込みElixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/concurrency/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/concurrency/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/concurrency/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/concurrency/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/concurrency/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/concurrency/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/concurrency/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/concurrency/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/concurrency/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/concurrency/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/concurrency/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/concurrency/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/concurrency/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/concurrency/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/concurrency/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/concurrency/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/concurrency/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/concurrency/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/concurrency/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/concurrency/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/concurrency/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">並行性</h1>
+  <p>Elixirの売りの1つは並行性(コンカレンシー)に対応していることです。Erlang VM (BEAM)のおかげで、並行処理はElixirでは思ったよりも簡単です。並行性のモデルはアクターに依存しています。アクターとはメッセージパッシングによって他のプロセスと相互通信を行う、制御されたプロセスのことです。</p>
+
+<p>このレッスンではElixirとともに納められている並行モジュールを見ていきます。続く章では並行モジュールを実装しているOTPの振舞を取り扱います。</p>
+
+<h2>目次</h2>
+<div id="toc"></div>
+
+<h2 id="section">プロセス</h2>
+
+<p>Erlang VM (BEAM)内のプロセスは軽量で、全てのCPU間で実行されます。ネイティブスレッドのように見えますがそれより単純ですし、Elixirアプリケーション内に数千もの並行プロセスを持つことは珍しくありません。</p>
+
+<p>新しいプロセスを作る最も簡単な方法は、匿名/名前付き関数を引数に取る<code class="highlighter-rouge">spawn</code>です。新しいプロセスが作られると、 <em>プロセス識別子</em> 別名PIDが返ります。これはアプリケーション内部でプロセスを一意に識別するものです。</p>
+
+<p>手始めに、モジュールを作り実行したい関数を定義します:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="m">5</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>この関数を非同期的に評価するには、<code class="highlighter-rouge">spawn/3</code>を用います:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">spawn</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:add</span><span class="p">,</span> <span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="m">5</span>
+<span class="c1">#PID&lt;0.80.0&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="section-1">メッセージパッシング</h3>
+
+<p>相互通信をするのに、プロセスはメッセージパッシングを頼ります。これには2つの主な部品、<code class="highlighter-rouge">send/2</code>と<code class="highlighter-rouge">receive</code>があります。<code class="highlighter-rouge">send/2</code>関数を使うとメッセージをPID宛に送ることができます。受信するには<code class="highlighter-rouge">receive</code>を使ってメッセージをマッチし、マッチするものが見つからない場合は中断されずに実行中のままとなります。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">listen</span> <span class="k">do</span>
+    <span class="k">receive</span> <span class="k">do</span>
+      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">World"</span>
+    <span class="k">end</span>
+
+    <span class="n">listen</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">spawn</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:listen</span><span class="p">,</span> <span class="p">[])</span>
+<span class="c1">#PID&lt;0.108.0&gt;</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">send</span> <span class="n">pid</span><span class="p">,</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">}</span>
+<span class="no">World</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">send</span> <span class="n">pid</span><span class="p">,</span> <span class="ss">:ok</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">listen/0</code>関数が再帰的であることに気づいたかもしれません。これはプロセスで複数のメッセージを扱うためです。再帰がないと、プロセスは初めのメッセージを受け取り処理した後に終了するでしょう。</p>
+
+<h3 id="section-2">プロセスのリンク</h3>
+
+<p><code class="highlighter-rouge">spawn</code>の問題の1つとして知られているのは、プロセスが強制終了した場合です。これに備えるためには、複数プロセスを<code class="highlighter-rouge">spawn_link</code>でリンクする必要があります。二者間でリンクしたプロセスはプロセス終了の通知をお互いに受け取ります(訳注: つまりどちらのプロセスも終了します。):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">explode</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="k">exit</span><span class="p">(</span><span class="ss">:kaboom</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">spawn</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:explode</span><span class="p">,</span> <span class="p">[])</span>
+<span class="c1">#PID&lt;0.66.0&gt;</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">spawn_link</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:explode</span><span class="p">,</span> <span class="p">[])</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">EXIT</span> <span class="n">from</span> <span class="c1">#PID&lt;0.57.0&gt;) :kaboom</span>
+</code></pre>
+</div>
+
+<p>リンクしたプロセスに現在のプロセスを強制終了させたくない場合もあるでしょう。そのためには終了を捕捉する必要があります。終了を捕捉すると、<code class="highlighter-rouge"><span class="p">{</span><span class="err">:EXIT,</span><span class="w"> </span><span class="err">from_pid,</span><span class="w"> </span><span class="err">reason</span><span class="p">}</span></code>というタプルのメッセージとして受け取ります。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">explode</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="k">exit</span><span class="p">(</span><span class="ss">:kaboom</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">run</span> <span class="k">do</span>
+    <span class="no">Process</span><span class="o">.</span><span class="n">flag</span><span class="p">(</span><span class="ss">:trap_exit</span><span class="p">,</span> <span class="no">true</span><span class="p">)</span>
+    <span class="n">spawn_link</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:explode</span><span class="p">,</span> <span class="p">[])</span>
+
+    <span class="k">receive</span> <span class="k">do</span>
+      <span class="p">{</span><span class="ss">:EXIT</span><span class="p">,</span> <span class="n">from_pid</span><span class="p">,</span> <span class="n">reason</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Exit reason: </span><span class="si">#{</span><span class="n">reason</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">run</span>
+<span class="no">Exit</span> <span class="ss">reason:</span> <span class="n">kaboom</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<h3 id="section-3">プロセス監視</h3>
+
+<p>2つのプロセスをリンクせずに、しかし通知はそのまま維持したいとすると、どうでしょうか。そうした場合には<code class="highlighter-rouge">spawn_monitor</code>でプロセス監視を用いることができます。プロセスを監視すると、プロセスが強制終了した際にメッセージを受け取ります。現在のプロセスを強制終了させたり、プロセス終了時に明示的な捕捉をする必要はありません。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">explode</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="k">exit</span><span class="p">(</span><span class="ss">:kaboom</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">run</span> <span class="k">do</span>
+    <span class="p">{</span><span class="n">pid</span><span class="p">,</span> <span class="n">ref</span><span class="p">}</span> <span class="o">=</span> <span class="n">spawn_monitor</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:explode</span><span class="p">,</span> <span class="p">[])</span>
+
+    <span class="k">receive</span> <span class="k">do</span>
+      <span class="p">{</span><span class="ss">:DOWN</span><span class="p">,</span> <span class="n">ref</span><span class="p">,</span> <span class="ss">:process</span><span class="p">,</span> <span class="n">from_pid</span><span class="p">,</span> <span class="n">reason</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Exit reason: </span><span class="si">#{</span><span class="n">reason</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">run</span>
+<span class="no">Exit</span> <span class="ss">reason:</span> <span class="n">kaboom</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<h2 id="agent">Agent</h2>
+
+<p>Agentは状態を維持するバックグラウンドプロセス周りを抽象化したものです。アプリケーションやノードの内部で他のプロセスからAgentに接続することができます。Agentの状態は関数の戻り値に与えられます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">agent</span><span class="p">}</span> <span class="o">=</span> <span class="no">Agent</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="k">fn</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="c1">#PID&lt;0.65.0&gt;}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Agent</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="k">fn</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">state</span> <span class="o">++</span> <span class="p">[</span><span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">]</span> <span class="k">end</span><span class="p">)</span>
+<span class="ss">:ok</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Agent</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Agentに名前を付けると、PIDの代わりに名前で参照することができます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Agent</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="k">fn</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span> <span class="k">end</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">Numbers</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="c1">#PID&lt;0.74.0&gt;}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Agent</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">Numbers</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="task">Task</h2>
+
+<p>Taskは関数をバックグラウンドで実行し、後でその戻り値を受け取る方法を提供します。アプリケーションの動作を妨げることなく、実行コストの高い演算を処理する時に特に役立てることができます。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">double</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">do</span>
+    <span class="ss">:timer</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">*</span> <span class="m">2</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">async</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:double</span><span class="p">,</span> <span class="p">[</span><span class="m">2000</span><span class="p">])</span>
+<span class="p">%</span><span class="no">Task</span><span class="p">{</span><span class="ss">pid:</span> <span class="c1">#PID&lt;0.111.0&gt;, ref: #Reference&lt;0.0.8.200&gt;}</span>
+
+<span class="c1"># 何か処理を行う</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Task</span><span class="o">.</span><span class="n">await</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+<span class="m">4000</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    このページをシェアする
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/jp/lessons/advanced/concurrency/&title=並行性&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/jp/lessons/advanced/concurrency/&via=elixirschool&text=ElixirSchool: 並行性&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/jp/lessons/advanced/concurrency/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/jp/lessons/advanced/concurrency/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/jp/lessons/advanced/concurrency/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 並行性" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/jp/lessons/advanced/concurrency/&title=ElixirSchool: 並行性&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/jp/lessons/advanced/concurrency/&title=ElixirSchool: 並行性&description=Check out '並行性' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 並行性&body=Check out '並行性' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/jp/lessons/advanced/concurrency/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/specifics/ecto/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Ecto &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Ecto &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/ecto/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/ecto/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/ecto/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/ecto/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/ecto/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/ecto/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/ecto/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/ecto/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/ecto/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/ecto/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/ecto/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/ecto/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/ecto/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/ecto/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/ecto/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/ecto/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/ecto/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/ecto/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/ecto/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/ecto/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/ecto/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Ecto</h1>
+  <p>Ecto là một dự án chính thức của Elixir cung cấp một database wrapper (tạm dịch: lớp bọc cho cơ sở dữ liệu) và ngôn ngữ truy vấn tích hợp. Với Ecto ta có thể tạo các migration, định nghĩa model, ghi và cập nhật các bản ghi, và truy vấn chúng.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="ci-t">Cài đặt</h2>
+
+<p>Để bắt đầu ta cần thêm Ecto và một database adapter trong file <code class="highlighter-rouge">mix.exs</code> của dự án. Bạn có thể tìm thấy một danh sách database adapter được hỗ trợ trong phần <a href="https://github.com/elixir-lang/ecto/blob/master/README.md#usage">Usage</a> trong Ecto README. Trong ví dụ này ta sẽ dùng PostgreSQL:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:ecto</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.0"</span><span class="p">},</span>
+   <span class="p">{</span><span class="ss">:postgrex</span><span class="p">,</span> <span class="sd">"</span><span class="s2">&gt;= 0.0.0"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Bây giờ ta có thể thêm Ecto và adapter vào danh sách trong <code class="highlighter-rouge">application</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:ecto</span><span class="p">,</span> <span class="ss">:postgrex</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="repository">Repository</h3>
+
+<p>Trước hết ta cần tạo repository (database wrapper) của dự án bằng cách dùng tác vụ <code class="highlighter-rouge">mix ecto.gen.repo</code>. Ta sẽ xem các tác vụ của Ecto sau. Repo của chúng ta có thể được tìm thấy ở <code class="highlighter-rouge">lib/&lt;tên project&gt;/repo.ex</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span>
+    <span class="ss">otp_app:</span> <span class="ss">:example_app</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="supervisor">Supervisor</h3>
+
+<p>Khi đã tạo xong Repo ta cần cài đặt cây giám sát, thường nằm trong file <code class="highlighter-rouge">lib/&lt;project name&gt;.ex</code>.</p>
+
+<p>Một điều quan trọng là ta phải cài đặt Repo là một supervisor với <code class="highlighter-rouge">supervisor/3</code> mà không phải <code class="highlighter-rouge">worker/3</code>. Thông thường nếu bạn sinh ứng dụng với tùy chọn <code class="highlighter-rouge">--sup</code> thì nó đã có sẵn:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">App</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Application</span>
+
+  <span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="n">supervisor</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="p">]</span>
+
+    <span class="n">opts</span> <span class="o">=</span> <span class="p">[</span><span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">]</span>
+    <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Để tìm hiểu kĩ hơn về supervisor, bạn có thêm xem lại bài <a href="../../advanced/otp-supervisors">OTP Supervisors</a>.</p>
+
+<h3 id="cu-hnh">Cấu hình</h3>
+
+<p>Để cấu hình Ecto ta cần thêm một chút vào file <code class="highlighter-rouge">config/config.exs</code>. Ở đây ta sẽ cung cấp các thông tin về repository, adapter, database và thông tin truy cập:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">config</span> <span class="ss">:example_app</span><span class="p">,</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span>
+  <span class="ss">adapter:</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Postgres</span><span class="p">,</span>
+  <span class="ss">database:</span> <span class="sd">"</span><span class="s2">example_app"</span><span class="p">,</span>
+  <span class="ss">username:</span> <span class="sd">"</span><span class="s2">postgres"</span><span class="p">,</span>
+  <span class="ss">password:</span> <span class="sd">"</span><span class="s2">postgres"</span><span class="p">,</span>
+  <span class="ss">hostname:</span> <span class="sd">"</span><span class="s2">localhost"</span>
+</code></pre>
+</div>
+
+<h2 id="tc-v-mix">Tác vụ Mix</h2>
+
+<p>Ecto cung cấp một loạt những tác vụ hữu ích để làm việc với database:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mix ecto.create         <span class="c"># Tạo database</span>
+mix ecto.drop           <span class="c"># Xóa database</span>
+mix ecto.gen.migration  <span class="c"># Sinh một migration mới cho repo</span>
+mix ecto.gen.repo       <span class="c"># Sinh một repo mới</span>
+mix ecto.migrate        <span class="c"># Chạy migration</span>
+mix ecto.rollback       <span class="c"># Rollback migration</span>
+</code></pre>
+</div>
+
+<h2 id="migrations">Migrations</h2>
+
+<p>Cách tốt nhất để tạo migration là dùng tác vụ <code class="highlighter-rouge">mix ecto.gen.migration &lt;tên&gt;</code>. Nếu bạn biết ActiveRecord thì cũng sẽ không lạ gì tác vụ này.</p>
+
+<p>Ta hãy bắt đầu với một migration cho bảng user:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="no">Migrations</span><span class="o">.</span><span class="no">CreateUser</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Migration</span>
+
+  <span class="k">def</span> <span class="n">change</span> <span class="k">do</span>
+    <span class="n">create</span> <span class="n">table</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">add</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">unique:</span> <span class="no">true</span>
+      <span class="n">add</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">null:</span> <span class="no">false</span>
+      <span class="n">add</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+      <span class="n">add</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+
+      <span class="n">timestamps</span>
+    <span class="k">end</span>
+
+    <span class="n">create</span> <span class="n">unique_index</span><span class="p">(</span><span class="ss">:users</span><span class="p">,</span> <span class="p">[</span><span class="ss">:username</span><span class="p">],</span> <span class="ss">name:</span> <span class="ss">:unique_usernames</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Mặc định Ecto sẽ tạo một khóa chính tự động tăng (auto-incrementing primary key) tên là <code class="highlighter-rouge">id</code>. Ở đây ta dùng callback <code class="highlighter-rouge">change/0</code> nhưng Ecto cũng hỗ trợ <code class="highlighter-rouge">up/0</code> và <code class="highlighter-rouge">down/0</code> nếu như bạn muốn tùy chỉnh nhiều hơn.</p>
+
+<p>Chắc bạn cũng có thể đoán được là <code class="highlighter-rouge">timestamps</code> sẽ giúp bạn tạo và quản lý <code class="highlighter-rouge">inserted_at</code> và <code class="highlighter-rouge">updated_at</code>.</p>
+
+<p>Để chạy migration ta dùng lệnh <code class="highlighter-rouge">mix ecto.migrate</code>.</p>
+
+<p>Để biết thêm về migration bạn có thể xem <a href="http://hexdocs.pm/ecto/Ecto.Migration.html#content">Ecto.Migration</a> trên tài liệu chính thức.</p>
+
+<h2 id="models">Models</h2>
+
+<p>Sau khi có migration ta có thể chuyển qua phần model. Model định nghĩa cấu trúc của bảng, các hàm bổ trợ, và changeset (tập thay đổi). Ta sẽ xem changeset ở phần tiếp theo.</p>
+
+<p>Giờ ta sẽ xem model cho migration của chúng ta trông thế nào:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">User</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Schema</span>
+  <span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Changeset</span>
+
+  <span class="n">schema</span> <span class="sd">"</span><span class="s2">users"</span> <span class="k">do</span>
+    <span class="n">field</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+    <span class="n">field</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+    <span class="n">field</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+
+    <span class="n">timestamps</span>
+  <span class="k">end</span>
+
+  <span class="nv">@required_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">(</span><span class="n">username</span> <span class="n">encrypted_password</span> <span class="n">email</span><span class="p">)</span>
+  <span class="nv">@optional_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="n">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">params</span> <span class="p">\\</span> <span class="ss">:empty</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">user</span>
+    <span class="o">|&gt;</span> <span class="n">cast</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nv">@required_fields</span><span class="p">,</span> <span class="nv">@optional_fields</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">unique_constraint</span><span class="p">(</span><span class="ss">:username</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Cấu trúc schema mà ta định nghĩa trong model rất giống với những gì ta đã viết trong migration. Ngoài các trường trong database ta còn thêm hai trường ảo. Các trường ảo sẽ không được lưu vào database nhưng lại có ích trong một số trường hợp, ví dụ như validation (tạm dịch: kiểm tra lỗi). Chúng ta sẽ xem các trường ảo được dùng trong thực tế như thế nào trong phần <a href="#changesets">Changesets</a>.</p>
+
+<h2 id="truy-vn">Truy vấn</h2>
+
+<p>Trước khi có thể truy vấn ta cần import các hàm hỗ trợ truy vấn vào. Ở đây ta có thể import <code class="highlighter-rouge">from/2</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Query</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">from:</span> <span class="m">2</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Tài liệu chính thức có thể xem tại <a href="http://hexdocs.pm/ecto/Ecto.Query.html">Ecto.Query</a>.</p>
+
+<h3 id="c-bn">Cơ bản</h3>
+
+<p>Ecto cung cấp một DSL tuyệt vời để ta viết truy vấn một các rõ ràng. Để tìm username của tất cả các tài khoản đã xác nhận ta có thể viết như sau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alias</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="p">{</span><span class="no">Repo</span><span class="p">,</span><span class="no">User</span><span class="p">}</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">u</span><span class="o">.</span><span class="n">username</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Ngoài <code class="highlighter-rouge">all/2</code>. Repo còn cung cấp một số hàm callback như <code class="highlighter-rouge">one/2</code>, <code class="highlighter-rouge">get/3</code>, <code class="highlighter-rouge">insert/2</code>, and <code class="highlighter-rouge">delete/2</code>. Bạn có thể đọc danh sách callback hoàn chỉnh tại <a href="http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks">Ecto.Repo#callbacks</a>.</p>
+
+<h3 id="count">Count</h3>
+
+<p>Nếu muốn đếm số người dùng đã xác nhận tài khoản ta có thể dùng <code class="highlighter-rouge">count/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Hoặc hàm <code class="highlighter-rouge">count/2</code> nếu bạn muốn đếm các giá trị riêng biệt trong một tập xác định:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="ss">:distinct</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="group-by">Group By</h3>
+
+<p>Để gom các người dùng theo trạng thái xác nhận của họ, ta có thể dùng tùy chọn <code class="highlighter-rouge">group_by</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">group_by:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">confirmed</span><span class="p">,</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">)]</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="order-by">Order By</h3>
+
+<p>Sắp xếp người dùng theo ngày tạo tài khoản của họ:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">order_by:</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">]</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Để sắp theo thứ tự từ lớn đến bé:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">order_by:</span> <span class="p">[</span><span class="ss">desc:</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">],</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="joins">Joins</h3>
+
+<p>Ví dụ như ta có bảng Profile liên kết với User, ta hãy tìm tất cả thông tin tài khoản của các tài khoản đã xác nhận:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">p</span> <span class="ow">in</span> <span class="no">Profile</span><span class="p">,</span>
+    <span class="ss">join:</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">assoc</span><span class="p">(</span><span class="n">profile</span><span class="p">,</span> <span class="ss">:user</span><span class="p">),</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="fragments">Fragments</h3>
+
+<p>Đôi lúc nếu ta cần các hàm có sẵn trong cơ sở dữ liệu thì các hàm hỗ trợ Query sẽ là không đủ. Hàm <code class="highlighter-rouge">fragment/1</code> sẽ giúp ta làm điều đó:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">fragment</span><span class="p">(</span><span class="sd">"</span><span class="s2">downcase(?)"</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="o">==</span> <span class="o">^</span><span class="n">username</span>
+    <span class="ss">select:</span> <span class="n">u</span>
+</code></pre>
+</div>
+
+<p>Các ví dụ truy vấn khác bạn có thể xem tại <a href="http://hexdocs.pm/ecto/Ecto.Query.API.html">Ecto.Query.API</a>.</p>
+
+<h2 id="changesets">Changesets</h2>
+
+<p>Ở phần trước ta đã học cách để lấy dữ liệu, những làm sao để ghi và cập nhật nó? Để làm việc đó ta cần Changeset.</p>
+
+<p>Changeset đóng vai trò lọc, kiểm tra, và giữ các ràng buộc khi thay đổi model.</p>
+
+<p>Với ví dụ này ta sẽ tập trung vào changeset cho việc tạo tài khoản người dùng. Ta sẽ sửa model của chúng ta một chút:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">User</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Schema</span>
+  <span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Changeset</span>
+  <span class="kn">import</span> <span class="no">Comeonin</span><span class="o">.</span><span class="no">Bcrypt</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">hashpwsalt:</span> <span class="m">1</span><span class="p">]</span>
+
+  <span class="n">schema</span> <span class="sd">"</span><span class="s2">users"</span> <span class="k">do</span>
+    <span class="n">field</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+    <span class="n">field</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+    <span class="n">field</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+
+    <span class="n">timestamps</span>
+  <span class="k">end</span>
+
+  <span class="nv">@required_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">(</span><span class="n">username</span> <span class="n">email</span> <span class="n">password</span> <span class="n">password_confirmation</span><span class="p">)</span>
+  <span class="nv">@optional_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="n">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">params</span> <span class="p">\\</span> <span class="ss">:empty</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">user</span>
+    <span class="o">|&gt;</span> <span class="n">cast</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nv">@required_fields</span><span class="p">,</span> <span class="nv">@optional_fields</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">validate_length</span><span class="p">(</span><span class="ss">:password</span><span class="p">,</span> <span class="ss">min:</span> <span class="m">8</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">validate_password_confirmation</span><span class="p">()</span>
+    <span class="o">|&gt;</span> <span class="n">unique_constraint</span><span class="p">(</span><span class="ss">:username</span><span class="p">,</span> <span class="ss">name:</span> <span class="ss">:email</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">put_change</span><span class="p">(</span><span class="ss">:encrypted_password</span><span class="p">,</span> <span class="n">hashpwsalt</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:password</span><span class="p">]))</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">validate_password_confirmation</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">case</span> <span class="n">get_change</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password_confirmation</span><span class="p">)</span> <span class="k">do</span>
+      <span class="no">nil</span> <span class="o">-&gt;</span>
+        <span class="n">password_incorrect_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
+      <span class="n">confirmation</span> <span class="o">-&gt;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">get_field</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">confirmation</span> <span class="o">==</span> <span class="n">password</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">changeset</span><span class="p">,</span> <span class="k">else</span><span class="p">:</span> <span class="n">password_mismatch_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">password_mismatch_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">add_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Passwords does not match"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">password_incorrect_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">add_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password</span><span class="p">,</span> <span class="sd">"</span><span class="s2">is not valid"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Ta đã nâng cấp hàm <code class="highlighter-rouge">changeset/2</code> và thêm vào ba hàm tiện ích: <code class="highlighter-rouge">validate_password_confirmation/1</code>, <code class="highlighter-rouge">password_mismatch_error/1</code> và <code class="highlighter-rouge">password_incorrect_error/1</code>.</p>
+
+<p>Đúng như nghĩa đen của cái tên, <code class="highlighter-rouge">changeset/2</code> tạo ra một changeset mới cho chúng ta. Trong đó ta dùng hàm <code class="highlighter-rouge">cast/4</code> để chuyển các tham số thành changeset từ một tập các trường bắt buộc và không bắt buộc. Sau đó ta kiểm tra điều kiện độ dài của chuỗi mật khẩu của changeset, ta dùng hàm của riêng mình để kiểm tra liệu việc xác nhận mật khẩu đã chính xác, và ta kiểm tra liệu username có bị trùng lặp. Cuối cùng ta cập nhận trường mật khẩu thật sự. Ở đây ta dùng hàm <code class="highlighter-rouge">put_change/3</code> để cập nhật một giá trị trong changeset.</p>
+
+<p>Dùng <code class="highlighter-rouge">User.changeset/2</code> nhìn cũng khá đơn giản:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alias</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="p">{</span><span class="no">User</span><span class="p">,</span><span class="no">Repo</span><span class="p">}</span>
+
+<span class="n">pw</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">passwords should be hard"</span>
+<span class="n">changeset</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">changeset</span><span class="p">(%</span><span class="no">User</span><span class="p">{},</span> <span class="p">%{</span><span class="ss">username:</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span>
+                    <span class="ss">email:</span> <span class="sd">"</span><span class="s2">sean@seancallan.com"</span><span class="p">,</span>
+                    <span class="ss">password:</span> <span class="n">pw</span><span class="p">,</span>
+                    <span class="ss">password_confirmation:</span> <span class="n">pw</span><span class="p">})</span>
+
+<span class="k">case</span> <span class="no">Repo</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">model</span><span class="p">}</span>        <span class="o">-&gt;</span> <span class="c1"># Inserted with success</span>
+  <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">changeset</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="c1"># Something went wrong</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Xong rồi! Và bây giờ bạn đã sẵn sàng để lưu dữ liệu rồi đấy.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/specifics/ecto/&title=Ecto&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/specifics/ecto/&via=elixirschool&text=ElixirSchool: Ecto&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/specifics/ecto/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/specifics/ecto/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/specifics/ecto/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Ecto" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/specifics/ecto/&title=ElixirSchool: Ecto&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/specifics/ecto/&title=ElixirSchool: Ecto&description=Check out 'Ecto' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Ecto&body=Check out 'Ecto' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/specifics/ecto/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

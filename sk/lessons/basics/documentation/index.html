@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lekcie o programovacom jazyku Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/sk/lessons/basics/documentation/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Dokumentácia &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lekcie o programovacom jazyku Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Dokumentácia &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lekcie o programovacom jazyku Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Základy</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/sk/lessons/basics/basics/">Základy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/sk/lessons/basics/collections/">Kolekcie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/sk/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/sk/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/sk/lessons/basics/control-structures/">Riadiace štruktúry</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/sk/lessons/basics/functions/">Funkcie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/sk/lessons/basics/pipe-operator/">Operátor pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/sk/lessons/basics/modules/">Kompozícia</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/sk/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/sk/lessons/basics/sigils/">Sigily</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson  active" href="/sk/lessons/basics/documentation/">Dokumentácia</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/sk/lessons/basics/testing/">Testovanie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/sk/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/sk/lessons/basics/strings/">Reťazce</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/sk/lessons/basics/mix-tasks/">Mix tasky</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/documentation/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/documentation/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/documentation/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/documentation/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/documentation/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/documentation/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/documentation/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/documentation/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/documentation/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/documentation/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/documentation/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/documentation/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/documentation/ ">my</a>
+      
+        <a href=" /no/lessons/basics/documentation/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/documentation/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/documentation/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/documentation/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/documentation/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/documentation/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/documentation/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/documentation/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Dokumentácia</h1>
+  <p>Komentovanie a dokumentovanie kódu v Elixire.</p>
+
+<h2>Obsah</h2>
+<div id="toc"></div>
+
+<h2 id="o-dokumentovan-v-elixire">O dokumentovaní v Elixire</h2>
+
+<p>Čo všetko a ako podrobne komentovať a dukumentovať zostáva vo svete programovania stále otvorenou otázkou. Všetci sa však asi zhodneme na tom, že dokumentovanie kódu je dôležité pre nás samotných a aj ďalších ľudí, ktorí budú s našim kódom pracovať.</p>
+
+<p>Elixir berie dokumentáciu ako svoju plnohodnotnú súčasť (<em>first-class citizen</em>) a ponúka rôzne funkcie pre jej generovanie a jednoduchý prístup k nej. Jadro jazyka ponúka viacero možností anotácie kódu, pozrime sa na základné tri:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">#</code> - pre inline komentáre</li>
+  <li><code class="highlighter-rouge">@doc</code> - pre dokumentáciu funkcií</li>
+  <li><code class="highlighter-rouge">@moduledoc</code> - pre dokumentáciu celých modulov</li>
+</ul>
+
+<h3 id="inline-komentre">Inline komentáre</h3>
+
+<p>Najjednoduchším spôsobom dokumentácie kódu sú inline komentáre. Podobne ako v jazykoch Ruby a Python aj Elixir používa na ich označenie znak <code class="highlighter-rouge">#</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># Outputs 'Hello, chum.' to the console.</span>
+<span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">chum."</span>
+</code></pre>
+</div>
+
+<p>Pri spracovaní tohto kódu Elixir riadok s komentárom odignoruje. Komentár kód nespomalí, no programátorovi ušetrí čas, ktorý by musel stráviť lúštením významu kódu. Treba ich však používať s mierou a nezneužívať ich na rozsiahlejšiu dokumentáciu.</p>
+
+<h3 id="dokumentovanie-modulov">Dokumentovanie modulov</h3>
+
+<p>Anotácia <code class="highlighter-rouge">@moduledoc</code> nám dovoľuje priamo v kóde zdokumentovať modul. Väčšinou sa používa hneď na začiatku modulu pod riadkom s deklaráciou <code class="highlighter-rouge">defmodule</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  Poskytuje funkciu `hello/1` ktorá pekne pozdraví
+  """</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Dokumentáciu k modulu môžeme zobraziť v konzole IEx pomocnou funkciou <code class="highlighter-rouge">h</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="sd">"</span><span class="s2">greeter.ex"</span><span class="p">)</span>
+<span class="p">[</span><span class="no">Greeter</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">h</span> <span class="no">Greeter</span>
+
+                <span class="no">Greeter</span>
+
+<span class="no">Poskytuje</span> <span class="n">funkciu</span> <span class="n">hello</span><span class="o">/</span><span class="m">1</span> <span class="n">ktor</span><span class="err">á</span> <span class="n">pekne</span> <span class="n">pozdrav</span><span class="err">í</span>
+</code></pre>
+</div>
+
+<p><em>(Funkcia <code class="highlighter-rouge">c</code> skompiluje súbor, ktorý dostane v argumente. Modul Greeter si musíme najprv skompilovať, aby sme mohli pristupovať k jeho dokumentácii (a k dokumentácii jeho funkcií).)</em></p>
+
+<h3 id="dokumentovanie-funkci">Dokumentovanie funkcií</h3>
+
+<p>Podobne ako pri moduloch, môžeme vytvárať aj dokumentáciou samotných funkcií - pomocou anotácie <code class="highlighter-rouge">@doc</code>. Je zvykom dokumentovať funkcie hneď nad ich definíciou:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  ...
+  """</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Vypíše pozdrav
+
+  ## Parametre
+
+    - name: reťazec s menom zdravenej osoby
+
+  ## Príklady
+
+      iex&gt; Greeter.hello("Sean")
+      "Hello, Sean"
+
+      iex&gt; Greeter.hello("pete")
+      "Hello, pete"
+
+  """</span>
+  <span class="nv">@spec</span> <span class="n">hello</span><span class="p">(</span><span class="no">String</span><span class="o">.</span><span class="n">t</span><span class="p">)</span> <span class="p">::</span> <span class="no">String</span><span class="o">.</span><span class="n">t</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Keď teraz naštartujeme IEx a zobrazíme si dokumentáciu k našej funkcii pomocou <code class="highlighter-rouge">h</code>, mali by sme vidieť niečo takéto:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="sd">"</span><span class="s2">greeter.ex"</span><span class="p">)</span>
+<span class="p">[</span><span class="no">Greeter</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">h</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span>
+
+                <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="err">`</span><span class="n">hello</span><span class="o">/</span><span class="m">1</span><span class="err">`</span> <span class="n">Vyp</span><span class="err">íš</span><span class="n">e</span> <span class="n">pozdrav</span>
+
+<span class="no">Parametre</span>
+
+  <span class="err">•</span> <span class="ss">name:</span> <span class="n">re</span><span class="err">ť</span><span class="n">azec</span> <span class="n">s</span> <span class="n">menom</span> <span class="n">zdravenej</span> <span class="n">osoby</span>
+
+<span class="n">Pr</span><span class="err">í</span><span class="n">klady</span>
+
+    <span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+    <span class="sd">"</span><span class="s2">Hello, Sean"</span>
+
+    <span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">pete"</span><span class="p">)</span>
+    <span class="sd">"</span><span class="s2">Hello, pete"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+<p>Všimnime si, že v dokumentácii je možné používať formátovanie textu pomocou markdown syntaxe. Naša dokumentácia potom vyzerá veľmi prehľadne - či už priamo v konzole alebo vo vygenerovanej HTML verzii pri použití ExDoc.</p>
+
+<h2 id="exdoc">ExDoc</h2>
+
+<p>ExDoc je oficiálny nástroj Elixiru, ktorý dokáže <strong>vygenerovať HTML dokumentáciu vášho elixirového projektu</strong>. Je dostupný ako open-source na <a href="https://github.com/elixir-lang/ex_doc">GitHube</a>.</p>
+
+<p>Vyskúšajme si ExDoc. Potrebujeme elixirový projekt, takže si vytvorme nový pomocou Mixu:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new greet_everyone
+
+<span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/greet_everyone.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/greet_everyone_test.exs
+
+Your Mix project was created successfully.
+You can use <span class="s2">"mix"</span> to compile it, <span class="nb">test </span>it, and more:
+
+    <span class="nb">cd </span>greet_everyone
+    mix <span class="nb">test
+
+</span>Run <span class="s2">"mix help"</span> <span class="k">for </span>more commands.
+
+<span class="gp">$ </span><span class="nb">cd </span>greet_everyone
+
+</code></pre>
+</div>
+
+<p>Teraz vytvoríme súbor <code class="highlighter-rouge">lib/greeter.ex</code> a skopírujeme doňho príklad z časti o dokumentovaní funkcií. Spustíme si IEx s načítaným projektom pomocou <code class="highlighter-rouge">iex -S mix</code> a skúsime zobraziť dokumentáciu funkcie <code class="highlighter-rouge">hello/1</code> pomocou <code class="highlighter-rouge">h</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span>h Greeter.hello
+
+                def hello<span class="o">(</span>name<span class="o">)</span>
+
+Prints a hello message
+
+Parameters
+
+  • name: String that represents the name of the person.
+
+Examples
+
+    iex&gt; Greeter.hello<span class="o">(</span><span class="s2">"Sean"</span><span class="o">)</span>
+    <span class="s2">"Hello, Sean"</span>
+
+    iex&gt; Greeter.hello<span class="o">(</span><span class="s2">"pete"</span><span class="o">)</span>
+    <span class="s2">"Hello, pete"</span>
+</code></pre>
+</div>
+
+<h3 id="intalcia">Inštalácia</h3>
+
+<p>Ak všetko prebehlo hladko, môžeme nainštalovať samotný ExDoc. V súbore <code class="highlighter-rouge">mix.exs</code> pridáme do závislostí projektu dva balíčky - <code class="highlighter-rouge">:earmark</code> a <code class="highlighter-rouge">:ex_doc</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="n">deps</span> <span class="k">do</span>
+    <span class="p">[{</span><span class="ss">:earmark</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 0.1"</span><span class="p">,</span> <span class="ss">only:</span> <span class="ss">:dev</span><span class="p">},</span>
+    <span class="p">{</span><span class="ss">:ex_doc</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 0.11"</span><span class="p">,</span> <span class="ss">only:</span> <span class="ss">:dev</span><span class="p">}]</span>
+  <span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Pri oboch balíčkoch sme pomocou <code class="highlighter-rouge">only: :dev</code> špecifikovali, že ich chceme sťahovať a kompilovať len vo vývojovom prostredí (v produkčnom nepotrebujeme generovať dokumentáciu, už ju máme).</p>
+
+<p>Balíček Earmark je elixirový parser markdownu a umožňuje nám pekne formátovať text dokumentácie vo vnútri <code class="highlighter-rouge">@moduledoc</code> a <code class="highlighter-rouge">@doc</code>. Na tento účel môžeme namiesto Earmarku použiť aj iné formátovače, napríklad Pandoc, Hoedown alebo Cmark - treba však siahnuť hlbšie do konfigurácie (detaily <a href="https://github.com/elixir-lang/ex_doc#changing-the-markdown-tool">tu</a>).</p>
+
+<p>Spusíme inštaláciu pridaných balíčkov:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix deps.get <span class="c"># stiahne a nainštaluje do projektu ExDoc a Earmark</span>
+</code></pre>
+</div>
+
+<h3 id="generovanie-dokumentcie">Generovanie dokumentácie</h3>
+
+<p>Máme všetko potrebné zostáva nám už len spustiť generátor:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix docs <span class="c"># makes the documentation.</span>
+
+Docs successfully generated.
+View them at <span class="s2">"doc/index.html"</span>.
+</code></pre>
+</div>
+
+<p>Ak príkaz zbehol, mali by sme v našom projekte vidieť nový adresár <code class="highlighter-rouge">doc/</code> a v ňom naša vygenerovaná HTML dokumentácia projektu. Otvorme si súbor <code class="highlighter-rouge">doc/index.html</code> a mali by sme vidieť niečo takéto:</p>
+
+<p><img src="https://elixirschool.com/assets/documentation_1.png" alt="ExDoc Screenshot 1" /></p>
+
+<p>Vidíme, že text je vďaka Earmarku pekne formátovaný.</p>
+
+<p><img src="https://elixirschool.com/assets/documentation_2.png" alt="ExDoc Screenshot 2" /></p>
+
+<p>Teraz môžeme dokumentáciu hodiť na GitHub, náš vlastný web, alebo na <a href="https://hexdocs.pm/">HexDocs</a> (ak sme vytvorili verejný balíček).</p>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<p>Dokumentácia by mala dodržiavať pravidlá a postupy bežné v danom jazyku. Keďže je Elixir stále relatívne mladým jazykom, niektoré štandardy stále nie sú ustálené. Komunita sa však snaží zbierať a dokumentovať ustálené pravidlá na webe <a href="https://github.com/niftyn8/elixir_style_guide">The Elixir Style Guide</a>. Určite stojí za návštevu. Pozrime sa na pravidlá a odporúčania ohľadom dokumentácie:</p>
+
+<ul>
+  <li>Vždy dokumentujte svoje moduly</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  Toto je dokumentácia modulu.
+  """</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Ak svoj modul zatiaľ nechcete dokumentovať, nevynechajte <code class="highlighter-rouge">@moduledoc</code> - pridajte aspoň prázdnu (false) anotáciu:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="no">false</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Keď v dokumentácii modulu spomínate niektorú jeho funkciu, použite spätné apostrofy (backticks):</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  ...
+
+  Tento modul obsahuje funkciu `hello/1`.
+  """</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Pod dokumentáciou vždy nechajte jeden voľný riadok:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  ...
+
+  Tento modul obsahuje funkciu `hello/1`.
+  """</span>
+
+  <span class="n">alias</span> <span class="no">Goodbye</span><span class="o">.</span><span class="n">bye_bye</span>
+  <span class="c1"># a tak ďalej...</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Používajte markdown, aby vaša dokumentácia boľa prehľadná a ľahko čitateľná:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  ...
+  """</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Prints a hello message
+
+  ## Parameters
+
+    - name: String that represents the name of the person.
+
+  ## Examples
+
+      iex&gt; Greeter.hello("Sean")
+      "Hello, Sean"
+
+      iex&gt; Greeter.hello("pete")
+      "Hello, pete"
+
+  """</span>
+  <span class="nv">@spec</span> <span class="n">hello</span><span class="p">(</span><span class="no">String</span><span class="o">.</span><span class="n">t</span><span class="p">)</span> <span class="p">::</span> <span class="no">String</span><span class="o">.</span><span class="n">t</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Pokúste sa do dokumentácie priložiť aj nejaké príklady použitia. Okrem iného vám to umožní vygenerovať automatické testy funkcií, modulov, či makier pomocou nástroja <a href="http://elixir-lang.org/docs/stable/ex_unit/ExUnit.DocTest.html">ExUnit.DocTest</a>.</li>
+</ul>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Zdieľaj túto stránku
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/sk/lessons/basics/documentation/&title=Dokumentácia&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/sk/lessons/basics/documentation/&via=elixirschool&text=ElixirSchool: Dokumentácia&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/sk/lessons/basics/documentation/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/sk/lessons/basics/documentation/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/sk/lessons/basics/documentation/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Dokumentácia" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/sk/lessons/basics/documentation/&title=ElixirSchool: Dokumentácia&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/sk/lessons/basics/documentation/&title=ElixirSchool: Dokumentácia&description=Check out 'Dokumentácia' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Dokumentácia&body=Check out 'Dokumentácia' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/sk/lessons/basics/documentation/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

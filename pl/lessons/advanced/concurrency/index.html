@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lekcje programowania w języku Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/pl/lessons/advanced/concurrency/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Współbieżność &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lekcje programowania w języku Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Współbieżność &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lekcje programowania w języku Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Podstawy</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/basics/basics/">Podstawy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/basics/collections/">Kolekcje</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/basics/pattern-matching/">Dopasowanie wzorców</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/basics/control-structures/">Struktury sterujące</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pl/lessons/basics/functions/">Funkcje</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pl/lessons/basics/pipe-operator/">Operator Potoku</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pl/lessons/basics/modules/">Organizacja kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pl/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pl/lessons/basics/sigils/">Sigile</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/pl/lessons/basics/documentation/">Dokumentowanie kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/pl/lessons/basics/testing/">Testowanie kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/pl/lessons/basics/comprehensions/">Składanie kolekcji</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/pl/lessons/basics/strings/">Ciągi znaków</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/pl/lessons/basics/mix-tasks/">Własne funkcje Mix'a</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Zaawansowane</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/advanced/erlang/">Współpraca z Erlangiem</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/advanced/error-handling/">Wyjątki i błędy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/advanced/escripts/">Uruchamianie programów</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson  active" href="/pl/lessons/advanced/concurrency/">Współbieżność</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/advanced/otp-concurrency/">Współbieżność z OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pl/lessons/advanced/otp-supervisors/">Nadzorcy OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pl/lessons/advanced/metaprogramming/">Metaprogramowanie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pl/lessons/advanced/umbrella-projects/">Projekty zbiorcze</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pl/lessons/advanced/typespec/">Specyfikacje i typy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pl/lessons/advanced/behaviours/">Zachowania</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Specyficzne</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/concurrency/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/concurrency/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/concurrency/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/concurrency/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/concurrency/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/concurrency/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/concurrency/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/concurrency/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/concurrency/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/concurrency/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/concurrency/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/concurrency/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/concurrency/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/concurrency/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/concurrency/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/concurrency/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/concurrency/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/concurrency/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/concurrency/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/concurrency/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/concurrency/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Współbieżność</h1>
+  <p>Jednym z najbardziej wartościowych elementów Elixira jest obsługa współbieżności. Dzięki temu, że działa on na maszynie wirtualnej Erlanga, zadanie to zostało bardzo uproszczone. Współbieżność oparta jest o model aktorów, reprezentowanych przez procesy, które komunikują się, wymieniając wiadomości.</p>
+
+<p>W tej lekcji przyjrzymy się modułom, które służą do obsługi współbieżności, a w kolejnych omówimy i zaimplementujemy zachowania OTP.</p>
+
+<h2>Spis treści</h2>
+<div id="toc"></div>
+
+<h2 id="procesy">Procesy</h2>
+
+<p>Maszyna wirtualna Erlanga używa procesów lekkich, które mogą działać na wszystkich dostępnych dla niej procesorach. Choć są one podobne do natywnych, systemowych, wątków, to jednak są prostsze i nie jest niczym niezwykłym, gdy w aplikacji napisanej w Elixirze jednocześnie działa kilka tysięcy procesów.</p>
+
+<p>Najprostszą metodą na utworzenie nowego procesu jest wywołanie <code class="highlighter-rouge">spawn</code>, która jako argument przyjmuje funkcję, nazwaną lub anonimową. Kiedy utworzy nowy proces zwróci <em>Identyfikator procesu</em>, czyli PID, który w sposób unikalny identyfikuje proces w naszej aplikacji.</p>
+
+<p>Zacznijmy od stworzenia nowego moduły i zdefiniowania w nim funkcji, którą będziemy uruchamiać:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="m">5</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>By wywołać ją asynchronicznie wywołajmy <code class="highlighter-rouge">spawn/3</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">spawn</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:add</span><span class="p">,</span> <span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="m">5</span>
+<span class="c1">#PID&lt;0.80.0&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="przekazywanie-komunikatw">Przekazywanie komunikatów</h3>
+
+<p>Komunikacja pomiędzy procesami bazuje na wymianie komunikatów. Istnieją dwa główne elementy tego mechanizmu: <code class="highlighter-rouge">send/2</code> i <code class="highlighter-rouge">receive</code>. Funkcja <code class="highlighter-rouge">send/2</code> pozwalana na wysłanie komunikatu pod skazany PID. Przychodzących komunikatów nasłuchujemy za pomocą <code class="highlighter-rouge">receive</code> i dopasowujemy je do wzorców. Jeżeli komunikat nie zostanie dopasowany, to proces zignoruje go i będzie kontynuować działanie, jak gdyby nic się nie stało.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">listen</span> <span class="k">do</span>
+    <span class="k">receive</span> <span class="k">do</span>
+      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">World"</span>
+    <span class="k">end</span>
+    <span class="n">listen</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">pid</span> <span class="o">=</span> <span class="n">spawn</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:listen</span><span class="p">,</span> <span class="p">[])</span>
+<span class="c1">#PID&lt;0.108.0&gt;</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">send</span> <span class="n">pid</span><span class="p">,</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">}</span>
+<span class="no">World</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">send</span> <span class="n">pid</span><span class="p">,</span> <span class="ss">:ok</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>Funkcja <code class="highlighter-rouge">listen/0</code> jest rekurencyjna. Dzięki temu może ona obsługiwać kolejno nadchodzące wiadomości. Bez tego mechanizmu proces zakończyłby działanie po obsłużeniu pierwszej wiadomości.</p>
+
+<h3 id="czenie-procesw">Łączenie procesów</h3>
+
+<p>Problem z funkcją <code class="highlighter-rouge">spawn</code> polega na tym, że nie wiemy, kiedy proces ulegnie awarii.  Dlatego też potrzebujemy procesów połączonych, które tworzy się z użyciem <code class="highlighter-rouge">spawn_link</code>.  Dwa połączone procesy będą nawzajem otrzymywać komunikaty o swoim zakończeniu:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">explode</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="k">exit</span><span class="p">(</span><span class="ss">:kaboom</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">spawn</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:explode</span><span class="p">,</span> <span class="p">[])</span>
+<span class="c1">#PID&lt;0.66.0&gt;</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">spawn_link</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:explode</span><span class="p">,</span> <span class="p">[])</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">EXIT</span> <span class="n">from</span> <span class="c1">#PID&lt;0.57.0&gt;) :kaboom</span>
+</code></pre>
+</div>
+
+<p>Czasami nie chcemy by awaria jednego procesu, spowodowała zamknięcie połączonego z nim innego procesu. Dlatego też musimy przechwycić informacje o zamknięciu. Wynikiem tej operacji jest wiadomość w postaci krotki: <code class="highlighter-rouge"><span class="p">{</span><span class="err">:EXIT,</span><span class="w"> </span><span class="err">from_pid,</span><span class="w"> </span><span class="err">reason</span><span class="p">}</span></code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">explode</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="k">exit</span><span class="p">(</span><span class="ss">:kaboom</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">run</span> <span class="k">do</span>
+    <span class="no">Process</span><span class="o">.</span><span class="n">flag</span><span class="p">(</span><span class="ss">:trap_exit</span><span class="p">,</span> <span class="no">true</span><span class="p">)</span>
+    <span class="n">spawn_link</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:explode</span><span class="p">,</span> <span class="p">[])</span>
+
+    <span class="k">receive</span> <span class="k">do</span>
+      <span class="p">{</span><span class="ss">:EXIT</span><span class="p">,</span> <span class="n">from_pid</span><span class="p">,</span> <span class="n">reason</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Exit reason: </span><span class="si">#{</span><span class="n">reason</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">run</span>
+<span class="no">Exit</span> <span class="ss">reason:</span> <span class="n">kaboom</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<h3 id="monitoring">Monitoring</h3>
+
+<p>A co jeżeli nie chcemy łączyć procesów, ale chcemy nadal być informowani o awariach? Do tego służy mechanizm monitoringu <code class="highlighter-rouge">spawn_monitor</code>.  Gdy monitorujemy inny proces z naszego procesu, to gdy otrzymamy wiadomość o jego awarii, nasz proces nie ulegnie awarii ani też nie będziemy musieli jawnie obsłużyć sygnału zamknięcia.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">explode</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="k">exit</span><span class="p">(</span><span class="ss">:kaboom</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">run</span> <span class="k">do</span>
+    <span class="p">{</span><span class="n">pid</span><span class="p">,</span> <span class="n">ref</span><span class="p">}</span> <span class="o">=</span> <span class="n">spawn_monitor</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:explode</span><span class="p">,</span> <span class="p">[])</span>
+
+    <span class="k">receive</span> <span class="k">do</span>
+      <span class="p">{</span><span class="ss">:DOWN</span><span class="p">,</span> <span class="n">ref</span><span class="p">,</span> <span class="ss">:process</span><span class="p">,</span> <span class="n">from_pid</span><span class="p">,</span> <span class="n">reason</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Exit reason: </span><span class="si">#{</span><span class="n">reason</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">run</span>
+<span class="no">Exit</span> <span class="ss">reason:</span> <span class="n">kaboom</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<h2 id="agenci">Agenci</h2>
+
+<p>Agenci są pewnego rodzaju abstrakcją nad procesami służącą do zarządzania ich stanem. Możemy się do nich odwołać z poziomu innego procesu, aplikacji, albo innego węzła. Aktualny stan agenta jest równy ostatniej zwróconej przez proces wartości:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">agent</span><span class="p">}</span> <span class="o">=</span> <span class="no">Agent</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="k">fn</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="c1">#PID&lt;0.65.0&gt;}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Agent</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="k">fn</span> <span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">state</span> <span class="o">++</span> <span class="p">[</span><span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">]</span> <span class="k">end</span><span class="p">)</span>
+<span class="ss">:ok</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Agent</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Do nazwanych agentów możemy odwołać się przez nazwę zamiast przez PID:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Agent</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="k">fn</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span> <span class="k">end</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">Numbers</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="c1">#PID&lt;0.74.0&gt;}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Agent</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">Numbers</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="zadania">Zadania</h2>
+
+<p>Zadania pozwalają na wywołanie funkcji w tle i otrzymanie wyniku w późniejszym terminie. Jest to przydatne szczególnie wtedy, gdy funkcja wykonuje jakieś długotrwałe obliczenia albo jest operacją blokującą. Można wtedy wywołać ją bez blokowania całej aplikacji.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">double</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">do</span>
+    <span class="ss">:timer</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">*</span> <span class="m">2</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">async</span><span class="p">(</span><span class="no">Example</span><span class="p">,</span> <span class="ss">:double</span><span class="p">,</span> <span class="p">[</span><span class="m">2000</span><span class="p">])</span>
+<span class="p">%</span><span class="no">Task</span><span class="p">{</span><span class="ss">pid:</span> <span class="c1">#PID&lt;0.111.0&gt;, ref: #Reference&lt;0.0.8.200&gt;}</span>
+
+<span class="c1"># Coś się kręci</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Task</span><span class="o">.</span><span class="n">await</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+<span class="m">4000</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Podziel się
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/pl/lessons/advanced/concurrency/&title=Współbieżność&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/pl/lessons/advanced/concurrency/&via=elixirschool&text=ElixirSchool: Współbieżność&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/pl/lessons/advanced/concurrency/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/pl/lessons/advanced/concurrency/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/pl/lessons/advanced/concurrency/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Współbieżność" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/pl/lessons/advanced/concurrency/&title=ElixirSchool: Współbieżność&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/pl/lessons/advanced/concurrency/&title=ElixirSchool: Współbieżność&description=Check out 'Współbieżność' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Współbieżność&body=Check out 'Współbieżność' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/pl/lessons/advanced/concurrency/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Leksjoner i programmeringsspråket Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/no/lessons/basics/control-structures/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Kontrollstrukturer &middot; Elixir School
+
+">
+  <meta property="og:description" content="Leksjoner i programmeringsspråket Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Kontrollstrukturer &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Leksjoner i programmeringsspråket Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Grunnleggende</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/no/lessons/basics/basics/">Grunnleggende Elixir</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/no/lessons/basics/collections/">Kolleksjoner</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/no/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/no/lessons/basics/pattern-matching/">Mønstersammenligning</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/no/lessons/basics/control-structures/">Kontrollstrukturer</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/no/lessons/basics/pipe-operator/">Pipeoperatoren</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/no/lessons/basics/modules/">Moduler</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/no/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/no/lessons/basics/sigils/">Sigiler</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/no/lessons/basics/documentation/">Dokumentasjon</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/control-structures/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/control-structures/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/control-structures/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/control-structures/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/control-structures/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/control-structures/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/control-structures/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/control-structures/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/control-structures/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/control-structures/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/control-structures/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/control-structures/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/control-structures/ ">my</a>
+      
+        <a href=" /no/lessons/basics/control-structures/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/control-structures/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/control-structures/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/control-structures/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/control-structures/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/control-structures/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/control-structures/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/control-structures/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Kontrollstrukturer</h1>
+  <p>I denne leksjonen skal vi ta en nærmere titt på de forskjellige kontrollstrukturene Elixir har tilgjengelig.</p>
+
+<h2>Innholdsfortegnelse</h2>
+<div id="toc"></div>
+
+<h2 id="if-og-unless"><code class="highlighter-rouge">if</code> og <code class="highlighter-rouge">unless</code></h2>
+
+<p>Sannsynligheten er stor for at du har vært borti <code class="highlighter-rouge">if/2</code> tidligere, og har du tidligere programmert i Ruby kjenner du til <code class="highlighter-rouge">unless/2</code>. De virker på samme måte i Elixir, men er her definert som makroer, og ikke språk konstruksjoner. Du kan finne implementeringen i <a href="http://elixir-lang.org/docs/stable/elixir/#!Kernel.html">Kernel modulen</a>.</p>
+
+<p>Det er verdt å merke seg at kun verdien <code class="highlighter-rouge">nil</code> og den boolske verdien <code class="highlighter-rouge">false</code> er “usant” i Elixir.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">if</span> <span class="no">String</span><span class="o">.</span><span class="n">valid?</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Valid string!"</span>
+<span class="o">...&gt;</span> <span class="k">else</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Invalid string."</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Valid string!"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">if</span> <span class="sd">"</span><span class="s2">a string value"</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Truthy"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Truthy"</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">unless/2</code> er motsatt av <code class="highlighter-rouge">if/2</code> - Ellers fungerer den på samme måte:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">unless</span> <span class="n">is_integer</span><span class="p">(</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Not an Int"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Not an Int"</span>
+</code></pre>
+</div>
+
+<h2 id="case"><code class="highlighter-rouge">case</code></h2>
+
+<p>Om vi trenger å sammenligne mot forskjellige mønster, kan vi bruke <code class="highlighter-rouge">case</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hello World"</span><span class="p">}</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">result</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="n">result</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:error</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Uh oh!"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Catch all"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Hello World"</span>
+</code></pre>
+</div>
+
+<p>Variabelen <code class="highlighter-rouge">_</code> er en viktig del av <code class="highlighter-rouge">case</code>. Uten den vil funksjonen gi oss ei feilmelding, hvis det ikke finnes en match.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="ss">:even</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="ss">:odd</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Odd"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">CaseClauseError</span><span class="p">)</span> <span class="n">no</span> <span class="k">case</span> <span class="n">clause</span> <span class="ss">matching:</span> <span class="ss">:even</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="ss">:even</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="ss">:odd</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Odd"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Not Odd"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Not Odd"</span>
+</code></pre>
+</div>
+
+<p>Variabelen <code class="highlighter-rouge">_</code> blir som <code class="highlighter-rouge">else</code> og vil matche “alt annet”.</p>
+
+<p>Siden <code class="highlighter-rouge">case</code> avhenger av mønstersammenligning, gjelder de samme reglene og restriksjonene. Hvis du ønsker å sammenligne med en eksisterende variabel, må festeoperatoren <code class="highlighter-rouge">^</code> benyttes:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">pie</span> <span class="o">=</span> <span class="m">3.14</span> 
+<span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="sd">"</span><span class="s2">cherry pie"</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="o">^</span><span class="n">pie</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Not so tasty"</span>
+<span class="o">...&gt;</span>   <span class="n">pie</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">I bet </span><span class="si">#{</span><span class="n">pie</span><span class="si">}</span><span class="s2"> is tasty"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">I bet cherry pie is tasty"</span>
+</code></pre>
+</div>
+
+<p>En annen fiffig funksjon i <code class="highlighter-rouge">case</code>, er dens støtte for beskyttelsesklausuler (guard clauses):</p>
+
+<p><em>Dette eksemplet er hentet direkte fra den offisielle Elixir <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#case">Getting Started</a> guiden.</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">}</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="m">3</span><span class="p">}</span> <span class="ow">when</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Will match"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Won't match"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Will match"</span>
+</code></pre>
+</div>
+
+<p>Se den offisielle dokumentasjonen for <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses">Tillatte uttrykk i beskyttelsesklausuler</a>.</p>
+
+<h2 id="cond"><code class="highlighter-rouge">cond</code></h2>
+
+<p>Hvis vi trenger å sammenligne forhold, og ikke verdier, kan vi bruke <code class="highlighter-rouge">cond</code>.<br />
+Denne funksjonen kan sammenlignes med <code class="highlighter-rouge">else if</code> eller <code class="highlighter-rouge">elsif</code> i andre programmeringsspråk:</p>
+
+<p><em>Dette eksemplet er hentet direkte fra den offisielle Elixir <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#cond">Getting Started</a> guiden.</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">cond</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="m">2</span> <span class="o">+</span> <span class="m">2</span> <span class="o">==</span> <span class="m">5</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">This will not be true"</span>
+<span class="o">...&gt;</span>   <span class="m">2</span> <span class="o">*</span> <span class="m">2</span> <span class="o">==</span> <span class="m">3</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Nor this"</span>
+<span class="o">...&gt;</span>   <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">2</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">But this will"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">But this will"</span>
+</code></pre>
+</div>
+
+<p>På samme måte som <code class="highlighter-rouge">case</code>, vil <code class="highlighter-rouge">cond</code> gi oss ei feilmelding hvis det ikke er noen match. Vi kan håndtere dette ved å definere en betingelse til <code class="highlighter-rouge">true</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">cond</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="m">7</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">0</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Incorrect"</span>
+<span class="o">...&gt;</span>   <span class="no">true</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Catch all"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Catch all"</span>
+</code></pre>
+</div>
+
+<h2 id="with"><code class="highlighter-rouge">with</code></h2>
+
+<p><code class="highlighter-rouge">with</code> er nyttig hvis vi for eksempel benytter oss av et nestet <code class="highlighter-rouge">case</code> statement eller forhold som ikke enkelt kan transporteres sammen. <code class="highlighter-rouge">with</code> består av nøkkelord, generatorer og et utrykk.</p>
+
+<p>Vi vil diskutere generatorer nærmere i en senere leksjon, men alt vi trenger å vite nå er at de benytter mønstersammenligning til å sammenligne den høyre siden <code class="highlighter-rouge">&lt;-</code> med den venstre.</p>
+
+<p>Vi starter med et enkelt eksempel av <code class="highlighter-rouge">with</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">first:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">last:</span> <span class="sd">"</span><span class="s2">Callan"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">with</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">first</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:first</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">last</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:last</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="k">do</span><span class="p">:</span> <span class="n">last</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">, "</span> <span class="o">&lt;&gt;</span> <span class="n">first</span>
+<span class="sd">"</span><span class="s2">Callan, Sean"</span>
+</code></pre>
+</div>
+
+<p>Hvis utsagnet ikke kan sammenlignes, vil den ikke-sammenlignbare verdien returneres:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">first:</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">first:</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">with</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">first</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:first</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">last</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:last</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="k">do</span><span class="p">:</span> <span class="n">last</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">, "</span> <span class="o">&lt;&gt;</span> <span class="n">first</span>
+<span class="ss">:error</span>
+</code></pre>
+</div>
+
+<p>La oss nå se på et større eksempel uten <code class="highlighter-rouge">with</code>, og deretter se hvordan vi kan refaktorere det:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">case</span> <span class="no">Repo</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">user</span><span class="p">}</span> <span class="o">-&gt;</span>
+    <span class="k">case</span> <span class="no">Guardian</span><span class="o">.</span><span class="n">encode_and_sign</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="ss">:token</span><span class="p">,</span> <span class="n">claims</span><span class="p">)</span> <span class="k">do</span>
+      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">}</span> <span class="o">-&gt;</span>
+        <span class="n">important_stuff</span><span class="p">(</span><span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">)</span>
+      <span class="n">error</span> <span class="o">-&gt;</span> <span class="n">error</span>
+    <span class="k">end</span>
+  <span class="n">error</span> <span class="o">-&gt;</span> <span class="n">error</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Når vi introduserer <code class="highlighter-rouge">with</code> til eksemplet, ender vi opp med kode som er enklere å lese, og som består av færre linjer:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">with</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">user</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Repo</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">changeset</span><span class="p">),</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Guardian</span><span class="o">.</span><span class="n">encode_and_sign</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:token</span><span class="p">),</span>
+  <span class="k">do</span><span class="p">:</span> <span class="n">important_stuff</span><span class="p">(</span><span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Del denne siden
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/no/lessons/basics/control-structures/&title=Kontrollstrukturer&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/no/lessons/basics/control-structures/&via=elixirschool&text=ElixirSchool: Kontrollstrukturer&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/no/lessons/basics/control-structures/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/no/lessons/basics/control-structures/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/no/lessons/basics/control-structures/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Kontrollstrukturer" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/no/lessons/basics/control-structures/&title=ElixirSchool: Kontrollstrukturer&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/no/lessons/basics/control-structures/&title=ElixirSchool: Kontrollstrukturer&description=Check out 'Kontrollstrukturer' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Kontrollstrukturer&body=Check out 'Kontrollstrukturer' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/no/lessons/basics/control-structures/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/gr/lessons/basics/mix-tasks/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Ειδικές Εργασίες Mix &middot; Elixir School
+
+">
+  <meta property="og:description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Ειδικές Εργασίες Mix &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Μαθήματα προγραμματισμού της γλώσσας Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Βασικά</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/basics/basics/">Βασικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/basics/collections/">Συλλογές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/basics/pattern-matching/">Αντιπαραβολές Προτύπων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/basics/control-structures/">Δομές Ελέγχου</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/basics/functions/">Συναρτήσεις</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/basics/pipe-operator/">Τελεστής Σωλήνα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/basics/modules/">Ενότητες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/basics/sigils/">Σφραγίδες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/basics/documentation/">Τεκμηρίωση</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/gr/lessons/basics/testing/">Δοκιμές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/gr/lessons/basics/comprehensions/">Ανάγνωση Λιστών</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/gr/lessons/basics/strings/">Αλφαριθμητικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson  active" href="/gr/lessons/basics/mix-tasks/">Ειδικές Εργασίες Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Προχωρημένα</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/advanced/erlang/">Διαλειτουργικότητα με την Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/advanced/error-handling/">Διαχείριση Σφαλμάτων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/advanced/escripts/">Εκτελέσιμα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/advanced/concurrency/">Συγχρονισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-concurrency/">Συγχρονισμός OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-supervisors/">Επιτηρητές OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/advanced/metaprogramming/">Μεταπρογραμματισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/advanced/umbrella-projects/">Projects Ομπρέλας</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/advanced/typespec/">Προδιαγραφές και τύποι</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/advanced/behaviours/">Συμπεριφορές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Ιδιαιτερότητες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/specifics/eex/">Ένθετη Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βιβλιοθήκες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/libraries/guardian/">Guardian (Βασικά)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/mix-tasks/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/mix-tasks/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/mix-tasks/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/mix-tasks/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/mix-tasks/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/mix-tasks/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/mix-tasks/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/mix-tasks/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/mix-tasks/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/mix-tasks/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/mix-tasks/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/mix-tasks/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/mix-tasks/ ">my</a>
+      
+        <a href=" /no/lessons/basics/mix-tasks/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/mix-tasks/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/mix-tasks/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/mix-tasks/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/mix-tasks/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/mix-tasks/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/mix-tasks/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/mix-tasks/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Ειδικές Εργασίες Mix</h1>
+  <p>Δημιουργία ειδικών εργασιών Mix για τα Elixir projects σας.</p>
+
+<h2>Πίνακας περιεχομένων</h2>
+<div id="toc"></div>
+
+<h2 id="section">Εισαγωγή</h2>
+
+<p>Είναι συνηθισμένο να θέλετε να επεκτείνετε τη λειτουργικότητα των εφαρμογών σας στην Elixir προσθέτοντας ειδικές εργασίες Mix.  Πριν μάθουμε πως να το κάνουμε αυτό, ας δούμε ένα που υπάρχει ήδη:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix phoenix.new my_phoenix_app
+
+<span class="k">*</span> creating my_phoenix_app/config/config.exs
+<span class="k">*</span> creating my_phoenix_app/config/dev.exs
+<span class="k">*</span> creating my_phoenix_app/config/prod.exs
+<span class="k">*</span> creating my_phoenix_app/config/prod.secret.exs
+<span class="k">*</span> creating my_phoenix_app/config/test.exs
+<span class="k">*</span> creating my_phoenix_app/lib/my_phoenix_app.ex
+<span class="k">*</span> creating my_phoenix_app/lib/my_phoenix_app/endpoint.ex
+<span class="k">*</span> creating my_phoenix_app/test/views/error_view_test.exs
+...
+</code></pre>
+</div>
+
+<p>Όπως μπορούμε να δούμε από την εντολή κονσόλας από πάνω, ο σκελετός εφαρμογών Phoenix έχει ειδική εργασία Mix για να δημιουργεί ένα νέο project.  Θα μπορούσαμε να δημιουργήσουμε κάτι παρόμοιο για τα projects μας;  Μπορούμε, και η Elixir το κάνει πολύ έυκολο για εμάς.</p>
+
+<h2 id="section-1">Εγκατάσταση</h2>
+
+<p>Ας εγκαταστήσουμε μια πολύ βασική εφαρμογή Mix.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new hello
+
+<span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/hello.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/hello_test.exs
+
+Your Mix project was created successfully.
+You can use <span class="s2">"mix"</span> to compile it, <span class="nb">test </span>it, and more:
+
+<span class="nb">cd </span>hello
+mix <span class="nb">test
+
+</span>Run <span class="s2">"mix help"</span> <span class="k">for </span>more commands.
+</code></pre>
+</div>
+
+<p>Τώρα, στο αρχείο <strong>lib/hello.ex</strong> που μας έφτιαξε το το Mix, ας δημιουργήσουμε μια απλή συνάρτηση που εμφανίζει το “Γειά σου, Κόσμε!”</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Hello</span> <span class="k">do</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Εμφανίζει το "Γειά σου, Κόσμε!" κάθε φορά.
+  """</span>
+  <span class="k">def</span> <span class="n">say</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Γειά σου, Κόσμε!"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="mix">Ειδική Εργασία Mix</h2>
+
+<p>Ας δημιουργήσουμε την ειδική εργασία Mix.  Δημιουργήστε ένα νέο φάκελο <strong>hello/lib/mix/tasks/hello.ex</strong>.  Μέσα σε αυτό το αρχείο, ας εισάγουμε αυτές τις 7 γραμμές Elixir.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Tasks</span><span class="o">.</span><span class="no">Hello</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Task</span>
+
+  <span class="nv">@shortdoc</span> <span class="sd">"</span><span class="s2">Απλά τρέχει την εντολή Hello.say/0 ."</span>
+  <span class="k">def</span> <span class="n">run</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">Hello</span><span class="o">.</span><span class="n">say</span> <span class="c1"># καλεί την συνάρτηση Hello.say() από πριν</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Παρατηρείστε πως ξεκινούμε την δήλωση defmodule με το <code class="highlighter-rouge">Mix.Tasks</code> και το όνομα που θέλουμε να καλέσουμε από τη γραμμή εντολών.  Στη δεύτερη γραμμή παρουσιάζουμε την <code class="highlighter-rouge">use Mix.Task</code> η οποία φέρνει τη συμπεριφορά της <code class="highlighter-rouge">Mix.Task</code> στο namespace.  Μετά ορίζουμε μια συνάρτηση run η οποία αγνοεί όλα τα ορίσματα για τώρα.  Μέσα στη συνάρτηση, καλούμε την ενότητα <code class="highlighter-rouge">Hello</code> και τη συνάρτηση <code class="highlighter-rouge">say</code>.</p>
+
+<h2 id="mix--">Εργασίες Mix εν Δράσει</h2>
+
+<p>Ας ελέγξουυμε την εργασία mix.  Όσο είμαστε στο φάκελο θα πρέπει να δουλεύει.  Από τη γραμμή εντολών, τρέξτε την εντολή <code class="highlighter-rouge">mix hello</code>, και θα πρέπει να δούμε τα ακόλουθα:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix hello
+Γειά σου, Κόσμε!
+</code></pre>
+</div>
+
+<p>Το Mix είναι αρκετά φιλικό.  Γνωρίζει ότι όλοι μπορούν να κάνουν λάθος στην ορθογραφία μερικές φορές, έτσι χρησιμοποιεί μια τεχνική που λέγεται ασαφής αντιπαραβολή αλφαριθμητικών για να κάνει συστάσεις:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix hell
+<span class="k">**</span> <span class="o">(</span>Mix<span class="o">)</span> The task <span class="s2">"hell"</span> could not be found. Did you mean <span class="s2">"hello"</span>?
+</code></pre>
+</div>
+
+<p>Μήπως παρατηρήσατε ήδη ότι εισάγαμε μια νέα ιδιότητα ενότητας, την <code class="highlighter-rouge">@shortdoc</code>;  Αυτή είναι βολική όταν στέλνουμε την εφαρμογή στην παραγωγή, ώστε για παράδειγμα ο χρήστης να μπορεί να τρέξει την εντολή <code class="highlighter-rouge">mix help</code> στο τερματικό.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix <span class="nb">help
+
+</span>mix app.start         <span class="c"># Ξεκινάει όλες τις εγγεγραμμένες εφαρμογές</span>
+...
+mix hello             <span class="c"># Απλά καλεί την συνάρτηση Hello.say/0.</span>
+...
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/gr/lessons/basics/mix-tasks/&title=Ειδικές Εργασίες Mix&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/gr/lessons/basics/mix-tasks/&via=elixirschool&text=ElixirSchool: Ειδικές Εργασίες Mix&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/gr/lessons/basics/mix-tasks/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/gr/lessons/basics/mix-tasks/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/gr/lessons/basics/mix-tasks/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Ειδικές Εργασίες Mix" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/gr/lessons/basics/mix-tasks/&title=ElixirSchool: Ειδικές Εργασίες Mix&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/gr/lessons/basics/mix-tasks/&title=ElixirSchool: Ειδικές Εργασίες Mix&description=Check out 'Ειδικές Εργασίες Mix' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Ειδικές Εργασίες Mix&body=Check out 'Ειδικές Εργασίες Mix' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/gr/lessons/basics/mix-tasks/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lecciones acerca del lenguaje de programación Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/es/lessons/basics/basics/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Básico &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lecciones acerca del lenguaje de programación Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Básico &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lecciones acerca del lenguaje de programación Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Básico</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson  active" href="/es/lessons/basics/basics/">Básico</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/basics/collections/">Colecciones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/basics/pattern-matching/">Coincidencia de Patrones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/es/lessons/basics/control-structures/">Estructuras de control</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/es/lessons/basics/functions/">Funciones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/es/lessons/basics/pipe-operator/">Operador Pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/es/lessons/basics/modules/">Composición</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/es/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/es/lessons/basics/testing/">Pruebas</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Avanzado</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/advanced/erlang/">Interoperabilidad Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/advanced/error-handling/">Manejo de errores</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/advanced/escripts/">Ejecutables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/advanced/concurrency/">Concurrencia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Específico</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/specifics/eex/">Elixir Embebido (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/specifics/ets/">Almacenamiento de términos de Erlang (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/basics/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/basics/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/basics/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/basics/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/basics/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/basics/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/basics/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/basics/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/basics/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/basics/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/basics/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/basics/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/basics/ ">my</a>
+      
+        <a href=" /no/lessons/basics/basics/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/basics/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/basics/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/basics/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/basics/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/basics/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/basics/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/basics/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Básico</h1>
+  <p>Preparar el entorno, tipos básicos y operaciones.</p>
+
+<h2>Tabla de contenidos</h2>
+<div id="toc"></div>
+
+<h2 id="preparar-el-entorno">Preparar el entorno</h2>
+
+<h3 id="instalar-elixir">Instalar Elixir</h3>
+
+<p>Las instrucciones para cada sistema operativo pueden ser encontradas en <a href="http://elixir-lang.org">Elixir-lang.org</a> en la guía <a href="http://elixir-lang.org/install.html">Instalando Elixir</a>.</p>
+
+<h3 id="modo-interactivo">Modo Interactivo</h3>
+
+<p>Elixir viene con <code class="highlighter-rouge">iex</code>, una consola interactiva, que nos permite evaluar expresiones Elixir.</p>
+
+<p>Para empezar, Ejecutamos <code class="highlighter-rouge">iex</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Erlang/OTP 19 [erts-8.0.2] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+Interactive Elixir (1.3.4) - press Ctrl+C to exit (type h() ENTER for help)
+iex&gt;
+</code></pre>
+</div>
+
+<h2 id="tipos-bsicos">Tipos Básicos</h2>
+
+<h3 id="enteros">Enteros</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">255</span>
+<span class="m">255</span>
+</code></pre>
+</div>
+
+<p>El soporte para números binarios, octales y hexadecimales también viene incluido:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">0b0110</span>
+<span class="m">6</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">0</span><span class="n">o644</span>
+<span class="m">420</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">0x1F</span>
+<span class="m">31</span>
+</code></pre>
+</div>
+
+<h3 id="coma-flotante">Coma flotante</h3>
+
+<p>En Elixir, los números con coma flotante requieren un decimal después de al menos un dígito; estos tienen una precisión de 64 bits y soportan <code class="highlighter-rouge">e</code> para números exponenciales.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">3.14</span> 
+ <span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="o">.</span><span class="m">14</span> 
+<span class="o">**</span> <span class="p">(</span><span class="no">SyntaxError</span><span class="p">)</span> <span class="ss">iex:</span><span class="m">2</span><span class="p">:</span> <span class="n">syntax</span> <span class="n">error</span> <span class="ss">before:</span> <span class="s1">'.'</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">1.0e-10</span>
+<span class="m">1.0e-10</span>
+</code></pre>
+</div>
+
+<h3 id="booleanos">Booleanos</h3>
+
+<p>Elixir soporta <code class="highlighter-rouge">true</code> y <code class="highlighter-rouge">false</code> como booleanos; todo valor es verdadero a excepción de <code class="highlighter-rouge">false</code> y <code class="highlighter-rouge">nil</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">true</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">false</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<h3 id="tomos">Átomos</h3>
+
+<p>Un Átomo es una constante cuyo nombre es su valor, si estás familiarizado con Ruby estos son equivalentes a los Símbolos:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:foo</span>
+<span class="ss">:foo</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:foo</span> <span class="o">==</span> <span class="ss">:bar</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<p>NOTA: Booleanos <code class="highlighter-rouge">true</code> y <code class="highlighter-rouge">false</code> son también los átomos <code class="highlighter-rouge">:true</code> y <code class="highlighter-rouge">:false</code> respectivamente.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">true</span> <span class="o">|&gt;</span> <span class="n">is_atom</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:true</span> <span class="o">|&gt;</span> <span class="n">is_boolean</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:true</span> <span class="o">===</span> <span class="no">true</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="cadenas">Cadenas</h3>
+
+<p>Las cadenas en Elixir están codificadas en utf-8 y están representadas con comillas dobles:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Hello"</span>
+<span class="sd">"</span><span class="s2">Hello"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">dziękuję"</span>
+<span class="sd">"</span><span class="s2">dziękuję"</span>
+</code></pre>
+</div>
+
+<p>Las cadenas soportan saltos de línea y secuencias de escape:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">foo
+...&gt; bar"</span>
+<span class="sd">"</span><span class="s2">foo\nbar"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">foo\nbar"</span>
+<span class="sd">"</span><span class="s2">foo\nbar"</span>
+</code></pre>
+</div>
+
+<h2 id="operaciones-bsicas">Operaciones Básicas</h2>
+
+<h3 id="aritmtica">Aritmética</h3>
+
+<p>Elixir soporta los operadores básicos <code class="highlighter-rouge">+</code>, <code class="highlighter-rouge">-</code>, <code class="highlighter-rouge">*</code>, y <code class="highlighter-rouge">/</code> como era de esperarse. Es importante resaltar que <code class="highlighter-rouge">/</code> siempre retornará un número con coma flotante:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">+</span> <span class="m">2</span>
+<span class="m">4</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">*</span> <span class="m">5</span>
+<span class="m">10</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">10</span> <span class="o">/</span> <span class="m">5</span>
+<span class="m">2.0</span>
+</code></pre>
+</div>
+
+<p>Si tú necesitas una división entera o el resto de una división, Elixir viene con dos funciones útiles para para lograr esto:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">div</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="m">2</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">rem</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="m">1</span>
+</code></pre>
+</div>
+
+<h3 id="booleanas">Booleanas</h3>
+
+<p>Elixir provee los operadores booleanos: <code class="highlighter-rouge">||</code>, <code class="highlighter-rouge">&amp;&amp;</code>, y <code class="highlighter-rouge">!</code>, estos soportan cualquier tipo:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="o">-</span><span class="m">20</span> <span class="o">||</span> <span class="no">true</span>
+<span class="o">-</span><span class="m">20</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">false</span> <span class="o">||</span> <span class="m">42</span>
+<span class="m">42</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">42</span> <span class="o">&amp;&amp;</span> <span class="no">true</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">42</span> <span class="o">&amp;&amp;</span> <span class="no">nil</span>
+<span class="no">nil</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">!42</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">!false</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Hay tres operadores adicionales cuyo primer argumento <em>tiene</em> que ser un booleano (<code class="highlighter-rouge">true</code> y <code class="highlighter-rouge">false</code>):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">true</span> <span class="ow">and</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">false</span> <span class="ow">or</span> <span class="no">true</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ow">not</span> <span class="no">false</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">42</span> <span class="ow">and</span> <span class="no">true</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span> <span class="n">argument</span> <span class="ss">error:</span> <span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ow">not</span> <span class="m">42</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span> <span class="n">argument</span> <span class="n">error</span>
+</code></pre>
+</div>
+
+<h3 id="comparacin">Comparación</h3>
+
+<p>Elixir viene con todos los operadores de comparación a los que estamos acostumbrados: <code class="highlighter-rouge">==</code>, <code class="highlighter-rouge">!=</code>, <code class="highlighter-rouge">===</code>, <code class="highlighter-rouge">!==</code>, <code class="highlighter-rouge">&lt;=</code>, <code class="highlighter-rouge">&gt;=</code>, <code class="highlighter-rouge">&lt;</code> y <code class="highlighter-rouge">&gt;</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">1</span> <span class="o">&gt;</span> <span class="m">2</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">1</span> <span class="o">!=</span> <span class="m">2</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">==</span> <span class="m">2</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">&lt;=</span> <span class="m">3</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Para comparación estricta de enteros y flotantes usamos <code class="highlighter-rouge">===</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">==</span> <span class="m">2.0</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">===</span> <span class="m">2.0</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<p>Una característica importante de Elixir es que cualquier par de tipos se pueden comparar, esto es útil particularmente en ordenación. No necesitamos memorizar el orden pero es importante ser consciente de este:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">number</span> <span class="o">&lt;</span> <span class="n">atom</span> <span class="o">&lt;</span> <span class="n">reference</span> <span class="o">&lt;</span> <span class="n">functions</span> <span class="o">&lt;</span> <span class="n">port</span> <span class="o">&lt;</span> <span class="n">pid</span> <span class="o">&lt;</span> <span class="n">tuple</span> <span class="o">&lt;</span> <span class="n">maps</span> <span class="o">&lt;</span> <span class="n">list</span> <span class="o">&lt;</span> <span class="n">bitstring</span>
+</code></pre>
+</div>
+
+<p>Esto puede conducir a algunas interesantes y válidas comparaciones que no puedes encontrar en otros lenguajes:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:hello</span> <span class="o">&gt;</span> <span class="m">999</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:hello</span><span class="p">,</span> <span class="ss">:world</span><span class="p">}</span> <span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<h3 id="interpolacin-de-cadenas">Interpolación de cadenas</h3>
+
+<p>Si has usado Ruby, la interpolación de cadenas en Elixir te parecerá muy familiar:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">Sean"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Hello </span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="sd">"</span><span class="s2">Hello Sean"</span>
+</code></pre>
+</div>
+
+<h3 id="concatenacin-de-cadenas">Concatenación de cadenas</h3>
+
+<p>La concatenación de cadenas usa el operador <code class="highlighter-rouge">&lt;&gt;</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">Sean"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Hello "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+<span class="sd">"</span><span class="s2">Hello Sean"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/es/lessons/basics/basics/&title=Básico&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/es/lessons/basics/basics/&via=elixirschool&text=ElixirSchool: Básico&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/es/lessons/basics/basics/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/es/lessons/basics/basics/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/es/lessons/basics/basics/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Básico" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/es/lessons/basics/basics/&title=ElixirSchool: Básico&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/es/lessons/basics/basics/&title=ElixirSchool: Básico&description=Check out 'Básico' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Básico&body=Check out 'Básico' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/es/lessons/basics/basics/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

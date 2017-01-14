@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lezioni sul linguaggio di programmazione Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/it/lessons/basics/modules/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Composizione &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lezioni sul linguaggio di programmazione Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Composizione &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lezioni sul linguaggio di programmazione Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Base</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/it/lessons/basics/basics/">Base</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/it/lessons/basics/collections/">Collezioni</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/it/lessons/basics/enum/">Enumerazioni</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/it/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/it/lessons/basics/control-structures/">Strutture di Controllo</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/it/lessons/basics/functions/">Funzioni</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/it/lessons/basics/pipe-operator/">Operatore Pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson  active" href="/it/lessons/basics/modules/">Composizione</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/it/lessons/basics/mix/">Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Avanzato</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/it/lessons/advanced/concurrency/">Concorrenza</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/modules/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/modules/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/modules/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/modules/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/modules/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/modules/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/modules/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/modules/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/modules/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/modules/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/modules/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/modules/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/modules/ ">my</a>
+      
+        <a href=" /no/lessons/basics/modules/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/modules/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/modules/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/modules/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/modules/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/modules/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/modules/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/modules/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Composizione</h1>
+  <p>Per esperienza sappiamo che è disordinato avere tutte le nostre funzioni nello stesso file o ambito. In questa lezione affronteremo come raggruppare le funzioni e definire una mappa specializzata conosciuta come struttura (<em>struct</em>) per organizzare il nostro codice in modo più efficiente.</p>
+
+<h2>Tavola dei Contenuti</h2>
+<div id="toc"></div>
+
+<h2 id="moduli">Moduli</h2>
+
+<p>I moduli sono il modo migliore per organizzare le funzioni all’interno di un namespace. Oltre a raggruppare le funzioni, i moduli permettono di definire funzioni con nomi e funzioni private, affrontate nella lezione precedente.</p>
+
+<p>Diamo uno sguardo ad un semplice esempio:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">greeting</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Hello </span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2">."</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">greeting</span> <span class="sd">"</span><span class="s2">Sean"</span>
+<span class="sd">"</span><span class="s2">Hello Sean."</span>
+</code></pre>
+</div>
+
+<p>È possibile innestare moduli in Elixir, permettendo di estendere le funzionalità di un namespace:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Greetings</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">morning</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Good morning </span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2">."</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">evening</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Good night </span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2">."</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="no">Greetings</span><span class="o">.</span><span class="n">morning</span> <span class="sd">"</span><span class="s2">Sean"</span>
+<span class="sd">"</span><span class="s2">Good morning Sean."</span>
+</code></pre>
+</div>
+
+<h3 id="attributi-dei-moduli">Attributi dei Moduli</h3>
+
+<p>Gli attributi dei moduli in Elixir sono principalmente usati come costanti. Ecco un semplice esempio:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="nv">@greeting</span> <span class="sd">"</span><span class="s2">Hello"</span>
+
+  <span class="k">def</span> <span class="n">greeting</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="err">~</span><span class="n">s</span><span class="p">(</span><span class="c1">#{@greeting} #{name}.)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>È importante notare che esistono attributi riservati in Elixir. I tre più comuni sono:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">moduledoc</code> — Documenta il modulo corrente.</li>
+  <li><code class="highlighter-rouge">doc</code> — Documentazione per le funzioni e le macro.</li>
+  <li><code class="highlighter-rouge">behaviour</code> — Usa un OTP o un comportamento definito dall’utente.</li>
+</ul>
+
+<h2 id="strutture">Strutture</h2>
+
+<p>Le strutture (<em>structs</em>) sono un tipo speciale di mappe con un insieme predefinito di chiavi e valori di default. Deve essere definito all’interno di un modulo, dalla quale prende il suo nome. È comune per una struttura essere l’unica cosa definita all’interno di un modulo.</p>
+
+<p>Per definire una struttura usiamo <code class="highlighter-rouge">defstruct</code> assieme ad una lista di keywords e valori di default:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">User</span> <span class="k">do</span>
+  <span class="n">defstruct</span> <span class="ss">name:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">roles:</span> <span class="p">[]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Creaiamo qualche struttura:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%</span><span class="no">Example</span><span class="o">.</span><span class="no">User</span><span class="p">{}</span>
+<span class="p">%</span><span class="no">Example</span><span class="o">.</span><span class="no">User</span><span class="p">{</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">roles:</span> <span class="p">[]}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%</span><span class="no">Example</span><span class="o">.</span><span class="no">User</span><span class="p">{</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">}</span>
+<span class="p">%</span><span class="no">Example</span><span class="o">.</span><span class="no">User</span><span class="p">{</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">,</span> <span class="ss">roles:</span> <span class="p">[]}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%</span><span class="no">Example</span><span class="o">.</span><span class="no">User</span><span class="p">{</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">,</span> <span class="ss">roles:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:owner</span><span class="p">]}</span>
+<span class="p">%</span><span class="no">Example</span><span class="o">.</span><span class="no">User</span><span class="p">{</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">,</span> <span class="ss">roles:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:owner</span><span class="p">]}</span>
+</code></pre>
+</div>
+
+<p>Possiamo aggiornare la nostra struttura come faremmo con una mappa:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">steve</span> <span class="o">=</span> <span class="p">%</span><span class="no">Example</span><span class="o">.</span><span class="no">User</span><span class="p">{</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">,</span> <span class="ss">roles:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:owner</span><span class="p">]}</span>
+<span class="p">%</span><span class="no">Example</span><span class="o">.</span><span class="no">User</span><span class="p">{</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">,</span> <span class="ss">roles:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:owner</span><span class="p">]}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">sean</span> <span class="o">=</span> <span class="p">%{</span><span class="n">steve</span> <span class="o">|</span> <span class="ss">name:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">}</span>
+<span class="p">%</span><span class="no">Example</span><span class="o">.</span><span class="no">User</span><span class="p">{</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">roles:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:owner</span><span class="p">]}</span>
+</code></pre>
+</div>
+
+<p>Soprattutto, possiamo combinare le strutture con le mappe:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">}</span> <span class="o">=</span> <span class="n">sean</span>
+<span class="p">%</span><span class="no">Example</span><span class="o">.</span><span class="no">User</span><span class="p">{</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">roles:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:owner</span><span class="p">]}</span>
+</code></pre>
+</div>
+
+<h2 id="composizione">Composizione</h2>
+
+<p>Ora che sappiamo come creare i moduli e le strutture, vediao come includere funzionalità esistenti al loro interno tramite la composizione. Elixir fornisce una varietà di modi differenti per interagire con altri moduli. Vediamo cosa abbiamo a disposizione.</p>
+
+<h3 id="alias"><code class="highlighter-rouge">alias</code></h3>
+
+<p>Permette di rinominare il nome di un modulo, è usato frequentemente in Elixir:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Sayings</span><span class="o">.</span><span class="no">Greetings</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">basic</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hi, </span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+
+<span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Sayings</span><span class="o">.</span><span class="no">Greetings</span>
+
+  <span class="k">def</span> <span class="n">greeting</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="no">Greetings</span><span class="o">.</span><span class="n">basic</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1"># Senza alias</span>
+
+<span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">greeting</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="no">Sayings</span><span class="o">.</span><span class="no">Greetings</span><span class="o">.</span><span class="n">basic</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Se c’è un conflitto tra due alias o vuoi semplicemente rinominare con un nome del tutto differente, possiamo usare l’opzione <code class="highlighter-rouge">:as</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Sayings</span><span class="o">.</span><span class="no">Greetings</span><span class="p">,</span> <span class="ss">as:</span> <span class="no">Hi</span>
+
+  <span class="k">def</span> <span class="n">print_message</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="no">Hi</span><span class="o">.</span><span class="n">basic</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>È anche possibile rinominare più moduli alla volta:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Sayings</span><span class="o">.</span><span class="p">{</span><span class="no">Greetings</span><span class="p">,</span> <span class="no">Farewells</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="import"><code class="highlighter-rouge">import</code></h3>
+
+<p>Se vogliamo importare funzioni e macro invece di rinominare il modulo, possiamo usare <code class="highlighter-rouge">import/</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">last</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">CompileError</span><span class="p">)</span> <span class="ss">iex:</span><span class="m">9</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">function</span> <span class="n">last</span><span class="o">/</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="no">List</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">last</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="m">3</span>
+</code></pre>
+</div>
+
+<h4 id="granularit">Granularità</h4>
+
+<p>Per impostazione predefinita sono importate tutte le funzioni e le macro, ma possiamo filtrarle usando le opzioni <code class="highlighter-rouge">:only</code> e <code class="highlighter-rouge">:except</code>.</p>
+
+<p>Per importare funzioni e macro specifiche, dobbiamo fornire la coppia nome/arity a <code class="highlighter-rouge">:only</code> e <code class="highlighter-rouge">:except</code>. Cominciamo importando solo la funzione <code class="highlighter-rouge">last/1</code> :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="no">List</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">last:</span> <span class="m">1</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">first</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">CompileError</span><span class="p">)</span> <span class="ss">iex:</span><span class="m">13</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">function</span> <span class="n">first</span><span class="o">/</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">last</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="m">3</span>
+</code></pre>
+</div>
+
+<p>Se importiamo tutto tranne <code class="highlighter-rouge">last/1</code> a proviamo a chiamare le stesse funzioni come nell’esempio precedente:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="no">List</span><span class="p">,</span> <span class="ss">except:</span> <span class="p">[</span><span class="ss">last:</span> <span class="m">1</span><span class="p">]</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">first</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">last</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">CompileError</span><span class="p">)</span> <span class="ss">iex:</span><span class="m">3</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">function</span> <span class="n">last</span><span class="o">/</span><span class="m">1</span>
+</code></pre>
+</div>
+
+<p>In aggiunta alla coppia nome/arity esistono due atomi speciali, <code class="highlighter-rouge">:functions</code> e <code class="highlighter-rouge">:macros</code>, che importano rispettivamente solo le funzioni e le macro:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">List</span><span class="p">,</span> <span class="ss">only:</span> <span class="ss">:functions</span>
+<span class="kn">import</span> <span class="no">List</span><span class="p">,</span> <span class="ss">only:</span> <span class="ss">:macros</span>
+</code></pre>
+</div>
+
+<h3 id="require"><code class="highlighter-rouge">require</code></h3>
+
+<p>Nonostante sia usato meno frequentemente, <code class="highlighter-rouge">require/2</code> è comunque importante. Richiedere un modulo garantisce che venga compilato e caricato. Questo è particolarmente utile quando dobbiamo accedere alle macro di un modulo:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="kn">require</span> <span class="no">SuperMacros</span>
+
+  <span class="no">SuperMacros</span><span class="o">.</span><span class="n">do_stuff</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Se proviamo a chiamare una macro che non è stata ancora caricata, Elixir solleverà un errore.</p>
+
+<h3 id="use"><code class="highlighter-rouge">use</code></h3>
+
+<p>Usa il modulo nel contesto corrente. Questo è particolarmente utile quando un modulo ha bisogno di eseguire qualche configurazione. Chiamando <code class="highlighter-rouge">use</code> invochiamo la funzione (<em>hook</em>) <code class="highlighter-rouge">__using__</code> all’interno del modulo, fornendo al modulo la possibilità di modificare il contesto esistente:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">MyModule</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">__using__</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span>
+      <span class="kn">import</span> <span class="no">MyModule</span><span class="o">.</span><span class="no">Foo</span>
+      <span class="kn">import</span> <span class="no">MyModule</span><span class="o">.</span><span class="no">Bar</span>
+      <span class="kn">import</span> <span class="no">MyModule</span><span class="o">.</span><span class="no">Baz</span>
+
+      <span class="n">alias</span> <span class="no">MyModule</span><span class="o">.</span><span class="no">Repo</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/it/lessons/basics/modules/&title=Composizione&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/it/lessons/basics/modules/&via=elixirschool&text=ElixirSchool: Composizione&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/it/lessons/basics/modules/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/it/lessons/basics/modules/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/it/lessons/basics/modules/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Composizione" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/it/lessons/basics/modules/&title=ElixirSchool: Composizione&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/it/lessons/basics/modules/&title=ElixirSchool: Composizione&description=Check out 'Composizione' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Composizione&body=Check out 'Composizione' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/it/lessons/basics/modules/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

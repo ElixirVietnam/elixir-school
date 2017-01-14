@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/advanced/behaviours/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Behaviours &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Behaviours &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson  active" href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/behaviours/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/behaviours/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/behaviours/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/behaviours/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/behaviours/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/behaviours/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/behaviours/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/behaviours/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/behaviours/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/behaviours/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/behaviours/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/behaviours/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/behaviours/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/behaviours/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/behaviours/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/behaviours/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/behaviours/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/behaviours/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/behaviours/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/behaviours/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/behaviours/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Behaviours</h1>
+  <p>Chúng ta đã học về Typespecs trong bài học trước, trong bài này, chúng ta sẽ học về cách để yêu cầu một module cài đặt những tiêu chuẩn đó. Trong Elixir, tính năng này thường được gọi bằng Behaviours.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="s-dng">Sử dụng</h2>
+
+<p>Đôi khi, bạn muốn các module cùng chia sẻ một public API, giải pháp cho vấn đề này trong Elixir là behaviours. Behaviours thực thi hai vai trò chính:</p>
+
+<ul>
+  <li>Định nghĩa một tập các hàm bắt buộc phải cài đặt</li>
+  <li>Kiểm tra xem tập đó có được cài đặt hay không</li>
+</ul>
+
+<p>Elixir đã bao gồm một tập các behaviours ví dụ như GenServer, nhưng trong bài học này, chúng ta sẽ tập trung vào việc tạo ra các Behaviour cho riêng chúng ta.</p>
+
+<h2 id="nh-ngha-mt-behaviour">Định nghĩa một behaviour</h2>
+
+<p>Để hiểu rõ về behaviour hơn, hãy cùng cài đặt một worker module. Những worker này được kỳ vọng sẽ cài đặt 2 hàm <code class="highlighter-rouge">init/1</code> và <code class="highlighter-rouge">perform/2</code>.</p>
+
+<p>Để đạt được điều đó, chúng ta sẽ sử dụng <code class="highlighter-rouge">@callback</code> với cú pháp tương tự như <code class="highlighter-rouge">@spec</code>, để định nghĩa các hàm bắt buộc (<strong>required</strong> method), đối với macro, chúng ta có thể sử dụng <code class="highlighter-rouge">@macrocallback</code>. Hãy cùng xác định <code class="highlighter-rouge">init/1</code> và <code class="highlighter-rouge">perform/2</code> cho các worker của chúng ta:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Worker</span> <span class="k">do</span>
+  <span class="nv">@callback</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span> <span class="p">::</span> <span class="n">term</span><span class="p">)</span> <span class="p">::</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">new_state</span> <span class="p">::</span> <span class="n">term</span><span class="p">}</span> <span class="o">|</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span> <span class="p">::</span> <span class="n">term</span><span class="p">}</span>
+  <span class="nv">@callback</span> <span class="n">perform</span><span class="p">(</span><span class="n">args</span> <span class="p">::</span> <span class="n">term</span><span class="p">,</span> <span class="n">state</span> <span class="p">::</span> <span class="n">term</span><span class="p">)</span> <span class="p">::</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">result</span> <span class="p">::</span> <span class="n">term</span><span class="p">,</span> <span class="n">new_state</span> <span class="p">::</span> <span class="n">term</span><span class="p">}</span> <span class="o">|</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span> <span class="p">::</span> <span class="n">term</span><span class="p">,</span> <span class="n">new_state</span> <span class="p">::</span> <span class="n">term</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Ở đây chúng ta định nghĩa <code class="highlighter-rouge">init/1</code> chấp nhận bất cứ giá trị nào, và trả về một tuple hoặc là <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code> hoặc là <code class="highlighter-rouge"><span class="p">{</span><span class="err">:error,</span><span class="w"> </span><span class="err">reason</span><span class="p">}</span></code>, đây là tiêu chuẩn cho việc khởi tạo. Hàm <code class="highlighter-rouge">perform/2</code> sẽ nhận vào một vài tham số cho worker cùng với trạng thái mà chúng ta đã khởi tạo, chúng ta kỳ vọng rằng <code class="highlighter-rouge">perform/2</code> sẽ trả về <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">result,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code> hoặc là <code class="highlighter-rouge"><span class="p">{</span><span class="err">:error,</span><span class="w"> </span><span class="err">reason,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code> giống như GenServer.</p>
+
+<h2 id="s-dng-behaviours">Sử dụng behaviours</h2>
+
+<p>Giờ đây chúng ta đã định nghĩa behaviour, chúng ta có thể sử dụng nó để tạo ra một số module mà tất cả chia sẻ cùng một public API. Thêm một behaviour vào module khá là dễ với thuộc tính <code class="highlighter-rouge">@behaviour</code>.</p>
+
+<p>Sử dụng behaviour mới, chúng ta sẽ tạo ra một module để tải một file, sau đó lưu nó lại:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Downloader</span> <span class="k">do</span>
+  <span class="nv">@behaviour</span> <span class="no">Example</span><span class="o">.</span><span class="no">Worker</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+
+  <span class="k">def</span> <span class="n">perform</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">url</span>
+    <span class="o">|&gt;</span> <span class="no">HTTPoison</span><span class="o">.</span><span class="n">get!</span>
+    <span class="o">|&gt;</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:body</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">write_file</span><span class="p">(</span><span class="n">opts</span><span class="p">[</span><span class="ss">:path</span><span class="p">])</span>
+    <span class="o">|&gt;</span> <span class="n">respond</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">write_file</span><span class="p">(</span><span class="ss">:error</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="ss">:missing_body</span><span class="p">}</span>
+  <span class="k">defp</span> <span class="n">write_file</span><span class="p">({</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">contents</span><span class="p">},</span> <span class="n">path</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">path</span>
+    <span class="o">|&gt;</span> <span class="no">Path</span><span class="o">.</span><span class="n">expand</span>
+    <span class="o">|&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">(</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">opts</span><span class="p">[</span><span class="ss">:path</span><span class="p">],</span> <span class="n">opts</span><span class="p">}</span>
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">({</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">},</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Vậy còn một worker để nén một mảng các file thì sao? Chúng ta cũng có thể làm như sau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Compressor</span> <span class="k">do</span>
+  <span class="nv">@behaviour</span> <span class="no">Example</span><span class="o">.</span><span class="no">Worker</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+
+  <span class="k">def</span> <span class="n">perform</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">payload</span>
+    <span class="o">|&gt;</span> <span class="n">compress</span>
+    <span class="o">|&gt;</span> <span class="n">respond</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">compress</span><span class="p">({</span><span class="n">name</span><span class="p">,</span> <span class="n">files</span><span class="p">}),</span> <span class="k">do</span><span class="p">:</span> <span class="ss">:zip</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">({</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">path</span><span class="p">},</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">({</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">},</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Trong khi các công việc được thực hiện là khác nhau, nhưng public API thì không, và bất cứ đoạn code nào sử dụng các module này, để có thể tương tác với những module đó và biết rằng chúng sẽ nhận được kết quả trả về như mong muốn. Điều này cho phép chúng ta khả năng tạo ra rất nhiều loại worker, thực hiện những nhiệm vụ khác nhau, nhưng cùng sử dụng chúng một public API.</p>
+
+<p>Nếu chúng ta muốn thêm vào một behaviour, nhưng lại không cài đặt đủ tất cả các hàm cần thết, một cảnh báo sẽ được văng ra lúc biên dịch. Hãy cùng thay đổi <code class="highlighter-rouge">Example.Compressor</code> bằng cách bỏ đi hàm <code class="highlighter-rouge">init/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Compressor</span> <span class="k">do</span>
+  <span class="nv">@behaviour</span> <span class="no">Example</span><span class="o">.</span><span class="no">Worker</span>
+
+  <span class="k">def</span> <span class="n">perform</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">payload</span>
+    <span class="o">|&gt;</span> <span class="n">compress</span>
+    <span class="o">|&gt;</span> <span class="n">respond</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">compress</span><span class="p">({</span><span class="n">name</span><span class="p">,</span> <span class="n">files</span><span class="p">}),</span> <span class="k">do</span><span class="p">:</span> <span class="ss">:zip</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">({</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">path</span><span class="p">},</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">({</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">},</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Giờ đây khi biên dịch đoạn code trên, chúng ta có thể thấy cảnh báo:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>lib/example/compressor.ex:1: warning: undefined behaviour <span class="k">function </span>init/1 <span class="o">(</span><span class="k">for </span>behaviour Example.Worker<span class="o">)</span>
+Compiled lib/example/compressor.ex
+</code></pre>
+</div>
+
+<p>Vậy là hết rồi. Giờ chúng ta đã sẵn sàng để tạo mới và chia sẻ behaviour với các module khác.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/advanced/behaviours/&title=Behaviours&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/advanced/behaviours/&via=elixirschool&text=ElixirSchool: Behaviours&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/advanced/behaviours/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/advanced/behaviours/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/advanced/behaviours/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Behaviours" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/advanced/behaviours/&title=ElixirSchool: Behaviours&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/advanced/behaviours/&title=ElixirSchool: Behaviours&description=Check out 'Behaviours' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Behaviours&body=Check out 'Behaviours' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/advanced/behaviours/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

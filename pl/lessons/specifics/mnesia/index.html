@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lekcje programowania w języku Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/pl/lessons/specifics/mnesia/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Mnesia &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lekcje programowania w języku Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Mnesia &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lekcje programowania w języku Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Podstawy</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/basics/basics/">Podstawy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/basics/collections/">Kolekcje</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/basics/pattern-matching/">Dopasowanie wzorców</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/basics/control-structures/">Struktury sterujące</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pl/lessons/basics/functions/">Funkcje</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pl/lessons/basics/pipe-operator/">Operator Potoku</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pl/lessons/basics/modules/">Organizacja kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pl/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pl/lessons/basics/sigils/">Sigile</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/pl/lessons/basics/documentation/">Dokumentowanie kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/pl/lessons/basics/testing/">Testowanie kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/pl/lessons/basics/comprehensions/">Składanie kolekcji</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/pl/lessons/basics/strings/">Ciągi znaków</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/pl/lessons/basics/mix-tasks/">Własne funkcje Mix'a</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Zaawansowane</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/advanced/erlang/">Współpraca z Erlangiem</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/advanced/error-handling/">Wyjątki i błędy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/advanced/escripts/">Uruchamianie programów</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/advanced/concurrency/">Współbieżność</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/advanced/otp-concurrency/">Współbieżność z OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pl/lessons/advanced/otp-supervisors/">Nadzorcy OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pl/lessons/advanced/metaprogramming/">Metaprogramowanie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pl/lessons/advanced/umbrella-projects/">Projekty zbiorcze</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pl/lessons/advanced/typespec/">Specyfikacje i typy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pl/lessons/advanced/behaviours/">Zachowania</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Specyficzne</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/pl/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/mnesia/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/mnesia/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/mnesia/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/mnesia/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/mnesia/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/mnesia/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/mnesia/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/mnesia/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/mnesia/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/mnesia/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/mnesia/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/mnesia/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/mnesia/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/mnesia/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/mnesia/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/mnesia/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/mnesia/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/mnesia/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/mnesia/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/mnesia/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/mnesia/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Mnesia</h1>
+  <p>Mnesia to rozwiązanie „wagi ciężkiej” do zarządzania w czasie rzeczywistym rozproszonymi bazami danych.</p>
+
+<h2>Spis treści</h2>
+<div id="toc"></div>
+
+<h2 id="wstp">Wstęp</h2>
+
+<p>Mnesia to system zarządzania bazą danych (ang. <em>Database Management System</em> – DBMS) dostarczany razem ze środowiskiem Erlanga, który możemy oczywiście wykorzystać w Elixirze. Mnesia ma <em>relacyjno-obiektowy, hybrydowy model danych</em> co czyni ją odpowiednim narzędziem do tworzenia rozproszonych aplikacji w dowolnej skali.</p>
+
+<h2 id="kiedy-uywa">Kiedy używać</h2>
+
+<p>Kiedy powinniśmy użyć konkretnej technologi? To często bardzo kłopotliwe pytanie. Jeżeli odpowiedź na jedno z poniższych pytań brzmi „tak”, to znak, że warto zastanowić się nad użyciem Mnesii zamiast ETS lub DETS.</p>
+
+<ul>
+  <li>Czy potrzebujesz mieć możliwość wycofania transakcji?</li>
+  <li>Czy potrzebujesz prostej w użyciu składni do odczytu i zapisu danych?</li>
+  <li>Czy potrzebujesz przechowywać dane w wielu miejscach (węzłach) zamiast w jednym?</li>
+  <li>Czy chcesz mieć możliwość określenia gdzie, dysk lub RAM, dane będą przechowywane?</li>
+</ul>
+
+<h2 id="schemat">Schemat</h2>
+
+<p>Ponieważ Mnesia jest częścią Erlanga, a nie Elixira, to odwołujemy się do niej z użyciem dwukropka (patrz: <a href="../../advanced/erlang/">Współpraca z Erlangiem</a>):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:mnesia</span><span class="o">.</span><span class="n">create_schema</span><span class="p">([</span><span class="n">node</span><span class="p">()])</span>
+
+<span class="c1"># jeżeli jednak preferujesz Elixira...</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">alias</span> <span class="ss">:mnesia</span><span class="p">,</span> <span class="ss">as:</span> <span class="no">Mnesia</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_schema</span><span class="p">([</span><span class="n">node</span><span class="p">()])</span>
+</code></pre>
+</div>
+
+<p>W tej lekcji skupimy się na pracy z API Mnesii. <code class="highlighter-rouge">Mnesia.create_schema/1</code> tworzy nowy, pusty schemat i umieszcza go w liście węzłów. W naszym przypadku węzłem jest aktualna sesja IEx.</p>
+
+<h2 id="wzy">Węzły</h2>
+
+<p>Gdy uruchamiamy <code class="highlighter-rouge">Mnesia.create_schema([node()])</code> poprzez IEx, powinniśmy zobaczyć folder <strong>Mnesia.nonode@nohost</strong>, lub podobny, w aktualnym katalogu. Możesz się zastanawiać, co oznacza katalog <strong>nonode@nohost</strong>, bo dotychczas się z nim nie spotkaliśmy. Zobaczmy zatem.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>iex --help
+Usage: iex <span class="o">[</span>options] <span class="o">[</span>.exs file] <span class="o">[</span>data]
+
+  -v                Prints version
+  -e <span class="s2">"command"</span>      Evaluates the given <span class="nb">command</span> <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -r <span class="s2">"file"</span>         Requires the given files/patterns <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -S <span class="s2">"script"</span>       Finds and executes the given script
+  -pr <span class="s2">"file"</span>        Requires the given files/patterns <span class="k">in </span>parallel <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -pa <span class="s2">"path"</span>        Prepends the given path to Erlang code path <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -pz <span class="s2">"path"</span>        Appends the given path to Erlang code path <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --app <span class="s2">"app"</span>       Start the given app and its dependencies <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --erl <span class="s2">"switches"</span>  Switches to be passed down to Erlang <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --name <span class="s2">"name"</span>     Makes and assigns a name to the distributed node
+  --sname <span class="s2">"name"</span>    Makes and assigns a short name to the distributed node
+  --cookie <span class="s2">"cookie"</span> Sets a cookie <span class="k">for </span>this distributed node
+  --hidden          Makes a hidden node
+  --werl            Uses Erlang<span class="s1">'s Windows shell GUI (Windows only)
+  --detached        Starts the Erlang VM detached from console
+  --remsh "name"    Connects to a node using a remote shell
+  --dot-iex "path"  Overrides default .iex.exs file and uses path instead;
+                    path can be empty, then no file will be loaded
+
+** Options marked with (*) can be given more than once
+** Options given after the .exs file or -- are passed down to the executed code
+** Options can be passed to the VM using ELIXIR_ERL_OPTIONS or --erl
+</span></code></pre>
+</div>
+
+<p>Kiedy wywołamy <code class="highlighter-rouge">--help</code> w IEx otrzymamy listę wszystkich możliwych opcji. Na liście są <code class="highlighter-rouge">--name</code> i <code class="highlighter-rouge">--sname</code> służące do konfigurowania informacji o węzłach. Węzeł to nic innego jak instancja maszyny wirtualnej Erlanga, która we własnym zakresie zarządza komunikacją, GC, zadaniami, pamięcią itd. Nazwa węzła <strong>nonode@nohost</strong> jest domyślną.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>iex --name learner@elixirschool.com
+
+Erlang/OTP 18 <span class="o">[</span>erts-7.2.1] <span class="o">[</span><span class="nb">source</span><span class="o">]</span> <span class="o">[</span>64-bit] <span class="o">[</span>smp:4:4] <span class="o">[</span>async-threads:10] <span class="o">[</span>hipe] <span class="o">[</span>kernel-poll:false] <span class="o">[</span>dtrace]
+
+Interactive Elixir <span class="o">(</span>1.3.4<span class="o">)</span> - press Ctrl+C to <span class="nb">exit</span> <span class="o">(</span><span class="nb">type </span>h<span class="o">()</span> ENTER <span class="k">for </span><span class="nb">help</span><span class="o">)</span>
+<span class="gp">iex(learner@elixirschool.com)&gt; </span>Node.self
+:<span class="s2">"learner@elixirschool.com"</span>
+</code></pre>
+</div>
+
+<p>Jak widzimy, uruchomiony przez nas węzeł nazywa się<code class="highlighter-rouge">:"learner@elixirschool.com"</code>. Jeżeli po raz kolejny wywołamy <code class="highlighter-rouge">Mnesia.create_schema([node()])</code>, to zobaczymy nowy folder o nazwie <strong>Mnesia.learner@elixirschool.com</strong>. Dzieje się to z prostej przyczyny. Węzły w Erlangu są używane do komunikacji pomiędzy maszynami wirtualnymi i współdzielenia (rozpraszania) informacji i zasobów. komunikacja ta nie jest ograniczona do jednej maszyny fizycznej (systemu operacyjnego), ale można komunikować się przez LAN lub internet.</p>
+
+<h2 id="uruchamianie-mnesii">Uruchamianie Mnesii</h2>
+
+<p>Mamy już podstawową wiedzę i jesteśmy na dobrej drodze do uruchomienia bazy danych, uruchommy zatem Mnesia DBMS za pomocą polecenia <code class="highlighter-rouge">Mnesia.start/0</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">alias</span> <span class="ss">:mnesia</span><span class="p">,</span> <span class="ss">as:</span> <span class="no">Mnesia</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_schema</span><span class="p">([</span><span class="n">node</span><span class="p">])</span>
+<span class="ss">:ok</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>Musimy pamiętać, że jak pracujemy z systemem rozproszonym na dwóch lub więcej węzłach, to funkcja <code class="highlighter-rouge">Mnesia.start/1</code> musi byc wywołana na każdym z nich.</p>
+
+<h2 id="tworzenie-tabel">Tworzenie tabel</h2>
+
+<p>Do tworzenia tabel w naszej bazie służy funkcja <code class="highlighter-rouge">Mnesia.create_table/2</code>. Poniżej tworzymy tabelę <code class="highlighter-rouge">Person</code> i przekazujemy listę asocjacyjną opisującą jej schemat.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[</span><span class="ss">attributes:</span> <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">]])</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Kolumny definiujemy za pomocą atomów <code class="highlighter-rouge">:id</code>, <code class="highlighter-rouge">:name</code> i <code class="highlighter-rouge">:job</code>. Kiedy wywołamy <code class="highlighter-rouge">Mnesia.create_table/2</code>, otrzymamy jedną z poniższych odpowiedzi:</p>
+
+<ul>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:atomic,</span><span class="w"> </span><span class="err">:ok</span><span class="p">}</span></code> – jeżeli wszystko się udało,</li>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:aborted,</span><span class="w"> </span><span class="err">PRZYCZYNA</span><span class="p">}</span></code> – jeżeli funkcja napotkała błąd.</li>
+</ul>
+
+<p>W szczególności, jeżeli tabela, to funkcja jako przyczynę zwróci <code class="highlighter-rouge"><span class="p">{</span><span class="err">:already_exists,</span><span class="w"> </span><span class="err">table</span><span class="p">}</span></code>. Przykładowo, jeżeli spróbujemy powtórnie utworzyć tabelę, otrzymamy:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[</span><span class="ss">attributes:</span> <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">]])</span>
+<span class="p">{</span><span class="ss">:aborted</span><span class="p">,</span> <span class="p">{</span><span class="ss">:already_exists</span><span class="p">,</span> <span class="no">Person</span><span class="p">}}</span>
+</code></pre>
+</div>
+
+<h2 id="niekoszerne-podejcie">„Niekoszerne” podejście</h2>
+
+<p>Na początek rzućmy okiem na „niekoszerne” podejście do odczytu i zapisu danych do tabel. Zasadniczo powinno być ono unikane, ponieważ nie gwarantuje sukcesu operacji, ale pomoże nam w nauce i zapewni komfort w pracy z Mnesią. Dodajmy trochę danych do tabeli <strong>Person</strong>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Seymour Skinner"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">})</span>
+<span class="ss">:ok</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Homer Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Safety Inspector"</span><span class="p">})</span>
+<span class="ss">:ok</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Moe Szyslak"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Bartender"</span><span class="p">})</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>…i odczytajmy je z użyciem <code class="highlighter-rouge">Mnesia.dirty_read/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">})</span>
+<span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Seymour Skinner"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">2</span><span class="p">})</span>
+<span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Homer Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Safety Inspector"</span><span class="p">}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">3</span><span class="p">})</span>
+<span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Moe Szyslak"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Bartender"</span><span class="p">}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">})</span>
+<span class="p">[]</span>
+</code></pre>
+</div>
+
+<p>Jeżeli spróbujemy pobrać nieistniejący rekord, Mnesia zwróci pustą listę.</p>
+
+<h2 id="transakcje">Transakcje</h2>
+
+<p>Tradycyjnie używamy <strong>transakcji</strong> do odizolowania odczytów i zapisów do bazy. Transakcje są bardzo istotnym elementem przy projektowaniu odpornych na błędy i silnie rozproszonych systemów. Dla Mnesii <em>transakcja jest mechanizmem pozwalającym na uruchomienie wielu operacji na danych w ramach jednego bloku funkcyjnego</em>. Najpierw stwórzmy anonimową funkcję, w tym przypadku <code class="highlighter-rouge">data_to_write</code> i przekażmy ją do <code class="highlighter-rouge">Mnesia.transaction</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">data_to_write</span> <span class="o">=</span> <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">home maker"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hans Moleman"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">unknown"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Monty Burns"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Businessman"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Waylon Smithers"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Executive assistant"</span><span class="p">})</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="c1">#Function&lt;20.54118792/0 in :erl_eval.expr/5&gt;</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span><span class="n">data_to_write</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span>
+</code></pre>
+</div>
+<p>Bazując na informacji zwrotnej, możemy z satysfakcją stwierdzić, że zapisaliśmy dane do tabeli <code class="highlighter-rouge">Person</code>. Teraz użyjmy transakcji do odczytu danych. W tym celu użyjemy <code class="highlighter-rouge">Mnesia.read/1</code>, ale tak jak poprzednio w anonimowej funkcji.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">data_to_read</span> <span class="o">=</span> <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">6</span><span class="p">})</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="c1">#Function&lt;20.54118792/0 in :erl_eval.expr/5&gt;</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span><span class="n">data_to_read</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Monty Burns"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Businessman"</span><span class="p">}]}</span>
+</code></pre>
+</div>
+
+<p>Warto zwrócić uwagę, że jak chcemy zaktualizować rekord, wystarczy wywołać funkcję <code class="highlighter-rouge">Mnesia.write/1</code> przekazując klucz do istniejącego rekordu. Przykładowo, jeżeli chcemy zaktualizować rekord Hansa, wystarczy wywołać:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hans Moleman"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ex-Mayor"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="k">end</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="indeksy">Indeksy</h2>
+
+<p>Mnesia pozwala na tworzenie indeksów dla kolumn, które nie są częścią klucza i tworzenie zapytań na podstawie tych indeksów. Dodajmy zatem indeks do kolumny <code class="highlighter-rouge">:job</code> w tabeli <code class="highlighter-rouge">Person</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Rezultat tej operacji ma strukturę podobną do <code class="highlighter-rouge">Mnesia.create_table/2</code>:</p>
+
+<ul>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:atomic,</span><span class="w"> </span><span class="err">:ok</span><span class="p">}</span></code> – jeżeli wszystko się udało,</li>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:aborted,</span><span class="w"> </span><span class="err">PRZYCZYNA</span><span class="p">}</span></code> – jeżeli funkcja napotkała błąd.</li>
+</ul>
+
+<p>I podobnie jak w przypadku tworzenia tabeli, próba ponownego stworzenia indeksu spowoduje błąd <code class="highlighter-rouge"><span class="p">{</span><span class="err">:already_exists,</span><span class="w"> </span><span class="err">table,</span><span class="w"> </span><span class="err">attribute_index</span><span class="p">}</span></code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:aborted</span><span class="p">,</span> <span class="p">{</span><span class="ss">:already_exists</span><span class="p">,</span> <span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">}}</span>
+</code></pre>
+</div>
+
+<p>Jak już indeks zostanie stworzony, możemy odpytać dane bazując na nowym indeksie:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">index_read</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Seymour Skinner"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">}]}</span>
+</code></pre>
+</div>
+
+<h2 id="dopasowania-i-wyszukiwanie">Dopasowania i wyszukiwanie</h2>
+
+<p>Mnesia pozwala na tworzenie złożonych zapytań za pomocą dopasowań i definiowanych ad-hoc funkcji wyszukujących.</p>
+
+<p>Funkcja <code class="highlighter-rouge">Mnesia.match_object/1</code> zwraca wszystkie rekordy pasujące do podanego wzorca. Jeżeli jakakolwiek kolumna w tabeli posiada indeks, możemy go wykorzystać do stworzenia bardziej efektywnego zapytania. Dodatkowo specjalny atom <code class="highlighter-rouge">:_</code> służy do określenia, które kolumny nie powinny być brane pod uwagę w czasie dopasowania.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">match_object</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:_</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="ss">:_</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">home maker"</span><span class="p">}]}</span>
+</code></pre>
+</div>
+
+<p>Funkcja <code class="highlighter-rouge">Mnesia.select/2</code> pozwala na stworzenie zapytania z użyciem dowolnej funkcji istniejącej w Elixirze (oczywiście można użyć funkcji z Erlanga). Przyjrzyjmy się przykładowemu zapytaniu, które wyszuka rekordy, których klucz jest większy niż 3:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[{{</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"$2"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">},</span> <span class="p">[{</span><span class="ss">:&gt;</span><span class="p">,</span> <span class="ss">:"$1"</span><span class="p">,</span> <span class="m">3</span><span class="p">}],</span> <span class="p">[</span><span class="ss">:"$$"</span><span class="p">]}])</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[[</span><span class="m">7</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Waylon Smithers"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Executive assistant"</span><span class="p">],</span> <span class="p">[</span><span class="m">4</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">home maker"</span><span class="p">],</span> <span class="p">[</span><span class="m">6</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Monty Burns"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Businessman"</span><span class="p">],</span> <span class="p">[</span><span class="m">5</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hans Moleman"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">unknown"</span><span class="p">]]}</span>
+</code></pre>
+</div>
+
+<p>Rozłóżmy ten kod na elementy pierwsze. Pierwszym parametrem jest nazwa tabeli, <code class="highlighter-rouge">Person</code>, drugim trójka <code class="highlighter-rouge"><span class="p">{</span><span class="err">match,</span><span class="w"> </span><span class="err">[guard],</span><span class="w"> </span><span class="err">[result]</span><span class="p">}</span></code>:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">match</code> – pełni tą samą rolę co dopasowanie w funkcji <code class="highlighter-rouge">Mnesia.match_object/2</code>, ale należy zwrócić tu szczególną uwagę na specjalne atomy <code class="highlighter-rouge">:"$n"</code>, które pełnią funkcję parametrów pozycyjnych i są przekazywane do kolejnych części zapytania,</li>
+  <li><code class="highlighter-rouge">guard</code> – lista krotek, które definiują jakie funkcje zostaną użyte do dopasowania, w tym przypadku jest to standardowa funkcja <code class="highlighter-rouge">:&gt;</code> (większy niż), która jako argumenty przyjmie wartość na pierwszej pozycji <code class="highlighter-rouge">:$1</code> oraz liczbę <code class="highlighter-rouge">3</code>,</li>
+  <li><code class="highlighter-rouge">result</code> – lista pól, kolumn, które zostaną zwrócone. Za pomocą parametrów pozycyjnych możemy wyszczególnić konkretne kolumny i ich kolejność, zapis <code class="highlighter-rouge">[:"$1", :"$2"]</code> zwróci dwie pierwsze kolumny, albo za pomocą wartości <code class="highlighter-rouge">[:"$$"]</code> zwrócić wszystkie.</li>
+</ul>
+
+<p>Więcej informacji, w języku angielskim, znajdziesz <a href="http://erlang.org/doc/man/mnesia.html#select-2">w dokumentacji Erlang Mnesia do funkcji select/2</a>.</p>
+
+<h2 id="dane-pocztkowe-i-migracja-danych">Dane początkowe i migracja danych</h2>
+
+<p>W każdej trakcie życia każdej aplikacji nadchodzi moment, gdy musimy zaktualizować model przechowywanych danych. Przykładowo, tworząc drugą wersję naszej aplikacji, chcemy dodać kolumnę <code class="highlighter-rouge">:age</code> do naszej tabeli <code class="highlighter-rouge">Person</code>. Nie możemy raz jeszcze utworzyć tabeli <code class="highlighter-rouge">Person</code>, ale możemy ją transformować. W tym celu musimy wiedzieć jakie transformacje możemy zastosować przy tworzeniu tabeli. Możemy użyć funkcji <code class="highlighter-rouge">Mnesia.table_info/2</code> by otrzymać informację o aktualnej strukturze tabeli, a następnie funkcji <code class="highlighter-rouge">Mnesia.transform_table/3</code> by dokonać transformacji tabeli.</p>
+
+<p>Kod będzie działał zgodnie z poniższym algorytmem:</p>
+
+<ul>
+  <li>Utwórz drugą wersję (dalej v2) tabeli z kolumnami: <code class="highlighter-rouge">[:id, :name, :job, :age]</code>,</li>
+  <li>Obsłuż wyniki operacji w następujący sposób:
+    <ul>
+      <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:atomic,</span><span class="w"> </span><span class="err">:ok</span><span class="p">}</span></code> – dodaj indeksy do kolumn <code class="highlighter-rouge">:job</code> i <code class="highlighter-rouge">:age</code></li>
+      <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:aborted,</span><span class="w"> </span><span class="err">{:already_exists,</span><span class="w"> </span><span class="err">Person</span><span class="p">}</span><span class="err">}</span></code> – sprawdź, które kolumny już istnieją i następnie:
+        <ul>
+          <li>Jeżeli tabela zawiera tylko kolumny z pierwotnej wersji (<code class="highlighter-rouge">[:id, :name, :job]</code>), transformują ją do v2 dodając kolumnę <code class="highlighter-rouge">:age</code> z wartością domyślną 21 i indeksem,</li>
+          <li>Jeżeli tabela jest już w nowej wersji, nic nie rób,</li>
+          <li>W innym przypadku zwróć błąd.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Funkcja <code class="highlighter-rouge">Mnesia.transform_table/3</code> jako argumenty przyjmuje nazwę tabeli, funkcję transformującą pomiędzy starym a nowym formatem danych, oraz listę nowych kolumn.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[</span><span class="ss">attributes:</span> <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">,</span> <span class="ss">:age</span><span class="p">]])</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:age</span><span class="p">)</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:aborted</span><span class="p">,</span> <span class="p">{</span><span class="ss">:already_exists</span><span class="p">,</span> <span class="no">Person</span><span class="p">}}</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="k">case</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">table_info</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:attributes</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">...&gt;</span>       <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">]</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>         <span class="no">Mnesia</span><span class="o">.</span><span class="n">transform_table</span><span class="p">(</span>
+<span class="o">...&gt;</span>           <span class="no">Person</span><span class="p">,</span>
+<span class="o">...&gt;</span>           <span class="k">fn</span> <span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">job</span><span class="p">})</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>             <span class="p">{</span><span class="no">Person</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">job</span><span class="p">,</span> <span class="m">21</span><span class="p">}</span>
+<span class="o">...&gt;</span>           <span class="k">end</span><span class="p">,</span>
+<span class="o">...&gt;</span>           <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">,</span> <span class="ss">:age</span><span class="p">]</span>
+<span class="o">...&gt;</span>           <span class="p">)</span>
+<span class="o">...&gt;</span>         <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:age</span><span class="p">)</span>
+<span class="o">...&gt;</span>       <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">,</span> <span class="ss">:age</span><span class="p">]</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>         <span class="ss">:ok</span>
+<span class="o">...&gt;</span>       <span class="n">other</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>         <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">other</span><span class="p">}</span>
+<span class="o">...&gt;</span>     <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+</code></pre>
+</div>
+
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Podziel się
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/pl/lessons/specifics/mnesia/&title=Mnesia&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/pl/lessons/specifics/mnesia/&via=elixirschool&text=ElixirSchool: Mnesia&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/pl/lessons/specifics/mnesia/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/pl/lessons/specifics/mnesia/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/pl/lessons/specifics/mnesia/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Mnesia" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/pl/lessons/specifics/mnesia/&title=ElixirSchool: Mnesia&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/pl/lessons/specifics/mnesia/&title=ElixirSchool: Mnesia&description=Check out 'Mnesia' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Mnesia&body=Check out 'Mnesia' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/pl/lessons/specifics/mnesia/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Pelajaran mengenai bahasa pemrograman Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/id/lessons/basics/basics/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Dasar &middot; Elixir School
+
+">
+  <meta property="og:description" content="Pelajaran mengenai bahasa pemrograman Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Dasar &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Pelajaran mengenai bahasa pemrograman Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Dasar</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson  active" href="/id/lessons/basics/basics/">Dasar</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/id/lessons/basics/collections/">Koleksi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/id/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/id/lessons/basics/pattern-matching/">Pencocokan Pola</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/id/lessons/basics/control-structures/">Struktur Kendali</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/id/lessons/basics/functions/">Fungsi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/id/lessons/basics/pipe-operator/">Operator pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/id/lessons/basics/modules/">Composition</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/id/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/id/lessons/basics/sigils/">Sigil</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/id/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/id/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/id/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/id/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/id/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Lanjutan</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/id/lessons/advanced/erlang/">Interoperabilitas dengan Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/id/lessons/advanced/error-handling/">Penanganan Error</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/id/lessons/advanced/escripts/">Executables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/id/lessons/advanced/concurrency/">Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/id/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/id/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/id/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/id/lessons/advanced/umbrella-projects/">Umbrella Projects</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Khusus</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/id/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/id/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/id/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/id/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/id/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/basics/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/basics/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/basics/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/basics/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/basics/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/basics/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/basics/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/basics/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/basics/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/basics/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/basics/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/basics/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/basics/ ">my</a>
+      
+        <a href=" /no/lessons/basics/basics/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/basics/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/basics/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/basics/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/basics/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/basics/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/basics/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/basics/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Dasar</h1>
+  <p>Setup, tipe-tipe dan operasi-operasi dasar.</p>
+
+<h2>Daftar Isi</h2>
+<div id="toc"></div>
+
+<h2 id="setup">Setup</h2>
+
+<h3 id="instalasi-elixir">Instalasi Elixir</h3>
+
+<p>Instruksi instalasi untuk masing-masing OS dapat dilihat di Elixir-lang.org bagian panduan <a href="http://elixir-lang.org/install.html">Installing Elixir</a>.</p>
+
+<h3 id="moda-interaktif">Moda Interaktif</h3>
+
+<p>Elixir dilengkapi dengan <code class="highlighter-rouge">iex</code>, sebuah shell interaktif, yang memungkinkan kita mencoba perintah Elixir.</p>
+
+<p>Untuk memulai, kita jalankan <code class="highlighter-rouge">iex</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Erlang/OTP 19 [erts-8.0.2] [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+Interactive Elixir (1.0.4) - press Ctrl+C to exit (type h() ENTER for help)
+iex&gt;
+</code></pre>
+</div>
+
+<h2 id="tipe-dasar">Tipe dasar</h2>
+
+<h3 id="integer">Integer</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">255</span>
+<span class="m">255</span>
+</code></pre>
+</div>
+
+<p>Dukungan terhadap bilangan biner, oktal, dan heksadesimal sudah tersedia secara default:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">0b0110</span>
+<span class="m">6</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">0</span><span class="n">o644</span>
+<span class="m">420</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">0x1F</span>
+<span class="m">31</span>
+</code></pre>
+</div>
+
+<h3 id="float">Float</h3>
+
+<p>Dalam Elixir, bilangan tidak bulat (float) membutuhkan sebuah titik desimal setelah setidaknya satu digit; bilangan ini memiliki tingkat presisi 64 bit double precision dan mendukung <code class="highlighter-rouge">e</code> untuk bilangan eksponen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">3.14</span> 
+ <span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="o">.</span><span class="m">14</span> 
+<span class="o">**</span> <span class="p">(</span><span class="no">SyntaxError</span><span class="p">)</span> <span class="ss">iex:</span><span class="m">2</span><span class="p">:</span> <span class="n">syntax</span> <span class="n">error</span> <span class="ss">before:</span> <span class="s1">'.'</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">1.0e-10</span>
+<span class="m">1.0e-10</span>
+</code></pre>
+</div>
+
+<h3 id="boolean">Boolean</h3>
+
+<p>Elixir mendukung <code class="highlighter-rouge">true</code> and <code class="highlighter-rouge">false</code> sebagai nilai boolean (logika); semua nilai dianggap sama dengan <code class="highlighter-rouge">true</code> kecuali <code class="highlighter-rouge">false</code> dan <code class="highlighter-rouge">nil</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">true</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">false</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<h3 id="atom">Atom</h3>
+
+<p>Sebuah atom adalah sebuah konstanta dimana nilainya adalah namanya itu sendiri. Jika anda sudah familiar dengan Ruby, atom adalah sinonim dengan Symbol:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:foo</span>
+<span class="ss">:foo</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:foo</span> <span class="o">==</span> <span class="ss">:bar</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<p>Nilai boolean <code class="highlighter-rouge">true</code> dan <code class="highlighter-rouge">false</code> masing-masing adalah juga atom <code class="highlighter-rouge">:true</code> dan <code class="highlighter-rouge">:false</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">true</span> <span class="o">|&gt;</span> <span class="n">is_atom</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:true</span> <span class="o">|&gt;</span> <span class="n">is_boolean</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:true</span> <span class="o">===</span> <span class="no">true</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Nama modul dalam Elixir adalah juga atom. <code class="highlighter-rouge">MyApp.MyModule</code> adalah atom yang sah, walaupun modul tersebut belum dideklarasikan.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">is_atom</span><span class="p">(</span><span class="no">MyApp</span><span class="o">.</span><span class="no">MyModule</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Atom juga digunakan untuk mereferensi modul dari librari erlang, termasuk apa yang sudah ada.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:crypto</span><span class="o">.</span><span class="n">rand_bytes</span> <span class="m">3</span>
+<span class="o">&lt;&lt;</span><span class="m">23</span><span class="p">,</span> <span class="m">104</span><span class="p">,</span> <span class="m">108</span><span class="o">&gt;&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="string">String</h3>
+
+<p>String dalam Elixir adalah UTF-8 encoded dan dituliskan di antara petik ganda (double quotes):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Hello"</span>
+<span class="sd">"</span><span class="s2">Hello"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">dziękuję"</span>
+<span class="sd">"</span><span class="s2">dziękuję"</span>
+</code></pre>
+</div>
+
+<p>String mendukung penggantian baris dan escape sequences:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">foo
+...&gt; bar"</span>
+<span class="sd">"</span><span class="s2">foo\nbar"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">foo\nbar"</span>
+<span class="sd">"</span><span class="s2">foo\nbar"</span>
+</code></pre>
+</div>
+
+<h2 id="operasi-dasar">Operasi Dasar</h2>
+
+<h3 id="aritmetik">Aritmetik</h3>
+
+<p>Elixir mendukung operator dasar <code class="highlighter-rouge">+</code>, <code class="highlighter-rouge">-</code>, <code class="highlighter-rouge">*</code>, dan <code class="highlighter-rouge">/</code> sebagaimana yang sudah dapat diduga. Penting diperhatikan bahwa <code class="highlighter-rouge">/</code> akan selalu menghasilkan bilangan float:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">+</span> <span class="m">2</span>
+<span class="m">4</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">*</span> <span class="m">5</span>
+<span class="m">10</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">10</span> <span class="o">/</span> <span class="m">5</span>
+<span class="m">2.0</span>
+</code></pre>
+</div>
+
+<p>Jika anda membutuhkan pembagian bulat (integer) atau sisa pembagian, Elixir memiliki dua fungsi untuk itu:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">div</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="m">2</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">rem</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="m">1</span>
+</code></pre>
+</div>
+
+<h3 id="boolean-1">Boolean</h3>
+
+<p>Elixir menyediakan operator boolean <code class="highlighter-rouge">||</code>, <code class="highlighter-rouge">&amp;&amp;</code>, dan <code class="highlighter-rouge">!</code>. Operator-operator ini mendukung tipe apapun:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="o">-</span><span class="m">20</span> <span class="o">||</span> <span class="no">true</span>
+<span class="o">-</span><span class="m">20</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">false</span> <span class="o">||</span> <span class="m">42</span>
+<span class="m">42</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">42</span> <span class="o">&amp;&amp;</span> <span class="no">true</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">42</span> <span class="o">&amp;&amp;</span> <span class="no">nil</span>
+<span class="no">nil</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">!42</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">!false</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Ada tiga operator tambahan yang argumen pertamanya <em>harus</em> sebuah boolean (<code class="highlighter-rouge">true</code> dan <code class="highlighter-rouge">false</code>):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">true</span> <span class="ow">and</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">false</span> <span class="ow">or</span> <span class="no">true</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ow">not</span> <span class="no">false</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">42</span> <span class="ow">and</span> <span class="no">true</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span> <span class="n">argument</span> <span class="ss">error:</span> <span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ow">not</span> <span class="m">42</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span> <span class="n">argument</span> <span class="n">error</span>
+</code></pre>
+</div>
+
+<h3 id="perbandingan">Perbandingan</h3>
+
+<p>Elixir dilengkapi semua operator perbandingan (comparison) yang biasa kita pakai: <code class="highlighter-rouge">==</code>, <code class="highlighter-rouge">!=</code>, <code class="highlighter-rouge">===</code>, <code class="highlighter-rouge">!==</code>, <code class="highlighter-rouge">&lt;=</code>, <code class="highlighter-rouge">&gt;=</code>, <code class="highlighter-rouge">&lt;</code> dan <code class="highlighter-rouge">&gt;</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">1</span> <span class="o">&gt;</span> <span class="m">2</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">1</span> <span class="o">!=</span> <span class="m">2</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">==</span> <span class="m">2</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">&lt;=</span> <span class="m">3</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Untuk perbandingan yang ketat (strict) antara integer dan float gunakan operator <code class="highlighter-rouge">===</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">==</span> <span class="m">2.0</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">===</span> <span class="m">2.0</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<p>Sebuah fitur penting dari Elixir adalah bahwa segala macam tipe dapat dibandingkan, ini berguna dalam pengurutan (sorting). Kita tidak perlu menghafalkan urutannya tapi penting untuk dipahami:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">number</span> <span class="o">&lt;</span> <span class="n">atom</span> <span class="o">&lt;</span> <span class="n">reference</span> <span class="o">&lt;</span> <span class="n">functions</span> <span class="o">&lt;</span> <span class="n">port</span> <span class="o">&lt;</span> <span class="n">pid</span> <span class="o">&lt;</span> <span class="n">tuple</span> <span class="o">&lt;</span> <span class="n">maps</span> <span class="o">&lt;</span> <span class="n">list</span> <span class="o">&lt;</span> <span class="n">bitstring</span>
+</code></pre>
+</div>
+
+<p>Ini bisa menghasilkan perbandingan yang menarik, dan valid, yang mungkin tidak anda temukan di bahasa lain:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:hello</span> <span class="o">&gt;</span> <span class="m">999</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:hello</span><span class="p">,</span> <span class="ss">:world</span><span class="p">}</span> <span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<h3 id="interpolasi-string">Interpolasi String</h3>
+
+<p>Kalau anda sudah menggunakan Ruby, interpolasi string di Elixir akan tidak asing lagi:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">Sean"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Hello </span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="sd">"</span><span class="s2">Hello Sean"</span>
+</code></pre>
+</div>
+
+<h3 id="perangkaian-string">Perangkaian String</h3>
+
+<p>Perangkaian string menggunakan operator <code class="highlighter-rouge">&lt;&gt;</code> :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">Sean"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Hello "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+<span class="sd">"</span><span class="s2">Hello Sean"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Bagikan Halaman Ini
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/id/lessons/basics/basics/&title=Dasar&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/id/lessons/basics/basics/&via=elixirschool&text=ElixirSchool: Dasar&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/id/lessons/basics/basics/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/id/lessons/basics/basics/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/id/lessons/basics/basics/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Dasar" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/id/lessons/basics/basics/&title=ElixirSchool: Dasar&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/id/lessons/basics/basics/&title=ElixirSchool: Dasar&description=Check out 'Dasar' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Dasar&body=Check out 'Dasar' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/id/lessons/basics/basics/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

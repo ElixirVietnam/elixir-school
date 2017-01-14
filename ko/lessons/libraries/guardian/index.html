@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/libraries/guardian/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Guardian (Basics) &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Guardian (Basics) &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson  active" href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/libraries/guardian/ ">en</a>
+      
+        <a href=" /jp/lessons/libraries/guardian/ ">jp</a>
+      
+        <a href=" /cn/lessons/libraries/guardian/ ">cn</a>
+      
+        <a href=" /es/lessons/libraries/guardian/ ">es</a>
+      
+        <a href=" /pt/lessons/libraries/guardian/ ">pt</a>
+      
+        <a href=" /vi/lessons/libraries/guardian/ ">vi</a>
+      
+        <a href=" /ru/lessons/libraries/guardian/ ">ru</a>
+      
+        <a href=" /sk/lessons/libraries/guardian/ ">sk</a>
+      
+        <a href=" /fr/lessons/libraries/guardian/ ">fr</a>
+      
+        <a href=" /gr/lessons/libraries/guardian/ ">gr</a>
+      
+        <a href=" /it/lessons/libraries/guardian/ ">it</a>
+      
+        <a href=" /pl/lessons/libraries/guardian/ ">pl</a>
+      
+        <a href=" /my/lessons/libraries/guardian/ ">my</a>
+      
+        <a href=" /no/lessons/libraries/guardian/ ">no</a>
+      
+        <a href=" /ko/lessons/libraries/guardian/ ">ko</a>
+      
+        <a href=" /id/lessons/libraries/guardian/ ">id</a>
+      
+        <a href=" /uk/lessons/libraries/guardian/ ">uk</a>
+      
+        <a href=" /tr/lessons/libraries/guardian/ ">tr</a>
+      
+        <a href=" /bg/lessons/libraries/guardian/ ">bg</a>
+      
+        <a href=" /de/lessons/libraries/guardian/ ">de</a>
+      
+        <a href=" /bn/lessons/libraries/guardian/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Guardian (Basics)</h1>
+  <p><a href="https://github.com/ueberauth/guardian">Guardian</a>은 <a href="https://jwt.io/">JWT</a> (Javascript Web Token)에 기반한 널리 사용되는 인증 라이브러리입니다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="jwt">JWT</h2>
+
+<p>JWT는 인증을 위한 풍부한 정보를 가진 토큰을 제공할 수 있습니다. 많은 인증 시스템이 자원에 대한 주 식별자에만 접근할 수 있는 반면 JWT는 다음과 같은 다른 정보도 제공합니다.</p>
+
+<ul>
+  <li>토큰을 발급한 사람</li>
+  <li>토큰을 사용할 사람</li>
+  <li>토큰을 사용할 시스템</li>
+  <li>발급된 시간</li>
+  <li>토큰이 만료되는 시간</li>
+</ul>
+
+<p>이 필드 외에도 Guardian은 추가 기능을 사용하기 위한 몇 가지 다른 필드를 제공합니다.</p>
+
+<ul>
+  <li>토큰의 타입</li>
+  <li>권한</li>
+</ul>
+
+<p>이것들은 JWT의 기본 필드일 뿐입니다. 애플리케이션에 필요한 정보를 자유롭게 추가 할 수 있습니다. JWT가 HTTP 헤더에 맞춰야하므로 짧게 작성해야하는 것만 주의하세요.</p>
+
+<p>이러한 풍부함은 시스템에 JWT를 모든 부분을 포함한 자격 증명을 전달할 수 있음을 의미합니다.</p>
+
+<h3 id="section">어디에 사용해야 하나요</h3>
+
+<p>JWT 토큰은 애플리케이션의 모든 부분의 인증에 사용할 수 있습니다.</p>
+
+<ul>
+  <li>싱글 페이지 애플리케이션</li>
+  <li>컨트롤러 (브라우져 세션을 통해)</li>
+  <li>컨트롤러 (인증 헤더 - API를 통해)</li>
+  <li>Phoenix 채널</li>
+  <li>서비스 간 요청</li>
+  <li>내부 프로세스</li>
+  <li>서드파티 접근(OAuth)</li>
+  <li>유저 기억 기능</li>
+  <li>다른 인터페이스 - 저수준 TCP, UDP, CLI, 등등</li>
+</ul>
+
+<p>JWT 토큰은 애플리케이션의 인증이 필요한 모든 부분에 사용할 수 있습니다.</p>
+
+<h3 id="section-1">데이터베이스를 사용해야 하나요?</h3>
+
+<p>데이터베이스를 통해 JWT를 추적할 필요가 없습니다. 발급 및 만료 시간 타임스탬프만으로 액세스 제어를 할 수 있습니다. 종종 사용자 자원을 조회에 데이터베이스를 사용하게 되지만 JWT 자체에서는 필요하지 않습니다.</p>
+
+<p>예를 들어, JWT를 사용하여 UDP 소켓에서 통신을 인증하려는 경우 데이터베이스를 사용하지 않을 가능성이 높습니다. 토큰을 발행할 때 토큰에 필요한 모든 정보를 직접 인코딩하세요. 올바르게 서명했는지 확인했다면 그걸로 됩니다.</p>
+
+<p>하지만 데이터베이스를 사용해 JWT를 추적_할_ 수 있습니다. 이를 통해 토큰이 유효한지 즉 토큰이 취소되지 않았는지 확인할 수 있습니다. 또는 DB의 레코드를 사용하여 사용자 5의 모든 토큰에서 로그를 강제로 제거 할 수 있습니다. 이 작업은 Guardian에서 <a href="https://github.com/hassox/guardian_db">GuardianDb</a>를 사용하여 간단하게 수행 할 수 있습니다. GuardianDb는 Guardian ‘Hooks’를 사용하여 유효성 검사를 수행하고 DB에서 저장 및 삭제합니다. 나중에 다시 설명하겠습니다.</p>
+
+<h2 id="section-2">설정</h2>
+
+<p>Guardian 설정에는 여러 가지 옵션이 있습니다. 나중에 다루겠습니다만, 시작은 간단하게 합시다.</p>
+
+<h3 id="section-3">최소 설정</h3>
+
+<p>시작하려면 필요한 것들이 몇 가지 있습니다.</p>
+
+<h4 id="configuration">Configuration</h4>
+
+<p><code class="highlighter-rouge">mix.exs</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span>
+    <span class="ss">mod:</span> <span class="p">{</span><span class="no">MyApp</span><span class="p">,</span> <span class="p">[]},</span>
+    <span class="ss">applications:</span> <span class="p">[</span><span class="ss">:guardian</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+  <span class="p">]</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[</span>
+    <span class="p">{</span><span class="ss">guardian:</span> <span class="sd">"</span><span class="s2">~&gt; x.x"</span><span class="p">},</span>
+    <span class="o">...</span>
+  <span class="p">]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">config/config.ex</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">config</span> <span class="ss">:guardian</span><span class="p">,</span> <span class="no">Guardian</span><span class="p">,</span>
+  <span class="ss">issuer:</span> <span class="sd">"</span><span class="s2">MyAppId"</span><span class="p">,</span>
+  <span class="ss">secret_key:</span> <span class="no">Mix</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="c1"># 공개하는 코드라면 각 환경 설정에서 덮어써야 합니다</span>
+  <span class="ss">serializer:</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">GuardianSerializer</span>
+</code></pre>
+</div>
+
+<p>Guardian을 작동시키기 위해 필요한 최소한의 정보들입니다. 비밀 키를 최상위 구성으로 직접 인코딩하면 안됩니다. 대신, 각 환경에는 자체 키가 있어야합니다. dev 환경과 테스트 환경에서는 Mix 환경을 사용하는 것이 일반적이지만, 스테이징과 프로덕션은 반드시 강한 비밀키를 사용하세요.(예를 들어 <code class="highlighter-rouge">mix phoenix.gen.secret</code>으로 생성된 값)</p>
+
+<p><code class="highlighter-rouge">lib/my_app/guardian_serializer.ex</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">GuardianSerializer</span> <span class="k">do</span>
+  <span class="nv">@behaviour</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Serializer</span>
+
+  <span class="n">alias</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">Repo</span>
+  <span class="n">alias</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">User</span>
+
+  <span class="k">def</span> <span class="n">for_token</span><span class="p">(</span><span class="n">user</span> <span class="o">=</span> <span class="p">%</span><span class="no">User</span><span class="p">{}),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span> <span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">User:</span><span class="si">#{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
+  <span class="k">def</span> <span class="n">for_token</span><span class="p">(</span><span class="n">_</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span> <span class="ss">:error</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Unknown resource type"</span> <span class="p">}</span>
+
+  <span class="k">def</span> <span class="n">from_token</span><span class="p">(</span><span class="sd">"</span><span class="s2">User:"</span> <span class="o">&lt;&gt;</span> <span class="n">id</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span> <span class="ss">:ok</span><span class="p">,</span> <span class="no">Repo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="n">id</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">def</span> <span class="n">from_token</span><span class="p">(</span><span class="n">_</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span> <span class="ss">:error</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Unknown resource type"</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+<p>serializer는 <code class="highlighter-rouge">sub</code>(subject) 필드에서 식별 된 자원을 찾는 역활을 합니다. 이것은 db, API, 심지어 간단한 문자열에서 조회될 수 있습니다.<br />
+또한 자원을 <code class="highlighter-rouge">sub</code> 필드에 직렬화하는 역할을 합니다.</p>
+
+<p>최소한의 구성은 이걸로 끝입니다. 필요하다면 할 수 있는 일은 더 많습니다만 시작은 이걸로 충분합니다.</p>
+
+<h4 id="section-4">애플리케이션에서 사용하기</h4>
+
+<p>이제 Guardian을 사용하기 위한 구성이 완료되었으니 애플리케이션에 통합해 보겠습니다. 최소 설정이므로 먼저 고려해야 할 것은 HTTP 요청입니다.</p>
+
+<h2 id="http-">HTTP 요청</h2>
+
+<p>Guardian은 HTTP 요청에 쉽게 통합할 수 있도록 다양한 Plug를 제공합니다. <a href="../specifics/plug/">다른 강좌</a>에서 Plug를 배울 수 있습니다. Guardian은 Phoenix를 요구하지 않지만, 다음 예제에서는 가장 쉽게 보여주기 위해 Phoenix를 사용하겠습니다.</p>
+
+<p>HTTP에 통합하는 가장 쉬운 방법은 라우터를 사용하는 것입니다. Guardian의 HTTP 통합은 모두 Plug 기반이기 때문에 Plug를 사용할 수 있는 곳이라면 어디서나 사용할 수  있습니다.</p>
+
+<p>Guardian plug의 일반적인 흐름은 다음과 같습니다.</p>
+
+<ol>
+  <li>(어딘가의) 요청에서 토큰을 찾아 확인: <code class="highlighter-rouge">Verify*</code> plug</li>
+  <li>선택적으로 토큰의 식별된 자원을 로드: <code class="highlighter-rouge">LoadResource</code> plug</li>
+  <li>이 요청에 대한 토큰이 유효한지 확인하고 유효하지 않으면 엑세스 거부. <code class="highlighter-rouge">EnsureAuthenticated</code> plug</li>
+</ol>
+
+<p>Guardian은 애플리케이션 개발자의 요구를 모두 충족시키기 위해 이러한 단계를 따로 구현합니다. 토큰을 찾으려면 <code class="highlighter-rouge">Verify *</code> Plug를 사용하세요.</p>
+
+<p>파이프라인을 만들어 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">pipeline</span> <span class="ss">:maybe_browser_auth</span> <span class="k">do</span>
+  <span class="n">plug</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">VerifySession</span>
+  <span class="n">plug</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">VerifyHeader</span><span class="p">,</span> <span class="ss">realm:</span> <span class="sd">"</span><span class="s2">Bearer"</span>
+  <span class="n">plug</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">LoadResource</span>
+<span class="k">end</span>
+
+<span class="n">pipeline</span> <span class="ss">:ensure_authed_access</span> <span class="k">do</span>
+  <span class="n">plug</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">EnsureAuthenticated</span><span class="p">,</span> <span class="p">%{</span><span class="sd">"</span><span class="s2">typ"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">access"</span><span class="p">,</span> <span class="ss">handler:</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">HttpErrorHandler</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>이 파이프라인은 조합해 여러 인증 요구사항에 사용할 수 있습니다. 첫 번째 파이프라인은 토큰을 찾으려 시도하고 해더를 돌려줍니다. 찾았다면 자원을 로드합니다.</p>
+
+<p>두 번째 파이프라인은 유효하고 확인 된 토큰이 존재하고 “액세스” 유형이어야 한다는 것을 요구합니다. 이를 사용하려면 스코프에 추가하십시오.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">scope</span> <span class="sd">"</span><span class="s2">/"</span><span class="p">,</span> <span class="no">MyApp</span> <span class="k">do</span>
+  <span class="n">pipe_through</span> <span class="p">[</span><span class="ss">:browser</span><span class="p">,</span> <span class="ss">:maybe_browser_auth</span><span class="p">]</span>
+
+  <span class="n">get</span> <span class="sd">"</span><span class="s2">/login"</span><span class="p">,</span> <span class="no">LoginController</span><span class="p">,</span> <span class="ss">:new</span>
+  <span class="n">post</span> <span class="sd">"</span><span class="s2">/login"</span><span class="p">,</span> <span class="no">LoginController</span><span class="p">,</span> <span class="ss">:create</span>
+  <span class="n">delete</span> <span class="sd">"</span><span class="s2">/login"</span><span class="p">,</span> <span class="no">LoginController</span><span class="p">,</span> <span class="ss">:delete</span>
+<span class="k">end</span>
+
+<span class="n">scope</span> <span class="sd">"</span><span class="s2">/"</span><span class="p">,</span> <span class="no">MyApp</span> <span class="k">do</span>
+  <span class="n">pipe_through</span> <span class="p">[</span><span class="ss">:browser</span><span class="p">,</span> <span class="ss">:maybe_browser_auth</span><span class="p">,</span> <span class="ss">:ensure_authed_access</span><span class="p">]</span>
+
+  <span class="n">resource</span> <span class="sd">"</span><span class="s2">/protected/things"</span><span class="p">,</span> <span class="no">ProtectedController</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>위에 있는 로그인 라우트는 있다면 인증된 유저를 가지게 됩니다. 두 번째 스코프는 모든 액션에 대해 유효한 토큰이 있는지 확인합니다.<br />
+파이프라인에 넣을 <em>필요는</em> 없습니다. 사용자 정의를 유연하게 하기 위해 컨트롤러에 배치할 수 있지만 여기서는 최소한의 설정만 하겠습니다.</p>
+
+<p>한 부분 놓친 곳이 있습니다. <code class="highlighter-rouge">EnsureAuthenticated</code> plug에 추가한 에러 핸들러입니다. 이 모듈은 다음 함수에 반응하는 매우 간단한 모듈입니다.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">unauthenticated/2</code></li>
+  <li><code class="highlighter-rouge">unauthorized/2</code></li>
+</ul>
+
+<p>두 함수 모두 Plug.Conn 구조체와 params 맵을 받고 각각의 오류를 처리해야 합니다. Phoenix 컨트롤러를 사용할 수도 있긴 합니다!</p>
+
+<h4 id="in-the-controller">In the controller</h4>
+
+<p>컨트롤러 안에서 지금 로그인한 유저를 접근하는 방법은 여러가지 있습니다. 가장 간단한 것 부터 시작해보죠.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">MyController</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">Web</span><span class="p">,</span> <span class="ss">:controller</span>
+  <span class="kn">use</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Phoenix</span><span class="o">.</span><span class="no">Controller</span>
+
+  <span class="k">def</span> <span class="n">some_action</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">claims</span><span class="p">)</span> <span class="k">do</span>
+    <span class="c1"># do stuff</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Guardian.Phoenix.Controller</code> 모듈을 사용하려면, 패턴매칭에 사용할 액션에 인자를 두개 추가할 필요가 있습니다. <code class="highlighter-rouge">EnsureAuthentication</code>을 사용하지 않으면 nil 유저나 클레임을 받을 수 있다는 걸 기억하세요.</p>
+
+<p>더 유연하고 장황한 다른 방법은 plug 핼퍼를 사용하는 것입니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">MyController</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">Web</span><span class="p">,</span> <span class="ss">:controller</span>
+
+  <span class="k">def</span> <span class="n">some_action</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="n">authenticated?</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">user</span> <span class="o">=</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="n">current_resource</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="c1"># No user</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h4 id="loginlogout">Login/Logout</h4>
+
+<p>브라우저 세션에서의 로그인/로그아웃은 매우 간단합니다. 로그인 컨트롤러에서 이렇게 하세요.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">create</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+  <span class="k">case</span> <span class="n">find_the_user_and_verify_them_from_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">user</span><span class="p">}</span> <span class="o">-&gt;</span>
+      <span class="n">conn</span>
+      <span class="o">|&gt;</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="n">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:access</span><span class="p">)</span> <span class="c1"># Use access tokens. Other tokens can be used, like :refresh etc</span>
+      <span class="o">|&gt;</span> <span class="n">respond_somehow</span><span class="p">()</span>
+    <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">}</span> <span class="o">-&gt;</span>
+      <span class="c1"># handle not verifying the user's credentials</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="n">delete</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">conn</span>
+  <span class="o">|&gt;</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="n">sign_out</span><span class="p">()</span>
+  <span class="o">|&gt;</span> <span class="n">respond_somehow</span><span class="p">()</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>API 로그인을 사용할 때는 약간 다릅니다. 세션이 없을 때 원시 토큰을 다시 클라이언트에 제공해야 하기 때문이죠.<br />
+API 로그인의 경우 <code class="highlighter-rouge">Authorization</code> 헤더를 사용하여 애플리케이션에 토큰을 제공할 수 있습니다. 이 방법은 세션을 사용하지 않을 때 유용합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">create</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+  <span class="k">case</span> <span class="n">find_the_user_and_verify_them_from_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">user</span><span class="p">}</span> <span class="o">-&gt;</span>
+      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">jwt</span><span class="p">,</span> <span class="n">_claims</span><span class="p">}</span> <span class="o">=</span> <span class="no">Guardian</span><span class="o">.</span><span class="n">encode_and_sign</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:access</span><span class="p">)</span>
+      <span class="n">conn</span>
+      <span class="o">|&gt;</span> <span class="n">respond_somehow</span><span class="p">({</span><span class="ss">token:</span> <span class="n">jwt</span><span class="p">})</span>
+    <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">}</span> <span class="o">-&gt;</span>
+      <span class="c1"># handle not verifying the user's credentials</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="n">delete</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">jwt</span> <span class="o">=</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="n">current_token</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+  <span class="no">Guardian</span><span class="o">.</span><span class="n">revoke!</span><span class="p">(</span><span class="n">jwt</span><span class="p">)</span>
+  <span class="n">respond_somehow</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>브라우저 세션 로그인은 내부적으로 <code class="highlighter-rouge">encode_and_sign</code>을 호출하므로 같은 방식으로 사용할 수 있습니다.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/libraries/guardian/&title=Guardian (Basics)&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/libraries/guardian/&via=elixirschool&text=ElixirSchool: Guardian (Basics)&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/libraries/guardian/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/libraries/guardian/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/libraries/guardian/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Guardian (Basics)" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/libraries/guardian/&title=ElixirSchool: Guardian (Basics)&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/libraries/guardian/&title=ElixirSchool: Guardian (Basics)&description=Check out 'Guardian (Basics)' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Guardian (Basics)&body=Check out 'Guardian (Basics)' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/libraries/guardian/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

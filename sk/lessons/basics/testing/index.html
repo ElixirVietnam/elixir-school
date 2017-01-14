@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lekcie o programovacom jazyku Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/sk/lessons/basics/testing/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Testovanie &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lekcie o programovacom jazyku Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Testovanie &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lekcie o programovacom jazyku Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Základy</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/sk/lessons/basics/basics/">Základy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/sk/lessons/basics/collections/">Kolekcie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/sk/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/sk/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/sk/lessons/basics/control-structures/">Riadiace štruktúry</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/sk/lessons/basics/functions/">Funkcie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/sk/lessons/basics/pipe-operator/">Operátor pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/sk/lessons/basics/modules/">Kompozícia</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/sk/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/sk/lessons/basics/sigils/">Sigily</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/sk/lessons/basics/documentation/">Dokumentácia</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson  active" href="/sk/lessons/basics/testing/">Testovanie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/sk/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/sk/lessons/basics/strings/">Reťazce</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/sk/lessons/basics/mix-tasks/">Mix tasky</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/testing/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/testing/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/testing/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/testing/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/testing/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/testing/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/testing/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/testing/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/testing/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/testing/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/testing/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/testing/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/testing/ ">my</a>
+      
+        <a href=" /no/lessons/basics/testing/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/testing/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/testing/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/testing/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/testing/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/testing/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/testing/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/testing/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Testovanie</h1>
+  <p>Testovanie je dôležitou súčasťou vývoja softvéru. V tejto lekcii sa pozrieme na to, ako testovať náš elixirový kód pomocou knižnice ExUnit a na testovacie <em>best practices</em>.</p>
+
+<h2>Obsah</h2>
+<div id="toc"></div>
+
+<h2 id="exunit">ExUnit</h2>
+
+<p>Elixir má zabudovaný testovací framework ExUnit, ktorý obsahuje všetko, čo potrebujeme na dôkladné otestovanie nášho kódu. Než s ním začneme, je dôležité spomenúť, že ExUnit testy sa implementujú ako elixirové skripty, takže pre súbory s testami musíme použiť príponu <code class="highlighter-rouge">.exs</code>. Pred spustením testov ešte musíme naštartovať samotný ExUnit. Bežne sa to robí v súbore <code class="highlighter-rouge">test/test_helper.exs</code>.</p>
+
+<p>Keď sme si v minulej lekcii vygenerovali nový projekt, mix nám vygeneroval rovno aj jednoduché základné testy v súbore <code class="highlighter-rouge">test/example_test.exs</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="n">doctest</span> <span class="no">Example</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">the truth"</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">2</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Kompletnú sadu testov nášho projektu môžeme spustiť príkazom <code class="highlighter-rouge">mix test</code>. Keď to urobíme v našom vygenerovanom projekte, mali by sme dostať niečo takéto:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Finished <span class="k">in </span>0.03 seconds <span class="o">(</span>0.02s on load, 0.01s on tests<span class="o">)</span>
+1 tests, 0 failures
+</code></pre>
+</div>
+
+<h3 id="assert">assert</h3>
+
+<p>Každý kto sa už niekedy stretol s automatickými testami softvéru, určite pozná príkaz <code class="highlighter-rouge">assert</code> (v niektorých testovacích frameworkoch <code class="highlighter-rouge">should</code>, či <code class="highlighter-rouge">expect</code>). Toto makro testuje, či sa daný výraz vyhodnotí ako <code class="highlighter-rouge">true</code>. Ak nie, vyhodí chybu a test zlyhá. Pozrime sa na príklad takéhoto zlyhania - upravme náš test a spustime ho príkazom <code class="highlighter-rouge">mix test</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="n">doctest</span> <span class="no">Example</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">pravda"</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">3</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Tentoraz by sme mali vidieť celkom odlišný výstup:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  1<span class="o">)</span> <span class="nb">test </span>pravda <span class="o">(</span>ExampleTest<span class="o">)</span>
+     <span class="nb">test</span>/example_test.exs:5
+     Assertion with <span class="o">==</span> failed
+     code: 1 + 1 <span class="o">==</span> 3
+     lhs:  2
+     rhs:  3
+     stacktrace:
+       <span class="nb">test</span>/example_test.exs:6
+
+......
+
+Finished <span class="k">in </span>0.03 seconds <span class="o">(</span>0.02s on load, 0.01s on tests<span class="o">)</span>
+1 tests, 1 failures
+</code></pre>
+</div>
+
+<p>ExUnit nám povie úplne presne, kde (na ktorom asserte) testy zlyhali, aká bola očakávaná hodnota a aká bola skutočná hodnota.</p>
+
+<h3 id="refute">refute</h3>
+
+<p>Opakom príkazu <code class="highlighter-rouge">assert</code> je príkaz <code class="highlighter-rouge">refute</code>. Použijeme ho v prípade, že chceme testovať, či sa daný výraz vyhodnotí ako <code class="highlighter-rouge">false</code>.</p>
+
+<h3 id="assertraise">assert_raise</h3>
+
+<p>Niekedy potrebujeme testovať, že kód vyhodí chybu (prípadne konkrétny typ chyby) - na to sa nám hodí príkaz <code class="highlighter-rouge">assert_raise</code>. Príklad použitia je v lekcii o knižnici Plug.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>Niekedy potrebujeme pred samotnými testami vykonať nejaké pomocné činnosti. S tým nám pomôžu makrá <code class="highlighter-rouge">setup</code> a <code class="highlighter-rouge">setup_all</code>. Blok kódu v makre <code class="highlighter-rouge">setup</code> sa vykoná pred každým jednotlivým testom, blok v makre <code class="highlighter-rouge">setup_all</code> sa vykoná len raz - na začiatku pred spustením prvého testu. ba bloky by mali vrátiť tuple v tvare <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok.</span><span class="w"> </span><span class="err">stav</span><span class="p">}</span></code>, pričom <code class="highlighter-rouge">stav</code> bude dostupný v jednotlivých testoch.</p>
+
+<p>Ako príklad si do nášho súboru s testami doplníme blok <code class="highlighter-rouge">setup_all</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="n">doctest</span> <span class="no">Example</span>
+
+  <span class="n">setup_all</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="ss">number:</span> <span class="m">2</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">pravda"</span><span class="p">,</span> <span class="n">state</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="n">state</span><span class="p">[</span><span class="ss">:number</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="mockovanie">Mockovanie</h2>
+
+<p>Niektoré testovacie framoworky využívajú techniku mockovania, čiže podsúvania atráp roznych objektov a funkcií testovanému kódu. Elixir sa však tomuto vyhýba a vývojárov od nej odradzuje. Ak vo svojom kóde dodrživate zásady dobrého funkcionálneho návrhu, mockovanie nikdy potrebovať nebudete, pretože svoje moduly a funkcie budete môcť jednoducho testovať na individuálnej úrovni.</p>
+
+<p>Odolajte pokušeniu.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Zdieľaj túto stránku
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/sk/lessons/basics/testing/&title=Testovanie&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/sk/lessons/basics/testing/&via=elixirschool&text=ElixirSchool: Testovanie&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/sk/lessons/basics/testing/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/sk/lessons/basics/testing/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/sk/lessons/basics/testing/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Testovanie" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/sk/lessons/basics/testing/&title=ElixirSchool: Testovanie&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/sk/lessons/basics/testing/&title=ElixirSchool: Testovanie&description=Check out 'Testovanie' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Testovanie&body=Check out 'Testovanie' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/sk/lessons/basics/testing/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

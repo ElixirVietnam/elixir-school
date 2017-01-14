@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Pelajaran mengenai bahasa pemrograman Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/id/lessons/basics/mix-tasks/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Custom Mix Tasks &middot; Elixir School
+
+">
+  <meta property="og:description" content="Pelajaran mengenai bahasa pemrograman Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Custom Mix Tasks &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Pelajaran mengenai bahasa pemrograman Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Dasar</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/id/lessons/basics/basics/">Dasar</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/id/lessons/basics/collections/">Koleksi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/id/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/id/lessons/basics/pattern-matching/">Pencocokan Pola</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/id/lessons/basics/control-structures/">Struktur Kendali</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/id/lessons/basics/functions/">Fungsi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/id/lessons/basics/pipe-operator/">Operator pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/id/lessons/basics/modules/">Composition</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/id/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/id/lessons/basics/sigils/">Sigil</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/id/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/id/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/id/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/id/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson  active" href="/id/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Lanjutan</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/id/lessons/advanced/erlang/">Interoperabilitas dengan Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/id/lessons/advanced/error-handling/">Penanganan Error</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/id/lessons/advanced/escripts/">Executables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/id/lessons/advanced/concurrency/">Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/id/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/id/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/id/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/id/lessons/advanced/umbrella-projects/">Umbrella Projects</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Khusus</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/id/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/id/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/id/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/id/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/id/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/mix-tasks/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/mix-tasks/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/mix-tasks/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/mix-tasks/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/mix-tasks/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/mix-tasks/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/mix-tasks/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/mix-tasks/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/mix-tasks/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/mix-tasks/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/mix-tasks/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/mix-tasks/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/mix-tasks/ ">my</a>
+      
+        <a href=" /no/lessons/basics/mix-tasks/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/mix-tasks/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/mix-tasks/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/mix-tasks/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/mix-tasks/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/mix-tasks/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/mix-tasks/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/mix-tasks/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Custom Mix Tasks</h1>
+  <p>Membuat task Mix custom untuk project Elixir anda.</p>
+
+<h2>Daftar Isi</h2>
+<div id="toc"></div>
+
+<h2 id="perkenalan">Perkenalan</h2>
+
+<p>Tidak jarang kita ingin mengembangkan (extend) fungsionalitas aplikasi Elixir kita dengan menambahkan task Mix sendiri. Sebelum kita belajar tentang cara membuat task Mix spesifik untuk project kita, mari lihat salah satu yang sudah ada:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix phoenix.new my_phoenix_app
+
+<span class="k">*</span> creating my_phoenix_app/config/config.exs
+<span class="k">*</span> creating my_phoenix_app/config/dev.exs
+<span class="k">*</span> creating my_phoenix_app/config/prod.exs
+<span class="k">*</span> creating my_phoenix_app/config/prod.secret.exs
+<span class="k">*</span> creating my_phoenix_app/config/test.exs
+<span class="k">*</span> creating my_phoenix_app/lib/my_phoenix_app.ex
+<span class="k">*</span> creating my_phoenix_app/lib/my_phoenix_app/endpoint.ex
+<span class="k">*</span> creating my_phoenix_app/test/views/error_view_test.exs
+...
+</code></pre>
+</div>
+
+<p>Sebagaimana bisa kita lihat dari perintah shell di atas, Phoenix Framework punya sebuah task Mix custom untuk membuat sebuah project baru. Bagaimana jika kita bisa membuat hal serupa untuk project kita? Kita bisa, dan Elixir membuat ini mudah untuk kita lakukan.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>Mari setup sebuah aplikasi Mix yang sangat mendasar.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new hello
+
+<span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/hello.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/hello_test.exs
+
+Your Mix project was created successfully.
+You can use <span class="s2">"mix"</span> to compile it, <span class="nb">test </span>it, and more:
+
+<span class="nb">cd </span>hello
+mix <span class="nb">test
+
+</span>Run <span class="s2">"mix help"</span> <span class="k">for </span>more commands.
+</code></pre>
+</div>
+
+<p>Sekarang, dalam file <strong>lib/hello.ex</strong> yang dibuat Mix untuk kita, mari buat sebuah fungsi sederhana yang akan beri output “Hello, World!”</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Hello</span> <span class="k">do</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Output's `Hello, World!` everytime.
+  """</span>
+  <span class="k">def</span> <span class="n">say</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello, World!"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="task-mix-custom">Task Mix Custom</h2>
+
+<p>Mari kita buat task Mix custom kita. Buat sebuah direktori baru dan file <strong>hello/lib/mix/tasks/hello.ex</strong>. Di dalam file ini, mari masukkan 7 baris Elixir berikut.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Tasks</span><span class="o">.</span><span class="no">Hello</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Task</span>
+
+  <span class="nv">@shortdoc</span> <span class="sd">"</span><span class="s2">Simply runs the Hello.say/0 command."</span>
+  <span class="k">def</span> <span class="n">run</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">Hello</span><span class="o">.</span><span class="n">say</span> <span class="c1"># calling our Hello.say() function from earlier</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Perhatikan bagaimana kita mengawali pernyataan defmodule kita dengan <code class="highlighter-rouge">Mix.Tasks</code> dan nama yang kita ingin panggil dari command line. Pada baris kedua kita memperkenalkan <code class="highlighter-rouge">use Mix.Task</code> yang mengambil perilaku (behaviour) <code class="highlighter-rouge">Mix.Task</code> ke dalam namespace tersebut. Kita kemudian mendeklarasikan sebuah fungsi run yang mengabaikan segala argumen, semetara ini. Di dalam fungsi ini, kita memanggil modul <code class="highlighter-rouge">Hello</code> kita dan fungsi <code class="highlighter-rouge">say</code>.</p>
+
+<h2 id="task-mix-bekerja">Task Mix Bekerja</h2>
+
+<p>Mari kita coba task Mix kita. Selama kita ada di direktori tersebut seharusnya bisa bekerja. Dari command line, jalankan <code class="highlighter-rouge">mix hello</code>, dan kita semestinya melihat tampilan seperti berikut:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix hello
+Hello, World!
+</code></pre>
+</div>
+
+<p>Mix secara default cukup ramah. Mix tahu bahwa semua orang bisa melakukan kesalahan eja, jadi Mix menggunakan teknik yang disebut fuzzy string matching (pencocokan string yang tidak tegas) untuk membuat rekomendasi:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix hell
+<span class="k">**</span> <span class="o">(</span>Mix<span class="o">)</span> The task <span class="s2">"hell"</span> could not be found. Did you mean <span class="s2">"hello"</span>?
+</code></pre>
+</div>
+
+<p>Apakah anda juga memperhatikan bahwa kita memperkenalkan sebuah atribut modul baru, <code class="highlighter-rouge">@shortdoc</code>? Atribut ini berguna ketika meluncurkan aplikasi kita, seperti ketika seorang user menjalankan perintah <code class="highlighter-rouge">mix help</code> dari terminal.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix <span class="nb">help
+
+</span>mix app.start         <span class="c"># Starts all registered apps</span>
+...
+mix hello             <span class="c"># Simply calls the Hello.say/0 function.</span>
+...
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Bagikan Halaman Ini
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/id/lessons/basics/mix-tasks/&title=Custom Mix Tasks&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/id/lessons/basics/mix-tasks/&via=elixirschool&text=ElixirSchool: Custom Mix Tasks&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/id/lessons/basics/mix-tasks/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/id/lessons/basics/mix-tasks/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/id/lessons/basics/mix-tasks/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Custom Mix Tasks" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/id/lessons/basics/mix-tasks/&title=ElixirSchool: Custom Mix Tasks&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/id/lessons/basics/mix-tasks/&title=ElixirSchool: Custom Mix Tasks&description=Check out 'Custom Mix Tasks' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Custom Mix Tasks&body=Check out 'Custom Mix Tasks' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/id/lessons/basics/mix-tasks/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

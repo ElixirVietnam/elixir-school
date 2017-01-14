@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lições sobre a linguagem de programação Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/pt/lessons/advanced/umbrella-projects/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Projetos Guarda-chuva &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lições sobre a linguagem de programação Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Projetos Guarda-chuva &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lições sobre a linguagem de programação Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Básico</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pt/lessons/basics/basics/">Básico</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pt/lessons/basics/collections/">Coleções</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pt/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pt/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pt/lessons/basics/control-structures/">Estruturas de Controle</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pt/lessons/basics/functions/">Funções</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pt/lessons/basics/pipe-operator/">Operador Pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pt/lessons/basics/modules/">Composição</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pt/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pt/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/pt/lessons/basics/documentation/">Documentação</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/pt/lessons/basics/testing/">Testando</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/pt/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/pt/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/pt/lessons/basics/mix-tasks/">Tarefas Mix Customizadas</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Avançado</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pt/lessons/advanced/erlang/">Interoperabilidade com Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pt/lessons/advanced/error-handling/">Tratamento de Erros</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pt/lessons/advanced/escripts/">Executáveis</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pt/lessons/advanced/concurrency/">Concorrência</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pt/lessons/advanced/otp-concurrency/">Concorrência OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pt/lessons/advanced/otp-supervisors/">Supervisores OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pt/lessons/advanced/metaprogramming/">Metaprogramação</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson  active" href="/pt/lessons/advanced/umbrella-projects/">Projetos Guarda-chuva</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Específico</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pt/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pt/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pt/lessons/specifics/eex/">Elixir embutido (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pt/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pt/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/umbrella-projects/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/umbrella-projects/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/umbrella-projects/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/umbrella-projects/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/umbrella-projects/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/umbrella-projects/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/umbrella-projects/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/umbrella-projects/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/umbrella-projects/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/umbrella-projects/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/umbrella-projects/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/umbrella-projects/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/umbrella-projects/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/umbrella-projects/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/umbrella-projects/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/umbrella-projects/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/umbrella-projects/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/umbrella-projects/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/umbrella-projects/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/umbrella-projects/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/umbrella-projects/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Projetos Guarda-chuva</h1>
+  <p>Determinados momentos um projeto pode ficar enorme, realmente enorme. A ferramenta de construção Mix nos permite dividir nosso código em vários aplicativos e fazer nossos projetos em Elixir mais manejáveis à medida que crescem.</p>
+
+<h2>Sumário</h2>
+<div id="toc"></div>
+
+<h2 id="introduo">Introdução</h2>
+
+<p>Para criar um projeto guarda-chuva nós iniciamos um projeto como se iniciássemos um projeto Mix normal, mas colocando o argumento <code class="highlighter-rouge">--umbrella</code>. Neste exemplo, faremos o <em>shell</em> de um kit de ferramentas de aprendizado de máquina. Por que um kit de ferramentas de aprendizado de máquina? Por que não? É composto de vários algoritmos de aprendizado e funções de utilidades diferentes.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new machine_learning_toolkit --umbrella
+
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating README.md
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating apps
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+
+Your umbrella project was created successfully.
+Inside your project, you will find an apps/ directory
+where you can create and host many apps:
+
+    <span class="nb">cd </span>machine_learning_toolkit
+    <span class="nb">cd </span>apps
+    mix new my_app
+
+Commands like <span class="s2">"mix compile"</span> and <span class="s2">"mix test"</span> when executed
+<span class="k">in </span>the umbrella project root will automatically run
+<span class="k">for </span>each application <span class="k">in </span>the apps/ directory.
+</code></pre>
+</div>
+
+<p>Como você pode ver a partir do comando Mix no shell, foi criado um pequeno projeto de esqueleto para nós com dois diretórios:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">apps/</code> - onde nossos sub-projetos (filho) ficará</li>
+  <li><code class="highlighter-rouge">config/</code> - onde a nossa configuração dos  projetos guarda-chuva permanecerá</li>
+</ul>
+
+<h2 id="projetos-filho">Projetos filho</h2>
+
+<p>Vamos mudar para o diretório de projetos <code class="highlighter-rouge">machine_learning_toolkit/apps</code> e criar 3 aplicações normais usando Mix desta forma:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new utilities
+
+<span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/utilities.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/utilities_test.exs
+
+Your Mix project was created successfully.
+You can use <span class="s2">"mix"</span> to compile it, <span class="nb">test </span>it, and more:
+
+    <span class="nb">cd </span>utilities
+    mix <span class="nb">test
+
+</span>Run <span class="s2">"mix help"</span> <span class="k">for </span>more commands.
+
+
+<span class="gp">$ </span>mix new datasets
+
+<span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/datasets.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/datasets_test.exs
+
+Your Mix project was created successfully.
+You can use <span class="s2">"mix"</span> to compile it, <span class="nb">test </span>it, and more:
+
+    <span class="nb">cd </span>datasets
+    mix <span class="nb">test
+
+</span>Run <span class="s2">"mix help"</span> <span class="k">for </span>more commands.
+
+<span class="gp">$ </span>mix new svm
+
+<span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/svm.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/svm_test.exs
+
+Your Mix project was created successfully.
+You can use <span class="s2">"mix"</span> to compile it, <span class="nb">test </span>it, and more:
+
+    <span class="nb">cd </span>svm
+    mix <span class="nb">test
+
+</span>Run <span class="s2">"mix help"</span> <span class="k">for </span>more commands.
+</code></pre>
+</div>
+
+<p>Agora devemos ter um árvore de projeto desta forma:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>tree
+.
+├── README.md
+├── apps
+│   ├── datasets
+│   │   ├── README.md
+│   │   ├── config
+│   │   │   └── config.exs
+│   │   ├── lib
+│   │   │   └── datasets.ex
+│   │   ├── mix.exs
+│   │   └── <span class="nb">test</span>
+│   │       ├── datasets_test.exs
+│   │       └── test_helper.exs
+│   ├── svm
+│   │   ├── README.md
+│   │   ├── config
+│   │   │   └── config.exs
+│   │   ├── lib
+│   │   │   └── svm.ex
+│   │   ├── mix.exs
+│   │   └── <span class="nb">test</span>
+│   │       ├── svm_test.exs
+│   │       └── test_helper.exs
+│   └── utilities
+│       ├── README.md
+│       ├── config
+│       │   └── config.exs
+│       ├── lib
+│       │   └── utilities.ex
+│       ├── mix.exs
+│       └── <span class="nb">test</span>
+│           ├── test_helper.exs
+│           └── utilities_test.exs
+├── config
+│   └── config.exs
+└── mix.exs
+</code></pre>
+</div>
+
+<p>Se voltarmos para raíz do projeto guarda-chuva, vemos que podemos chamar todos os comandos típicos, tais como o de compilação. Como os sub-projetos são apenas aplicações normais, você pode entrar nos diretórios e fazer todas as mesmas coisas usuais que o Mix permite fazer.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ mix compile
+
+==&gt; svm
+Compiled lib/svm.ex
+Generated svm app
+
+==&gt; datasets
+Compiled lib/datasets.ex
+Generated datasets app
+
+==&gt; utilities
+Compiled lib/utilities.ex
+Generated utilities app
+
+Consolidated List.Chars
+Consolidated Collectable
+Consolidated String.Chars
+Consolidated Enumerable
+Consolidated IEx.Info
+Consolidated Inspect
+</code></pre>
+</div>
+
+<h2 id="iex">IEx</h2>
+
+<p>Você pode pensar que a interação com os aplicativos poderia ser um pouco diferente em um projeto guarda-chuva. Bem, acredite ou não, você estaria errado! Se mudarmos o diretório para o diretório de nível superior e iniciar o IEx com o <code class="highlighter-rouge">iex -S mix</code> podemos interagir normalmente com todos os projetos. Alteraremos os conteúdos de <code class="highlighter-rouge">apps/datasets/lib/datasets.ex</code> para este exemplo simples.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Datasets</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello, I'm the datasets"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>iex -S mix
+Erlang/OTP 19 <span class="o">[</span>erts-8.0.2] <span class="o">[</span><span class="nb">source</span><span class="o">]</span> <span class="o">[</span>64-bit] <span class="o">[</span>smp:4:4] <span class="o">[</span>async-threads:10] <span class="o">[</span>hipe] <span class="o">[</span>kernel-poll:false] <span class="o">[</span>dtrace]
+
+<span class="gp">==&gt; </span>datasets
+Compiled lib/datasets.ex
+Consolidated List.Chars
+Consolidated Collectable
+Consolidated String.Chars
+Consolidated Enumerable
+Consolidated IEx.Info
+Consolidated Inspect
+Interactive Elixir <span class="o">(</span>1.3.4<span class="o">)</span> - press Ctrl+C to <span class="nb">exit</span> <span class="o">(</span><span class="nb">type </span>h<span class="o">()</span> ENTER <span class="k">for </span><span class="nb">help</span><span class="o">)</span>
+
+<span class="gp">iex&gt; </span>Datasets.hello
+Hello, I<span class="s1">'m the datasets
+:ok
+</span></code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Compartilhe essa página
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/pt/lessons/advanced/umbrella-projects/&title=Projetos Guarda-chuva&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/pt/lessons/advanced/umbrella-projects/&via=elixirschool&text=ElixirSchool: Projetos Guarda-chuva&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/pt/lessons/advanced/umbrella-projects/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/pt/lessons/advanced/umbrella-projects/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/pt/lessons/advanced/umbrella-projects/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Projetos Guarda-chuva" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/pt/lessons/advanced/umbrella-projects/&title=ElixirSchool: Projetos Guarda-chuva&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/pt/lessons/advanced/umbrella-projects/&title=ElixirSchool: Projetos Guarda-chuva&description=Check out 'Projetos Guarda-chuva' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Projetos Guarda-chuva&body=Check out 'Projetos Guarda-chuva' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/pt/lessons/advanced/umbrella-projects/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

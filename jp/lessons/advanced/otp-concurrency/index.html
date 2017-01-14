@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="プログラミング言語Elixirのレッスン">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/jp/lessons/advanced/otp-concurrency/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  OTPの並行性 &middot; Elixir School
+
+">
+  <meta property="og:description" content="プログラミング言語Elixirのレッスン">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  OTPの並行性 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">プログラミング言語Elixirのレッスン</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>基礎</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/basics/basics/">基本</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/basics/collections/">コレクション</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/basics/pattern-matching/">パターンマッチング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/basics/control-structures/">制御構造</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/basics/functions/">関数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/basics/pipe-operator/">パイプライン演算子</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/basics/modules/">モジュール</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/jp/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/jp/lessons/basics/documentation/">ドキュメント</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/jp/lessons/basics/testing/">テスト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/jp/lessons/basics/comprehensions/">内包表記</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/jp/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/jp/lessons/basics/mix-tasks/">カスタムMixタスク</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>上級</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/advanced/erlang/">Erlangとの相互運用</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/advanced/error-handling/">エラーハンドリング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/advanced/escripts/">実行ファイル</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/advanced/concurrency/">並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/jp/lessons/advanced/otp-concurrency/">OTPの並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-supervisors/">OTPスーパーバイザ</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/advanced/metaprogramming/">メタプログラミング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/advanced/umbrella-projects/">アンブレラプロジェクト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/advanced/typespec/">仕様と型</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>詳細</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/specifics/eex/">埋め込みElixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/otp-concurrency/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/otp-concurrency/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/otp-concurrency/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/otp-concurrency/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/otp-concurrency/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/otp-concurrency/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/otp-concurrency/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/otp-concurrency/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/otp-concurrency/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/otp-concurrency/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/otp-concurrency/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/otp-concurrency/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/otp-concurrency/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/otp-concurrency/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/otp-concurrency/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/otp-concurrency/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/otp-concurrency/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/otp-concurrency/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/otp-concurrency/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/otp-concurrency/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/otp-concurrency/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">OTPの並行性</h1>
+  <p>並行性(コンカレンシー)に関するElixirの抽象化を見てきましたが、さらなる制御が必要になることもあります。そうした時のために、Elixirに組み込まれているOTPの振る舞いに目を向けます。</p>
+
+<p>このレッスンではGenServerとGenEventという2つの重要な要素に焦点を当てます。</p>
+
+<h2>目次</h2>
+<div id="toc"></div>
+
+<h2 id="genserver">GenServer</h2>
+
+<p>OTPサーバーは一連のコールバックを実装するGenServerの振る舞いをもったモジュールです。最も基本的なレベルでは、GenServerは更新された状態を伝える反復処理のたびにに1つのリクエストを処理するループです。</p>
+
+<p>GenServerのAPIを実演するために、値を格納し読みだす基本的なキューを実装します。</p>
+
+<p>GenServerを始めるには、起動し、初期化処理を行う必要があります。ほとんどの場合、プロセスをリンクしたいので<code class="highlighter-rouge">GenServer.start_link/3</code>を用います。開始したGenServerモジュールに、初期化用の引数と一連のGenServerオプションを渡します。これらの引数は<code class="highlighter-rouge">GenServer.init/1</code>に渡され、その戻り値を通して、初期状態が設定されます。私たちの例では、引数が初期状態になります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleQueue</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  キューを開始し、リンクします。これはヘルパーメソッドです。
+  """</span>
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">state</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.init/1 コールバック
+  """</span>
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section">同期関数</h3>
+
+<p>GenServerと同期的な方法、つまり関数を呼びその返答を待つという方法でやりとりをする必要がよくあります。同期リクエストを処理するには、<code class="highlighter-rouge">GenServer.handle_call/3</code>コールバックを実装する必要があります。これはリクエスト、呼び出し側のPIDと、既存の状態を受け取ります。そして返答は<code class="highlighter-rouge"><span class="p">{</span><span class="err">:reply,</span><span class="w"> </span><span class="err">response,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code>のタプルを返すことが期待されます。</p>
+
+<p>パターンマッチングを用いて、多くの異なるリクエストや状態へのコールバックを定義することができます。認められている戻り値の一覧は<a href="http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3"><code class="highlighter-rouge">GenServer.handle_call/3</code></a>のドキュメントで見つけることができます。</p>
+
+<p>同期的なリクエストを実演するために、現在のキューを表示できて、値を取り除くことができる能力を付け加えましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleQueue</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="c1">### GenServer API</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.init/1 コールバック
+  """</span>
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.handle_call/3 コールバック
+  """</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[</span><span class="n">value</span><span class="o">|</span><span class="n">state</span><span class="p">])</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[]),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="no">nil</span><span class="p">,</span> <span class="p">[]}</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:queue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="c1">### クライアント側API / ヘルパーメソッド</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">state</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">queue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:queue</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">dequeue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:dequeue</span><span class="p">)</span>
+<span class="k">end</span>
+
+</code></pre>
+</div>
+
+<p>SimpleQueueを開始し、新しいdequeue(キューから値を取り出す)機能をテストしましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">start_link</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="c1">#PID&lt;0.90.0&gt;}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">dequeue</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">dequeue</span>
+<span class="m">2</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">queue</span>
+<span class="p">[</span><span class="m">3</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="section-1">非同期関数</h3>
+
+<p>非同期リクエストは<code class="highlighter-rouge">handle_cast/2</code>コールバックを用いて処理されます。これは<code class="highlighter-rouge">handle_cast/3</code>によく似た働きをしますが、呼び出し側PIDを受け取らず、返答することも期待されていません。</p>
+
+<p>enqueue(キューに値を入れる)機能を非同期、つまりキューを更新するけれども現在実行中の処理を遮らないように実装します:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleQueue</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="c1">### GenServer API</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.init/1 コールバック
+  """</span>
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.handle_call/3 コールバック
+  """</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[</span><span class="n">value</span><span class="o">|</span><span class="n">state</span><span class="p">])</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[]),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="no">nil</span><span class="p">,</span> <span class="p">[]}</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:queue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.handle_cast/2 コールバック
+  """</span>
+  <span class="k">def</span> <span class="n">handle_cast</span><span class="p">({</span><span class="ss">:enqueue</span><span class="p">,</span> <span class="n">value</span><span class="p">},</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">state</span> <span class="o">++</span> <span class="p">[</span><span class="n">value</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="c1">### クライアント側API / ヘルパーメソッド</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">state</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="n">queue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:queue</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">enqueue</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="p">{</span><span class="ss">:enqueue</span><span class="p">,</span> <span class="n">value</span><span class="p">})</span>
+  <span class="k">def</span> <span class="n">dequeue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:dequeue</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>新しい機能を使ってみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">start_link</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="c1">#PID&lt;0.100.0&gt;}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">queue</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
+<span class="ss">:ok</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">queue</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">20</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>より詳しい情報については、公式の<a href="http://elixir-lang.org/docs/stable/elixir/GenServer.html#content">GenServer</a>ドキュメントを調べてみてください。</p>
+
+<h2 id="genevent">GenEvent</h2>
+
+<p>私たちは、GenServerが状態を維持し同期/非同期なリクエストを処理することのできるプロセスだと学びました。それではGenEventとは何でしょうか。GenEventは入ってくるイベントを受け取って購読している消費者(イベントを処理するプロセス)に通知を行う、ジェネリック(総称的)なイベントマネージャです。GenEventはイベントの流れに動的にハンドラを追加、削除する仕組みを提供します。</p>
+
+<h3 id="section-2">イベントの処理</h3>
+
+<p>GenEventで最も重要なコールバックは、想像がつくように、<code class="highlighter-rouge">handle_event/2</code>になります。これはイベントとハンドラの現在の状態を受け取って、<code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code>のタプルを返すことを期待されています。</p>
+
+<p>GenEventの機能を実演するために、2つのハンドラを作ることから始めましょう。1つはメッセージログを預かり、もう片方はそれを(建前としては)永続化するためのものになります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">LoggerHandler</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenEvent</span>
+
+  <span class="k">def</span> <span class="n">handle_event</span><span class="p">({</span><span class="ss">:msg</span><span class="p">,</span> <span class="n">msg</span><span class="p">},</span> <span class="n">messages</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Logging new message: </span><span class="si">#{</span><span class="n">msg</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="p">[</span><span class="n">msg</span><span class="o">|</span><span class="n">messages</span><span class="p">]}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">defmodule</span> <span class="no">PersistenceHandler</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenEvent</span>
+
+  <span class="k">def</span> <span class="n">handle_event</span><span class="p">({</span><span class="ss">:msg</span><span class="p">,</span> <span class="n">msg</span><span class="p">},</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Persisting log message: </span><span class="si">#{</span><span class="n">msg</span><span class="si">}</span><span class="s2">"</span>
+
+    <span class="c1"># メッセージの保存</span>
+
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section-3">ハンドラの呼び出し</h3>
+
+<p><code class="highlighter-rouge">handle_event/2</code>に加えて、GenEventは他のコールバックとの間での<code class="highlighter-rouge">handle_call/2</code>(ハンドラ呼び出し)にも対応しています。<code class="highlighter-rouge">handle_call/2</code>を用いると、ハンドラで特定の同期メッセージを処理することができます。</p>
+
+<p><code class="highlighter-rouge">LoggerHandler</code>を更新して、現在のメッセージログを取り出すメソッドを加えましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">LoggerHandler</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenEvent</span>
+
+  <span class="k">def</span> <span class="n">handle_event</span><span class="p">({</span><span class="ss">:msg</span><span class="p">,</span> <span class="n">msg</span><span class="p">},</span> <span class="n">messages</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Logging new message: </span><span class="si">#{</span><span class="n">msg</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="p">[</span><span class="n">msg</span><span class="o">|</span><span class="n">messages</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:messages</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">messages</span><span class="p">),</span> <span class="n">messages</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="genevent-1">GenEventの使用</h3>
+
+<p>ハンドラの準備が整ったので、いくつかのGenEventの関数に詳しくなっておく必要があります。最も重要な3つの関数は<code class="highlighter-rouge">:add_handler/3</code>、<code class="highlighter-rouge">notify/2</code>、そして<code class="highlighter-rouge">call/4</code>です。これらの関数によってそれぞれ、ハンドラを追加し、新しいメッセージを配信し、特定のハンドラ関数を呼び出すことができます。</p>
+
+<p>全てを一緒に用いる場合、実際のハンドラは以下のようになります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">start_link</span><span class="p">([])</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">add_handler</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="no">LoggerHandler</span><span class="p">,</span> <span class="p">[])</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">add_handler</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="no">PersistenceHandler</span><span class="p">,</span> <span class="p">[])</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="p">{</span><span class="ss">:msg</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hello World"</span><span class="p">})</span>
+<span class="no">Logging</span> <span class="n">new</span> <span class="ss">message:</span> <span class="no">Hello</span> <span class="no">World</span>
+<span class="no">Persisting</span> <span class="n">log</span> <span class="ss">message:</span> <span class="no">Hello</span> <span class="no">World</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="no">LoggerHandler</span><span class="p">,</span> <span class="ss">:messages</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Hello World"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>コールバックとGenEvent機能の一覧については、公式の<a href="http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content">GenEvent</a>ドキュメントを参照してください。</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    このページをシェアする
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/jp/lessons/advanced/otp-concurrency/&title=OTPの並行性&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/jp/lessons/advanced/otp-concurrency/&via=elixirschool&text=ElixirSchool: OTPの並行性&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/jp/lessons/advanced/otp-concurrency/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/jp/lessons/advanced/otp-concurrency/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/jp/lessons/advanced/otp-concurrency/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: OTPの並行性" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/jp/lessons/advanced/otp-concurrency/&title=ElixirSchool: OTPの並行性&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/jp/lessons/advanced/otp-concurrency/&title=ElixirSchool: OTPの並行性&description=Check out 'OTPの並行性' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: OTPの並行性&body=Check out 'OTPの並行性' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/jp/lessons/advanced/otp-concurrency/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

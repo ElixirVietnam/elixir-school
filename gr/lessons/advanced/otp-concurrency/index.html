@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/gr/lessons/advanced/otp-concurrency/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Συγχρονισμός OTP &middot; Elixir School
+
+">
+  <meta property="og:description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Συγχρονισμός OTP &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Μαθήματα προγραμματισμού της γλώσσας Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βασικά</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/basics/basics/">Βασικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/basics/collections/">Συλλογές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/basics/pattern-matching/">Αντιπαραβολές Προτύπων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/basics/control-structures/">Δομές Ελέγχου</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/basics/functions/">Συναρτήσεις</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/basics/pipe-operator/">Τελεστής Σωλήνα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/basics/modules/">Ενότητες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/basics/sigils/">Σφραγίδες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/basics/documentation/">Τεκμηρίωση</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/gr/lessons/basics/testing/">Δοκιμές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/gr/lessons/basics/comprehensions/">Ανάγνωση Λιστών</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/gr/lessons/basics/strings/">Αλφαριθμητικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/gr/lessons/basics/mix-tasks/">Ειδικές Εργασίες Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Προχωρημένα</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/advanced/erlang/">Διαλειτουργικότητα με την Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/advanced/error-handling/">Διαχείριση Σφαλμάτων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/advanced/escripts/">Εκτελέσιμα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/advanced/concurrency/">Συγχρονισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/gr/lessons/advanced/otp-concurrency/">Συγχρονισμός OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-supervisors/">Επιτηρητές OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/advanced/metaprogramming/">Μεταπρογραμματισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/advanced/umbrella-projects/">Projects Ομπρέλας</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/advanced/typespec/">Προδιαγραφές και τύποι</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/advanced/behaviours/">Συμπεριφορές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Ιδιαιτερότητες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/specifics/eex/">Ένθετη Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βιβλιοθήκες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/libraries/guardian/">Guardian (Βασικά)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/otp-concurrency/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/otp-concurrency/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/otp-concurrency/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/otp-concurrency/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/otp-concurrency/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/otp-concurrency/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/otp-concurrency/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/otp-concurrency/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/otp-concurrency/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/otp-concurrency/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/otp-concurrency/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/otp-concurrency/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/otp-concurrency/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/otp-concurrency/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/otp-concurrency/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/otp-concurrency/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/otp-concurrency/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/otp-concurrency/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/otp-concurrency/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/otp-concurrency/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/otp-concurrency/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Συγχρονισμός OTP</h1>
+  <p>Είδαμε τις αφαιρέσεις της Elixir για το συγχρονισμό αλλά μερικές φορές χρειαζόμαστε μεγαλύτερο έλεγχο και για αυτό στρεφόμαστε στις συμπεριφορές OTP πάνω στις οποίες έχει χτιστεί η Elixir.</p>
+
+<p>Σε αυτό το μάθημα θα εστιάσουμε σε δύο σημαντικά κομμάτια: τους GenServers και τα GenEvents.</p>
+
+<h2>Πίνακας περιεχομένων</h2>
+<div id="toc"></div>
+
+<h2 id="genserver">GenServer</h2>
+
+<p>Ένας εξυπηρετητής OTP είναι μια ενότητα με τη συμπεριφορά GenServer η οποία υλοποιεί ένα σετ επανακλήσεων.  Στο πιο βασικό επίπεδό του ένας GenServer είναι ένας βρόχος που χειρίζεται μια αίτηση ανά επανάληψη και περνάει μια αναβαθμισμένη κατάσταση.</p>
+
+<p>Για να επειδίξουμε το API των GenServer θα υλοποιήσουμε μια βασική ουρά για να αποθηκεύουμε και ανακτούμε τιμές.</p>
+
+<p>Για να ξεκινήσουμε τον GenServer μας θα χρειαστεί να τον ξεκινήσουμε και να χειριστούμε την αρχικοποίηση.  Στις περισσότερες περιπτώσεις θα θέλουμε να συνδέσουμε διεργασίες, έτσι θα χρησιμοποιήσουμε την <code class="highlighter-rouge">GenServer.start_link/3</code>.  Θα περάσουμε κάποια ορίσματα και ένα σετ επιλογών GenServer στην ενότητα GenServer που ξεκινάμε.  Τα ορίσματα θα περάσουν στην <code class="highlighter-rouge">GenServer.init/1</code> η οποία ορίζει την αρχική κατάσταση μέσω της τιμής επιστροφής της.  Στο παράδειγμά μας τα ορίσματα θα είναι η αρχική μας κατάσταση:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleQueue</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Ξεκινάει την ουρά μας και την συνδέει.  Αυτή είναι μια βοηθητική συνάρτηση
+  """</span>
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">state</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.init/1 επανάκληση
+  """</span>
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section">Σύγχρονες Συναρτήσεις</h3>
+
+<p>Συχνά είναι απαραίτητο να αλληλεπιδράσουμε με τους GenServers με ένα σύγχρονο τρόπο, καλώντας μια συνάρτηση και περιμένοντας για την απάντησή της.  Για να χειριστούμε σύγχρονες αιτήσεις θα χρειαστεί να υλοποιήσουμε την επανάκληση <code class="highlighter-rouge">GenServer.handle_call/3</code> η οποία δέχεται: την αίτηση, το PID της διεργασίας που καλεί, και την υπάρχουσα κατάσταση.  Είναι αναμενόμενο να απαντήσει επιστρέφοντας μια τούπλα: <code class="highlighter-rouge"><span class="p">{</span><span class="err">:reply,</span><span class="w"> </span><span class="err">response,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code>.</p>
+
+<p>Με την αντιπαραβολή προτύπων μπορούμε να ορίσουμε επανακλήσεις για πολλές διαφορετικές αιτήσεις και καταστάσεις.  Μια πλήρης λίστα των αποδεκτών επιστρεφόμενων τιμών μπορεί να βρεθεί στα έγγραφα της <a href="http://elixir-lang.org/docs/stable/elixir/GenServer.html#c:handle_call/3"><code class="highlighter-rouge">GenServer.handle_call/3</code></a>.</p>
+
+<p>Για να επιδείξουμε τις σύγχρονες αιτήσεις, ας προσθέσουμε την ικανότητα να προβάλουμε την τρέχουσα ουρά και να αφαιρέσουμε μια τιμή:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleQueue</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="c1">### GenServer API</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.init/1 επανάκληση
+  """</span>
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.handle_call/3 επανάκληση
+  """</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[</span><span class="n">value</span><span class="o">|</span><span class="n">state</span><span class="p">])</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[]),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="no">nil</span><span class="p">,</span> <span class="p">[]}</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:queue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="c1">### Client API / Βοηθητικές συναρτήσεις</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">state</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">queue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:queue</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">dequeue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:dequeue</span><span class="p">)</span>
+<span class="k">end</span>
+
+</code></pre>
+</div>
+
+<p>Ας ξεκινήσουμε την SimpleQueue μας και ας δοκιμάσουμε την νέα μας λειτουργικότητα dequeue:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">start_link</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="c1">#PID&lt;0.90.0&gt;}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">dequeue</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">dequeue</span>
+<span class="m">2</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">queue</span>
+<span class="p">[</span><span class="m">3</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="section-1">Ασύγχρονες Συναρτήσεις</h3>
+
+<p>Οι ασύγχρονες αιτήσεις χειρίζονται από την επανάκληση <code class="highlighter-rouge">handle_cast/2</code>.  Αυτή δουλεύει σχεδόν σαν την <code class="highlighter-rouge">handle_call/3</code>, αλλά δεν δέχεται την διεργασία που καλεί και δεν αναμένεται να απαντήσει.</p>
+
+<p>Θα υλοποιήσουμε την λειτουργικότητά μας enqueue ώστε να είναι ασύγχρονη, ενημερώνοντας την queue αλλά χωρίς να εμποδίζουμε την τρέχουσα εκτέλεση:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleQueue</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="c1">### GenServer API</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.init/1 επανάκληση
+  """</span>
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.handle_call/3 επανάκληση
+  """</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[</span><span class="n">value</span><span class="o">|</span><span class="n">state</span><span class="p">])</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:dequeue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="p">[]),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="no">nil</span><span class="p">,</span> <span class="p">[]}</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:queue</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  GenServer.handle_cast/2 επανάκληση
+  """</span>
+  <span class="k">def</span> <span class="n">handle_cast</span><span class="p">({</span><span class="ss">:enqueue</span><span class="p">,</span> <span class="n">value</span><span class="p">},</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">state</span> <span class="o">++</span> <span class="p">[</span><span class="n">value</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="c1">### Client API / Βοηθητικές Συναρτήσεις</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">state</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="n">queue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:queue</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">enqueue</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="p">{</span><span class="ss">:enqueue</span><span class="p">,</span> <span class="n">value</span><span class="p">})</span>
+  <span class="k">def</span> <span class="n">dequeue</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:dequeue</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Ας χρησιμοποιήσουμε την νέα μας λειτουργικότητα:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">start_link</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="c1">#PID&lt;0.100.0&gt;}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">queue</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
+<span class="ss">:ok</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleQueue</span><span class="o">.</span><span class="n">queue</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">20</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Για περισσότερες πληροφορίες ελέγξτε την επίσημη τεκμηρίωση του <a href="http://elixir-lang.org/docs/stable/elixir/GenServer.html#content">GenServer</a>.</p>
+
+<h2 id="genevent">GenEvent</h2>
+
+<p>Μάθαμε ότι οι Genservers είναι διεργασίες που μπορούν να διατηρούν κατάσταση και να χειρίζονται σύγχρονες και ασύγχρονες αιτήσεις.  Τότε τί είναι ένα GenEvent; Τα GenEvents είναι γενικοί χειριστές συμβάντων που δέχονται εισερχόμενα συμβάντα και ειδοποιούν εγγεγραμμένους καταναλωτές.  Παρέχουν ένα μηχανισμό για τη δυναμική προσθήκη και αφαίρεση χειριστών σε ροές συμβάντων.</p>
+
+<h3 id="section-2">Χειρισμός Συμβάντων</h3>
+
+<p>Η πιο σημαντική επανάκληση στα GenEvents όπως μπορείτε να φανταστείτε είναι η <code class="highlighter-rouge">handle_event/2</code>.  Αυτή λαμβάνει το συμβάν και την τρέχουσα κατάσταση και αναμένεται να επιστρέψει μια τούπλα: <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code>.</p>
+
+<p>Για να επιδείξουμε την λειτουργικότητα του GenEvent ας ξεκινήσουμε δημιουργώντας δύο χειριστές, έναν να κρατάει μια καταγραφή μηνυμάτων και την άλλη να τα διατηρεί (θεωρητικά):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">LoggerHandler</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenEvent</span>
+
+  <span class="k">def</span> <span class="n">handle_event</span><span class="p">({</span><span class="ss">:msg</span><span class="p">,</span> <span class="n">msg</span><span class="p">},</span> <span class="n">messages</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Καταγραφή νέου μηνύματος: </span><span class="si">#{</span><span class="n">msg</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="p">[</span><span class="n">msg</span><span class="o">|</span><span class="n">messages</span><span class="p">]}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">defmodule</span> <span class="no">PersistenceHandler</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenEvent</span>
+
+  <span class="k">def</span> <span class="n">handle_event</span><span class="p">({</span><span class="ss">:msg</span><span class="p">,</span> <span class="n">msg</span><span class="p">},</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Διατήρηση μηνύματος καταγραφής: </span><span class="si">#{</span><span class="n">msg</span><span class="si">}</span><span class="s2">"</span>
+
+    <span class="c1"># Αποθήκευση μηνύματος</span>
+
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section-3">Κλήση Χειριστών</h3>
+
+<p>Επιπρόσθετα στην <code class="highlighter-rouge">handle_event/2</code>, τα GenEvents υποστηρίζουν την <code class="highlighter-rouge">handle_call/2</code> ανάμεσα σε άλλες επανακλήσεις.  Με την <code class="highlighter-rouge">handle_call/2</code> μπορούμε να χειριζόμαστε συγκεκριμένα σύγχρονα μηνύματα με τον χειριστή μας.</p>
+
+<p>Ας αναβαθμίσουμε τον <code class="highlighter-rouge">LoggerHandler</code> μας να περιλαμβάνει μια συνάρτηση για την λήψη του τρέχοντος μηνύματος καταγραφής:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">LoggerHandler</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenEvent</span>
+
+  <span class="k">def</span> <span class="n">handle_event</span><span class="p">({</span><span class="ss">:msg</span><span class="p">,</span> <span class="n">msg</span><span class="p">},</span> <span class="n">messages</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Καταγραφή νέου μηνύματος: </span><span class="si">#{</span><span class="n">msg</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="p">[</span><span class="n">msg</span><span class="o">|</span><span class="n">messages</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">(</span><span class="ss">:messages</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">messages</span><span class="p">),</span> <span class="n">messages</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="genevents">Χρήση των GenEvents</h3>
+
+<p>Με τους χειριστές μας έτοιμους, πρέπει να εξοικειωθούμε με μερικές συναρτήσεις του GenEvent.  Οι τρεις πιο σημαντικές συναρτήσεις είναι: <code class="highlighter-rouge">add_handler/3</code>, <code class="highlighter-rouge">notify/2</code>, και <code class="highlighter-rouge">call/4</code>.  Αυτές μας επιτρέπουν να προσθέτουμε χειριστές, να αναμεταδίδουμε νέα μηνύματα και να καλούμε συγκεκριμένες συναρτήσεις χειριστών αντίστοιχα.</p>
+
+<p>Αν τα βάλουμε όλα μαζί μπορούμε να δούμε τους χειριστές μας σε δράση:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">start_link</span><span class="p">([])</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">add_handler</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="no">LoggerHandler</span><span class="p">,</span> <span class="p">[])</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">add_handler</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="no">PersistenceHandler</span><span class="p">,</span> <span class="p">[])</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="p">{</span><span class="ss">:msg</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Γειά σου κόσμε"</span><span class="p">})</span>
+<span class="err">Καταγραφή</span> <span class="err">νέου</span> <span class="err">μηνύματος</span><span class="p">:</span> <span class="err">Γειά</span> <span class="err">σου</span> <span class="err">κόσμε</span>
+<span class="err">Διατήρηση</span> <span class="err">νέου</span> <span class="err">μηνύματος</span><span class="p">:</span> <span class="err">Γειά</span> <span class="err">σου</span> <span class="err">κόσμε</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">GenEvent</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="no">LoggerHandler</span><span class="p">,</span> <span class="ss">:messages</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Γειά σου κόσμε"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Δείτε την επίσημη τεκμηρίωση των <a href="http://elixir-lang.org/docs/stable/elixir/GenEvent.html#content">GenEvent</a> για μια ολοκληρωμένη λίστα επανακλήσεων και λειτουργικότητας των GenEvent.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/gr/lessons/advanced/otp-concurrency/&title=Συγχρονισμός OTP&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/gr/lessons/advanced/otp-concurrency/&via=elixirschool&text=ElixirSchool: Συγχρονισμός OTP&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/gr/lessons/advanced/otp-concurrency/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/gr/lessons/advanced/otp-concurrency/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/gr/lessons/advanced/otp-concurrency/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Συγχρονισμός OTP" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/gr/lessons/advanced/otp-concurrency/&title=ElixirSchool: Συγχρονισμός OTP&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/gr/lessons/advanced/otp-concurrency/&title=ElixirSchool: Συγχρονισμός OTP&description=Check out 'Συγχρονισμός OTP' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Συγχρονισμός OTP&body=Check out 'Συγχρονισμός OTP' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/gr/lessons/advanced/otp-concurrency/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

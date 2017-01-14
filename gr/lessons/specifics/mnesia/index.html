@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/gr/lessons/specifics/mnesia/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Mnesia &middot; Elixir School
+
+">
+  <meta property="og:description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Mnesia &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Μαθήματα προγραμματισμού της γλώσσας Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βασικά</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/basics/basics/">Βασικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/basics/collections/">Συλλογές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/basics/pattern-matching/">Αντιπαραβολές Προτύπων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/basics/control-structures/">Δομές Ελέγχου</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/basics/functions/">Συναρτήσεις</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/basics/pipe-operator/">Τελεστής Σωλήνα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/basics/modules/">Ενότητες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/basics/sigils/">Σφραγίδες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/basics/documentation/">Τεκμηρίωση</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/gr/lessons/basics/testing/">Δοκιμές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/gr/lessons/basics/comprehensions/">Ανάγνωση Λιστών</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/gr/lessons/basics/strings/">Αλφαριθμητικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/gr/lessons/basics/mix-tasks/">Ειδικές Εργασίες Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Προχωρημένα</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/advanced/erlang/">Διαλειτουργικότητα με την Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/advanced/error-handling/">Διαχείριση Σφαλμάτων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/advanced/escripts/">Εκτελέσιμα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/advanced/concurrency/">Συγχρονισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-concurrency/">Συγχρονισμός OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-supervisors/">Επιτηρητές OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/advanced/metaprogramming/">Μεταπρογραμματισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/advanced/umbrella-projects/">Projects Ομπρέλας</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/advanced/typespec/">Προδιαγραφές και τύποι</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/advanced/behaviours/">Συμπεριφορές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Ιδιαιτερότητες</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/specifics/eex/">Ένθετη Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/gr/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βιβλιοθήκες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/libraries/guardian/">Guardian (Βασικά)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/mnesia/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/mnesia/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/mnesia/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/mnesia/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/mnesia/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/mnesia/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/mnesia/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/mnesia/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/mnesia/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/mnesia/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/mnesia/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/mnesia/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/mnesia/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/mnesia/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/mnesia/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/mnesia/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/mnesia/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/mnesia/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/mnesia/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/mnesia/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/mnesia/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Mnesia</h1>
+  <p>To Mnesia είναι ένα κατανεμημένο σύστημα διαχείρισης βάσεων δεδομένων.</p>
+
+<h2>Πίνακας περιεχομένων</h2>
+<div id="toc"></div>
+
+<h2 id="section">Επισκόπηση</h2>
+
+<p>Το Mnesia είναι ένα Σύστημα Διαχείρισης Βάσεων Δεδομένων (Database Management System - DBMS) που έρχεται μαζί με το Erlang Runtime System το οποίο μπορούμε να χρησιμοποιήσουμε φυσικά με την Elixir.  Το <em>σχεσιακό και υβριδικό αντικείμενο μοντέλο δεδομένων</em> του Mnesia είναι το πιο ταιριαστό για την ανάπτυξη κατανεμημένων εφαρμογών κάθε κλίμακας.</p>
+
+<h2 id="section-1">Πότε να το χρησιμοποιήσετε</h2>
+
+<p>Δεν είναι πάντα ξεκάθαρο το πότε θα χρησιμοποιήσουμε ένα κομμάτι τεχνολογίας.  Αν μπορείτε να απαντήσετε ‘ναι’ σε κάποια από τις παρακάτω ερωτήσεις, τότε αυτή είναι μια καλή ένδειξη για τη χρήση του Mnesia αντί των ETS ή DETS.</p>
+
+<ul>
+  <li>Χρειάζεται να γυρίσω πίσω μεταφορές;</li>
+  <li>Χρειάζομαι ένα εύκολο στη χρήση συντακτικό για την ανάγνωση και εγγραφή δεδομένων;</li>
+  <li>Πρέπει να αποθηκεύσω δεδομένα σε πάνω από ένα κόμβο;</li>
+  <li>Χρειάζομαι μια επιλογή στο που να αποθηκεύσω πληροφορίες (στη RAM ή στο δίσκο);</li>
+</ul>
+
+<h2 id="section-2">Σχήμα</h2>
+
+<p>Καθώς το Mnesia είναι μέρος πυρήνα της Erlang, όχι της Elixir, πρέπει να χρησιμοποιήσουμε το συντακτικό με την άνω κάτω τελεία για να έχουμε πρόσβαση σε αυτό (δείτε το μάθημα: <a href="../../advanced/erlang/">Αλληλεπίδραση με την Erlang</a>) ως εξής:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="gp">iex&gt; </span>:mnesia.create_schema<span class="o">([</span>node<span class="o">()])</span>
+
+<span class="c"># ή αν προτιμάτε το στυλ της Elixir...</span>
+
+<span class="gp">iex&gt; </span><span class="nb">alias</span> :mnesia, as: Mnesia
+<span class="gp">iex&gt; </span>Mnesia.create_schema<span class="o">([</span>node<span class="o">()])</span>
+</code></pre>
+</div>
+
+<p>Για αυτό το μάθημα, θα χρησιμοποιήσουμε την τελευταία προσέγγιση όταν δουλεύουμε με το API του Mnesia.  Η <code class="highlighter-rouge">Mnesia.create_schema/1</code> αρχικοποιεί ένα άδειο σχήμα και του περνάει μια λίστα κόμβων.  Σε αυτή την περίπτωση, περνάμε τον κόμβο που είναι συσχετισμένος με τη συνεδρία μας στο IEX.</p>
+
+<h2 id="section-3">Κόμβοι</h2>
+
+<p>Αφού τρέξετε την εντολή <code class="highlighter-rouge">Mnesia.create_schema([node()])</code> στο IEx, θα πρέπει να βλέπετε ένα φάκελο που ονομάζεται <strong>Mnesia.nonode@nohost</strong> ή παρόμοιο στον τρέχοντα φάκελο εργασίας.  Ίσως αναρωτιέστε τι σημαίνει το <strong>nonode@nohost</strong> καθώς δεν το έχουμε ξανα συναντήσει.  Για να το δούμε.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>iex --help
+Usage: iex <span class="o">[</span>options] <span class="o">[</span>.exs file] <span class="o">[</span>data]
+
+  -v                Prints version
+  -e <span class="s2">"command"</span>      Evaluates the given <span class="nb">command</span> <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -r <span class="s2">"file"</span>         Requires the given files/patterns <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -S <span class="s2">"script"</span>       Finds and executes the given script
+  -pr <span class="s2">"file"</span>        Requires the given files/patterns <span class="k">in </span>parallel <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -pa <span class="s2">"path"</span>        Prepends the given path to Erlang code path <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -pz <span class="s2">"path"</span>        Appends the given path to Erlang code path <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --app <span class="s2">"app"</span>       Start the given app and its dependencies <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --erl <span class="s2">"switches"</span>  Switches to be passed down to Erlang <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --name <span class="s2">"name"</span>     Makes and assigns a name to the distributed node
+  --sname <span class="s2">"name"</span>    Makes and assigns a short name to the distributed node
+  --cookie <span class="s2">"cookie"</span> Sets a cookie <span class="k">for </span>this distributed node
+  --hidden          Makes a hidden node
+  --werl            Uses Erlang<span class="s1">'s Windows shell GUI (Windows only)
+  --detached        Starts the Erlang VM detached from console
+  --remsh "name"    Connects to a node using a remote shell
+  --dot-iex "path"  Overrides default .iex.exs file and uses path instead;
+                    path can be empty, then no file will be loaded
+
+** Options marked with (*) can be given more than once
+** Options given after the .exs file or -- are passed down to the executed code
+** Options can be passed to the VM using ELIXIR_ERL_OPTIONS or --erl
+</span></code></pre>
+</div>
+
+<p>Όταν περνάμε την επιλογή <code class="highlighter-rouge">--help</code> στο IEx από τη γραμμή εντολών, μας δίνεται μια λίστα με όλες τις διαθέσιμες επιλογές.  Μπορούμε να δούμε ότι υπάρχουν οι επιλογές <code class="highlighter-rouge">--name</code> και <code class="highlighter-rouge">--sname</code> για τον ορισμό πληροφοριών στους κόμβους.  Ένας κόμβος είναι απλά μια ενεργή εικονική μηχανή Erlang η οποία χειρίζεται τις επικοινωνίες της , τη συλλογή σκουπιδιών της, το χρονοπρογραμματισμό επεξεργασίας της, τη μνήμη της και άλλα.  Ο κόμβος ονομάζεται <strong>nonode@nohost</strong> εξ’ ορισμού.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>iex --name learner@elixirschool.com
+
+Erlang/OTP 19 <span class="o">[</span>erts-8.0.2] <span class="o">[</span><span class="nb">source</span><span class="o">]</span> <span class="o">[</span>64-bit] <span class="o">[</span>smp:4:4] <span class="o">[</span>async-threads:10] <span class="o">[</span>hipe] <span class="o">[</span>kernel-poll:false] <span class="o">[</span>dtrace]
+
+Interactive Elixir <span class="o">(</span>1.3.4<span class="o">)</span> - press Ctrl+C to <span class="nb">exit</span> <span class="o">(</span><span class="nb">type </span>h<span class="o">()</span> ENTER <span class="k">for </span><span class="nb">help</span><span class="o">)</span>
+<span class="gp">iex(learner@elixirschool.com)&gt; </span>Node.self
+:<span class="s2">"learner@elixirschool.com"</span>
+</code></pre>
+</div>
+
+<p>Όπως μπορούμε να δούμε, ο κόμβος που τρέχουμε είναι ένα άτομο που ονομάζεται <code class="highlighter-rouge">:"learner@elixirschool.com"</code>.  Αν τρέχουμε ξανά την <code class="highlighter-rouge">Mnesia.create_schema([node()])</code>, θα δούμε ότι δημιούργησε έναν άλλο φάκελο που ονομάζεται <strong>Mnesia.learner@elixirschool.com</strong>.  Ο σκοπός του είναι αρκετά απλός.  Οι κόμβοι στην Erlang χρησιμοποιούνται για να συνδεθούν σε άλλους κόμβους και να μοιραστούν (και να διανέμουν) πληροφορίες και πόρους.  Αυτό δεν περιορίζεται στο ίδιο μηχάνημα και μπορεί να επικοινωνήσει μέσω LAN, μέσω του internet κ.α.</p>
+
+<h2 id="mnesia">Ξεκινώντας το Mnesia</h2>
+
+<p>Τώρα που έχουμε κατανοήσει τα βασικά και έχουμε ρυθμίσει τη βάση δεδομένων, είμαστε σε θέση να ξεκινήσουμε το σύστημα διαχείρησης βάσης δεδομένων με την εντολή <code class="highlighter-rouge">Mnesia.start/0</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span><span class="nb">alias</span> :mnesia, as: Mnesia
+<span class="gp">iex&gt; </span>Mnesia.create_schema<span class="o">([</span>node]<span class="o">)</span>
+:ok
+<span class="gp">iex&gt; </span>Mnesia.start<span class="o">()</span>
+:ok
+</code></pre>
+</div>
+
+<p>Είναι σημαντικό να έχουμε στο μυαλό μας ότι η εκτέλεση ενός κατανεμημένου συστήματος με δύο ή περισσότερους κόμβους, η συνάρτηση <code class="highlighter-rouge">Mnesia.start/1</code> πρέπει να εκτελεστεί σε όλους τους κόμβους που λαμβάνουν μέρους.</p>
+
+<h2 id="section-4">Δημιουργία Πινάκων</h2>
+
+<p>Η συνάρτηση <code class="highlighter-rouge">Mnesia.create_table/2</code> χρησιμοποιείται για τη δημιουργία πινάκων μέσα στη βάση δεδομένων μας.  Παρακάτω δημιουργούμε ένα πίνακα που ονομάζεται <code class="highlighter-rouge">Person</code> και μετά περνάμε μια λίστα λέξεων κλειδιά για να ορίσουμε το σχήμα του πίνακα.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span>Mnesia.create_table<span class="o">(</span>Person, <span class="o">[</span>attributes: <span class="o">[</span>:id, :name, :job]]<span class="o">)</span>
+<span class="o">{</span>:atomic, :ok<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>Ορίζουμε τις στήλες χρησιμοποιώντας τα άτομα <code class="highlighter-rouge">:id</code>, <code class="highlighter-rouge">:name</code>, και <code class="highlighter-rouge">:job</code>.  Όταν εκτελέσουμε την <code class="highlighter-rouge">Mnesia.create_table/2</code>, θα επιστρέψει μια από τις ακόλουθες απαντήσεις:</p>
+
+<ul>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:atomic,</span><span class="w"> </span><span class="err">:ok</span><span class="p">}</span></code> αν η συνάρτηση εκτελεστεί με επιτυχία</li>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:aborted,</span><span class="w"> </span><span class="err">Reason</span><span class="p">}</span></code> αν η συνάρτηση αποτύχει</li>
+</ul>
+
+<h2 id="section-5">Ο Λάθος Τρόπος</h2>
+
+<p>Πρώτα από όλα θα δούμε το λάθος τρόπο ανάγνωσης και εγγραφής σε ένα πίνακα Mnesia.  Αυτός γενικά θα πρέπει να αποφεύγεται καθώς η επιτυχία δεν είναι εγγυημένη, αλλά θα μας μάθει να είμαστε πιο άνετοι στην εργασία μας με το Mnesia.  Ας δούμε μερικές εγγραφές στον πίνακας μας <strong>Person</strong>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span>Mnesia.dirty_write<span class="o">({</span>Person, 1, <span class="s2">"Seymour Skinner"</span>, <span class="s2">"Principal"</span><span class="o">})</span>
+:ok
+
+<span class="gp">iex&gt; </span>Mnesia.dirty_write<span class="o">({</span>Person, 2, <span class="s2">"Homer Simpson"</span>, <span class="s2">"Safety Inspector"</span><span class="o">})</span>
+:ok
+
+<span class="gp">iex&gt; </span>Mnesia.dirty_write<span class="o">({</span>Person, 3, <span class="s2">"Moe Szyslak"</span>, <span class="s2">"Bartender"</span><span class="o">})</span>
+:ok
+</code></pre>
+</div>
+
+<p>… και για να ανακτήσουμε τις εγγραφές μπορούμε να χρησιμοποιήσουμε την <code class="highlighter-rouge">Mnesia.dirty_read/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span>Mnesia.dirty_read<span class="o">({</span>Person, 1<span class="o">})</span>
+<span class="o">[{</span>Person, 1, <span class="s2">"Seymour Skinner"</span>, <span class="s2">"Principal"</span><span class="o">}]</span>
+
+<span class="gp">iex&gt; </span>Mnesia.dirty_read<span class="o">({</span>Person, 2<span class="o">})</span>
+<span class="o">[{</span>Person, 2, <span class="s2">"Homer Simpson"</span>, <span class="s2">"Safety Inspector"</span><span class="o">}]</span>
+
+<span class="gp">iex&gt; </span>Mnesia.dirty_read<span class="o">({</span>Person, 3<span class="o">})</span>
+<span class="o">[{</span>Person, 3, <span class="s2">"Moe Szyslak"</span>, <span class="s2">"Bartender"</span><span class="o">}]</span>
+
+<span class="gp">iex&gt; </span>Mnesia.dirty_read<span class="o">({</span>Person, 4<span class="o">})</span>
+<span class="o">[]</span>
+</code></pre>
+</div>
+
+<p>Αν δοκιμάσουμε να εξετάσουμε μια εγγραφή που δεν υπάρχει η Mnesia θα ανταποκριθεί με μια άδεια λίστα.</p>
+
+<h2 id="section-6">Συναλλαγές</h2>
+
+<p>Παραδοσιακά χρησιμοποιούμε τις <strong>συναλλαγές</strong> για να ενσωματώσουμε τις αναγνώσεις και εγγραφές στη βάση δεδομένων μας.  Οι συναλλαγές είναι ένα σημαντικό μέρος σχεδίασης ανεκτικών σε λάθη, υψηλά κατανεμημένων συστημάτων.  Στη Mnesia, <em>η συναλλαγή είναι ένας μηχανισμός με τον οποίο μια σειρά εργασιών της βάσης δεδομένων μπορεί να εκτελεστεί σαν ένα συναρτησιακό μπλοκ</em>.  Πρώτα δημιουργούμε μια ανώνυμη συνάρτηση, σε αυτή την περίπτωση την <code class="highlighter-rouge">data_to_write</code> και τότε την περνάμε στην <code class="highlighter-rouge">Mnesia.transaction</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span>data_to_write <span class="o">=</span> fn -&gt;
+<span class="gp">...&gt;   </span>Mnesia.write<span class="o">({</span>Person, 4, <span class="s2">"Marge Simpson"</span>, <span class="s2">"home maker"</span><span class="o">})</span>
+<span class="gp">...&gt;   </span>Mnesia.write<span class="o">({</span>Person, 5, <span class="s2">"Hans Moleman"</span>, <span class="s2">"unknown"</span><span class="o">})</span>
+<span class="gp">...&gt;   </span>Mnesia.write<span class="o">({</span>Person, 6, <span class="s2">"Monty Burns"</span>, <span class="s2">"Businessman"</span><span class="o">})</span>
+<span class="gp">...&gt;   </span>Mnesia.write<span class="o">({</span>Person, 7, <span class="s2">"Waylon Smithers"</span>, <span class="s2">"Executive assistant"</span><span class="o">})</span>
+<span class="gp">...&gt; </span>end
+<span class="c">#Function&lt;20.54118792/0 in :erl_eval.expr/5&gt;</span>
+
+<span class="gp">iex&gt; </span>Mnesia.transaction<span class="o">(</span>data_to_write<span class="o">)</span>
+<span class="o">{</span>:atomic, :ok<span class="o">}</span>
+</code></pre>
+</div>
+<p>Βασιζόμενοι σε αυτό το μήνυμα συναλλαγής, είμαστε σε θέση να υποθέσουμε ότι έχουμε γράψει τα δεδομένα μας στον πίνακα <code class="highlighter-rouge">Person</code>.  Ας χρησιμοποιήσουμε μια συναλλαγή για να διαβάσουμε από τη βάση δεδομένων για να βεβαιωθούμε.  Θα χρησιμοποιήσουμε τη <code class="highlighter-rouge">Mnesia.read/1</code> για να διαβάσουμε από τη βάση δεδομένων, αλλά ξανά μέσα από μια ανώνυμη συνάρτηση.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span>data_to_read <span class="o">=</span> fn -&gt;
+<span class="gp">...&gt;   </span>Mnesia.read<span class="o">({</span>Person, 6<span class="o">})</span>
+<span class="gp">...&gt; </span>end
+<span class="c">#Function&lt;20.54118792/0 in :erl_eval.expr/5&gt;</span>
+
+<span class="gp">iex&gt; </span>Mnesia.transaction<span class="o">(</span>data_to_read<span class="o">)</span>
+<span class="o">{</span>:atomic, <span class="o">[{</span>Person, 6, <span class="s2">"Monty Burns"</span>, <span class="s2">"Businessman"</span><span class="o">}]}</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/gr/lessons/specifics/mnesia/&title=Mnesia&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/gr/lessons/specifics/mnesia/&via=elixirschool&text=ElixirSchool: Mnesia&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/gr/lessons/specifics/mnesia/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/gr/lessons/specifics/mnesia/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/gr/lessons/specifics/mnesia/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Mnesia" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/gr/lessons/specifics/mnesia/&title=ElixirSchool: Mnesia&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/gr/lessons/specifics/mnesia/&title=ElixirSchool: Mnesia&description=Check out 'Mnesia' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Mnesia&body=Check out 'Mnesia' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/gr/lessons/specifics/mnesia/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

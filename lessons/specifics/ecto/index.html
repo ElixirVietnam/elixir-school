@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lessons about the Elixir programming language">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/lessons/specifics/ecto/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Ecto &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lessons about the Elixir programming language">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Ecto &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lessons about the Elixir programming language</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Basics</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/basics/basics/">Basics</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/basics/control-structures/">Control Structures</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/basics/functions/">Functions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Advanced</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/advanced/error-handling/">Error Handling</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/advanced/escripts/">Executables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/advanced/concurrency/">Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/advanced/umbrella-projects/">Umbrella Projects</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/advanced/typespec/">Specifications and types</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Specifics</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Libraries</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/ecto/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/ecto/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/ecto/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/ecto/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/ecto/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/ecto/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/ecto/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/ecto/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/ecto/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/ecto/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/ecto/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/ecto/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/ecto/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/ecto/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/ecto/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/ecto/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/ecto/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/ecto/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/ecto/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/ecto/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/ecto/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Ecto</h1>
+  <p>Ecto is an official Elixir project providing a database wrapper and integrated query language.  With Ecto we’re able to create migrations, define models, insert and update records, and query them.</p>
+
+<h2>Table of Contents</h2>
+<div id="toc"></div>
+
+<h2 id="setup">Setup</h2>
+
+<p>To get started we need to include Ecto and a database adapter in our project’s <code class="highlighter-rouge">mix.exs</code>.  You can find a list of supported database adapters in the <a href="https://github.com/elixir-lang/ecto/blob/master/README.md#usage">Usage</a> section of the Ecto README.  For our example we’ll use PostgreSQL:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:ecto</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.0"</span><span class="p">},</span>
+   <span class="p">{</span><span class="ss">:postgrex</span><span class="p">,</span> <span class="sd">"</span><span class="s2">&gt;= 0.0.0"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Now we can add Ecto and our adapter to the application list:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:ecto</span><span class="p">,</span> <span class="ss">:postgrex</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="repository">Repository</h3>
+
+<p>Finally we need to create our project’s repository, the database wrapper.  This can be done via the <code class="highlighter-rouge">mix ecto.gen.repo</code> task.  We’ll cover Ecto mix tasks next.  The Repo can be found in <code class="highlighter-rouge">lib/&lt;project name&gt;/repo.ex</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span>
+    <span class="ss">otp_app:</span> <span class="ss">:example_app</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="supervisor">Supervisor</h3>
+
+<p>Once we’ve created our Repo we need to set up our supervisor tree, which is usually found in <code class="highlighter-rouge">lib/&lt;project name&gt;.ex</code>.</p>
+
+<p>It is important to note that we set up the Repo as a supervisor with <code class="highlighter-rouge">supervisor/3</code> and <em>not</em> <code class="highlighter-rouge">worker/3</code>.  If you generated your app with the <code class="highlighter-rouge">--sup</code> flag much of this exists already:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">App</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Application</span>
+
+  <span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="n">supervisor</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="p">]</span>
+
+    <span class="n">opts</span> <span class="o">=</span> <span class="p">[</span><span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">]</span>
+    <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>For more info on supervisors check out the <a href="../../advanced/otp-supervisors">OTP Supervisors</a> lesson.</p>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>To configure Ecto we need to add a section to our <code class="highlighter-rouge">config/config.exs</code>.  Here we’ll specify the repository, adapter, database, and account information:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">config</span> <span class="ss">:example_app</span><span class="p">,</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span>
+  <span class="ss">adapter:</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Postgres</span><span class="p">,</span>
+  <span class="ss">database:</span> <span class="sd">"</span><span class="s2">example_app"</span><span class="p">,</span>
+  <span class="ss">username:</span> <span class="sd">"</span><span class="s2">postgres"</span><span class="p">,</span>
+  <span class="ss">password:</span> <span class="sd">"</span><span class="s2">postgres"</span><span class="p">,</span>
+  <span class="ss">hostname:</span> <span class="sd">"</span><span class="s2">localhost"</span>
+</code></pre>
+</div>
+
+<h2 id="mix-tasks">Mix Tasks</h2>
+
+<p>Ecto includes a number of helpful mix tasks for working with our database:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mix ecto.create         <span class="c"># Create the storage for the repo</span>
+mix ecto.drop           <span class="c"># Drop the storage for the repo</span>
+mix ecto.gen.migration  <span class="c"># Generate a new migration for the repo</span>
+mix ecto.gen.repo       <span class="c"># Generate a new repository</span>
+mix ecto.migrate        <span class="c"># Run migrations up on a repo</span>
+mix ecto.rollback       <span class="c"># Rollback migrations from a repo</span>
+</code></pre>
+</div>
+
+<h2 id="migrations">Migrations</h2>
+
+<p>The best way to create migrations is the <code class="highlighter-rouge">mix ecto.gen.migration &lt;name&gt;</code> task.  If you’re acquainted with ActiveRecord these will look familiar.</p>
+
+<p>Let’s start by taking a look at a migration for a users table:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="no">Migrations</span><span class="o">.</span><span class="no">CreateUser</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Migration</span>
+
+  <span class="k">def</span> <span class="n">change</span> <span class="k">do</span>
+    <span class="n">create</span> <span class="n">table</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">add</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">unique:</span> <span class="no">true</span>
+      <span class="n">add</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">null:</span> <span class="no">false</span>
+      <span class="n">add</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+      <span class="n">add</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+
+      <span class="n">timestamps</span>
+    <span class="k">end</span>
+
+    <span class="n">create</span> <span class="n">unique_index</span><span class="p">(</span><span class="ss">:users</span><span class="p">,</span> <span class="p">[</span><span class="ss">:username</span><span class="p">],</span> <span class="ss">name:</span> <span class="ss">:unique_usernames</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>By default Ecto creates an auto-incrementing primary key called <code class="highlighter-rouge">id</code>.  Here we’re using the default <code class="highlighter-rouge">change/0</code> callback but Ecto also supports <code class="highlighter-rouge">up/0</code> and <code class="highlighter-rouge">down/0</code> in the event you need more granular control.</p>
+
+<p>As you might have guessed, adding <code class="highlighter-rouge">timestamps</code> to your migration will create and manage <code class="highlighter-rouge">inserted_at</code> and <code class="highlighter-rouge">updated_at</code> for you.</p>
+
+<p>To apply our new migration run <code class="highlighter-rouge">mix ecto.migrate</code>.</p>
+
+<p>For more on migrations take a look at the <a href="http://hexdocs.pm/ecto/Ecto.Migration.html#content">Ecto.Migration</a> section of the docs.</p>
+
+<h2 id="models">Models</h2>
+
+<p>Now that we have our migration we can move on to the model.  Models define our schema, helper methods, and our changesets.  We’ll cover changesets more in the next sections.</p>
+
+<p>For now let’s look at what the model for our migration might look like:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">User</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Schema</span>
+  <span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Changeset</span>
+
+  <span class="n">schema</span> <span class="sd">"</span><span class="s2">users"</span> <span class="k">do</span>
+    <span class="n">field</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+    <span class="n">field</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+    <span class="n">field</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+
+    <span class="n">timestamps</span>
+  <span class="k">end</span>
+
+  <span class="nv">@required_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">(</span><span class="n">username</span> <span class="n">encrypted_password</span> <span class="n">email</span><span class="p">)</span>
+  <span class="nv">@optional_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="n">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">params</span> <span class="p">\\</span> <span class="ss">:empty</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">user</span>
+    <span class="o">|&gt;</span> <span class="n">cast</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nv">@required_fields</span><span class="p">,</span> <span class="nv">@optional_fields</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">unique_constraint</span><span class="p">(</span><span class="ss">:username</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>The schema we define in our model closely represents what we specified in our migration.  In addition to our database fields we’re also including two virtual fields.  Virtual fields are not saved to the database but can be useful for things like validation.  We’ll see the virtual fields in action in the <a href="#changesets">Changesets</a> section.</p>
+
+<h2 id="querying">Querying</h2>
+
+<p>Before we can query our repository we need to import the Query API.  For now we only need to import <code class="highlighter-rouge">from/2</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Query</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">from:</span> <span class="m">2</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>The official documentation can be found at <a href="http://hexdocs.pm/ecto/Ecto.Query.html">Ecto.Query</a>.</p>
+
+<h3 id="basics">Basics</h3>
+
+<p>Ecto provides an excellent Query DSL that allows us to express queries clearly.  To find the usernames of all confirmed accounts we could use something like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alias</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="p">{</span><span class="no">Repo</span><span class="p">,</span><span class="no">User</span><span class="p">}</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">u</span><span class="o">.</span><span class="n">username</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>In addition to <code class="highlighter-rouge">all/2</code>, Repo provides a number of callbacks including <code class="highlighter-rouge">one/2</code>, <code class="highlighter-rouge">get/3</code>, <code class="highlighter-rouge">insert/2</code>, and <code class="highlighter-rouge">delete/2</code>.  A complete list of callbacks can be found at <a href="http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks">Ecto.Repo#callbacks</a>.</p>
+
+<h3 id="count">Count</h3>
+
+<p>If we want to count the number of users that have confirmed account we could use <code class="highlighter-rouge">count/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>There is <code class="highlighter-rouge">count/2</code> function that counts the distinct values in given entry:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="ss">:distinct</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="group-by">Group By</h3>
+
+<p>To group users by their confirmation status we can include the <code class="highlighter-rouge">group_by</code> option:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">group_by:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">confirmed</span><span class="p">,</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">)]</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="order-by">Order By</h3>
+
+<p>Ordering users by their creation date:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">order_by:</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">]</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>To order by <code class="highlighter-rouge">DESC</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">order_by:</span> <span class="p">[</span><span class="ss">desc:</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">],</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="joins">Joins</h3>
+
+<p>Assuming we had a profile associated with our user, let’s find all confirmed account profiles:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">p</span> <span class="ow">in</span> <span class="no">Profile</span><span class="p">,</span>
+    <span class="ss">join:</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">assoc</span><span class="p">(</span><span class="n">profile</span><span class="p">,</span> <span class="ss">:user</span><span class="p">),</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="fragments">Fragments</h3>
+
+<p>Sometimes, like when we need specific database functions, the Query API isn’t enough.  The <code class="highlighter-rouge">fragment/1</code> function exists for this purpose:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">fragment</span><span class="p">(</span><span class="sd">"</span><span class="s2">downcase(?)"</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="o">==</span> <span class="o">^</span><span class="n">username</span>
+    <span class="ss">select:</span> <span class="n">u</span>
+</code></pre>
+</div>
+
+<p>Additional query examples can be found in the <a href="http://hexdocs.pm/ecto/Ecto.Query.API.html">Ecto.Query.API</a> module description.</p>
+
+<h2 id="changesets">Changesets</h2>
+
+<p>In the previous section we learned how to retrieve data, but how about inserting and updating it?  For that we need Changesets.</p>
+
+<p>Changesets take care of filtering, validating, and maintaining constraints when changing a model.</p>
+
+<p>For this example we’ll focus on the changeset for user account creation.  To start we need to update our model:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">User</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Schema</span>
+  <span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Changeset</span>
+  <span class="kn">import</span> <span class="no">Comeonin</span><span class="o">.</span><span class="no">Bcrypt</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">hashpwsalt:</span> <span class="m">1</span><span class="p">]</span>
+
+  <span class="n">schema</span> <span class="sd">"</span><span class="s2">users"</span> <span class="k">do</span>
+    <span class="n">field</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+    <span class="n">field</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+    <span class="n">field</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+
+    <span class="n">timestamps</span>
+  <span class="k">end</span>
+
+  <span class="nv">@required_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">(</span><span class="n">username</span> <span class="n">email</span> <span class="n">password</span> <span class="n">password_confirmation</span><span class="p">)</span>
+  <span class="nv">@optional_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="n">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">params</span> <span class="p">\\</span> <span class="ss">:empty</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">user</span>
+    <span class="o">|&gt;</span> <span class="n">cast</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nv">@required_fields</span><span class="p">,</span> <span class="nv">@optional_fields</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">validate_length</span><span class="p">(</span><span class="ss">:password</span><span class="p">,</span> <span class="ss">min:</span> <span class="m">8</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">validate_password_confirmation</span><span class="p">()</span>
+    <span class="o">|&gt;</span> <span class="n">unique_constraint</span><span class="p">(</span><span class="ss">:username</span><span class="p">,</span> <span class="ss">name:</span> <span class="ss">:email</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">put_change</span><span class="p">(</span><span class="ss">:encrypted_password</span><span class="p">,</span> <span class="n">hashpwsalt</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:password</span><span class="p">]))</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">validate_password_confirmation</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">case</span> <span class="n">get_change</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password_confirmation</span><span class="p">)</span> <span class="k">do</span>
+      <span class="no">nil</span> <span class="o">-&gt;</span>
+        <span class="n">password_incorrect_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
+      <span class="n">confirmation</span> <span class="o">-&gt;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">get_field</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">confirmation</span> <span class="o">==</span> <span class="n">password</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">changeset</span><span class="p">,</span> <span class="k">else</span><span class="p">:</span> <span class="n">password_mismatch_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">password_mismatch_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">add_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Passwords does not match"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">password_incorrect_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">add_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password</span><span class="p">,</span> <span class="sd">"</span><span class="s2">is not valid"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>We’ve improved our <code class="highlighter-rouge">changeset/2</code> function and added three new helper functions: <code class="highlighter-rouge">validate_password_confirmation/1</code>, <code class="highlighter-rouge">password_mismatch_error/1</code>, and <code class="highlighter-rouge">password_incorrect_error/1</code>.</p>
+
+<p>As its name suggests, <code class="highlighter-rouge">changeset/2</code> creates a new changeset for us.  In it we use <code class="highlighter-rouge">cast/4</code> to convert our parameters to a changeset from a set of required and optional fields.  Next we validate the changeset’s password length, we use our own function to validate the password confirmation matches, and we validate username uniqueness.  Finally we update our actual password database field.  For this we use <code class="highlighter-rouge">put_change/3</code> to update a value in the changeset.</p>
+
+<p>Using <code class="highlighter-rouge">User.changeset/2</code> is relatively straightforward:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alias</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="p">{</span><span class="no">User</span><span class="p">,</span><span class="no">Repo</span><span class="p">}</span>
+
+<span class="n">pw</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">passwords should be hard"</span>
+<span class="n">changeset</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">changeset</span><span class="p">(%</span><span class="no">User</span><span class="p">{},</span> <span class="p">%{</span><span class="ss">username:</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span>
+                    <span class="ss">email:</span> <span class="sd">"</span><span class="s2">sean@seancallan.com"</span><span class="p">,</span>
+                    <span class="ss">password:</span> <span class="n">pw</span><span class="p">,</span>
+                    <span class="ss">password_confirmation:</span> <span class="n">pw</span><span class="p">})</span>
+
+<span class="k">case</span> <span class="no">Repo</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">model</span><span class="p">}</span>        <span class="o">-&gt;</span> <span class="c1"># Inserted with success</span>
+  <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">changeset</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="c1"># Something went wrong</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>That’s it!  Now you’re ready to save some data.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/lessons/specifics/ecto/&title=Ecto&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/lessons/specifics/ecto/&via=elixirschool&text=ElixirSchool: Ecto&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/lessons/specifics/ecto/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/lessons/specifics/ecto/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/lessons/specifics/ecto/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Ecto" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/lessons/specifics/ecto/&title=ElixirSchool: Ecto&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/lessons/specifics/ecto/&title=ElixirSchool: Ecto&description=Check out 'Ecto' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Ecto&body=Check out 'Ecto' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/lessons/specifics/ecto/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

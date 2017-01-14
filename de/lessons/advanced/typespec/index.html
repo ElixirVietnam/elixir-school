@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Übungen zur Programmiersprache Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/de/lessons/advanced/typespec/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Spezifikationen und Typen &middot; Elixir School
+
+">
+  <meta property="og:description" content="Übungen zur Programmiersprache Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Spezifikationen und Typen &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Übungen zur Programmiersprache Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Grundlagen</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/de/lessons/basics/basics/">Grundlagen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/de/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/basics/enum/">Enums</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/de/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/de/lessons/basics/control-structures/">Kontrollstrukturen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/de/lessons/basics/functions/">Funktionen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/de/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/de/lessons/basics/modules/">Module</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/de/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/de/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/de/lessons/basics/documentation/">Dokumentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/de/lessons/basics/testing/">Testen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/de/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/de/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/de/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Erweitert</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/de/lessons/advanced/erlang/">Erlang-Interoperabilität</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/de/lessons/advanced/error-handling/">Fehlerbehandlung</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/advanced/escripts/">Ausführbare Dateien</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/de/lessons/advanced/concurrency/">Nebenläufigkeit</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/de/lessons/advanced/otp-concurrency/">OTP Nebenläufigkeit</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/de/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/de/lessons/advanced/metaprogramming/">Metaprogrammierung</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/de/lessons/advanced/umbrella-projects/">Umbrella-Projekte</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson  active" href="/de/lessons/advanced/typespec/">Spezifikationen und Typen</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Einzelheiten</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/typespec/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/typespec/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/typespec/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/typespec/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/typespec/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/typespec/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/typespec/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/typespec/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/typespec/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/typespec/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/typespec/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/typespec/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/typespec/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/typespec/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/typespec/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/typespec/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/typespec/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/typespec/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/typespec/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/typespec/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/typespec/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Spezifikationen und Typen</h1>
+  <p>In dieser Lektion werden wir die <code class="highlighter-rouge">@spec</code>- und <code class="highlighter-rouge">@type</code>-Syntax kennen lernen. Die Erste ist eine Ergänzung um Dokumentation zu schreiben, die von Tools ausgewertet werden kann. Die Zweite hilft uns lesbareren und einfacheren Code zu schreiben.</p>
+
+<h2>Inhaltsverzeichnis</h2>
+<div id="toc"></div>
+
+<h2 id="einfhrung">Einführung</h2>
+
+<p>Es ist nicht ungewöhnlich, dass du das Interface deiner Funktionen beschreiben möchtest. Natürlich kannst du die <a href="../../basics/documentation">@doc Annotation</a> benutzen, aber das ist nur Information für andere Entwickler, welche nicht während der Kompiliervorgangs überprüft wird. Aus diesem Grund bietet Elixir <code class="highlighter-rouge">@spec</code>-Annotation, um Spezifikationen von Funktionen zu beschreiben, die vom Compiler überprüft werden.</p>
+
+<p>Jedoch sind Spezifikationen in manchen Fällen ziemlich groß und umständlich. Falls du Komplexität reduzieren möchtest, möchtest du benutzerdefinierte Typdefinitionen einführen. Elixir hat dafür <code class="highlighter-rouge">@type</code>-Annotationen. Andererseits ist Elixir immer noch eine dynamische Sprache. Das bedeutet jegliche Information über Typen wird vom Compiler ignoriert, kann jedoch von anderen Tools benutzt werden.</p>
+
+<h2 id="spezifikationen">Spezifikationen</h2>
+
+<p>Falls du bereits Erfahrung mit Java oder Ruby hast, sind dir Spezifikationen als <code class="highlighter-rouge">interface</code> vertraut. Spezifikationen definieren welche Typen Funktionsparameter und Rückgabewerte haben.</p>
+
+<p>Um Eingabe- und Ausgabewerte zu definieren benutzen wir die <code class="highlighter-rouge">@spec</code>-Direktive direkt vor der Funktionsdefinition und nehmen den Funktionsnamen, die Liste der Parametertypen, sowie nach <code class="highlighter-rouge">::</code> die Typen der Rückgabewerte.</p>
+
+<p>Schau dir das folgende Beispiel an:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_product</span><span class="p">(</span><span class="n">integer</span><span class="p">)</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_product</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Das sieht auf den ersten Blick alles OK aus, jedoch gibt die Funktion <code class="highlighter-rouge">Enum.sum</code> eine <code class="highlighter-rouge">number</code> und nicht einen <code class="highlighter-rouge">integer</code> wie in <code class="highlighter-rouge">@spec</code> angegeben zurück. Das könnte Bugs verursachen! Es gibt Tools wie Dialyzer zur statischen Analyse, die uns helfen solche Art Bugs zu finden. Wir werden sie in einer anderen Lektion besprechen.</p>
+
+<h2 id="benutzerdefinierte-typen">Benutzerdefinierte Typen</h2>
+
+<p>Spezifikationen schreiben ist ganz nett, aber manchmal arbeiten unsere Funktionen mit komplexeren Datenstrukturen als einfache Nummern oder collections. In diesem Fall wäre die Definition in <code class="highlighter-rouge">@spec</code> schwer für andere Entwickler zu verstehen oder zu ändern. Manchmal müssen Funktionen eine große Zahl Parameter entgegennehmen oder komplexe Daten zurückgeben. Eine lange Parameterliste ist eine der vielen Möglichkeiten für code smells im Code. In objektorientieren Sprachen wie Ruby oder Java könnten wir einfach Klassen definieren, die uns dabei helfen, dieses Problem zu lösen. Elixir kennt keine Klassen, ist aber einfach zu erweitern, so dass wir unsere Typen definieren können.<br />
+Standardmäßig bietet Elixir einfache Typen wie <code class="highlighter-rouge">integer</code> oder <code class="highlighter-rouge">pid</code>. Du findest eine Liste aller Typen in der <a href="http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax">Dokumentation</a>.</p>
+
+<h3 id="typen-definieren">Typen definieren</h3>
+
+<p>Lass uns unsere <code class="highlighter-rouge">sum_times</code>-Funktion verändern und ein paar extra Parameter einfügen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">})</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Wir haben ein struct im <code class="highlighter-rouge">Examples</code>-Modul hinzugefügt, das die beiden Felder <code class="highlighter-rouge">first</code> und <code class="highlighter-rouge">last</code> beinhaltet. Das ist die einfachere Version des structs aus dem <code class="highlighter-rouge">Range</code>-Modul. Wir sprechen noch über <code class="highlighter-rouge">structs</code>, wenn wir <a href="lessons/basics/modules/#structs">Module</a> besprechen. Lass uns davon ausgehen, dass wir das <code class="highlighter-rouge">Examples</code>-struct an vielen Stellen brauchen und es nervtötend ist lange, komplexe Spezifikationen zu schreiben, die Bugs herbeiführen könnten. Eine Lösung für dieses Problem ist <code class="highlighter-rouge">@type</code>.</p>
+
+<p>Elixir hat drei Direktiven für Typen:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">@type</code> – einfacher, öffentlicher Typ. Interne Struktur des Typen ist öffentlich.</li>
+  <li><code class="highlighter-rouge">@typep</code> – Typ ist privat und kann nur innerhalb des Moduls genutzt werden, in dem es definiert wurde.</li>
+  <li><code class="highlighter-rouge">@opaque</code> – Typ ist öffentlich, aber interne Struktur ist privat.</li>
+</ul>
+
+<p>Lass uns unseren Typ definieren:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Examples</span> <span class="k">do</span>
+
+    <span class="n">defstruct</span> <span class="ss">first:</span> <span class="no">nil</span><span class="p">,</span> <span class="ss">last:</span> <span class="no">nil</span>
+
+    <span class="nv">@type</span> <span class="n">t</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">first</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">last</span><span class="p">}</span>
+
+    <span class="nv">@type</span> <span class="n">t</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">}</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Wir haben den Typ <code class="highlighter-rouge">t(first, last)</code> bereits definiert, welcher eine Repräsentation des structs <code class="highlighter-rouge">%Examples{first: first, last: last}</code> ist. An diesem Punkt sehen wir, dass Typen Parameter entgegen nehmen können, aber wir haben den Typ <code class="highlighter-rouge">t</code> ebenfalls definiert und diesmal ist er eine Repräsentation des structs <code class="highlighter-rouge">%Examples{first: integer, last: integer}</code>.</p>
+
+<p>Wo ist der Unterschied? Der erste Fall repräsentiert das struct <code class="highlighter-rouge">Examples</code>, bei dem die zwei keys von jedem Typ sein könnten. Im zweiten Fall repräsentiert ein struct dessen keys <code class="highlighter-rouge">integer</code> sind. Das bedeutet Code wie:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="no">Examples</span><span class="o">.</span><span class="n">t</span><span class="p">)</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Ist gleichbedeutend zu:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="no">Examples</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="n">integer</span><span class="p">))</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="dokumentation-von-typen">Dokumentation von Typen</h3>
+
+<p>Der letzte Punkt, über den wir reden sollten, ist wie man Typen dokumentiert. Wie wir bereits aus der  <a href="../../basics/documentation">Dokumentation</a>-Lektion wissen gibt es <code class="highlighter-rouge">@doc</code>- und <code class="highlighter-rouge">@moduledoc</code>-Annotationen, um Dokumentation für Funktionen und Module zu schreiben. Um Typen zu dokumentieren können wir <code class="highlighter-rouge">@typedoc</code> nutzen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Examples</span> <span class="k">do</span>
+
+    <span class="nv">@typedoc</span> <span class="sd">"""
+        Type that represents Examples struct with :first as integer and :last as integer.
+    """</span>
+    <span class="nv">@type</span> <span class="n">t</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">}</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Die Direktive <code class="highlighter-rouge">@typedoc</code> ist ähnlich zu <code class="highlighter-rouge">@doc</code> und <code class="highlighter-rouge">@moduledoc</code>.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/de/lessons/advanced/typespec/&title=Spezifikationen und Typen&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/de/lessons/advanced/typespec/&via=elixirschool&text=ElixirSchool: Spezifikationen und Typen&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/de/lessons/advanced/typespec/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/de/lessons/advanced/typespec/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/de/lessons/advanced/typespec/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Spezifikationen und Typen" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/de/lessons/advanced/typespec/&title=ElixirSchool: Spezifikationen und Typen&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/de/lessons/advanced/typespec/&title=ElixirSchool: Spezifikationen und Typen&description=Check out 'Spezifikationen und Typen' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Spezifikationen und Typen&body=Check out 'Spezifikationen und Typen' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/de/lessons/advanced/typespec/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

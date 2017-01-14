@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lekcie o programovacom jazyku Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/sk/lessons/basics/mix-tasks/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Mix tasky &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lekcie o programovacom jazyku Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Mix tasky &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lekcie o programovacom jazyku Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Základy</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/sk/lessons/basics/basics/">Základy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/sk/lessons/basics/collections/">Kolekcie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/sk/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/sk/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/sk/lessons/basics/control-structures/">Riadiace štruktúry</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/sk/lessons/basics/functions/">Funkcie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/sk/lessons/basics/pipe-operator/">Operátor pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/sk/lessons/basics/modules/">Kompozícia</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/sk/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/sk/lessons/basics/sigils/">Sigily</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/sk/lessons/basics/documentation/">Dokumentácia</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/sk/lessons/basics/testing/">Testovanie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/sk/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/sk/lessons/basics/strings/">Reťazce</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson  active" href="/sk/lessons/basics/mix-tasks/">Mix tasky</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/mix-tasks/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/mix-tasks/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/mix-tasks/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/mix-tasks/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/mix-tasks/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/mix-tasks/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/mix-tasks/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/mix-tasks/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/mix-tasks/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/mix-tasks/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/mix-tasks/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/mix-tasks/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/mix-tasks/ ">my</a>
+      
+        <a href=" /no/lessons/basics/mix-tasks/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/mix-tasks/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/mix-tasks/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/mix-tasks/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/mix-tasks/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/mix-tasks/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/mix-tasks/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/mix-tasks/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Mix tasky</h1>
+  <p>Vytváranie vlastných Mix taskov (skriptov) pre vaše Elixirové projekty</p>
+
+<h2>Obsah</h2>
+<div id="toc"></div>
+
+<h2 id="vod">Úvod</h2>
+
+<p>Občas sa stáva, že do svojho projektu potrebujete pridať vlastné špeciálne Mix tasky. Predtým, než si ukážeme, ako takéto vlastné tasky vytvárať, pozrime sa na tie, ktoré sú od začiatku k dispozícii v každom Elixirovom projekte:</p>
+
+<h2 id="zaloenie-novho-projektu">Založenie nového projektu</h2>
+
+<p>Task <code class="highlighter-rouge">new</code> nám vygeneruje základnú kostru Elixirového projektu:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new hello
+
+<span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/hello.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/hello_test.exs
+
+Your Mix project was created successfully.
+You can use <span class="s2">"mix"</span> to compile it, <span class="nb">test </span>it, and more:
+
+<span class="nb">cd </span>hello
+mix <span class="nb">test
+
+</span>Run <span class="s2">"mix help"</span> <span class="k">for </span>more commands.
+</code></pre>
+</div>
+
+<p>Teraz si otvorme novo vygenerovaný súbor <strong>lib/hello.ex</strong> a pridajme doňho novú funkciu, ktorá vypíše reťazec “Hello, World!”</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Hello</span> <span class="k">do</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Output's `Hello, World!` everytime.
+  """</span>
+  <span class="k">def</span> <span class="n">say</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello, World!"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="vlastn-mix-task">Vlastný Mix task</h2>
+
+<p>Vytvorme si teraz vlastný Mix task. V adresári <strong>hello/lib/mix/tasks/hello.ex</strong> vytvoríme súbor <strong>hello.ex</strong> a doňho vložíme nasledujúci kód:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Tasks</span><span class="o">.</span><span class="no">Hello</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Task</span>
+
+  <span class="nv">@shortdoc</span> <span class="sd">"</span><span class="s2">Spustí funkciu Hello.say/0."</span>
+  <span class="k">def</span> <span class="n">run</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">Hello</span><span class="o">.</span><span class="n">say</span> <span class="c1"># calling our Hello.say() function from earlier</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Všimnite si, že názov modulu začína na <code class="highlighter-rouge">Mix.Task</code> a nasleduje meno, ktorým chceme náš task spúšťať z príkazového riadku (teda v tomto prípade <code class="highlighter-rouge">Hello</code>). Nasleduje uvedenie modulu <code class="highlighter-rouge">Mix.Task</code>, ktorým do nášho modulu vnesieme rovnomenný behaviour (niečo ako interface v objektových jazykoch). Ďalej implementujeme povinnú funkciu <code class="highlighter-rouge">run</code> (každý Elixir task ju musí obsahovať - vykoná sa pri jeho spustení), ktorá bude nateraz ignorovať svoje argumenty. V tejto funkcii už len zavoláme našu funkciu <code class="highlighter-rouge">say</code> z modulu <code class="highlighter-rouge">Hello</code>.</p>
+
+<h2 id="mix-tasky-v-akcii">Mix tasky v akcii</h2>
+
+<p>Nadišiel čas náš nový task vyskúšať. Na príkazovom riadku zadajme <code class="highlighter-rouge">mix hello</code> a mali by sme vidieť nasledovné:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix hello
+Hello, World!
+</code></pre>
+</div>
+
+<p>Mix je celkom prívetivý a tolerantný - vie, že ľudia robia občas chyby a preklepy, takže používa techniku nazývanú <em>fuzzy string matching</em> aby navrhol možné opravy:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix hell
+<span class="k">**</span> <span class="o">(</span>Mix<span class="o">)</span> The task <span class="s2">"hell"</span> could not be found. Did you mean <span class="s2">"hello"</span>?
+</code></pre>
+</div>
+
+<p>Možno ste si všimli, že sme v definícii nášho tasku použili nový modulový atribút <code class="highlighter-rouge">@shortdoc</code>. Tento sa výborne hodí na popis špeciálnych taskov nášho projektu. Keď používateľ zadá do príkazového riadku v adresári nášho projektu <code class="highlighter-rouge">mix help</code>, uvidí aj popis nášho tasku <code class="highlighter-rouge">hello</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix <span class="nb">help
+
+</span>mix app.start         <span class="c"># Starts all registered apps</span>
+...
+mix hello             <span class="c"># Spustí funkciu Hello.say/0.</span>
+...
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Zdieľaj túto stránku
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/sk/lessons/basics/mix-tasks/&title=Mix tasky&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/sk/lessons/basics/mix-tasks/&via=elixirschool&text=ElixirSchool: Mix tasky&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/sk/lessons/basics/mix-tasks/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/sk/lessons/basics/mix-tasks/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/sk/lessons/basics/mix-tasks/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Mix tasky" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/sk/lessons/basics/mix-tasks/&title=ElixirSchool: Mix tasky&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/sk/lessons/basics/mix-tasks/&title=ElixirSchool: Mix tasky&description=Check out 'Mix tasky' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Mix tasky&body=Check out 'Mix tasky' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/sk/lessons/basics/mix-tasks/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

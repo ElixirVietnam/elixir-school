@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Elixir 编程语言教程">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/cn/lessons/advanced/otp-supervisors/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  OTP Supervisors &middot; Elixir School
+
+">
+  <meta property="og:description" content="Elixir 编程语言教程">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  OTP Supervisors &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Elixir 编程语言教程</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>基础</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/cn/lessons/basics/basics/">基础</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/cn/lessons/basics/collections/">集合</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/cn/lessons/basics/enum/">Enum 模块</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/cn/lessons/basics/pattern-matching/">模式匹配</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/cn/lessons/basics/control-structures/">控制语句</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/cn/lessons/basics/functions/">函数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/cn/lessons/basics/pipe-operator/">管道操作符</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/cn/lessons/basics/modules/">组合</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/cn/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/cn/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/cn/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/cn/lessons/basics/testing/">测试</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/cn/lessons/basics/comprehensions/">推导</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/cn/lessons/basics/strings/">字符串</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>高级</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/cn/lessons/advanced/erlang/">和 Erlang 互操作</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/cn/lessons/advanced/escripts/">可执行文件</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/cn/lessons/advanced/concurrency/">并发</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/cn/lessons/advanced/otp-concurrency/">OTP 并发</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/cn/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/cn/lessons/advanced/metaprogramming/">元编程</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>专题</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/cn/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/cn/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/otp-supervisors/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/otp-supervisors/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/otp-supervisors/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/otp-supervisors/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/otp-supervisors/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/otp-supervisors/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/otp-supervisors/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/otp-supervisors/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/otp-supervisors/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/otp-supervisors/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/otp-supervisors/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/otp-supervisors/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/otp-supervisors/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/otp-supervisors/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/otp-supervisors/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/otp-supervisors/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/otp-supervisors/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/otp-supervisors/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/otp-supervisors/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/otp-supervisors/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/otp-supervisors/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">OTP Supervisors</h1>
+  <p>supervisors 是一种特殊的进程：专门来监控其他的进程。supervisors 能够自动重启出错的子进程，从而编写容错性高的程序。</p>
+
+<h2>目录</h2>
+<div id="toc"></div>
+
+<h2 id="section">配置</h2>
+<p>Supervisors 的魔力主要在 <code class="highlighter-rouge">Supervisor.start_link/2</code> 函数中，除了能启动 supervisor 和子进程之外，它还允许我们设置管理子进程的策略：</p>
+
+<p>子进程使用列表和从 <code class="highlighter-rouge">Supervisor.Spec</code> 库中导进来的 <code class="highlighter-rouge">worker/3</code> 共同定义，其中 <code class="highlighter-rouge">worker/3</code> 函数接受模块名，参数列表，和其他选项作为自己的参数。在初始化的时候，<code class="highlighter-rouge">worker/3</code> 内部会调用 <code class="highlighter-rouge">start_link/3</code> ，并传进去刚才的参数列表。</p>
+
+<p>使用在 <a href="../../advanced/otp-concurrency"><code class="highlighter-rouge">OTP 并发</code></a> 课程中实现的 SimpleQueue，我们来测试一下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">SimpleQueue</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="ss">name:</span> <span class="no">SimpleQueue</span><span class="p">])</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>如果我们的进程崩溃或者被终结，我们的 Supervisor 会自动重启它，对外来说，好像错误从来没有发生一样。</p>
+
+<h3 id="section-1">策略</h3>
+<p>目前有四种不同的重启策略可以使用：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">:one_for_one</code> - 只重启失败的子进程。</li>
+  <li><code class="highlighter-rouge">:one_for_all</code> - 当错误事件出现时，重启所有的子进程。</li>
+  <li><code class="highlighter-rouge">:rest_for_one</code> - 重启失败的子进程，以及所有在它后面启动的进程。</li>
+  <li><code class="highlighter-rouge">:simple_one_for_one</code> - supervisor 只能包含一个子进程</li>
+</ul>
+
+<h3 id="section-2">嵌套</h3>
+<p>除了 worker 进程，我们还可以监控 supervisors，从而生成 supervisor 树。和之前的唯一不同就是，用 <code class="highlighter-rouge">worker/3</code> 来替换 <code class="highlighter-rouge">supervisor/3</code>：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">supervisor</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">ConnectionSupervisor</span><span class="p">,</span> <span class="p">[[</span><span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">ConnectionSupervisor</span><span class="p">]]),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">SimpleQueue</span><span class="p">,</span> <span class="p">[[],</span> <span class="p">[</span><span class="ss">name:</span> <span class="no">SimpleQueue</span><span class="p">]])</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="task-supervisor">Task Supervisor</h2>
+<p>Tasks 有它们自己特殊的 Supervisor，叫做 <code class="highlighter-rouge">Task.Supervisor</code>。作为专门为动态创建的任务设计的 supervisor，它内部使用 <code class="highlighter-rouge">:simple_one_for_one</code> 策略。</p>
+
+<h3 id="setup">setup</h3>
+<p><code class="highlighter-rouge">Task.Supervisor</code> 使用起来和其他的 supervisors 没有任何区别：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">supervisor</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">,</span> <span class="p">[[</span><span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">TaskSupervisor</span><span class="p">]]),</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="supervised-tasks">Supervised Tasks</h3>
+<p>supervisor 启动之后，我们可以使用 <code class="highlighter-rouge">start_child/2</code> 函数来创建一个 supervised task:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="no">Supervisor</span><span class="o">.</span><span class="n">start_child</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">TaskSupervisor</span><span class="p">,</span> <span class="k">fn</span> <span class="o">-&gt;</span> <span class="n">background_work</span> <span class="k">end</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>如果我们的任务过早地崩溃掉，它会被自动启动。这个功能在处理大量涌来的请求或者后台工作的时候非常有用。</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    分享本页面
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/cn/lessons/advanced/otp-supervisors/&title=OTP Supervisors&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/cn/lessons/advanced/otp-supervisors/&via=elixirschool&text=ElixirSchool: OTP Supervisors&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/cn/lessons/advanced/otp-supervisors/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/cn/lessons/advanced/otp-supervisors/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/cn/lessons/advanced/otp-supervisors/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: OTP Supervisors" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/cn/lessons/advanced/otp-supervisors/&title=ElixirSchool: OTP Supervisors&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/cn/lessons/advanced/otp-supervisors/&title=ElixirSchool: OTP Supervisors&description=Check out 'OTP Supervisors' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: OTP Supervisors&body=Check out 'OTP Supervisors' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/cn/lessons/advanced/otp-supervisors/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

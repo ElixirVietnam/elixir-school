@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="プログラミング言語Elixirのレッスン">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/jp/lessons/advanced/metaprogramming/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  メタプログラミング &middot; Elixir School
+
+">
+  <meta property="og:description" content="プログラミング言語Elixirのレッスン">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  メタプログラミング &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">プログラミング言語Elixirのレッスン</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>基礎</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/basics/basics/">基本</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/basics/collections/">コレクション</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/basics/pattern-matching/">パターンマッチング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/basics/control-structures/">制御構造</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/basics/functions/">関数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/basics/pipe-operator/">パイプライン演算子</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/basics/modules/">モジュール</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/jp/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/jp/lessons/basics/documentation/">ドキュメント</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/jp/lessons/basics/testing/">テスト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/jp/lessons/basics/comprehensions/">内包表記</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/jp/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/jp/lessons/basics/mix-tasks/">カスタムMixタスク</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>上級</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/advanced/erlang/">Erlangとの相互運用</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/advanced/error-handling/">エラーハンドリング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/advanced/escripts/">実行ファイル</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/advanced/concurrency/">並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-concurrency/">OTPの並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-supervisors/">OTPスーパーバイザ</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson  active" href="/jp/lessons/advanced/metaprogramming/">メタプログラミング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/advanced/umbrella-projects/">アンブレラプロジェクト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/advanced/typespec/">仕様と型</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>詳細</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/specifics/eex/">埋め込みElixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/metaprogramming/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/metaprogramming/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/metaprogramming/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/metaprogramming/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/metaprogramming/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/metaprogramming/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/metaprogramming/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/metaprogramming/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/metaprogramming/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/metaprogramming/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/metaprogramming/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/metaprogramming/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/metaprogramming/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/metaprogramming/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/metaprogramming/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/metaprogramming/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/metaprogramming/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/metaprogramming/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/metaprogramming/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/metaprogramming/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/metaprogramming/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">メタプログラミング</h1>
+  <p>メタプログラミングとはコード自体にコードを記述させる機能です。<br />
+Elixirでは、メタプログラミング機能によりニーズに合わせて言語を拡張し、動的にコードを変更することができます。<br />
+Elixirが内部でどのように表現されるかを見ることから始めましょう。次にそれを修正する方法を学び、そして最終的に拡張するためにこの知識を使用してみましょう。</p>
+
+<p>注意事項: メタプログラミングはトリッキーで、どうしても必要な場合にのみ使用してください。過度の使用は、ほぼ確実に、理解及びデバッグすることが困難な複雑なコードにつながります。</p>
+
+<h2>目次</h2>
+<div id="toc"></div>
+
+<h2 id="quote">Quote</h2>
+
+<p>メタプログラミングするための最初のステップは、式が表現される方法を理解することです。<br />
+Elixirでは抽象構文木(AST)（コードの内部表現)は、タプルで構成されています。<br />
+タプルは、右記3つの要素で構成されます : 関数名,　メタデータ,　関数の引数</p>
+
+<p>これらの内部構造を見るために、Elixirは <code class="highlighter-rouge">quote/2</code> 関数を提供しています。<br />
+<code class="highlighter-rouge">quote/2</code>を使い、Elixirのコードをその基礎となる表現に変換することができます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello"</span>
+<span class="sd">"</span><span class="s2">Hello"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="ss">:world</span>
+<span class="ss">:world</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="m">1</span> <span class="o">+</span> <span class="m">2</span>
+<span class="p">{</span><span class="ss">:+</span><span class="p">,</span> <span class="p">[</span><span class="ss">context:</span> <span class="no">Elixir</span><span class="p">,</span> <span class="kn">import</span><span class="p">:</span> <span class="no">Kernel</span><span class="p">],</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="k">if</span> <span class="n">value</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">True"</span><span class="p">,</span> <span class="k">else</span><span class="p">:</span> <span class="sd">"</span><span class="s2">False"</span>
+<span class="p">{</span><span class="ss">:if</span><span class="p">,</span> <span class="p">[</span><span class="ss">context:</span> <span class="no">Elixir</span><span class="p">,</span> <span class="kn">import</span><span class="p">:</span> <span class="no">Kernel</span><span class="p">],</span>
+ <span class="p">[{</span><span class="ss">:value</span><span class="p">,</span> <span class="p">[],</span> <span class="no">Elixir</span><span class="p">},</span> <span class="p">[</span><span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">True"</span><span class="p">,</span> <span class="k">else</span><span class="p">:</span> <span class="sd">"</span><span class="s2">False"</span><span class="p">]]}</span>
+</code></pre>
+</div>
+
+<p>注意点として、最初の3つはタプルを返しません。以下の５つのリテラルはquoteされた時に自分自身を返します:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:atom</span>
+<span class="ss">:atom</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">string"</span>
+<span class="sd">"</span><span class="s2">string"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">1</span> <span class="c1"># All numbers</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span> <span class="c1"># Lists</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">,</span> <span class="ss">:world</span><span class="p">}</span> <span class="c1"># 2 element tuples</span>
+<span class="p">{</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">,</span> <span class="ss">:world</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="unquote">Unquote</h2>
+
+<p>今、コードの内部構造を検索することができましたが、どのようにそれを修正しましょう？<br />
+新しいコードまたは値を注入するために、<code class="highlighter-rouge">unquote/1</code> を使用します。<br />
+式をunqoteすると、それが評価され、ASTに注入されます。<br />
+<code class="highlighter-rouge">unquote/1</code>を実証するために、いくつかの例を見てみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">denominator</span> <span class="o">=</span> <span class="m">2</span>
+<span class="m">2</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">divide</span><span class="p">(</span><span class="m">42</span><span class="p">,</span> <span class="n">denominator</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:divide</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="m">42</span><span class="p">,</span> <span class="p">{</span><span class="ss">:denominator</span><span class="p">,</span> <span class="p">[],</span> <span class="no">Elixir</span><span class="p">}]}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">divide</span><span class="p">(</span><span class="m">42</span><span class="p">,</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">denominator</span><span class="p">))</span>
+<span class="p">{</span><span class="ss">:divide</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="m">42</span><span class="p">,</span> <span class="m">2</span><span class="p">]}</span>
+</code></pre>
+</div>
+
+<p>最初の例では変数 <code class="highlighter-rouge">denominator</code> は、結果として得られるASTが変数にアクセスするためのタプルを含んでいるようにquoteされています。<br />
+<code class="highlighter-rouge">unquote/1</code> の使用例では生成されたコードに<code class="highlighter-rouge">denominator</code> の値が含まれています。</p>
+
+<h2 id="section">マクロ</h2>
+
+<p><code class="highlighter-rouge">quote/2</code> と <code class="highlighter-rouge">unquote/1</code> を理解すれば、マクロに飛び込む準備が整います。<br />
+マクロのようなすべてのメタプログラミングは、慎重に使用する必要があることを覚えておくことが重要です。</p>
+
+<p>最も簡単な用語であるマクロは、私たちのアプリケーションコードに挿入されるquoteされた式を返すように設計された特別な機能です。<br />
+マクロは関数のように呼び出されるのではなく、quoteされた表現に置き換えられるのだということを想像してみてください。<br />
+マクロで、私たちはElixirを拡張し、動的に私たちのアプリケーションにコードを追加するために必要なすべてを持っています。</p>
+
+<p><code class="highlighter-rouge">defmacro/2</code>を使用してマクロの定義から始めます。<code class="highlighter-rouge">defmacro/2</code>自身がマクロであり、Elixrの多数の機能がマクロで出来ています。<br />
+例として、<code class="highlighter-rouge">unless</code>をマクロとして実装します。マクロはquoteされた式を返す必要があることを忘れないでください:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">OurMacro</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="k">unless</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">block</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span>
+      <span class="k">if</span> <span class="n">!unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>早速作ったモジュールをrequireして使ってみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">OurMacro</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">OurMacro</span><span class="o">.</span><span class="k">unless</span> <span class="no">true</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">OurMacro</span><span class="o">.</span><span class="k">unless</span> <span class="no">false</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="sd">"</span><span class="s2">Hi"</span>
+</code></pre>
+</div>
+
+<p>マクロは我々のアプリケーションのコードを置き換えているので、コンパイル時にどのような制御でもすることができます。<br />
+この例は<code class="highlighter-rouge">Logger</code> モジュールで見ることができます。<br />
+ロギングは無効になっていると何のコードも注入されず、結果としてアプリケーションにログ用の関数呼び出しや参照が含まれていません。<br />
+これは、実装がNOP(処理なし)であっても、関数呼び出しのオーバーヘッドがまだある他の言語とは異なります。</p>
+
+<p>これを実証するために、有効または無効にすることができる、簡単なロガーを作ってみます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Logger</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">log</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="no">Application</span><span class="o">.</span><span class="n">get_env</span><span class="p">(</span><span class="ss">:logger</span><span class="p">,</span> <span class="ss">:enabled</span><span class="p">)</span> <span class="k">do</span>
+      <span class="kn">quote</span> <span class="k">do</span>
+        <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">Logged message: </span><span class="si">#{</span><span class="kn">unquote</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="kn">require</span> <span class="no">Logger</span>
+
+  <span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+    <span class="no">Logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sd">"</span><span class="s2">This is a log message"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>ロギングを有効にすると、<code class="highlighter-rouge">test</code> 関数は、このコードのような結果になります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+  <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">Logged message: </span><span class="si">#{</span><span class="sd">"</span><span class="s2">This is a log message"</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>しかしロギング無効にした場合、結果のコードは次のようになります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="section-1">デバッグ</h2>
+
+<p>私たちはたった今<code class="highlighter-rouge">quote/2</code>や<code class="highlighter-rouge">unquote/1</code>の使い方を知り、マクロを書きました。しかし、もし巨大なquoteされたコードがあり、それを理解したい場合はどうすればいいでしょうか？このような場合、<code class="highlighter-rouge">Macro.to_string/2</code>を使うことができます。次の例を見てください:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Macro</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="kn">quote</span><span class="p">(</span><span class="k">do</span><span class="p">:</span> <span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)))</span>
+<span class="sd">"</span><span class="s2">foo.bar(1, 2, 3)"</span>
+</code></pre>
+</div>
+
+<p>マクロで生成されたコードを見たいときは、与えられたquoteされたコードのマクロを展開する<code class="highlighter-rouge">Macro.expand/2</code>や<code class="highlighter-rouge">Macro.expand_once/2</code>と組み合わせます。前者はマクロを複数回展開するかもしれませんが、後者は一度だけ展開します。例えば、前のセクションの<code class="highlighter-rouge">unless</code>の例を変更してみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">OurMacro</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="k">unless</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">block</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span>
+      <span class="k">if</span> <span class="n">!unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="kn">require</span> <span class="no">OurMacro</span>
+<span class="n">quoted</span> <span class="o">=</span> <span class="kn">quote</span> <span class="k">do</span>
+  <span class="no">OurMacro</span><span class="o">.</span><span class="k">unless</span> <span class="no">true</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>iex&gt; quoted |&gt; Macro.expand_once(__ENV__) |&gt; Macro.to_string |&gt; IO.puts
+if(!true) do
+  "Hi"
+end
+</code></pre>
+</div>
+
+<p>しかし、同じコードを<code class="highlighter-rouge">Macro.expand/2</code>で実行すると、興味深い結果になります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">quoted</span> <span class="o">|&gt;</span> <span class="no">Macro</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">__ENV__</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="no">Macro</span><span class="o">.</span><span class="n">to_string</span> <span class="o">|&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span>
+<span class="k">case</span><span class="p">(</span><span class="n">!true</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">x</span> <span class="ow">when</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="no">false</span><span class="p">,</span> <span class="no">nil</span><span class="p">]</span> <span class="o">-&gt;</span>
+    <span class="no">nil</span>
+  <span class="n">_</span> <span class="o">-&gt;</span>
+    <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>もしかしたら<code class="highlighter-rouge">if</code>はElixirのマクロであると述べたのを思い出したかもしれません。これを見れば<code class="highlighter-rouge">if</code>が基本的な<code class="highlighter-rouge">case</code>文に展開されるのが分かります。</p>
+
+<h3 id="section-2">プライベートマクロ</h3>
+
+<p>一般的ではないものの、Elixirは、プライベートなマクロをサポートしています。<br />
+プライベートマクロは<code class="highlighter-rouge">defmacrop</code>で定義され、それが定義されたモジュールから呼び出すことができます。<br />
+プライベートマクロはそれを呼び出すコードの前に定義する必要があります。</p>
+
+<h3 id="section-3">衛生的なマクロ</h3>
+
+<p>衛生なマクロは展開したとき、呼び出し元のコンテキストとどの様に相互作用するのでしょう。<br />
+デフォルトでElixirのマクロは衛生的であり、コンテキストと競合しません:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">hygienic</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span> <span class="o">=</span> <span class="o">-</span><span class="m">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">Example</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span> <span class="o">=</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">hygienic</span>
+<span class="o">-</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span>
+<span class="m">42</span>
+</code></pre>
+</div>
+
+<p>しかし、 <code class="highlighter-rouge">val</code>の値を操作したい場合は？<br />
+非衛生的な変数としてマークするために、<code class="highlighter-rouge">var!/2</code> を使用することができます。<code class="highlighter-rouge">var!/2</code> を利用して例を更新してみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">hygienic</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span> <span class="o">=</span> <span class="o">-</span><span class="m">1</span>
+  <span class="k">end</span>
+
+  <span class="k">defmacro</span> <span class="n">unhygienic</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">var!</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="m">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>コンテキストとの相互作用を比較してみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">Example</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span> <span class="o">=</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">hygienic</span>
+<span class="o">-</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">unhygienic</span>
+<span class="o">-</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span>
+<span class="o">-</span><span class="m">1</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">var!/2</code>を含めることでマクロに<code class="highlighter-rouge">val</code>を渡すことなく<code class="highlighter-rouge">val</code>の値を操作できました。<br />
+非衛生的なマクロの使用は最小限に抑える必要があります。<br />
+<code class="highlighter-rouge">var!/2</code> を含めることで変数解釈の競合リスクを高めます。</p>
+
+<h3 id="binding">Binding</h3>
+
+<p>すでに<code class="highlighter-rouge">unquote/1</code> という便利なマクロを抑えておりますが、我々のコードに値を注入する別な方法があります: Bindingです。<br />
+変数をbindするとマクロ内で複数の変数を含む場合に、一回のみquoteされ予想外の再評価を回避できます。<br />
+変数をbindするために、<code class="highlighter-rouge">quote/2</code> 内の<code class="highlighter-rouge">bind_quoted</code> オプションにキーワードリストを渡す必要があります。</p>
+
+<p><code class="highlighter-rouge">bind_quote</code> の利点を実証するために再評価の問題を抱えた例を見てみましょう。<br />
+式を二度出力する単純なマクロを作成してみます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">double_puts</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>現在のシステム時刻を渡して新しいマクロを試してみましょう。システム時刻が2回出力されるべきです:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">double_puts</span><span class="p">(</span><span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">)</span>
+<span class="m">1450475941851668000</span>
+<span class="m">1450475941851733000</span>
+</code></pre>
+</div>
+
+<p>時間が異なっています！何が起こったのでしょう？<br />
+<code class="highlighter-rouge">unquote/1</code>を同じ式に対し複数回使うことで、再評価され予期しない結果になることがあります。<br />
+<code class="highlighter-rouge">bind_quoted</code>を使用して例題を更新し、どうなったか見てみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">double_puts</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="ss">bind_quoted:</span> <span class="p">[</span><span class="ss">expr:</span> <span class="n">expr</span><span class="p">]</span> <span class="k">do</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="n">expr</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="n">expr</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">Example</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">double_puts</span><span class="p">(</span><span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">)</span>
+<span class="m">1450476083466500000</span>
+<span class="m">1450476083466500000</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">bind_quoted</code> によって期待される成果を得ました: 同じ値が二回出力されています。</p>
+
+<p>これでカバーしてきた <code class="highlighter-rouge">quote/2</code>, <code class="highlighter-rouge">unquote/1</code>, <code class="highlighter-rouge">defmacro/2</code> により、ニーズに合わせてElixirを拡張するために必要なすべてのツールを持ちました。</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    このページをシェアする
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/jp/lessons/advanced/metaprogramming/&title=メタプログラミング&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/jp/lessons/advanced/metaprogramming/&via=elixirschool&text=ElixirSchool: メタプログラミング&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/jp/lessons/advanced/metaprogramming/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/jp/lessons/advanced/metaprogramming/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/jp/lessons/advanced/metaprogramming/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: メタプログラミング" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/jp/lessons/advanced/metaprogramming/&title=ElixirSchool: メタプログラミング&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/jp/lessons/advanced/metaprogramming/&title=ElixirSchool: メタプログラミング&description=Check out 'メタプログラミング' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: メタプログラミング&body=Check out 'メタプログラミング' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/jp/lessons/advanced/metaprogramming/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/gr/lessons/advanced/escripts/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Εκτελέσιμα &middot; Elixir School
+
+">
+  <meta property="og:description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Εκτελέσιμα &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Μαθήματα προγραμματισμού της γλώσσας Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βασικά</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/basics/basics/">Βασικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/basics/collections/">Συλλογές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/basics/pattern-matching/">Αντιπαραβολές Προτύπων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/basics/control-structures/">Δομές Ελέγχου</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/basics/functions/">Συναρτήσεις</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/basics/pipe-operator/">Τελεστής Σωλήνα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/basics/modules/">Ενότητες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/basics/sigils/">Σφραγίδες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/basics/documentation/">Τεκμηρίωση</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/gr/lessons/basics/testing/">Δοκιμές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/gr/lessons/basics/comprehensions/">Ανάγνωση Λιστών</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/gr/lessons/basics/strings/">Αλφαριθμητικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/gr/lessons/basics/mix-tasks/">Ειδικές Εργασίες Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Προχωρημένα</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/advanced/erlang/">Διαλειτουργικότητα με την Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/advanced/error-handling/">Διαχείριση Σφαλμάτων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson  active" href="/gr/lessons/advanced/escripts/">Εκτελέσιμα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/advanced/concurrency/">Συγχρονισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-concurrency/">Συγχρονισμός OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-supervisors/">Επιτηρητές OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/advanced/metaprogramming/">Μεταπρογραμματισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/advanced/umbrella-projects/">Projects Ομπρέλας</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/advanced/typespec/">Προδιαγραφές και τύποι</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/advanced/behaviours/">Συμπεριφορές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Ιδιαιτερότητες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/specifics/eex/">Ένθετη Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βιβλιοθήκες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/libraries/guardian/">Guardian (Βασικά)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/escripts/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/escripts/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/escripts/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/escripts/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/escripts/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/escripts/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/escripts/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/escripts/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/escripts/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/escripts/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/escripts/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/escripts/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/escripts/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/escripts/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/escripts/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/escripts/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/escripts/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/escripts/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/escripts/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/escripts/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/escripts/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Εκτελέσιμα</h1>
+  <p>Για να φτιάξουμε εκτελέσιμα στην Elixir θα χρησιμοποιήσουμε την escript.  Η Escript παράγει ένα εκτελέσιμο το οποίο μπορεί να τρέξει σε οποιοδήποτε σύστημα έχει εγκατασταθεί η Erlang.</p>
+
+<h2>Πίνακας περιεχομένων</h2>
+<div id="toc"></div>
+
+<h2 id="section">Αρχή</h2>
+
+<p>Για να δημιουργήσετε ένα εκτελέσιμο με την escript υπάρχουν ελάχιστα πράγματα που πρέπει να κάνουμε: να υλοποιήσουμε μια συνάρτηση <code class="highlighter-rouge">main/1</code> και να αναβαθμίσουμε το Mixfile μας.</p>
+
+<p>Θα ξεκινήσουμε με τη δημιουργία μιας ενότητας που θα παίξει το ρόλο σημείου εισόδου στο εκτελέσιμό μας.  Εκεί θα υλοποιήσουμε την <code class="highlighter-rouge">main/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">CLI</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">main</span><span class="p">(</span><span class="n">args</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="c1"># Κάντε τα δικά σας</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Στη συνέχεια θα χρειαστεί να αναβαθμίσουμε το Mixfile μας για να προσθέσουμε την επιλογή <code class="highlighter-rouge">:escript</code> για το project μας μαζί με τον ορισμό του <code class="highlighter-rouge">:main_module</code> μας:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Mixfile</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">project</span> <span class="k">do</span>
+    <span class="p">[</span><span class="ss">app:</span> <span class="ss">:example_app</span><span class="p">,</span>
+     <span class="ss">version:</span> <span class="sd">"</span><span class="s2">0.0.1"</span><span class="p">,</span>
+     <span class="ss">escript:</span> <span class="n">escript</span><span class="p">]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">escript</span> <span class="k">do</span>
+    <span class="p">[</span><span class="ss">main_module:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">CLI</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="section-1">Επεξεργασία Ορισμάτων</h2>
+
+<p>Με την εφαρμογή μας εγκατεστημένη μπορούμε να προχωρήσουμε στην επεξεργασία των ορισμάτων της γραμμής εντολών.  Για να το κάνουμε αυτό θα χρησιμοποιήσουμε την συνάρτηση <code class="highlighter-rouge">OptionParser.parse/2</code> της Elixir με την επιλογή <code class="highlighter-rouge">:switches</code> για την ένδειξη ότι η σημαία μας είναι δυαδική:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">CLI</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">main</span><span class="p">(</span><span class="n">args</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="n">args</span>
+    <span class="o">|&gt;</span> <span class="n">parse_args</span>
+    <span class="o">|&gt;</span> <span class="n">response</span>
+    <span class="o">|&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">parse_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="n">opts</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">_</span><span class="p">}</span> <span class="o">=</span>
+      <span class="n">args</span>
+      <span class="o">|&gt;</span> <span class="no">OptionParser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="ss">switches:</span> <span class="p">[</span><span class="ss">upcase:</span> <span class="ss">:boolean</span><span class="p">])</span>
+
+    <span class="p">{</span><span class="n">opts</span><span class="p">,</span> <span class="no">List</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">word</span><span class="p">)}</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">response</span><span class="p">({</span><span class="n">opts</span><span class="p">,</span> <span class="n">word</span><span class="p">})</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">opts</span><span class="p">[</span><span class="ss">:upcase</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="no">String</span><span class="o">.</span><span class="n">upcase</span><span class="p">(</span><span class="n">word</span><span class="p">),</span> <span class="k">else</span><span class="p">:</span> <span class="n">word</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="section-2">Χτίσιμο</h2>
+
+<p>Όταν τελειώσουμε με την ρύθμιση της εφαρμογής μας για τη χρήση της escript, το χτίσιμο του εκτελέσιμού μας είναι πανεύκολο με το Mix:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">$</span> <span class="n">mix</span> <span class="n">escript</span><span class="o">.</span><span class="n">build</span>
+</code></pre>
+</div>
+
+<p>Για να το δοκιμάσουμε:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">$</span> <span class="o">./</span><span class="n">example_app</span> <span class="o">--</span><span class="n">upcase</span> <span class="err">Γεια</span>
+<span class="err">ΓΕΙΑ</span>
+
+<span class="err">$</span> <span class="o">./</span><span class="n">example_app</span> <span class="err">Γεια</span>
+<span class="err">Γεια</span>
+</code></pre>
+</div>
+
+<p>Αυτό ήταν.  Χτίσαμε το πρώτο μας εκτελέσιμο στην Elixir χρησιμοποιώντας την escript.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/gr/lessons/advanced/escripts/&title=Εκτελέσιμα&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/gr/lessons/advanced/escripts/&via=elixirschool&text=ElixirSchool: Εκτελέσιμα&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/gr/lessons/advanced/escripts/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/gr/lessons/advanced/escripts/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/gr/lessons/advanced/escripts/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Εκτελέσιμα" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/gr/lessons/advanced/escripts/&title=ElixirSchool: Εκτελέσιμα&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/gr/lessons/advanced/escripts/&title=ElixirSchool: Εκτελέσιμα&description=Check out 'Εκτελέσιμα' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Εκτελέσιμα&body=Check out 'Εκτελέσιμα' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/gr/lessons/advanced/escripts/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

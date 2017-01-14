@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/gr/lessons/specifics/ecto/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Ecto &middot; Elixir School
+
+">
+  <meta property="og:description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Ecto &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Μαθήματα προγραμματισμού της γλώσσας Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βασικά</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/basics/basics/">Βασικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/basics/collections/">Συλλογές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/basics/pattern-matching/">Αντιπαραβολές Προτύπων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/basics/control-structures/">Δομές Ελέγχου</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/basics/functions/">Συναρτήσεις</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/basics/pipe-operator/">Τελεστής Σωλήνα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/basics/modules/">Ενότητες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/basics/sigils/">Σφραγίδες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/basics/documentation/">Τεκμηρίωση</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/gr/lessons/basics/testing/">Δοκιμές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/gr/lessons/basics/comprehensions/">Ανάγνωση Λιστών</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/gr/lessons/basics/strings/">Αλφαριθμητικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/gr/lessons/basics/mix-tasks/">Ειδικές Εργασίες Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Προχωρημένα</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/advanced/erlang/">Διαλειτουργικότητα με την Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/advanced/error-handling/">Διαχείριση Σφαλμάτων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/advanced/escripts/">Εκτελέσιμα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/advanced/concurrency/">Συγχρονισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-concurrency/">Συγχρονισμός OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-supervisors/">Επιτηρητές OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/advanced/metaprogramming/">Μεταπρογραμματισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/advanced/umbrella-projects/">Projects Ομπρέλας</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/advanced/typespec/">Προδιαγραφές και τύποι</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/advanced/behaviours/">Συμπεριφορές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Ιδιαιτερότητες</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/gr/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/specifics/eex/">Ένθετη Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βιβλιοθήκες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/libraries/guardian/">Guardian (Βασικά)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/ecto/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/ecto/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/ecto/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/ecto/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/ecto/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/ecto/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/ecto/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/ecto/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/ecto/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/ecto/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/ecto/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/ecto/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/ecto/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/ecto/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/ecto/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/ecto/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/ecto/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/ecto/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/ecto/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/ecto/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/ecto/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Ecto</h1>
+  <p>Το Ecto είναι ένα επίσημο Elixir project το οποίο παρέχει ένα κάλυμμα βάσης δεδομένων και μια ενσωματωμένη γλώσσα ερωτημάτων.  Με το Ecto είμαστε σε θέση να δημιουργούμε μετατροπές, να ορίζουμε μοντέλα, να εισάγουμε και επεξεργαζόμαστε εγγραφές και να τις εξετάζουμε.</p>
+
+<h2>Πίνακας περιεχομένων</h2>
+<div id="toc"></div>
+
+<h2 id="section">Εγκατάσταση</h2>
+
+<p>Για να ξεκινήσουμε πρέπει να συμπεριλάβουμε το Ecto και έναν αντάπτορα βάσης δεδομένων στο <code class="highlighter-rouge">mix.exs</code> του project μας.  Μπορείτε να βρείτε μια λίστα υποστηριζόμενων ανταπτόρων στον τομέα <a href="https://github.com/elixir-lang/ecto/blob/master/README.md#usage">Usage</a> του Ecto README.  Για το παράδειγμά μας θα χρησιμοποιήσυμε την PostgreSQL:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:ecto</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.0"</span><span class="p">},</span>
+   <span class="p">{</span><span class="ss">:postgrex</span><span class="p">,</span> <span class="sd">"</span><span class="s2">&gt;= 0.0.0"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Τώρα μπορούμε να προσθέσουμε το Ecto και τον αντάπτορά μας στη λίστα εφαρμογών:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:ecto</span><span class="p">,</span> <span class="ss">:postgrex</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section-1">Αποθετήριο</h3>
+
+<p>Τέλος χρειάζεται να δημιουργήσουμε το αποθετήριο του project μας, το κάλυμμα της βάσης δεδομένων.  Αυτό μπορεί να γίνει μέσω της εργασίς <code class="highlighter-rouge">mix ecto.gen.repo</code>.  Θα καλύψουμε τις εργασίες mix του Ecto στη συνέχεια.  Το αποθετήριο μπορεί να βρεθεί στο <code class="highlighter-rouge">lib/&lt;όνομα του project&gt;/repo.ex</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span>
+    <span class="ss">otp_app:</span> <span class="ss">:example_app</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section-2">Επιτηρητής</h3>
+
+<p>Εφόσον έχουμε δημιουργήσει το αποθετήριό μας χρειαζόμαστε να ρυθμίσουμε το δέντρο επιτήρησής μας, το οποίο συνήθως βρίσκεται στο <code class="highlighter-rouge">lib/&lt;όνομα του project&gt;.ex</code>.</p>
+
+<p>Είναι σημαντικό να σημειώσουμε ότι ορίζουμε το αποθετήριο σαν επιτηρητή με την <code class="highlighter-rouge">supervisor/3</code> και <em>όχι</em> με την <code class="highlighter-rouge">worker/3</code>.  Αν δημιουργήσετε την εφαρμογή σας με την σημαία <code class="highlighter-rouge">--sup</code>, αρκετά από αυτά υπάρχουν ήδη:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">App</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Application</span>
+
+  <span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="n">supervisor</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="p">]</span>
+
+    <span class="n">opts</span> <span class="o">=</span> <span class="p">[</span><span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">]</span>
+    <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Για περισσότερες πληροφορίες στους επιτηρητές ελέγξτε το μάθημα <a href="../../advanced/otp-supervisors">Επιτηρητές OTP</a>.</p>
+
+<h3 id="section-3">Ρύθμιση</h3>
+
+<p>Για να ρυθμίσουμε το Ecto χρειάζεται να προσθέσουμε ένα τομέα στο <code class="highlighter-rouge">config/config.exs</code> μας.  Εδώ θα ορίσουμε το αποθετήριο, τον αντάπτορα, τη βάση δεδομένων και τις πληροφορίες λόγαριασμού:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">config</span> <span class="ss">:example_app</span><span class="p">,</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span>
+  <span class="ss">adapter:</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Postgres</span><span class="p">,</span>
+  <span class="ss">database:</span> <span class="sd">"</span><span class="s2">example_app"</span><span class="p">,</span>
+  <span class="ss">username:</span> <span class="sd">"</span><span class="s2">postgres"</span><span class="p">,</span>
+  <span class="ss">password:</span> <span class="sd">"</span><span class="s2">postgres"</span><span class="p">,</span>
+  <span class="ss">hostname:</span> <span class="sd">"</span><span class="s2">localhost"</span>
+</code></pre>
+</div>
+
+<h2 id="mix">Εργασίες Mix</h2>
+
+<p>Το Ecto περιλαμβάνει έναν αριθμό χρήσιμων εργασιών mix για την εργασία με τη βάση δεδομένων μας:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mix ecto.create         <span class="c"># Δημιουργήστε την αποθήκη για το αποθετήριό μας</span>
+mix ecto.drop           <span class="c"># Διαγράψτε την αποθήκη για το αποθετήριο</span>
+mix ecto.gen.migration  <span class="c"># Δημιουργήστε μια νέα μετατροπή για το αποθετήριο</span>
+mix ecto.gen.repo       <span class="c"># Δημιουργήστε ένα νέο αποθετήριο</span>
+mix ecto.migrate        <span class="c"># Ανεβάστε τις μετατροπές σε ένα αποθετήριο</span>
+mix ecto.rollback       <span class="c"># Επαναφέρετε τις μετατροπές από ένα αποθετήριο</span>
+</code></pre>
+</div>
+
+<h2 id="section-4">Μετατροπές</h2>
+
+<p>Ο καλύτερος τρόπος να δημιουργήσετε μετατροπές είναι η εργασία <code class="highlighter-rouge">mix ecto.gen.migration &lt;όνομα&gt;</code>.  Αν είστε εξοικειομένοι με το ActiveRecord, οι μετατροπές θα σας είναι γνώριμες.</p>
+
+<p>Ας ξεκινήσουμε ρίχνοντας μια ματιά σε μια μετατροπή για ένα πίνακα χρηστών:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="no">Migrations</span><span class="o">.</span><span class="no">CreateUser</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Migration</span>
+
+  <span class="k">def</span> <span class="n">change</span> <span class="k">do</span>
+    <span class="n">create</span> <span class="n">table</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">add</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">unique:</span> <span class="no">true</span>
+      <span class="n">add</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">null:</span> <span class="no">false</span>
+      <span class="n">add</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+      <span class="n">add</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+
+      <span class="n">timestamps</span>
+    <span class="k">end</span>
+
+    <span class="n">create</span> <span class="n">unique_index</span><span class="p">(</span><span class="ss">:users</span><span class="p">,</span> <span class="p">[</span><span class="ss">:username</span><span class="p">],</span> <span class="ss">name:</span> <span class="ss">:unique_usernames</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Εξ’ ορισμού το Ecto δημιουργεί ένα αυτό-αυξανόμενο πρωτεύον κλειδί ονομαζόμενο <code class="highlighter-rouge">id</code>.  Εδώ χρησιμοποιούμε την προκαθορισμένη επανάκληση <code class="highlighter-rouge">change/0</code> αλλά το Ecto επίσης υποστηρίζει τις <code class="highlighter-rouge">up/0</code> και <code class="highlighter-rouge">down/0</code> σε περίπτωση που χρειάζεστε περισσότερο έλεγχο.</p>
+
+<p>Όπως ίσως θα μαντέψατε, η προσθήκη των <code class="highlighter-rouge">timestamps</code> στη μετατροπή σας θα δημιουργήσει και διαχειριστεί τα πεδία <code class="highlighter-rouge">inserted_at</code> και <code class="highlighter-rouge">updated_at</code> για εσάς.</p>
+
+<p>Για να εφαρμόσουμε τη νέα μας μετατροπή θα τρέξουμε την εργασία <code class="highlighter-rouge">mix ecto.migrate</code>.</p>
+
+<p>Για περισσότερα στις μετατροπές ρίξτε μια ματιά στον τομέα <a href="http://hexdocs.pm/ecto/Ecto.Migration.html#content">Ecto.Migration</a> των εγγράφων.</p>
+
+<h2 id="section-5">Μοντέλα</h2>
+
+<p>Τώρα που έχουμε τη μετατροπή μας μπορούμε να μεταφερθούμε στο μοντέλο.  Τα μοντέλα καθορίζουν το σχήμα, τις βοηθητικές μεθόδους και το σετ αλλαγών μας (changeset).  Θα καλύψουμε περισσότερο τα σετ αλλαγών στις επόμενες ενότητες.</p>
+
+<p>Για τώρα ας δούμε πως φαίνεται το μοντέλο για τη μετατροπή μας:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">User</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Schema</span>
+  <span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Changeset</span>
+
+  <span class="n">schema</span> <span class="sd">"</span><span class="s2">users"</span> <span class="k">do</span>
+    <span class="n">field</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+    <span class="n">field</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+    <span class="n">field</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+
+    <span class="n">timestamps</span>
+  <span class="k">end</span>
+
+  <span class="nv">@required_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">(</span><span class="n">username</span> <span class="n">encrypted_password</span> <span class="n">email</span><span class="p">)</span>
+  <span class="nv">@optional_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="n">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">params</span> <span class="p">\\</span> <span class="ss">:empty</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">user</span>
+    <span class="o">|&gt;</span> <span class="n">cast</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nv">@required_fields</span><span class="p">,</span> <span class="nv">@optional_fields</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">unique_constraint</span><span class="p">(</span><span class="ss">:username</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Το σχήμα που ορίζουμε στο μοντέλο μας αναπαριστά το τι ορίσαμε στη μετατροπή μας.  Επιπρόσθετα στα πεδία της βάσης δεδομένων μας, συμπεριλαμβάνουμε δύο εικονικά πεδία.  Τα εικονικά πεδία δεν αποθηκεύονται στη βάση δεδομένων αλλά μπορούν να γίνουν χρήσιμα για περιπτώσεις όπως η επικύρωση.  Θα δούμε τα εικονικά πεδία σε δράση στον τομέα <a href="#changesets">Σετ αλλαγών</a>.</p>
+
+<h2 id="section-6">Ερωτήματα</h2>
+
+<p>Πριν μπορέσουμε να ρωτήσουμε το αποθετήριό μας πρέπει να εισάγουμε το API Ερωτημάτων.  Για τώρα πρέπει να εισάγουμε μόνο την <code class="highlighter-rouge">from/2</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Query</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">from:</span> <span class="m">2</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Η επίσημη τεκμηρίωση μπορεί να βρεθεί στο <a href="http://hexdocs.pm/ecto/Ecto.Query.html">Ecto.Query</a>.</p>
+
+<h3 id="section-7">Βασικά</h3>
+
+<p>Το Ecto παρέχει μία εξαιρετική DSL Ερωτημάτων που μας επιτρέπει να εκφράζουμε ξεκάθαρα τα ερωτήματα.  Για να βρούμε τα ονόματα χρήστη από όλους τους επιβεβαιωμένους λογαριασμούς θα μπορούσαμε να χρησιμοποιήσουμα κάτι σαν αυτό:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alias</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="p">{</span><span class="no">Repo</span><span class="p">,</span><span class="no">User</span><span class="p">}</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">u</span><span class="o">.</span><span class="n">username</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Επιπρόσθετα στην <code class="highlighter-rouge">all/2</code>, το αποθετήριο παρέχει έναν αριθμό επανακλήσεων συμπεριλαμβάνοντας τις <code class="highlighter-rouge">one/2</code>, <code class="highlighter-rouge">get/3</code>, <code class="highlighter-rouge">insert/2</code> και <code class="highlighter-rouge">delete/2</code>.  Μια πλήρης λίστα επανακλήσεων μπορεί να βρεθεί στο <a href="http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks">Ecto.Repo#callbacks</a>.</p>
+
+<h3 id="section-8">Μέτρηση</h3>
+
+<p>Αν θέλουμε να μετρήσουμε τον αριθμό χρηστών που έχουν επιβεβαιωμένο λογαριασμό θα μπορούσαμε να χρησιμοποιήσουμε την <code class="highlighter-rouge">count/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Υπάρχει η συνάρτηση <code class="highlighter-rouge">count/2</code> που μετράει τις ξεχωριστές τιμές σε μια δωσμένη εγγραφή:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="ss">:distinct</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="section-9">Ομαδοποίηση</h3>
+
+<p>Για να ομαδοποιήσουμε χρήστες με βάση την κατάσταση επιβεβαίωσης μπορούμε να συμπεριλάβουμε την επιλογή <code class="highlighter-rouge">group_by</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">group_by:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">confirmed</span><span class="p">,</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">)]</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="section-10">Ταξινόμηση</h3>
+
+<p>Η ταξινόμηση των χρηστών με βάση την ημερομηνία δημιουργίας:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">order_by:</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">]</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Για να ταξινομήσουμε κατά φθίνουσα σειρά:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">order_by:</span> <span class="p">[</span><span class="ss">desc:</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">],</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="section-11">Ενώσεις</h3>
+
+<p>Υποθέτωντας ότι έχουμε ένα προφίλ συσχετισμένο με τον χρήστη μας, ας βρούμε όλα τα προφίλ επιβεβαιωμένων λογαριασμών:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">p</span> <span class="ow">in</span> <span class="no">Profile</span><span class="p">,</span>
+    <span class="ss">join:</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">assoc</span><span class="p">(</span><span class="n">profile</span><span class="p">,</span> <span class="ss">:user</span><span class="p">),</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="section-12">Κομμάτια</h3>
+
+<p>Μερικές φορές, όπως όταν χρειαζόμαστε συγκεκριμμένες συναρτήσεις βάσης δεδομένων, το API ερωτημάτων δεν είναι αρκετό.  Η συνάρτηση <code class="highlighter-rouge">fragment/1</code> υπάρχει για αυτό το σκοπό:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">fragment</span><span class="p">(</span><span class="sd">"</span><span class="s2">downcase(?)"</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="o">==</span> <span class="o">^</span><span class="n">username</span>
+    <span class="ss">select:</span> <span class="n">u</span>
+</code></pre>
+</div>
+
+<p>Επιπρόσθετα παραδείγματα ερωτημάτων μπορούν να βρεθούν στην περιγραφή ενότητας <a href="http://hexdocs.pm/ecto/Ecto.Query.API.html">Ecto.Query.API</a>.</p>
+
+<h2 id="section-13">Σετ αλλαγών</h2>
+
+<p>Στον προηγούμενο τομέα μάθαμε πως να ανακτήσουμε δεδομένα, αλλά πως τα εισάγουμε και πως τα αλλάζουμε;  Για αυτό χρειαζόμαστε τα σετ αλλαγών.</p>
+
+<p>Τα σετ αλλαγών αναλαμβάνουν το φιλτράρισμα, την επικύρωση και τους περιορισμούς όταν γίνονται αλλαγές σε ένα μοντέλο.</p>
+
+<p>Για αυτό το παράδειγμα θα εστιάσουμε στο σετ αλλαγών για τη δημιουργία ενός λογαριασμού χρήστη.  Για να ξεκινήσουμε πρέπει να αλλάξουμε το μοντέλο μας:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">User</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Schema</span>
+  <span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Changeset</span>
+  <span class="kn">import</span> <span class="no">Comeonin</span><span class="o">.</span><span class="no">Bcrypt</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">hashpwsalt:</span> <span class="m">1</span><span class="p">]</span>
+
+  <span class="n">schema</span> <span class="sd">"</span><span class="s2">users"</span> <span class="k">do</span>
+    <span class="n">field</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+    <span class="n">field</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+    <span class="n">field</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+
+    <span class="n">timestamps</span>
+  <span class="k">end</span>
+
+  <span class="nv">@required_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">(</span><span class="n">username</span> <span class="n">email</span> <span class="n">password</span> <span class="n">password_confirmation</span><span class="p">)</span>
+  <span class="nv">@optional_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="n">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">params</span> <span class="p">\\</span> <span class="ss">:empty</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">user</span>
+    <span class="o">|&gt;</span> <span class="n">cast</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nv">@required_fields</span><span class="p">,</span> <span class="nv">@optional_fields</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">validate_length</span><span class="p">(</span><span class="ss">:password</span><span class="p">,</span> <span class="ss">min:</span> <span class="m">8</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">validate_password_confirmation</span><span class="p">()</span>
+    <span class="o">|&gt;</span> <span class="n">unique_constraint</span><span class="p">(</span><span class="ss">:username</span><span class="p">,</span> <span class="ss">name:</span> <span class="ss">:email</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">put_change</span><span class="p">(</span><span class="ss">:encrypted_password</span><span class="p">,</span> <span class="n">hashpwsalt</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:password</span><span class="p">]))</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">validate_password_confirmation</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">case</span> <span class="n">get_change</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password_confirmation</span><span class="p">)</span> <span class="k">do</span>
+      <span class="no">nil</span> <span class="o">-&gt;</span>
+        <span class="n">password_incorrect_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
+      <span class="n">confirmation</span> <span class="o">-&gt;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">get_field</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">confirmation</span> <span class="o">==</span> <span class="n">password</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">changeset</span><span class="p">,</span> <span class="k">else</span><span class="p">:</span> <span class="n">password_mismatch_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">password_mismatch_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">add_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Passwords does not match"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">password_incorrect_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">add_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password</span><span class="p">,</span> <span class="sd">"</span><span class="s2">is not valid"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Βελτιώσαμε τη συνάρτηση <code class="highlighter-rouge">changeset/2</code> και προσθέσαμε τρεις νέες βοηθητικές συναρτήσεις: <code class="highlighter-rouge">validate_password_confirmation/1</code>, <code class="highlighter-rouge">password_mismatch_error/1</code> και <code class="highlighter-rouge">password_incorrect_error/1</code>.</p>
+
+<p>Όπως υποστηρίζει το όνομα, η <code class="highlighter-rouge">changeset/2</code> δημιουργεί ένα νέο σετ αλλαγών για εμάς.  Σε αυτό χρησιμοποιούμε την <code class="highlighter-rouge">cast/4</code> για να μετατρέψουμε τις παραμέτρους σε ένα σετ αλλαγών από ένα σετ απαραίτητων και προεραιτικών πεδίων.  Στη συνέχεια επικυρώνουμε το μέγεθος του κωδικού στο σετ αλλαγών, χρησιμοποιούμε τις δικές μας συναρτήσεις να επικυρώσουμε ότι ταιριάζει η επιβεβαίωση κωδικού, και επικυρώνουμε τη μοναδικότητα του ονόματος χρήστη.  Τέλος αναβαθμίζουμε το πραγματικό μας πεδίο κωδικού στη βάση δεδομένων.  Για αυτό χρησιμοποιούμε την <code class="highlighter-rouge">put_change/3</code> για να αναβαθμίσουμε μια τιμή στο σετ αλλαγών.</p>
+
+<p>Η χρήση της <code class="highlighter-rouge">User.changeset/2</code> είναι αρκετά απλή:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alias</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="p">{</span><span class="no">User</span><span class="p">,</span><span class="no">Repo</span><span class="p">}</span>
+
+<span class="n">pw</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">οι κωδικοί πρέπει να είναι δύσκολοι"</span>
+<span class="n">changeset</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">changeset</span><span class="p">(%</span><span class="no">User</span><span class="p">{},</span> <span class="p">%{</span><span class="ss">username:</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span>
+                    <span class="ss">email:</span> <span class="sd">"</span><span class="s2">sean@seancallan.com"</span><span class="p">,</span>
+                    <span class="ss">password:</span> <span class="n">pw</span><span class="p">,</span>
+                    <span class="ss">password_confirmation:</span> <span class="n">pw</span><span class="p">})</span>
+
+<span class="k">case</span> <span class="no">Repo</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">model</span><span class="p">}</span>        <span class="o">-&gt;</span> <span class="c1"># Επιτυχής εισαγωγή</span>
+  <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">changeset</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="c1"># Κάτι πήγε στραβά</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Αυτό ήταν!  Τώρα είστε έτοιμοι να αποθηκεύσετε μερικά δεδομένα.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/gr/lessons/specifics/ecto/&title=Ecto&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/gr/lessons/specifics/ecto/&via=elixirschool&text=ElixirSchool: Ecto&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/gr/lessons/specifics/ecto/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/gr/lessons/specifics/ecto/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/gr/lessons/specifics/ecto/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Ecto" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/gr/lessons/specifics/ecto/&title=ElixirSchool: Ecto&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/gr/lessons/specifics/ecto/&title=ElixirSchool: Ecto&description=Check out 'Ecto' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Ecto&body=Check out 'Ecto' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/gr/lessons/specifics/ecto/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

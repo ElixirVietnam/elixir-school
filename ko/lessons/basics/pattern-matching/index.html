@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/basics/pattern-matching/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  패턴 매칭 &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  패턴 매칭 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson  active" href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/pattern-matching/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/pattern-matching/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/pattern-matching/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/pattern-matching/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/pattern-matching/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/pattern-matching/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/pattern-matching/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/pattern-matching/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/pattern-matching/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/pattern-matching/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/pattern-matching/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/pattern-matching/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/pattern-matching/ ">my</a>
+      
+        <a href=" /no/lessons/basics/pattern-matching/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/pattern-matching/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/pattern-matching/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/pattern-matching/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/pattern-matching/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/pattern-matching/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/pattern-matching/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/pattern-matching/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">패턴 매칭</h1>
+  <p>패턴 매칭은 Elixir의 강력한 기능입니다. 이를 이용하면 간단한 값, 자료 구조, 심지어는 함수까지도 매치시킬 수 있습니다. 이번 강의에서는 패턴 매칭이 어떻게 사용되는지 알아보기로 합니다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="section">매치 연산자</h2>
+
+<p>조금 꼬아 볼까요? Elixir에서 <code class="highlighter-rouge">=</code>는 사실 대수에서 등호와 같은 역활을 하는 매치 연산자입니다. 이것을 쓰면 전체 표현식이 방정식으로 바뀌고 Elixir가 왼쪽의 값과 오른쪽의 값을 매치시킵니다. 매치가 성공하면 방정식의 값을 반환하고, 그렇지 않을 경우 에러를 발생시킵니다. 아래 코드를 보십시오.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="m">1</span>
+<span class="m">1</span>
+</code></pre>
+</div>
+
+<p>이제 간단한 매칭을 한 번 해 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">1</span> <span class="o">=</span> <span class="n">x</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">=</span> <span class="n">x</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">MatchError</span><span class="p">)</span> <span class="n">no</span> <span class="n">match</span> <span class="n">of</span> <span class="n">right</span> <span class="n">hand</span> <span class="n">side</span> <span class="ss">value:</span> <span class="m">1</span>
+</code></pre>
+</div>
+
+<p>이번에는 우리가 알고 있는 컬렉션들을 가지고 해 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># 리스트</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">list</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[]</span> <span class="o">=</span> <span class="n">list</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">MatchError</span><span class="p">)</span> <span class="n">no</span> <span class="n">match</span> <span class="n">of</span> <span class="n">right</span> <span class="n">hand</span> <span class="n">side</span> <span class="ss">value:</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="o">|</span><span class="n">tail</span><span class="p">]</span> <span class="o">=</span> <span class="n">list</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">tail</span>
+<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">2</span><span class="o">|</span><span class="n">_</span><span class="p">]</span> <span class="o">=</span> <span class="n">list</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">MatchError</span><span class="p">)</span> <span class="n">no</span> <span class="n">match</span> <span class="n">of</span> <span class="n">right</span> <span class="n">hand</span> <span class="n">side</span> <span class="ss">value:</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+
+<span class="c1"># 튜플</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">value</span><span class="p">}</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Successful!"</span><span class="p">}</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Successful!"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">value</span>
+<span class="sd">"</span><span class="s2">Successful!"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">value</span><span class="p">}</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:error</span><span class="p">}</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">MatchError</span><span class="p">)</span> <span class="n">no</span> <span class="n">match</span> <span class="n">of</span> <span class="n">right</span> <span class="n">hand</span> <span class="n">side</span> <span class="ss">value:</span> <span class="p">{</span><span class="ss">:error</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="section-1">핀 연산자</h2>
+
+<p>우리는 방금 매치 연산자의 좌변에 변수가 포함되어 있을 때에는 값의 대입이 일어난다는 것을 알았습니다. 하지만 경우에 따라서는, 변수에 새로운 값이 대입되는 것을 원치 않을 수도 있습니다. 이러한 상황에서는 핀 연산자 <code class="highlighter-rouge">^</code>를 사용해야 합니다.</p>
+
+<p>핀 연산자를 이용하여 변수를 고정시키면 변수에 새 값을 대입하지 않고 기존의 값과 매칭을 하게 됩니다. 이것이 어떻게 동작하는지 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="m">1</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="o">^</span><span class="n">x</span> <span class="o">=</span> <span class="m">2</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">MatchError</span><span class="p">)</span> <span class="n">no</span> <span class="n">match</span> <span class="n">of</span> <span class="n">right</span> <span class="n">hand</span> <span class="n">side</span> <span class="ss">value:</span> <span class="m">2</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="n">x</span><span class="p">,</span> <span class="o">^</span><span class="n">x</span><span class="p">}</span> <span class="o">=</span> <span class="p">{</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">}</span>
+<span class="p">{</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">x</span>
+<span class="m">2</span>
+</code></pre>
+</div>
+
+<p>Elixir 1.2에서는 맵의 키와 함수의 절에 대한 핀이 도입되었습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">key</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">hello"</span>
+<span class="sd">"</span><span class="s2">hello"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="o">^</span><span class="n">key</span> <span class="o">=&gt;</span> <span class="n">value</span><span class="p">}</span> <span class="o">=</span> <span class="p">%{</span><span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">value</span>
+<span class="sd">"</span><span class="s2">world"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="o">^</span><span class="n">key</span> <span class="o">=&gt;</span> <span class="n">value</span><span class="p">}</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">:hello</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">MatchError</span><span class="p">)</span> <span class="n">no</span> <span class="n">match</span> <span class="n">of</span> <span class="n">right</span> <span class="n">hand</span> <span class="n">side</span> <span class="ss">value:</span> <span class="p">%{</span><span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>아래는 함수의 절에 대한 핀 연산의 예입니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">greeting</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">Hello"</span>
+<span class="sd">"</span><span class="s2">Hello"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">greet</span> <span class="o">=</span> <span class="k">fn</span>
+<span class="o">...&gt;</span>   <span class="p">(</span><span class="o">^</span><span class="n">greeting</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Hi </span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">...&gt;</span>   <span class="p">(</span><span class="n">greeting</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="si">#{</span><span class="n">greeting</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="c1">#Function&lt;12.54118792/2 in :erl_eval.expr/5&gt;</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">greet</span><span class="o">.</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hi Sean"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">greet</span><span class="o">.</span><span class="p">(</span><span class="sd">"</span><span class="s2">Mornin'"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Mornin', Sean"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/basics/pattern-matching/&title=패턴 매칭&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/basics/pattern-matching/&via=elixirschool&text=ElixirSchool: 패턴 매칭&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/basics/pattern-matching/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/basics/pattern-matching/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/basics/pattern-matching/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 패턴 매칭" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/basics/pattern-matching/&title=ElixirSchool: 패턴 매칭&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/basics/pattern-matching/&title=ElixirSchool: 패턴 매칭&description=Check out '패턴 매칭' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 패턴 매칭&body=Check out '패턴 매칭' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/basics/pattern-matching/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

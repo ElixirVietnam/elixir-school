@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Übungen zur Programmiersprache Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/de/lessons/advanced/metaprogramming/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Metaprogrammierung &middot; Elixir School
+
+">
+  <meta property="og:description" content="Übungen zur Programmiersprache Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Metaprogrammierung &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Übungen zur Programmiersprache Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Grundlagen</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/de/lessons/basics/basics/">Grundlagen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/de/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/basics/enum/">Enums</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/de/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/de/lessons/basics/control-structures/">Kontrollstrukturen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/de/lessons/basics/functions/">Funktionen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/de/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/de/lessons/basics/modules/">Module</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/de/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/de/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/de/lessons/basics/documentation/">Dokumentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/de/lessons/basics/testing/">Testen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/de/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/de/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/de/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Erweitert</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/de/lessons/advanced/erlang/">Erlang-Interoperabilität</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/de/lessons/advanced/error-handling/">Fehlerbehandlung</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/advanced/escripts/">Ausführbare Dateien</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/de/lessons/advanced/concurrency/">Nebenläufigkeit</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/de/lessons/advanced/otp-concurrency/">OTP Nebenläufigkeit</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/de/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson  active" href="/de/lessons/advanced/metaprogramming/">Metaprogrammierung</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/de/lessons/advanced/umbrella-projects/">Umbrella-Projekte</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/de/lessons/advanced/typespec/">Spezifikationen und Typen</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Einzelheiten</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/metaprogramming/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/metaprogramming/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/metaprogramming/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/metaprogramming/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/metaprogramming/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/metaprogramming/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/metaprogramming/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/metaprogramming/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/metaprogramming/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/metaprogramming/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/metaprogramming/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/metaprogramming/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/metaprogramming/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/metaprogramming/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/metaprogramming/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/metaprogramming/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/metaprogramming/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/metaprogramming/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/metaprogramming/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/metaprogramming/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/metaprogramming/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Metaprogrammierung</h1>
+  <p>Metaprogrammierung ist der Vorhang Code zu benutzen, um Code zu schreiben. In Elixir gibt uns das die Möglichkeit die Sprache zu erweitern, so dass sie unseren Anforderungen eher entspricht und dynamisch den Code zu verändern. Wir starten mit einem Blick darauf, wie Elixir unter der Haube repräsentiert wird; dann wie man es verändert und schlussendlich können wir dieses Wissen dazu nutzen, um es zu erweitern.</p>
+
+<p>Um eine Warnung auszusprechen: Metaprogrammierung ist kniffelig und sollte nur falls wirklich notwendig eingesetzt werden. Zuviel benutzt wird sie unweigerlich zu komplexem Code führen, der schwierig zu verstehen und debuggen ist.</p>
+
+<h2>Inhaltsverzeichnis</h2>
+<div id="toc"></div>
+
+<h2 id="quote">Quote</h2>
+
+<p>Der erste Schritt für Metaprogrammierung ist zu verstehen, wie Ausdrücke repräsentiert werden. In Elixir besteht der abstract syntax tree (AST), die interne Repräsentation unseres Codes, aus Tupeln. Diese Tupel beinhalten drei Teile: Funktionsname, Metadaten und Funktionsargumente.</p>
+
+<p>Um diese internen Strukturen zu betrachen, bietet uns Elixir die Funktion <code class="highlighter-rouge">quote/2</code>. Mit <code class="highlighter-rouge">quote/2</code> können wir Elixir Code in die darunterliegende Repräsentation verwandeln:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello"</span>
+<span class="sd">"</span><span class="s2">Hello"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="ss">:world</span>
+<span class="ss">:world</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="m">1</span> <span class="o">+</span> <span class="m">2</span>
+<span class="p">{</span><span class="ss">:+</span><span class="p">,</span> <span class="p">[</span><span class="ss">context:</span> <span class="no">Elixir</span><span class="p">,</span> <span class="kn">import</span><span class="p">:</span> <span class="no">Kernel</span><span class="p">],</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="k">if</span> <span class="n">value</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">True"</span><span class="p">,</span> <span class="k">else</span><span class="p">:</span> <span class="sd">"</span><span class="s2">False"</span>
+<span class="p">{</span><span class="ss">:if</span><span class="p">,</span> <span class="p">[</span><span class="ss">context:</span> <span class="no">Elixir</span><span class="p">,</span> <span class="kn">import</span><span class="p">:</span> <span class="no">Kernel</span><span class="p">],</span>
+ <span class="p">[{</span><span class="ss">:value</span><span class="p">,</span> <span class="p">[],</span> <span class="no">Elixir</span><span class="p">},</span> <span class="p">[</span><span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">True"</span><span class="p">,</span> <span class="k">else</span><span class="p">:</span> <span class="sd">"</span><span class="s2">False"</span><span class="p">]]}</span>
+</code></pre>
+</div>
+
+<p>Ist dir aufgefallen, dass die ersten drei Aufrufe keine Tupel zurück gegeben haben? Es gibt 5 Literale, die sich selbst zurück geben, falls sie gequoted werden:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:atom</span>
+<span class="ss">:atom</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">string"</span>
+<span class="sd">"</span><span class="s2">string"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">1</span> <span class="c1"># All numbers</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span> <span class="c1"># Lists</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">,</span> <span class="ss">:world</span><span class="p">}</span> <span class="c1"># 2 element tuples</span>
+<span class="p">{</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">,</span> <span class="ss">:world</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="unquote">Unquote</h2>
+
+<p>Nun, da wir jetzt die interne Struktur unseres Codes erhalten können, wie verändern wir sie? Um neuen Code oder auch Werte zu injecten benutzen wir <code class="highlighter-rouge">unquote/1</code>. Wenn wir einen Ausdruck unquoten, wird er ausgewertet und in den AST injected. Um <code class="highlighter-rouge">unquote/1</code> zu demonstrieren, lass uns ein paar Beispiele anschauen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">denominator</span> <span class="o">=</span> <span class="m">2</span>
+<span class="m">2</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">divide</span><span class="p">(</span><span class="m">42</span><span class="p">,</span> <span class="n">denominator</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:divide</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="m">42</span><span class="p">,</span> <span class="p">{</span><span class="ss">:denominator</span><span class="p">,</span> <span class="p">[],</span> <span class="no">Elixir</span><span class="p">}]}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">divide</span><span class="p">(</span><span class="m">42</span><span class="p">,</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">denominator</span><span class="p">))</span>
+<span class="p">{</span><span class="ss">:divide</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="m">42</span><span class="p">,</span> <span class="m">2</span><span class="p">]}</span>
+</code></pre>
+</div>
+
+<p>Im ersten Beispiel wird unsere Variable <code class="highlighter-rouge">denominator</code> gequoted, so dass der resultierende AST ein Tupel beinhaltet, um auf die Variable zugreifen zu können. Im <code class="highlighter-rouge">unquote/1</code>-Beispiel enthält der resultierende Code dagegen den Wert von <code class="highlighter-rouge">denominator</code>.</p>
+
+<h2 id="makros">Makros</h2>
+
+<p>Wenn wir erst mal <code class="highlighter-rouge">quote/2</code> und <code class="highlighter-rouge">unquote/1</code> verstanden haben, sind wir bereit dazu in Makros abzutauchen. Es ist wichtig sich zu merken, dass Makros wie jede Metaprogrammierung nur spärlich eingesetzt werden sollte.</p>
+
+<p>In ihrer einfachsten Form sind Makros nur besondere Funktionen, die entworfen wurden, um einen gequoteten Ausdruck in unseren Anwendungscode zu injecten.  Stell dir vor, dass das Makro mit dem gequoteten Ausdruck ersetzt wird, anstatt wie eine Funktion aufgerufen zu werden. Mit Makros haben wir alles an der Hand, um Elixir zu erweitern und unserer Anwendung dynamisch Code hinzuzufügen.</p>
+
+<p>Wir beginnen mit <code class="highlighter-rouge">defmacro/2</code> ein Makro zu definieren, welches, wie vieles in Elixir, selbst ein Makro ist (lass das erst mal ins Bewusstein dringen). Als Beispiel werden wir <code class="highlighter-rouge">unless</code> als Makro implementieren. Erinner dich daran, dass ein Makro einen gequoteten Ausdruck zurückgeben muss:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">OurMacro</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="k">unless</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">block</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span>
+      <span class="k">if</span> <span class="n">!unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Lass uns unser Modul requiren und unser Makro benutzen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">OurMacro</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">OurMacro</span><span class="o">.</span><span class="k">unless</span> <span class="no">true</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">OurMacro</span><span class="o">.</span><span class="k">unless</span> <span class="no">false</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="sd">"</span><span class="s2">Hi"</span>
+</code></pre>
+</div>
+
+<p>Da Makros Code in unserer Anwendung ersetzen, können wir kontrollieren, was und wann etwas kompiliert wird. Ein Beispiel dafür kann im <code class="highlighter-rouge">Logger</code>-Modul gefunden werden. Wenn logging deaktiviert ist, wird kein Code injected und der so resultierende Code beinhaltet keine Referenzen oder Funktionsaufrufe auf logging. Das ist unterschiedlich zu anderen Sprachen, in denen das Overhead durch einen Funktionsaufruf darstellt, selbst wenn die Implementierung NOP ist.</p>
+
+<p>Um dies zu demonstrieren, lass uns einen einfachen Logger erstellen, der entweder aktiviert oder deaktivert werden kann.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Logger</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">log</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="no">Application</span><span class="o">.</span><span class="n">get_env</span><span class="p">(</span><span class="ss">:logger</span><span class="p">,</span> <span class="ss">:enabled</span><span class="p">)</span> <span class="k">do</span>
+      <span class="kn">quote</span> <span class="k">do</span>
+        <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">Logged message: </span><span class="si">#{</span><span class="kn">unquote</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="kn">require</span> <span class="no">Logger</span>
+
+  <span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+    <span class="no">Logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sd">"</span><span class="s2">This is a log message"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Wenn logging aktiviert ist, würde unsere <code class="highlighter-rouge">test</code>-Funktion im Code etwa so aussehen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+  <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">Logged message: </span><span class="si">#{</span><span class="sd">"</span><span class="s2">This is a log message"</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Wenn wir logging deaktivieren, sieht der resultierende Code so aus:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="debugging">Debugging</h2>
+
+<p>Okay, jetzt wissen wir, wie man <code class="highlighter-rouge">quote/2</code> und <code class="highlighter-rouge">unquote/1</code> benutzt und Makros schreibt. Aber was, wenn du einen großen Haufen gequoteten Code hast und diesen verstehen möchtest? In diesem Fall kannst du <code class="highlighter-rouge">Macro.to_string/2</code> benutzen. Sieht dir dieses Beispiel an:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Macro</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="kn">quote</span><span class="p">(</span><span class="k">do</span><span class="p">:</span> <span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)))</span>
+<span class="sd">"</span><span class="s2">foo.bar(1, 2, 3)"</span>
+</code></pre>
+</div>
+
+<p>Wenn du den Code anschauen möchtest, der durch die Makros erzeugt wird, kannst du sie mit <code class="highlighter-rouge">Macro.expand/2</code> und <code class="highlighter-rouge">Macro.expand_once/2</code> kombinieren. Diese Funktionen dehnen Makros in ihren gequoteten Code aus. Die erste Funktion dehnt sie eventuell mehrere Male aus, während die letztere dies nur einmal macht. Lass uns zum Beispiel unser <code class="highlighter-rouge">unless</code>-Beispiel aus der vorherigen Sektion anschauen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">OurMacro</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="k">unless</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">block</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span>
+      <span class="k">if</span> <span class="n">!unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="kn">require</span> <span class="no">OurMacro</span>
+<span class="n">quoted</span> <span class="o">=</span> <span class="kn">quote</span> <span class="k">do</span>
+  <span class="no">OurMacro</span><span class="o">.</span><span class="k">unless</span> <span class="no">true</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>iex&gt; quoted |&gt; Macro.expand_once(__ENV__) |&gt; Macro.to_string |&gt; IO.puts
+if(!true) do
+  "Hi"
+end
+</code></pre>
+</div>
+
+<p>Falls wir den selben Code mit <code class="highlighter-rouge">Macro.expand/2</code> aufrufen, ist es faszinierend:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">quoted</span> <span class="o">|&gt;</span> <span class="no">Macro</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">__ENV__</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="no">Macro</span><span class="o">.</span><span class="n">to_string</span> <span class="o">|&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span>
+<span class="k">case</span><span class="p">(</span><span class="n">!true</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">x</span> <span class="ow">when</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="no">false</span><span class="p">,</span> <span class="no">nil</span><span class="p">]</span> <span class="o">-&gt;</span>
+    <span class="no">nil</span>
+  <span class="n">_</span> <span class="o">-&gt;</span>
+    <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Du kannst dich vielleicht daran erinnern, dass wir erwähnt hatten, wie <code class="highlighter-rouge">if</code> ein Makro in Elixir ist. Hier sieht du es ausgedehnt, in die darunter liegende <code class="highlighter-rouge">case</code>-Aussage.</p>
+
+<h3 id="private-makros">Private Makros</h3>
+
+<p>Obwohl sie nicht so häufig sind, unterstützt Elixir private Makros. Ein privates Makro wird mit <code class="highlighter-rouge">defmacrop</code> definiert und kann nur innerhalb des Moduls aufgerufen werden, in dem es definiert wurde. Private Makros müssen definiert werden, bevor Code sie aufrufen kann.</p>
+
+<h3 id="makrohygiene">Makrohygiene</h3>
+
+<p>In welcher Weise Makros mit dem Kontext des Aufrufers interagieren, nachdem sie ausgedehnt wurden, ist als Makrohygiene bekannt. Standardmäßig sind Makros in Elixir hygienisch und erzeugen keine Konflikte in unserem Kontext:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">hygienic</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span> <span class="o">=</span> <span class="o">-</span><span class="m">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">Example</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span> <span class="o">=</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">hygienic</span>
+<span class="o">-</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span>
+<span class="m">42</span>
+</code></pre>
+</div>
+
+<p>Was, wenn wir den Wert von <code class="highlighter-rouge">val</code> manipulieren möchten? Um eine Variable as unhygienic zu markieren, können wir <code class="highlighter-rouge">var!/2</code> benutzen. Lass uns das obige Beispiel aktualisieren und ein anderes Makro mit <code class="highlighter-rouge">var!/2</code> benutzen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">hygienic</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span> <span class="o">=</span> <span class="o">-</span><span class="m">1</span>
+  <span class="k">end</span>
+
+  <span class="k">defmacro</span> <span class="n">unhygienic</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">var!</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="m">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Lass uns vergleichen, wie sie mit unserem Kontext umgehen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">Example</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span> <span class="o">=</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">hygienic</span>
+<span class="o">-</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">unhygienic</span>
+<span class="o">-</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span>
+<span class="o">-</span><span class="m">1</span>
+</code></pre>
+</div>
+
+<p>Indem wir <code class="highlighter-rouge">var!/2</code> in unser Makro inkludiert haben, können wir den Wert von <code class="highlighter-rouge">val</code> verändern, ohne ihn an das andere Makro zu übergeben. Der Gebrauch von unhygienischen Makros sollte auf ein Minimum reduziert werden. Durch das Inkludieren von <code class="highlighter-rouge">var!/2</code> erhöhen wir das Risiko eines Auflösungskonflikts einer Variablen.</p>
+
+<h3 id="bindung">Bindung</h3>
+
+<p>Wir haben bereits die Nützlichkeit von <code class="highlighter-rouge">unquote/1</code> besprochen, aber es gibt noch einen weiteren Weg Werte in unseren Code zu injecten: Bindung. Durch Variablenbindung ist es uns möglich mehrere Variablen in unser Makro zu inkludieren und sicherzustellen, dass sie nur einmal unquoted werden, um so versehentliche Neuevaluierung zu umgehen. Um gebundene Variablen zu benutzen, müssen wir der Option <code class="highlighter-rouge">bind_quoted</code> in <code class="highlighter-rouge">quote/2</code> eine Liste an Keywords übergeben.</p>
+
+<p>Um den Vorteil von <code class="highlighter-rouge">bind_quote</code> zu sehen und das Problem mit Neuevaluierung zu demonstrieren lass uns ein Beispiel erstellen. Wir starten mit der Erstellung eines Makros, das einen Ausdruck zweimal ausgeben soll:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">double_puts</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Wir testen unser neu erstelltes Makro, indem wir ihm die aktuelle Systemzeit übergeben. Wir erwarten, diese zweimal ausgegeben zu sehen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">double_puts</span><span class="p">(</span><span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">)</span>
+<span class="m">1450475941851668000</span>
+<span class="m">1450475941851733000</span>
+</code></pre>
+</div>
+
+<p>Die Zeiten sind unterschiedlich! Was ist passiert? <code class="highlighter-rouge">unquote/1</code> mehrmals auf dem gleichen Ausdruck zu benutzen resultiert in Neuevaluierung, was unerwartete Konsequenzen bergen kann. Lass uns unser Beispiel so aktualisieren, dass es <code class="highlighter-rouge">bind_quoted</code> benutzt und dann nochmal sehen, was wir bekommen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">double_puts</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="ss">bind_quoted:</span> <span class="p">[</span><span class="ss">expr:</span> <span class="n">expr</span><span class="p">]</span> <span class="k">do</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="n">expr</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="n">expr</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">Example</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">double_puts</span><span class="p">(</span><span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">)</span>
+<span class="m">1450476083466500000</span>
+<span class="m">1450476083466500000</span>
+</code></pre>
+</div>
+
+<p>Mit <code class="highlighter-rouge">bind_quoted</code> bekommen wir das Ergebnis, das wir erwartet haben: Dieselbe Zeit zweimal ausgegeben.</p>
+
+<p>Nun, da wir <code class="highlighter-rouge">quote/2</code>, <code class="highlighter-rouge">unquote/1</code> und <code class="highlighter-rouge">defmacro/2</code> behandelt haben, haben wir all die notwendigen Werkzeuge, um Elixir auf unsere Bedürfnisse anzupassen.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/de/lessons/advanced/metaprogramming/&title=Metaprogrammierung&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/de/lessons/advanced/metaprogramming/&via=elixirschool&text=ElixirSchool: Metaprogrammierung&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/de/lessons/advanced/metaprogramming/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/de/lessons/advanced/metaprogramming/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/de/lessons/advanced/metaprogramming/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Metaprogrammierung" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/de/lessons/advanced/metaprogramming/&title=ElixirSchool: Metaprogrammierung&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/de/lessons/advanced/metaprogramming/&title=ElixirSchool: Metaprogrammierung&description=Check out 'Metaprogrammierung' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Metaprogrammierung&body=Check out 'Metaprogrammierung' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/de/lessons/advanced/metaprogramming/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

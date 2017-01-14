@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Pelajaran mengenai bahasa pemrograman Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/id/lessons/basics/mix/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Mix &middot; Elixir School
+
+">
+  <meta property="og:description" content="Pelajaran mengenai bahasa pemrograman Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Mix &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Pelajaran mengenai bahasa pemrograman Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Dasar</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/id/lessons/basics/basics/">Dasar</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/id/lessons/basics/collections/">Koleksi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/id/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/id/lessons/basics/pattern-matching/">Pencocokan Pola</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/id/lessons/basics/control-structures/">Struktur Kendali</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/id/lessons/basics/functions/">Fungsi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/id/lessons/basics/pipe-operator/">Operator pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/id/lessons/basics/modules/">Composition</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson  active" href="/id/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/id/lessons/basics/sigils/">Sigil</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/id/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/id/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/id/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/id/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/id/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Lanjutan</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/id/lessons/advanced/erlang/">Interoperabilitas dengan Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/id/lessons/advanced/error-handling/">Penanganan Error</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/id/lessons/advanced/escripts/">Executables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/id/lessons/advanced/concurrency/">Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/id/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/id/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/id/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/id/lessons/advanced/umbrella-projects/">Umbrella Projects</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Khusus</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/id/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/id/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/id/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/id/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/id/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/mix/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/mix/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/mix/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/mix/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/mix/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/mix/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/mix/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/mix/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/mix/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/mix/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/mix/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/mix/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/mix/ ">my</a>
+      
+        <a href=" /no/lessons/basics/mix/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/mix/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/mix/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/mix/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/mix/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/mix/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/mix/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/mix/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Mix</h1>
+  <p>Sebelum kita bisa masuk ke pelajaran Elixir lebih mendalam pertama-tama kita harus belajar tentang mix. Jika anda sudah familiar dengan Ruby, mix adalah seperti gabungan dari Bundler, RubyGems, dan Rake.  Mix adalah bagian krusial dari project Elixir apapun dan dalam pelajaran ini kita akan mengeksplorasi sebagian dari fitur-fiturnya. Untuk melihat semua yang bisa dilakukan oleh mix, jalankan <code class="highlighter-rouge">mix help</code>.</p>
+
+<p>Sampai sekarang kita hanya bekerja dengan <code class="highlighter-rouge">iex</code> yang punya keterbatasan.  Untuk membuat sesuatu yang bermakna, kita perlu memecah code kita ke banyak file agar bisa mengaturnya dengan efektir. Mix memungkinkan kita melakukan hal itu dengan project.</p>
+
+<h2>Daftar Isi</h2>
+<div id="toc"></div>
+
+<h2 id="project-baru">Project Baru</h2>
+
+<p>Ketika kita siap untuk membuat sebuah project Elixir baru, mix membuatnya mudah dengan perintah <code class="highlighter-rouge">mix new</code>.  Perintah ini akan membuat struktur folder dan prasyarat (boilerplate) yang dibutuhkan untuk project kita.  Hal ini cukup sederhana, jadi mari kita mulai:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new example
+</code></pre>
+</div>
+
+<p>Dari outputnya kita bisa melihat bahwa mix sudah membuat direktori kita dan sejumlah file boilerplate:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/example.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/example_test.exs
+</code></pre>
+</div>
+
+<p>Dalam pelajaran ini kita akan berfokus pada <code class="highlighter-rouge">mix.exs</code>.  Di sini kita mengkonfigurasi aplikasi, dependeksi, environment, dan versi kita.  Bukalah file tersebut di editor favorit anda, anda akan melihat seperti berikut (komentar dibuang untuk meringkas tampilan):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Mixfile</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Project</span>
+
+  <span class="k">def</span> <span class="n">project</span> <span class="k">do</span>
+    <span class="p">[</span><span class="ss">app:</span> <span class="ss">:example</span><span class="p">,</span>
+     <span class="ss">version:</span> <span class="sd">"</span><span class="s2">0.0.1"</span><span class="p">,</span>
+     <span class="ss">elixir:</span> <span class="sd">"</span><span class="s2">~&gt; 1.0"</span><span class="p">,</span>
+     <span class="ss">build_embedded:</span> <span class="no">Mix</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="ss">:prod</span><span class="p">,</span>
+     <span class="ss">start_permanent:</span> <span class="no">Mix</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="ss">:prod</span><span class="p">,</span>
+     <span class="ss">deps:</span> <span class="n">deps</span><span class="p">]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+    <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:logger</span><span class="p">]]</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+    <span class="p">[]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Bagian pertama yang akan kita lihat adalah <code class="highlighter-rouge">project</code>.  Di sini kita mendefinisikan nama aplikasi kita (<code class="highlighter-rouge">app</code>), menyatakan versi kita (<code class="highlighter-rouge">version</code>), versi Elixir (<code class="highlighter-rouge">elixir</code>), dan terakhir dependensi (<code class="highlighter-rouge">deps</code>).</p>
+
+<p>Bagian <code class="highlighter-rouge">application</code> digunakan dalam proses pembuatan file aplikasi kita yang akan kita bahas nanti.</p>
+
+<h2 id="interaktif">Interaktif</h2>
+
+<p>Mungkin kita perlu menggunakan <code class="highlighter-rouge">iex</code> dalam konteks aplikasi kita.  Untungnya, mix mempermudah hal ini.  Kita bisa memulasi sebuah sesi <code class="highlighter-rouge">iex</code> baru:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>iex -S mix
+</code></pre>
+</div>
+
+<p>Memulai <code class="highlighter-rouge">iex</code> dengan cara ini akan memuat aplikasi anda dan dependensinya ke dalam runtime yang berjalan.</p>
+
+<h2 id="kompilasi">Kompilasi</h2>
+
+<p>Mix cerdas dan akan mengkompilasi perubahan yang anda lakukan jika perlu, tetapi mungkin masih perlu mengkompilasi project anda secara eksplisit.  Dalam bagian ini kita akan membahas cara mengkompilasi project kita dan apa yang dilakukan oleh kompilasi.</p>
+
+<p>Untuk mengkompilasi sebuah project mix kita hanya perlu menjalankan <code class="highlighter-rouge">mix compile</code> di direktori dasar:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix compile
+</code></pre>
+</div>
+
+<p>Tidak banyak yang ada dalam project kita sehingga output nya tidak begitu menarik, tapi kompilasinya harusnya selesai dengan baik:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Compiled lib/example.ex
+Generated example app
+</code></pre>
+</div>
+
+<p>Ketika kita mengkompilasi sebuah project, mix membuat sebuah direktori <code class="highlighter-rouge">_build</code> untuk artifak kita.  Jika kita melihat ke dalam <code class="highlighter-rouge">_build</code> kita akan melihat aplikasi kita yang sudah dikompilasi: <code class="highlighter-rouge">example.app</code>.</p>
+
+<h2 id="menata-dependensi">Menata Dependensi</h2>
+
+<p>Project kita tidak punya dependensi (dependency, project lain yang dibutuhkan), sekarang ini, tapi akan punya, sehingga kita akan membahas tentang mendefinisikan ketergantungan dan mengambilnya.</p>
+
+<p>Untuk menambahkan sebuah dependensi baru, kita perlu terlebih dulu menambahkannya ke file <code class="highlighter-rouge">mix.exs</code> kita di bagian <code class="highlighter-rouge">deps</code>.  Daftar dependensi kita terdiri dari tuple dengan dua value yang harus ada dan satu opsional: Nama paket (package) sebagai sebuah atom, string berisi versi, dan pilihan opsional.</p>
+
+<p>Untuk contoh ini mari lihat sebuah project dengan dependensi, seperti <a href="https://github.com/doomspork/phoenix_slim">phoenix_slim</a>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:phoenix</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.1 or ~&gt; 1.2"</span><span class="p">},</span>
+   <span class="p">{</span><span class="ss">:phoenix_html</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 2.3"</span><span class="p">},</span>
+   <span class="p">{</span><span class="ss">:cowboy</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.0"</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">:dev</span><span class="p">,</span> <span class="ss">:test</span><span class="p">]},</span>
+   <span class="p">{</span><span class="ss">:slime</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 0.14"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Seperti yang mungkin sudah anda pahami dari contoh di atas, dependensi <code class="highlighter-rouge">cowboy</code> hanya dibutuhkan selama development dan tes.</p>
+
+<p>Begitu kita telah mendefinisikan dependensi kita, ada satu langkah terakhir, mengambilnya.  Ini analog dengan <code class="highlighter-rouge">bundle install</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix deps.get
+</code></pre>
+</div>
+
+<p>Selesai!  Kita sudah mendefinisikan dan mangambil dependensi project kita.  Sekarang kita sudah siap untuk manambahkan dependensi jika saatnya tiba.</p>
+
+<h2 id="environment">Environment</h2>
+
+<p>Mix, seperti Bundler, mendukung pembedaan environment.  Secara default mix bekerja dengan tiga environment:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">:dev</code> — Environment default.</li>
+  <li><code class="highlighter-rouge">:test</code> — Digunakan oleh <code class="highlighter-rouge">mix test</code>. Dibahas lebih jauh di pelajaran kita berikutnya.</li>
+  <li><code class="highlighter-rouge">:prod</code> — Digunakan ketika kita meluncurkan aplikasi kita di production.</li>
+</ul>
+
+<p>Environment yang sedang berjalan dapat diakses menggunakan <code class="highlighter-rouge">Mix.env</code>.  Sebagaimana diduga, environment bisa diubah dengan environment variable <code class="highlighter-rouge">MIX_ENV</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nv">MIX_ENV</span><span class="o">=</span>prod mix compile
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Bagikan Halaman Ini
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/id/lessons/basics/mix/&title=Mix&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/id/lessons/basics/mix/&via=elixirschool&text=ElixirSchool: Mix&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/id/lessons/basics/mix/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/id/lessons/basics/mix/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/id/lessons/basics/mix/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Mix" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/id/lessons/basics/mix/&title=ElixirSchool: Mix&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/id/lessons/basics/mix/&title=ElixirSchool: Mix&description=Check out 'Mix' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Mix&body=Check out 'Mix' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/id/lessons/basics/mix/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

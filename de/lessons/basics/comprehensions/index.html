@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Übungen zur Programmiersprache Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/de/lessons/basics/comprehensions/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Comprehensions &middot; Elixir School
+
+">
+  <meta property="og:description" content="Übungen zur Programmiersprache Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Comprehensions &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Übungen zur Programmiersprache Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Grundlagen</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/de/lessons/basics/basics/">Grundlagen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/de/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/basics/enum/">Enums</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/de/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/de/lessons/basics/control-structures/">Kontrollstrukturen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/de/lessons/basics/functions/">Funktionen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/de/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/de/lessons/basics/modules/">Module</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/de/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/de/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/de/lessons/basics/documentation/">Dokumentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/de/lessons/basics/testing/">Testen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson  active" href="/de/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/de/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/de/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Erweitert</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/de/lessons/advanced/erlang/">Erlang-Interoperabilität</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/de/lessons/advanced/error-handling/">Fehlerbehandlung</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/advanced/escripts/">Ausführbare Dateien</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/de/lessons/advanced/concurrency/">Nebenläufigkeit</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/de/lessons/advanced/otp-concurrency/">OTP Nebenläufigkeit</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/de/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/de/lessons/advanced/metaprogramming/">Metaprogrammierung</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/de/lessons/advanced/umbrella-projects/">Umbrella-Projekte</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/de/lessons/advanced/typespec/">Spezifikationen und Typen</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Einzelheiten</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/comprehensions/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/comprehensions/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/comprehensions/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/comprehensions/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/comprehensions/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/comprehensions/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/comprehensions/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/comprehensions/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/comprehensions/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/comprehensions/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/comprehensions/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/comprehensions/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/comprehensions/ ">my</a>
+      
+        <a href=" /no/lessons/basics/comprehensions/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/comprehensions/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/comprehensions/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/comprehensions/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/comprehensions/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/comprehensions/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/comprehensions/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/comprehensions/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Comprehensions</h1>
+  <p>List comprehensions sind syntaktischer Zucker, um durch Enums zu iterieren in Elixir. In dieser Lektion werden wir einen Blick darauf werfen, wie wir comprehensions zur Iteration und Erzeugung nutzen können.</p>
+
+<h2>Inhaltsverzeichnis</h2>
+<div id="toc"></div>
+
+<h2 id="grundlagen">Grundlagen</h2>
+
+<p>Oftmals können comprehensions dazu genutzt werden, um knapperen Code für <code class="highlighter-rouge">Enum</code> und <code class="highlighter-rouge">Stream</code> Iterationen zu schreiben. Lass uns damit anfangen einen Blick auf eine einfache comprehension zu werfen, die wir danach aufdröseln:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">16</span><span class="p">,</span> <span class="m">25</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Das Erste, was wir bemerken, ist die Benutzung von <code class="highlighter-rouge">for</code> und ein generator. Was ist ein generator? Generator sind die <code class="highlighter-rouge">x &lt;- [1, 2, 3, 4]</code> Ausdrücke in list comprehensions. Sie sind für die Erzeugung des nächstes Wertes verantwortlich.</p>
+
+<p>Glücklicherweise sind comprehensions nicht auf Listen festgelegt, sie funktionieren mit allen enumerables:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># Keyword Listen</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">_key</span><span class="p">,</span> <span class="n">val</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+
+<span class="c1"># Maps</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">%{</span><span class="sd">"</span><span class="s2">a"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">A"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">b"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">B"</span><span class="p">},</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">a"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">A"</span><span class="p">},</span> <span class="p">{</span><span class="sd">"</span><span class="s2">b"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">B"</span><span class="p">}]</span>
+
+<span class="c1"># Binaries</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="o">&lt;&lt;</span><span class="n">c</span> <span class="o">&lt;-</span> <span class="sd">"</span><span class="s2">hello"</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&gt;&gt;</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">h"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">e"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">l"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">l"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">o"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Wie viele Dinge in Elixir stützen sich genereratos auf Pattern Matching, um die reingegebenen Werte mit der Variable auf der linken Seite zu vergleichen. Falls der Match nicht gefunden werden sollte, so wird dieser Wert ignoriert:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">val</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">ok:</span> <span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="ss">error:</span> <span class="sd">"</span><span class="s2">Unknown"</span><span class="p">,</span> <span class="ss">ok:</span> <span class="sd">"</span><span class="s2">World"</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">World"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Es ist möglich mehrere generators zu benutzen, ähnlich verschachtelten Schleifen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">n</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="n">times</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="n">n</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="no">String</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="n">times</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">***"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">***"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">****"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Um die Schleife, die abläuft, besser zu verdeutlichen, lass uns <code class="highlighter-rouge">IO.puts</code> nutzen, um die zwei erzeugten Werte anzuzeigen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">n</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="n">times</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="n">n</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2"> - </span><span class="si">#{</span><span class="n">times</span><span class="si">}</span><span class="s2">"</span>
+<span class="m">1</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">2</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">2</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">3</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">3</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">4</span>
+</code></pre>
+</div>
+
+<p>List comprehensions sind syntaktischer Zucker und sollten nur im angemessenen Fall benutzt werden.</p>
+
+<h2 id="filter">Filter</h2>
+
+<p>Du kannst dir Filter als eine Art guard für comprehensions vorstellen. Wenn ein gefilterter Wert <code class="highlighter-rouge">false</code> oder <code class="highlighter-rouge">nil</code> zurück gibt, wird er in die endgültige Liste nicht aufgenommen. Lass uns über eine range iterieren und nur die geraden Zahlen betrachten. Wir werden die <code class="highlighter-rouge">is_even/1</code> Funktion aus dem Integer-Modul nutzen, um zu überprüfen, ob ein Wert gerade ist oder nicht.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Integer</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="m">10</span><span class="p">,</span> <span class="n">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span>
+<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">10</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Ähnlich wie generators können wir mehrere Filter benutzen. Lass uns unsere range erweitern und dann die Werte daraufhin aussortieren, dass sowohl gerade Zahlen als auch ungerade, die ohne Rest durch drei teilbar sind, zurück gegeben werden.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Integer</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="m">100</span><span class="p">,</span>
+<span class="o">...&gt;</span>   <span class="n">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+<span class="o">...&gt;</span>   <span class="n">rem</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span> <span class="o">==</span> <span class="m">0</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span>
+<span class="p">[</span><span class="m">6</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">18</span><span class="p">,</span> <span class="m">24</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="m">36</span><span class="p">,</span> <span class="m">42</span><span class="p">,</span> <span class="m">48</span><span class="p">,</span> <span class="m">54</span><span class="p">,</span> <span class="m">60</span><span class="p">,</span> <span class="m">66</span><span class="p">,</span> <span class="m">72</span><span class="p">,</span> <span class="m">78</span><span class="p">,</span> <span class="m">84</span><span class="p">,</span> <span class="m">90</span><span class="p">,</span> <span class="m">96</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="into"><code class="highlighter-rouge">:into</code></h2>
+
+<p>Was, wenn wir etwas anderes als eine Liste herstellen wollen? Mit der <code class="highlighter-rouge">:into</code> Option können wir genau das tun! Als Faustregel akzeptiert <code class="highlighter-rouge">:into</code> jede Struktur, die das <code class="highlighter-rouge">Collectable</code>-Protokoll implementiert.</p>
+
+<p>Lass uns mit Hilfe von <code class="highlighter-rouge">:into</code> eine Liste aus einer Keyword Liste erzeugen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">],</span> <span class="ss">into:</span> <span class="p">%{},</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Da bitstrings enumerable sind können wir list comprehensions und <code class="highlighter-rouge">:into</code> dazu nutzen, um Strings zu erzeugen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">c</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="m">72</span><span class="p">,</span> <span class="m">101</span><span class="p">,</span> <span class="m">108</span><span class="p">,</span> <span class="m">108</span><span class="p">,</span> <span class="m">111</span><span class="p">],</span> <span class="ss">into:</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&gt;&gt;</span>
+<span class="sd">"</span><span class="s2">Hello"</span>
+</code></pre>
+</div>
+
+<p>Das war’s schon! List comprehensions sind ein einfacher Weg um auf knappe Art und Weise durch eine collection zu iterieren.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/de/lessons/basics/comprehensions/&title=Comprehensions&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/de/lessons/basics/comprehensions/&via=elixirschool&text=ElixirSchool: Comprehensions&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/de/lessons/basics/comprehensions/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/de/lessons/basics/comprehensions/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/de/lessons/basics/comprehensions/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Comprehensions" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/de/lessons/basics/comprehensions/&title=ElixirSchool: Comprehensions&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/de/lessons/basics/comprehensions/&title=ElixirSchool: Comprehensions&description=Check out 'Comprehensions' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Comprehensions&body=Check out 'Comprehensions' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/de/lessons/basics/comprehensions/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

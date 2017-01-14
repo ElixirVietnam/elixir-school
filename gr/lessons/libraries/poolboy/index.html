@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/gr/lessons/libraries/poolboy/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Poolboy &middot; Elixir School
+
+">
+  <meta property="og:description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Poolboy &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Μαθήματα προγραμματισμού της γλώσσας Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βασικά</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/basics/basics/">Βασικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/basics/collections/">Συλλογές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/basics/pattern-matching/">Αντιπαραβολές Προτύπων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/basics/control-structures/">Δομές Ελέγχου</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/basics/functions/">Συναρτήσεις</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/basics/pipe-operator/">Τελεστής Σωλήνα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/basics/modules/">Ενότητες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/basics/sigils/">Σφραγίδες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/basics/documentation/">Τεκμηρίωση</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/gr/lessons/basics/testing/">Δοκιμές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/gr/lessons/basics/comprehensions/">Ανάγνωση Λιστών</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/gr/lessons/basics/strings/">Αλφαριθμητικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/gr/lessons/basics/mix-tasks/">Ειδικές Εργασίες Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Προχωρημένα</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/advanced/erlang/">Διαλειτουργικότητα με την Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/advanced/error-handling/">Διαχείριση Σφαλμάτων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/advanced/escripts/">Εκτελέσιμα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/advanced/concurrency/">Συγχρονισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-concurrency/">Συγχρονισμός OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-supervisors/">Επιτηρητές OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/advanced/metaprogramming/">Μεταπρογραμματισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/advanced/umbrella-projects/">Projects Ομπρέλας</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/advanced/typespec/">Προδιαγραφές και τύποι</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/advanced/behaviours/">Συμπεριφορές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Ιδιαιτερότητες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/specifics/eex/">Ένθετη Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Βιβλιοθήκες</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/libraries/guardian/">Guardian (Βασικά)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/gr/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/libraries/poolboy/ ">en</a>
+      
+        <a href=" /jp/lessons/libraries/poolboy/ ">jp</a>
+      
+        <a href=" /cn/lessons/libraries/poolboy/ ">cn</a>
+      
+        <a href=" /es/lessons/libraries/poolboy/ ">es</a>
+      
+        <a href=" /pt/lessons/libraries/poolboy/ ">pt</a>
+      
+        <a href=" /vi/lessons/libraries/poolboy/ ">vi</a>
+      
+        <a href=" /ru/lessons/libraries/poolboy/ ">ru</a>
+      
+        <a href=" /sk/lessons/libraries/poolboy/ ">sk</a>
+      
+        <a href=" /fr/lessons/libraries/poolboy/ ">fr</a>
+      
+        <a href=" /gr/lessons/libraries/poolboy/ ">gr</a>
+      
+        <a href=" /it/lessons/libraries/poolboy/ ">it</a>
+      
+        <a href=" /pl/lessons/libraries/poolboy/ ">pl</a>
+      
+        <a href=" /my/lessons/libraries/poolboy/ ">my</a>
+      
+        <a href=" /no/lessons/libraries/poolboy/ ">no</a>
+      
+        <a href=" /ko/lessons/libraries/poolboy/ ">ko</a>
+      
+        <a href=" /id/lessons/libraries/poolboy/ ">id</a>
+      
+        <a href=" /uk/lessons/libraries/poolboy/ ">uk</a>
+      
+        <a href=" /tr/lessons/libraries/poolboy/ ">tr</a>
+      
+        <a href=" /bg/lessons/libraries/poolboy/ ">bg</a>
+      
+        <a href=" /de/lessons/libraries/poolboy/ ">de</a>
+      
+        <a href=" /bn/lessons/libraries/poolboy/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Poolboy</h1>
+  <p>Μπορείτε πολύ εύκολα να εξαντλήσετε τους πόρους τους συστήματός σας αν επιτρέψετε σε παράλληλες διεργασίες να τρέχουν ανεξέλεγκτα. Το Poolboy αποτρέπει την ύπαρξη του overhead δημιουργώντας μια λίστα με εργάτες για να περιορίσουν τον αριθμό των ταυτόχρονων διεργασιών.</p>
+
+<h2>Πίνακας περιεχομένων</h2>
+<div id="toc"></div>
+
+<h2 id="poolboy">Γιατί να χρησιμοποιήσουμε το Poolboy;</h2>
+
+<p>Ας δούμε ένα συγκεκριμμένο παράδειγμα για λίγο. Σας έχει ανατεθεί να χτίσετε μια εφαρμογή αποθήκευσης πληροφοριών προφίλ σε μια βάση δεδομένων. Αν έχετε δημιουργήσει μια διεργασία για κάθε εγγραφή χρήστη, θα χρησιμοποιούσατε απεριόριστο αριθμό συνδέσεων. Και σε κάποιο σημείο αυτές οι συνδέσεις αρχίζουν να ανταγωνίζονται για τους περιορισμένους πόρους που είναι διαθέσιμοι στο διακομιστή της βάσης δεδομένων. Τελικά η εφαρμογή σας αρχίζει να εμφανίζει σφάλματα ορίου χρόνου και διάφορες εξαιρέσεις εξ’ αιτίας του overhead από αυτό τον ανταγωνισμό.</p>
+
+<p>Η λύση σε αυτό το πρόβλημα είναι η χρήση ενός σετ εργατών (διεργασίες) για να περιορίσουμε τον αριθμό συνδέσεων αντί να δημιουργούμε μια διεργασία για κάθε εγγραφή χρήστη. Τότε μπορείτε εύκολα να αποτρέψετε την εξάντληση των πόρων του συστήματος σας.</p>
+
+<p>Εδώ έρχεται το Poolboy. Δημιουργεί μια λίστα εργατών που διαχειρίζονται από έναν <code class="highlighter-rouge">Supervisor</code> χωρίς καμμία ενέργεια από μέρους σας για να γίνει χειροκίνητα. Για την ακρίβεια υπάρχουν πολλές βιβλιοθήκες που χρησιμοποιούν το Poolboy στο εσωτερικό τους. Για παράδειγμα: η λίστα συνδέσεων της <code class="highlighter-rouge">postgrex</code> <em>(η οποία με τη σειρά της αξιοποιείται από την Ecto όταν χρησιμοποιούμε την PostgreSQL)</em>, η <code class="highlighter-rouge">redis_poolex</code> <em>(Λίστα συνδέσεων Redis)</em> είναι μερικές από τις πιο δημοφιλείς βιβλιοθήκες που χρησιμοποιούν το Poolboy.</p>
+
+<h2 id="section">Εγκατάσταση</h2>
+
+<p>Η εγκατάσταση είναι πανεύκολη με το mix. Το μόνο που πρέπει να κάνουμε είναι να προσθέσουμε το Poolboy σαν εξάρτηση στο <code class="highlighter-rouge">mix.exs</code> μας.</p>
+
+<p>Ας δημιουργήσουμε μια εφαρμογή πρώτα:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ mix new poolboy_app --sup
+$ mix deps.get
+</code></pre>
+</div>
+
+<p>Ας προσθέσουμε το Poolboy σαν εξάρτηση στο <code class="highlighter-rouge">mix.exs</code> μας.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:poolboy</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.5.1"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Και ας προσθέσουμε το Poolboy στην εφαρμογή OTP μας:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:logger</span><span class="p">,</span> <span class="ss">:poolboy</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="section-1">Οι επιλογές ρύθμισης</h2>
+
+<p>Πρέπει να γνωρίζουμε μερικά πράγματα για τις διάφορες επιλογές ρύθμισης ώστε να ξεκινήσουμε να χρησιμοποιούμε το Poolboy.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">:name</code>: το όνομα της λίστας. Το πεδίο δράσης μπορεί να είναι <code class="highlighter-rouge">:local</code>, <code class="highlighter-rouge">:global</code> ή <code class="highlighter-rouge">:via</code>.</li>
+  <li><code class="highlighter-rouge">:worker_module</code>: η ενότητα που αναπαριστά τον εργάτη.</li>
+  <li><code class="highlighter-rouge">:size</code>: το μέγιστο μέγεθος της λίστας.</li>
+  <li><code class="highlighter-rouge">:max_overflow</code>: ο μέγιστος αριθμός εργατών που δημιουρούνται αν η λίστα είναι άδεια. (προεραιτικό)</li>
+  <li><code class="highlighter-rouge">:strategy</code>: <code class="highlighter-rouge">:lifo</code> ή <code class="highlighter-rouge">:fifo</code>, ορίζουν αν οι ελεγχόμενοι εργάτες ορίζονται πρώτοι ή τελευταίοι στη σειρά των διαθέσιμων εργατών. Η προεπιλογή είναι <code class="highlighter-rouge">:lifo</code>. (προεραιτικό)</li>
+</ul>
+
+<h2 id="poolboy-1">Ρυθμίζοντας το Poolboy</h2>
+
+<p>Για αυτό το παράδειγμα, θα δημιουργήσουμε μια λίστα εργατών που είναι υπέυθυνοι για το χειρισμό αιτήσεων υπολογισμού της τετραγωνικής ρίζας ενός αριθμού. Θα διατηρήσουμε το παράδειγμά μας απλό ώστε να εστιάσουμε στο Poolboy.</p>
+
+<p>Ας ορίσουμε τις επιλογές ρύθμισης του Poolboy και ας το προσθέσουμε σαν εργάτης παιδί μέρος της εκκίνησης της εφαρμογής μας.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">PoolboyApp</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Application</span>
+
+  <span class="k">defp</span> <span class="n">poolboy_config</span> <span class="k">do</span>
+    <span class="p">[{</span><span class="ss">:name</span><span class="p">,</span> <span class="p">{</span><span class="ss">:local</span><span class="p">,</span> <span class="ss">:worker</span><span class="p">}},</span>
+      <span class="p">{</span><span class="ss">:worker_module</span><span class="p">,</span> <span class="no">Worker</span><span class="p">},</span>
+      <span class="p">{</span><span class="ss">:size</span><span class="p">,</span> <span class="m">5</span><span class="p">},</span>
+      <span class="p">{</span><span class="ss">:max_overflow</span><span class="p">,</span> <span class="m">2</span><span class="p">}]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span><span class="p">,</span> <span class="ss">warn:</span> <span class="no">false</span>
+
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="ss">:poolboy</span><span class="o">.</span><span class="n">child_spec</span><span class="p">(</span><span class="ss">:worker</span><span class="p">,</span> <span class="n">poolboy_config</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="p">]</span>
+
+    <span class="n">opts</span> <span class="o">=</span> <span class="p">[</span><span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">PoolboyApp</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">]</span>
+    <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Το πρώτο πράγμα που ορίσαμε είναι οι επιλογές ρυθμίσεων για τη λίστα. Καθορίσαμε ένα μοναδικό <code class="highlighter-rouge">:name</code> για τη λίστα μας, ορίσαμε την <code class="highlighter-rouge">:scope</code> σε τοπική, και το <code class="highlighter-rouge">:size</code> της λίστας να είναι 5 εργάτες. Επίσης, σε περίπτωση που οι εργάτες μας είναι απασχολημένοι, ρυθμίζουμε τη δημιουργία δύο επιπλέον εργατών για να βοηθήσουν με το φόρτο, χρησιμοποιώντας την επιλογή <code class="highlighter-rouge">:max_overflow</code>. <em>(οι <code class="highlighter-rouge">overflow</code> εργάτες παύουν να υπάρχουν μόλις ολοκληρώσουν την εργασία τους.)</em></p>
+
+<p>Στη συνέχεια, προσθέσαμε τη συνάρτηση <code class="highlighter-rouge">poolboy.child_spec/3</code> στον πίνακα των παιδιών ώστε η λίστα εργατών να ξεκινάει με την εκκίνηση της εφαρμογή.</p>
+
+<p>Η συνάρτηση <code class="highlighter-rouge">child_spec/3</code> δέχεται τρία ορίσματα: το όνομα της λίστας, τις ρυθμίσεις της λίστας και το τρίτο όρισμα που περνάμε στη συνάρτηση <code class="highlighter-rouge">worker.start_link</code>. Στην περίπτωσή μας είναι απλά μια άδεια λίστα.</p>
+
+<h2 id="section-2">Δημιουργία Εργάτη</h2>
+
+<p>Η ενότητα εργάτη θα είναι ένας απλός GenServer υπολογισμού της τετραγωνικής ρίζας ενός αριθμού, που κοιμάται για ένα δευτερόλεπτο και τυπώνει το pid του εργάτη:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Worker</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="no">nil</span><span class="p">,</span> <span class="p">[])</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="no">nil</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">({</span><span class="ss">:square_root</span><span class="p">,</span> <span class="n">x</span><span class="p">},</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">process </span><span class="si">#{</span><span class="n">inspect</span> <span class="n">self</span><span class="si">}</span><span class="s2"> calculating square root of </span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">"</span>
+    <span class="ss">:timer</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">)</span>
+    <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="ss">:math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="poolboy-2">Χρήση του Poolboy</h2>
+
+<p>Τώρα που έχουμε τον <code class="highlighter-rouge">Worker</code>, μπορούμε να δοκιμάσουμε το Poolboy. Ας δημιουργήσουμε μια απλή ενότητα που δημιουργεί ταυτόχρονες διεργασίες χρησιμοποιώντας τη συνάρτηση <code class="highlighter-rouge">:poolboy.transaction</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Test</span> <span class="k">do</span>
+  <span class="nv">@timeout</span> <span class="m">60000</span>
+
+  <span class="k">def</span> <span class="n">start</span> <span class="k">do</span>
+     <span class="n">tasks</span> <span class="o">=</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="m">1</span><span class="o">..</span><span class="m">20</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-&gt;</span>
+        <span class="no">Task</span><span class="o">.</span><span class="n">async</span><span class="p">(</span><span class="k">fn</span> <span class="o">-&gt;</span> <span class="ss">:poolboy</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span><span class="ss">:worker</span><span class="p">,</span>
+          <span class="o">&amp;</span><span class="p">(</span><span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">,</span> <span class="p">{</span><span class="ss">:square_root</span><span class="p">,</span> <span class="n">i</span><span class="p">})),</span> <span class="nv">@timeout</span><span class="p">)</span>
+        <span class="k">end</span><span class="p">)</span>
+     <span class="k">end</span><span class="p">)</span>
+     <span class="no">Enum</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="n">await</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="nv">@timeout</span><span class="p">))</span> <span class="k">end</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</code></pre>
+</div>
+<p>Αν δεν έχετε διαθέσιμους εργάτες στη λίστα σας, το Poolboy θα έχει μια λήξη ορίου χρόνου μετά το τέλος της περιόδου λήξης ορίου χρόνου (πέντε δευτερόλεπτα) και δεν θα δέχεται νέες αιτήσεις. Στο παράδειγμά μας, αυξήσαμε το προκαθορισμένο όριο λήξης χρόνου στο ένα λεπτό ώστε να επιδείξουμε πως μπορούμε να αλλάξουμε την προκαθορισμένη τιμή λήξης ορίου χρόνου.</p>
+
+<p>Παρόλο που προσπαθούμε να δημιουργήσουμε πολλαπλές διεργασίες <em>(είκοσι στο σύνολό τους στο παραπάνω παράδειγμα)</em>, η συνάρτηση <code class="highlighter-rouge">:poolboy.transaction</code> θα περιορίσει το σύνολο των δημιουργημένων διεργασιών σε πέντε <em>(συν δύο εργάτες υπερχείλισης αν απαιτούνται)</em> όπως το ορίσαμε στις ρυθμίσεις μας. Όλες οι αιτήσεις θα χειριστούν από τη λίστα εργατών μας αντί να δημιουργείται μια νέα διεργασία για κάθε μια αίτηση.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/gr/lessons/libraries/poolboy/&title=Poolboy&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/gr/lessons/libraries/poolboy/&via=elixirschool&text=ElixirSchool: Poolboy&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/gr/lessons/libraries/poolboy/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/gr/lessons/libraries/poolboy/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/gr/lessons/libraries/poolboy/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Poolboy" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/gr/lessons/libraries/poolboy/&title=ElixirSchool: Poolboy&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/gr/lessons/libraries/poolboy/&title=ElixirSchool: Poolboy&description=Check out 'Poolboy' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Poolboy&body=Check out 'Poolboy' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/gr/lessons/libraries/poolboy/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

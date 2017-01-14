@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/basics/collections/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  컬렉션 &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  컬렉션 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/collections/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/collections/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/collections/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/collections/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/collections/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/collections/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/collections/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/collections/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/collections/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/collections/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/collections/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/collections/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/collections/ ">my</a>
+      
+        <a href=" /no/lessons/basics/collections/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/collections/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/collections/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/collections/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/collections/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/collections/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/collections/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/collections/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">컬렉션</h1>
+  <p>리스트, 튜플, 키워드, 맵 그리고 컴비네이터.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="section">리스트</h2>
+
+<p>리스트(list)는 값들의 간단한 컬렉션입니다. 리스트는 여러 타입을 포함할 수 있으며 중복된 값들도 포함할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Elixir는 연결 리스트로 리스트를 구현합니다. 따라서 리스트의 길이를 구하는 것은 <code class="highlighter-rouge">O(n)</code> 연산이고, 이 때문에 리스트의 앞에 값을 추가하는 것이 뒤에 추가하는 것보다 보통 빠릅니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="sd">"</span><span class="s2">π"</span><span class="p">]</span> <span class="o">++</span> <span class="n">list</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">π"</span><span class="p">,</span> <span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">++</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Cherry"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Cherry"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="section-1">리스트 이어붙이기</h3>
+
+<p>리스트는 <code class="highlighter-rouge">++/2</code> 연산자를 이용해서 서로 이어붙일 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span> <span class="o">++</span> <span class="p">[</span><span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">]</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>위에 사용된 (<code class="highlighter-rouge">++/2</code>) 이름 형식을 보충 설명하자면, Elixir에서는(Elixir의 기반이 되는 Erlang에서도) 함수와 연산자 이름은 주어진 이름(여기서는 <code class="highlighter-rouge">++</code>)과 그 <em>인자의 개수</em> 두 구성요소를 가집니다. 인자의 개수는 Elixir(와 Erlang)의 코드를 이야기할 때 중요한 부분입니다. 인자의 개수는 함수가 받는 인자의 개수를 말합니다.(여기서는 두 개) 인자의 개수와 주어진 이름은 슬레시로 결합합니다. 더 자세한 이야기는 나중에 하겠습니다. 이 정도만 알아도 지금 표기법을 이해하는데 충분할 것입니다.</p>
+
+<h3 id="section-2">리스트 빼기</h3>
+
+<p><code class="highlighter-rouge">--/2</code> 연산자를 이용하면 리스트에 대한 뺄셈 연산이 가능합니다. 존재하지 않는 값은 빼도 안전합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="ss">:bar</span><span class="p">,</span> <span class="m">42</span><span class="p">]</span> <span class="o">--</span> <span class="p">[</span><span class="m">42</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">]</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="ss">:bar</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>중복 값에 주의하세요. 오른쪽에 있는 모든 요소에 대해 왼쪽에서 처음 만난 요소만 지웁니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">]</span> <span class="o">--</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">]</span>
+<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p><strong>참고:</strong> 값 비교는 <a href="../basics/#comparison">엄격한 비교</a>를 사용합니다.</p>
+
+<h3 id="head--tail">Head / Tail</h3>
+
+<p>리스트를 사용할 때 리스트의 머리와 꼬리를 가지고 작업을 하는 경우가 많습니다. 머리는 리스트의 맨 첫 번째 원소이고, 꼬리는 그 나머지 원소들입니다. Elixir에서는 이러한 작업을 위해 <code class="highlighter-rouge">hd</code>와 <code class="highlighter-rouge">tl</code> 이 두 개의 유용한 메서드를 제공합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">hd</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">tl</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>앞서 언급한 함수들과 더불어서, <a href="../pattern-matching/">패턴 매칭</a>과 cons 연산자 <code class="highlighter-rouge">|</code>를 이용할 수도 있습니다. 이러한 패턴은 차후 강의에서 보게 될 것입니다.</p>
+
+<blockquote>
+  <p>[역주] : <code class="highlighter-rouge">cons</code>는 Lisp 계열 언어에서 애텀과 리스트를 연결할 때 쓰이는 연산입니다. 첫번째 매개변수로 주어지는 애텀을 두번째 매개변수로 주어지는 리스트의 head 부분에 삽입하게 됩니다. <code class="highlighter-rouge">(cons 1 (2 3)) == (cons 1 (cons 2 (cons 3 nil))))</code></p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">h</span><span class="o">|</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">h</span>
+<span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="section-3">튜플</h2>
+
+<p>튜플(tuples)은 리스트와 비슷하지만 메모리에 연속적으로 저장됩니다. 이 때문에 튜플의 길이를 구하는 것은 빠르지만 수정하는 것은 비용이 비쌉니다. 새로운 튜플이 통째로 메모리에 복사되어야 하기 때문이지요. 튜플은 중괄호를 사용해서 정의합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">}</span>
+<span class="p">{</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>튜플은 함수가 추가 정보를 반환하는 수단으로 자주 사용됩니다. 이것의 유용함은 패턴 매칭(pattern matching)을 배울 때 더 명확해질 것입니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sd">"</span><span class="s2">path/to/existing/file"</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">... contents ..."</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sd">"</span><span class="s2">path/to/unknown/file"</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="ss">:enoent</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="section-4">키워드 리스트</h2>
+
+<p>키워드(keyword)와 맵(map)은 Elixir의 연관 컬렉션입니다. Elixir에서 키워드 리스트란 첫번째 원소가 atom인 특별한 튜플들의 리스트입니다. 따라서 키워드 리스트는 리스트와 성능이 비슷합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+<span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[{</span><span class="ss">:foo</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">},</span> <span class="p">{</span><span class="ss">:hello</span><span class="p">,</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}]</span>
+<span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>키워드 리스트의 아래 세 가지 특징은 매우 중요합니다.</p>
+
+<ul>
+  <li>모든 키는 atom입니다.</li>
+  <li>키는 정렬되어 있습니다.</li>
+  <li>키는 중복될 수 있습니다.</li>
+</ul>
+
+<p>이러한 이유 때문에 키워드 리스트는 함수에 옵션을 전달하는 데 가장 많이 사용됩니다.</p>
+
+<h2 id="section-5">맵</h2>
+
+<p>Elixir에서 맵(maps)은 매우 유용한 키-값 저장소입니다. 키워드 리스트와는 다르게 맵의 키는 어떤 타입이든 될 수 있고 순서를 따르지 않습니다. 맵은 <code class="highlighter-rouge">%{}</code> 문법을 이용해서 정의할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="ss">:world</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="ss">:world</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">[</span><span class="ss">:foo</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">bar"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">[</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">]</span>
+<span class="ss">:world</span>
+</code></pre>
+</div>
+
+<p>Elixir 1.2부터는 변수를 맵의 키로 사용할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">key</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">hello"</span>
+<span class="sd">"</span><span class="s2">hello"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="n">key</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>만약 중복된 키가 맵에 추가되면 이전의 값을 새 값으로 교체합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">hello world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">hello world"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>위의 출력에서 볼 수 있듯이, 모든 키가 atom인 맵을 정의하기 위한 특별한 문법도 존재합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span> <span class="o">==</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">:hello</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>맵에는 또다른 특별한 문법이 있는데, 이로써 애텀 키를 통해 맵 내부를 열람하거나 수정할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="n">map</span> <span class="o">|</span> <span class="ss">foo:</span> <span class="sd">"</span><span class="s2">baz"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">baz"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">.</span><span class="n">hello</span>
+<span class="sd">"</span><span class="s2">world"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/basics/collections/&title=컬렉션&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/basics/collections/&via=elixirschool&text=ElixirSchool: 컬렉션&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/basics/collections/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/basics/collections/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/basics/collections/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 컬렉션" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/basics/collections/&title=ElixirSchool: 컬렉션&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/basics/collections/&title=ElixirSchool: 컬렉션&description=Check out '컬렉션' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 컬렉션&body=Check out '컬렉션' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/basics/collections/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

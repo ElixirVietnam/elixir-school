@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lições sobre a linguagem de programação Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/pt/lessons/advanced/erlang/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Interoperabilidade com Erlang &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lições sobre a linguagem de programação Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Interoperabilidade com Erlang &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lições sobre a linguagem de programação Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Básico</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pt/lessons/basics/basics/">Básico</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pt/lessons/basics/collections/">Coleções</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pt/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pt/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pt/lessons/basics/control-structures/">Estruturas de Controle</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pt/lessons/basics/functions/">Funções</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pt/lessons/basics/pipe-operator/">Operador Pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pt/lessons/basics/modules/">Composição</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pt/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pt/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/pt/lessons/basics/documentation/">Documentação</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/pt/lessons/basics/testing/">Testando</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/pt/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/pt/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/pt/lessons/basics/mix-tasks/">Tarefas Mix Customizadas</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Avançado</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson  active" href="/pt/lessons/advanced/erlang/">Interoperabilidade com Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pt/lessons/advanced/error-handling/">Tratamento de Erros</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pt/lessons/advanced/escripts/">Executáveis</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pt/lessons/advanced/concurrency/">Concorrência</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pt/lessons/advanced/otp-concurrency/">Concorrência OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pt/lessons/advanced/otp-supervisors/">Supervisores OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pt/lessons/advanced/metaprogramming/">Metaprogramação</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pt/lessons/advanced/umbrella-projects/">Projetos Guarda-chuva</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Específico</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pt/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pt/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pt/lessons/specifics/eex/">Elixir embutido (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pt/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pt/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/erlang/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/erlang/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/erlang/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/erlang/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/erlang/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/erlang/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/erlang/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/erlang/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/erlang/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/erlang/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/erlang/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/erlang/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/erlang/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/erlang/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/erlang/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/erlang/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/erlang/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/erlang/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/erlang/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/erlang/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/erlang/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Interoperabilidade com Erlang</h1>
+  <p>Um dos benefícios adicionais em se construir em cima da Erlang VM (BEAM) é a abundância de bibliotecas existentes disponíveis para nós. A interoperabilidade nos permite usar essas bibliotecas e a biblioteca padrão Erlang a partir do nosso código Elixir. Nessa lição, nós vamos ver como acessar funcionalidades da biblioteca padrão juntamente com pacotes Erlang de terceiros.</p>
+
+<h2>Sumário</h2>
+<div id="toc"></div>
+
+<h2 id="biblioteca-padro">Biblioteca padrão</h2>
+
+<p>A extensiva biblioteca padrão Erlang pode ser acessada de qualquer código Elixir em nossa aplicação. Módulos Erlang são representados por <em>átomos</em> em caixa baixa como <code class="highlighter-rouge">:os</code> e <code class="highlighter-rouge">:timer</code>.</p>
+
+<p>Vamos usar <code class="highlighter-rouge">:timer.tc</code> para medir o tempo de execução de uma determinada função:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">timed</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="n">time</span><span class="p">,</span> <span class="n">result</span><span class="p">}</span> <span class="o">=</span> <span class="ss">:timer</span><span class="o">.</span><span class="n">tc</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Time: </span><span class="si">#{</span><span class="n">time</span><span class="si">}</span><span class="s2">ms"</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Result: </span><span class="si">#{</span><span class="n">result</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">timed</span><span class="p">(</span><span class="k">fn</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span> <span class="k">end</span><span class="p">,</span> <span class="p">[</span><span class="m">100</span><span class="p">])</span>
+<span class="ss">Time:</span> <span class="err">8</span><span class="n">ms</span>
+<span class="ss">Result:</span> <span class="m">1000000</span>
+</code></pre>
+</div>
+
+<p>Para uma lista completa de módulos disponíveis, olhe o <a href="http://erlang.org/doc/apps/stdlib/">Manual de referência Erlang</a>.</p>
+
+<h2 id="pacotes-erlang">Pacotes Erlang</h2>
+
+<p>Em uma lição anterior nós cobrimos Mix e como gerenciar nossas dependências, incluindo bibliotecas Erlang que funcionam da mesma forma. No evento a biblioteca Erlang não foi publicada no <a href="https://hex.pm">Hex</a>. Nesse caso você pode usar uma referência ao repositório git:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:png</span><span class="p">,</span> <span class="ss">github:</span> <span class="sd">"</span><span class="s2">yuce/png"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Agora podemos acessar nossa biblioteca Erlang:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">png</span> <span class="o">=</span> <span class="ss">:png</span><span class="o">.</span><span class="n">create</span><span class="p">(%{</span><span class="ss">:size</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="m">30</span><span class="p">,</span> <span class="m">30</span><span class="p">},</span>
+                    <span class="ss">:mode</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:indexed</span><span class="p">,</span> <span class="m">8</span><span class="p">},</span>
+                    <span class="ss">:file</span> <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+                    <span class="ss">:palette</span> <span class="o">=&gt;</span> <span class="n">palette</span><span class="p">})</span>
+</code></pre>
+</div>
+
+<h2 id="diferenas-notveis">Diferenças notáveis</h2>
+
+<p>Agora que sabemos como usar Erlang nós devemos cobrir alguns contrapontos que vem com a interoperabilidade com Erlang.</p>
+
+<h3 id="tomos">Átomos</h3>
+
+<p>Átomos Erlang são similares aos em Elixir, só que sem os dois pontos (<code class="highlighter-rouge">:</code>). Eles são representados por <em>strings</em> e <em>underscores</em> em caixa baixa:</p>
+
+<p>Elixir:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="ss">:example</span>
+</code></pre>
+</div>
+
+<p>Erlang:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">example</span><span class="p">.</span>
+</code></pre>
+</div>
+
+<h3 id="strings">Strings</h3>
+
+<p>Em Elixir quando falamos <em>strings</em> nós queremos dizer binários codificados em UTF-8. Em Erlang, <em>strings</em> continuam usando aspas mas referem-se a listas de caracteres:</p>
+
+<p>Elixir:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">is_list</span><span class="p">(</span><span class="s1">'Example'</span><span class="p">)</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">is_list</span><span class="p">(</span><span class="sd">"</span><span class="s2">Example"</span><span class="p">)</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">is_binary</span><span class="p">(</span><span class="sd">"</span><span class="s2">Example"</span><span class="p">)</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="o">&lt;&lt;</span><span class="sd">"</span><span class="s2">Example"</span><span class="o">&gt;&gt;</span> <span class="o">===</span> <span class="sd">"</span><span class="s2">Example"</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Erlang:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="mi">1</span><span class="o">&gt;</span> <span class="nb">is_list</span><span class="p">(</span><span class="n">'Example'</span><span class="p">).</span>
+<span class="n">false</span>
+<span class="mi">2</span><span class="o">&gt;</span> <span class="nb">is_list</span><span class="p">(</span><span class="s">"Example"</span><span class="p">).</span>
+<span class="n">true</span>
+<span class="mi">3</span><span class="o">&gt;</span> <span class="nb">is_binary</span><span class="p">(</span><span class="s">"Example"</span><span class="p">).</span>
+<span class="n">false</span>
+<span class="mi">4</span><span class="o">&gt;</span> <span class="nb">is_binary</span><span class="p">(</span><span class="o">&lt;&lt;</span><span class="s">"Example"</span><span class="o">&gt;&gt;</span><span class="p">).</span>
+<span class="n">true</span>
+</code></pre>
+</div>
+
+<p>É importante notar que muitas bibliotecas Erlang antigas podem não suportar binários, então precisamos converter <em>strings</em> Elixir em lista de caracteres. Felizmente isso é fácil de conseguir com a função <code class="highlighter-rouge">to_charlist/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:string</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello World"</span><span class="p">)</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">FunctionClauseError</span><span class="p">)</span> <span class="n">no</span> <span class="n">function</span> <span class="n">clause</span> <span class="n">matching</span> <span class="ow">in</span> <span class="ss">:string</span><span class="o">.</span><span class="n">strip_left</span><span class="o">/</span><span class="m">2</span>
+    <span class="p">(</span><span class="n">stdlib</span><span class="p">)</span> <span class="n">string</span><span class="o">.</span><span class="ss">erl:</span><span class="m">380</span><span class="p">:</span> <span class="ss">:string</span><span class="o">.</span><span class="n">strip_left</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello World"</span><span class="p">,</span> <span class="m">32</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">stdlib</span><span class="p">)</span> <span class="n">string</span><span class="o">.</span><span class="ss">erl:</span><span class="m">378</span><span class="p">:</span> <span class="ss">:string</span><span class="o">.</span><span class="n">strip</span><span class="o">/</span><span class="m">3</span>
+    <span class="p">(</span><span class="n">stdlib</span><span class="p">)</span> <span class="n">string</span><span class="o">.</span><span class="ss">erl:</span><span class="m">316</span><span class="p">:</span> <span class="ss">:string</span><span class="o">.</span><span class="n">words</span><span class="o">/</span><span class="m">2</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Hello World"</span> <span class="o">|&gt;</span> <span class="n">to_charlist</span> <span class="o">|&gt;</span> <span class="ss">:string</span><span class="o">.</span><span class="n">words</span>
+<span class="m">2</span>
+</code></pre>
+</div>
+
+<h3 id="variveis">Variáveis</h3>
+
+<p>Elixir:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="m">10</span>
+<span class="m">10</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="m">10</span>
+<span class="m">20</span>
+</code></pre>
+</div>
+
+<p>Erlang:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="mi">1</span><span class="o">&gt;</span> <span class="nv">X</span> <span class="o">=</span> <span class="mi">10</span><span class="p">.</span>
+<span class="mi">10</span>
+
+<span class="mi">2</span><span class="o">&gt;</span> <span class="nv">X1</span> <span class="o">=</span> <span class="nv">X</span> <span class="o">+</span> <span class="mi">1</span><span class="p">.</span>
+<span class="mi">11</span>
+</code></pre>
+</div>
+
+<p>É isso! Aproveitar Erlang a partir da nossa aplicação Elixir é fácil e efetivamente dobra o número de bibliotecas disponíveis para nós.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Compartilhe essa página
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/pt/lessons/advanced/erlang/&title=Interoperabilidade com Erlang&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/pt/lessons/advanced/erlang/&via=elixirschool&text=ElixirSchool: Interoperabilidade com Erlang&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/pt/lessons/advanced/erlang/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/pt/lessons/advanced/erlang/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/pt/lessons/advanced/erlang/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Interoperabilidade com Erlang" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/pt/lessons/advanced/erlang/&title=ElixirSchool: Interoperabilidade com Erlang&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/pt/lessons/advanced/erlang/&title=ElixirSchool: Interoperabilidade com Erlang&description=Check out 'Interoperabilidade com Erlang' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Interoperabilidade com Erlang&body=Check out 'Interoperabilidade com Erlang' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/pt/lessons/advanced/erlang/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Leksjoner i programmeringsspråket Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/no/lessons/basics/modules/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Moduler &middot; Elixir School
+
+">
+  <meta property="og:description" content="Leksjoner i programmeringsspråket Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Moduler &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Leksjoner i programmeringsspråket Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Grunnleggende</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/no/lessons/basics/basics/">Grunnleggende Elixir</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/no/lessons/basics/collections/">Kolleksjoner</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/no/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/no/lessons/basics/pattern-matching/">Mønstersammenligning</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/no/lessons/basics/control-structures/">Kontrollstrukturer</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/no/lessons/basics/pipe-operator/">Pipeoperatoren</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson  active" href="/no/lessons/basics/modules/">Moduler</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/no/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/no/lessons/basics/sigils/">Sigiler</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/no/lessons/basics/documentation/">Dokumentasjon</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/modules/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/modules/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/modules/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/modules/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/modules/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/modules/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/modules/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/modules/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/modules/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/modules/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/modules/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/modules/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/modules/ ">my</a>
+      
+        <a href=" /no/lessons/basics/modules/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/modules/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/modules/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/modules/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/modules/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/modules/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/modules/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/modules/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Moduler</h1>
+  <p>Vi vet fra erfaring at det er besværlig å ha alle våre funksjoner i samme fil og skop. I denne leksjonen skal vi dekke hvordan vi grupperer funksjoner, og definerer en spesialisert form for kart kjent som struct for å kunne organiserer koden vår mer effektivt.</p>
+
+<h2>Innholdsfortegnelse</h2>
+<div id="toc"></div>
+
+<h2 id="moduler">Moduler</h2>
+
+<p>Moduler er den beste måten å organisere funksjoner inn i egne navnområder. I tillegg til å gruppere funksjoner, tillater det oss å definere våre egne navnkalte og private funksjoner som vi gikk igjennom i forrige leksjon.</p>
+
+<p>La oss se på et enkelt eksempel:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Eksempel</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hils</span><span class="p">(</span><span class="n">navn</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Hei </span><span class="si">#{</span><span class="n">navn</span><span class="si">}</span><span class="s2">."</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Eksempel</span><span class="o">.</span><span class="n">hils</span> <span class="sd">"</span><span class="s2">Sean"</span>
+<span class="sd">"</span><span class="s2">Hei Sean."</span>
+</code></pre>
+</div>
+
+<p>Det er mulig å nøste moduler i Elixir:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Eksempel</span><span class="o">.</span><span class="no">Hils</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">morgen</span><span class="p">(</span><span class="n">navn</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">God morgen </span><span class="si">#{</span><span class="n">navn</span><span class="si">}</span><span class="s2">."</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">kveld</span><span class="p">(</span><span class="n">navn</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">God natt </span><span class="si">#{</span><span class="n">navn</span><span class="si">}</span><span class="s2">."</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Eksempel</span><span class="o">.</span><span class="no">Hils</span><span class="o">.</span><span class="n">morgen</span> <span class="sd">"</span><span class="s2">Sean"</span>
+<span class="sd">"</span><span class="s2">God morgen Sean."</span>
+</code></pre>
+</div>
+
+<h3 id="modul-attributer">Modul Attributer</h3>
+
+<p>Modul attributer er som oftest brukt som konstanter i Elixir. La oss se på et enkelt eksempel:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Eksempel</span> <span class="k">do</span>
+  <span class="nv">@hils</span> <span class="sd">"</span><span class="s2">Hei"</span>
+
+  <span class="k">def</span> <span class="n">hils</span><span class="p">(</span><span class="n">navn</span><span class="p">)</span> <span class="k">do</span>
+    <span class="err">~</span><span class="n">s</span><span class="p">(</span><span class="c1">#{@hils} #{navn}.)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Det er viktig å notere at det er reserverte attributer i Elixir. De tre vanligste er:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">moduledoc</code> — Dokumenterer den nåværende modulen.</li>
+  <li><code class="highlighter-rouge">doc</code> — Dokumentasjon for funksjoner og makroer.</li>
+  <li><code class="highlighter-rouge">behaviour</code> — Bruk en OTP eller bruker-definert atferd.</li>
+</ul>
+
+<h2 id="structs">Structs</h2>
+
+<p>Structs er et spesielle kart som definerer en mengde av nøkler og standard verdier. En struct må være definert i en egen modul, som den også får navnet sitt fra. Det er normalt at en struct er det eneste som er definert i en modul.</p>
+
+<p>For å definere en struct bruker vi <code class="highlighter-rouge">defstruct</code> sammen med en nøkkelord liste av felt og standard verdier.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Eksempel</span><span class="o">.</span><span class="no">Bruker</span> <span class="k">do</span>
+  <span class="n">defstruct</span> <span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">roller:</span> <span class="p">[]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>La oss lage noen structs:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%</span><span class="no">Eksempel</span><span class="o">.</span><span class="no">Bruker</span><span class="p">{}</span>
+<span class="p">%</span><span class="no">Eksempel</span><span class="o">.</span><span class="no">Bruker</span><span class="p">{</span><span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">roller:</span> <span class="p">[]}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%</span><span class="no">Eksempel</span><span class="o">.</span><span class="no">Bruker</span><span class="p">{</span><span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">}</span>
+<span class="p">%</span><span class="no">Eksempel</span><span class="o">.</span><span class="no">Bruker</span><span class="p">{</span><span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">,</span> <span class="ss">roller:</span> <span class="p">[]}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%</span><span class="no">Eksempel</span><span class="o">.</span><span class="no">Bruker</span><span class="p">{</span><span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">,</span> <span class="ss">roller:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:eier</span><span class="p">]}</span>
+<span class="p">%</span><span class="no">Eksempel</span><span class="o">.</span><span class="no">Bruker</span><span class="p">{</span><span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">,</span> <span class="ss">roller:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:eier</span><span class="p">]}</span>
+</code></pre>
+</div>
+
+<p>Vi kan oppdatere vår struct akkurat som med kart:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">steve</span> <span class="o">=</span> <span class="p">%</span><span class="no">Eksempel</span><span class="o">.</span><span class="no">Bruker</span><span class="p">{</span><span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">,</span> <span class="ss">roller:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:eier</span><span class="p">]}</span>
+<span class="p">%</span><span class="no">Eksempel</span><span class="o">.</span><span class="no">Bruker</span><span class="p">{</span><span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">,</span> <span class="ss">roller:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:eier</span><span class="p">]}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">sean</span> <span class="o">=</span> <span class="p">%</span><span class="no">Bruker</span><span class="p">{</span><span class="n">steve</span> <span class="o">|</span> <span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">}</span>
+<span class="p">%</span><span class="no">Eksempel</span><span class="o">.</span><span class="no">Bruker</span><span class="p">{</span><span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">roller:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:eier</span><span class="p">]}</span>
+</code></pre>
+</div>
+
+<p>Det viktigste er at du kan matche structs mot maps:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">}</span> <span class="o">=</span> <span class="n">sean</span>
+<span class="p">%</span><span class="no">Eksempel</span><span class="o">.</span><span class="no">Bruker</span><span class="p">{</span><span class="ss">navn:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">roller:</span> <span class="p">[</span><span class="ss">:admin</span><span class="p">,</span> <span class="ss">:eier</span><span class="p">]}</span>
+</code></pre>
+</div>
+
+<h2 id="komposisjon">Komposisjon</h2>
+
+<p>Nå som vi vet hvordan vi lager moduler og structs, la oss lære oss hvordan vi kan legge til eksisterende funksjonalitet til de via komposisjon. Elixir forsyner oss med mange forskjellige måter å integrere med andre moduler.</p>
+
+<h3 id="alias"><code class="highlighter-rouge">alias</code></h3>
+
+<p>Tillater oss å gi alias til modulnavn; noe som er veldig ofte brukt i Elixir.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Hilsnader</span><span class="o">.</span><span class="no">Hilsing</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">enkel</span><span class="p">(</span><span class="n">navn</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hei, </span><span class="si">#{</span><span class="n">navn</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+
+<span class="k">defmodule</span> <span class="no">Eksempel</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Hilsnader</span><span class="o">.</span><span class="no">Hilsing</span>
+
+  <span class="k">def</span> <span class="n">hilse</span><span class="p">(</span><span class="n">navn</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="no">Hilsing</span><span class="o">.</span><span class="n">enkel</span><span class="p">(</span><span class="n">navn</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1"># Uten alias</span>
+
+<span class="k">defmodule</span> <span class="no">Eksempel</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hilse</span><span class="p">(</span><span class="n">navn</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="no">Hilsnader</span><span class="o">.</span><span class="no">Hilsing</span><span class="o">.</span><span class="n">enkel</span><span class="p">(</span><span class="n">navn</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Hvis det oppstår en konflikt mellom to alias, eller om vi ønsker å bruke et alias til noe annet, så kan vi bruke <code class="highlighter-rouge">:as</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Eksempel</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Hilsnader</span><span class="o">.</span><span class="no">Hilsing</span><span class="p">,</span> <span class="ss">as:</span> <span class="no">Hei</span>
+
+  <span class="k">def</span> <span class="n">print_melding</span><span class="p">(</span><span class="n">navn</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="no">Hei</span><span class="o">.</span><span class="n">enkel</span><span class="p">(</span><span class="n">navn</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Det er også mulig å bruke et alias på flere moduler i en tilordning:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Eksempel</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Hilsnader</span><span class="o">.</span><span class="p">{</span><span class="no">Hilsing</span><span class="p">,</span> <span class="no">Farvel</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="import"><code class="highlighter-rouge">import</code></h3>
+
+<p>Hvis vi har lyst til å importere funksjoner og makroer istedenfor å bruke et alias for modulen kan vi bruke <code class="highlighter-rouge">ìmport/</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">last</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">CompileError</span><span class="p">)</span> <span class="ss">iex:</span><span class="m">9</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">function</span> <span class="n">last</span><span class="o">/</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="no">List</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">last</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="m">3</span>
+</code></pre>
+</div>
+
+<h4 id="filtrering">Filtrering</h4>
+
+<p>Per standard vil alle funksjoner og makroer bli importert, men vi kan filtrere dem ved å bruke <code class="highlighter-rouge">:only</code> og <code class="highlighter-rouge">:except</code>.</p>
+
+<p>For å importere spesifikke funksjoner og makroer, må vi bruke navn/aritet paret med <code class="highlighter-rouge">:only</code> og <code class="highlighter-rouge">:except</code>. La oss starte med å kun importere <code class="highlighter-rouge">last/1</code> funksjonen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="no">List</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">last:</span> <span class="m">1</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">first</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">CompileError</span><span class="p">)</span> <span class="ss">iex:</span><span class="m">13</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">function</span> <span class="n">first</span><span class="o">/</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">last</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="m">3</span>
+</code></pre>
+</div>
+
+<p>Hvis vi importerer alt untatt <code class="highlighter-rouge">last/1</code> og prøver med den samme funksjonen som tidligere:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="no">List</span><span class="p">,</span> <span class="ss">except:</span> <span class="p">[</span><span class="ss">last:</span> <span class="m">1</span><span class="p">]</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">first</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">last</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">])</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">CompileError</span><span class="p">)</span> <span class="ss">iex:</span><span class="m">3</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">function</span> <span class="n">last</span><span class="o">/</span><span class="m">1</span>
+</code></pre>
+</div>
+<p>I tillegg til navn/aritet paret så er det to spesielle atomer, <code class="highlighter-rouge">:functions</code> og <code class="highlighter-rouge">:macros</code>, som importerer kun de funksjonene eller makroene:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">List</span><span class="p">,</span> <span class="ss">only:</span> <span class="ss">:functions</span>
+<span class="kn">import</span> <span class="no">List</span><span class="p">,</span> <span class="ss">only:</span> <span class="ss">:macros</span>
+</code></pre>
+</div>
+
+<h3 id="require"><code class="highlighter-rouge">require</code></h3>
+
+<p>Brukt sjeldnere, men fortsatt viktig er <code class="highlighter-rouge">require/2</code>. Å kreve en modul forsikrer at den er kompilert og lastet.<br />
+Dette er mest brukbart når vi trenger å aksessere en modul sine makroer:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Eksempel</span> <span class="k">do</span>
+  <span class="kn">require</span> <span class="no">SuperMacros</span>
+
+  <span class="no">SuperMacros</span><span class="o">.</span><span class="n">do_stuff</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Hvis vi prøver å kalle en makro som ikke er lastet, så vil Elixir heve en feil.</p>
+
+<h3 id="use"><code class="highlighter-rouge">use</code></h3>
+
+<p>use makroen kaller en spesiell makro, kalt <code class="highlighter-rouge">__using__/1</code>, i den spesifiserte modulen. Her er et eksempel:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># lib/use_import_require/use_me.ex</span>
+<span class="k">defmodule</span> <span class="no">UseImportRequire</span><span class="o">.</span><span class="no">UseMe</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">__using__</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span>
+      <span class="k">def</span> <span class="n">use_test</span> <span class="k">do</span>
+        <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">use_test"</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>og vi legger denne linjen til UseImportRequire:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">use</span> <span class="no">UseImportRequire</span><span class="o">.</span><span class="no">UseMe</span>
+</code></pre>
+</div>
+
+<p>Å bruke UseImportRequire.UseMe definerer en use_test/0 funksjon gjennom invokasjon av <code class="highlighter-rouge">__using__/1</code> makroen.</p>
+
+<p>Det er alt det use gjør. Men, det er vanlig at <code class="highlighter-rouge">__using__</code> makroen kaller på alias, require eller import. Dette vil lage aliaser eller importere det som kreves i using modulen. Dette tillater modulen til å bli brukt til å definere en retningslinje for hvordan deres funksjoner og makroer burde bli referert til. Dette kan være svært fleksibelt i det at <code class="highlighter-rouge">__using__/1</code> kan sette opp referanser til andre moduler, spesielt undermoduler.</p>
+
+<p>Phoenix rammeverket bruker use og <code class="highlighter-rouge">__using__/1</code> for å kutte ned bruken av repetitive alias og import kall i bruker definerte moduler.</p>
+
+<p>Her er et godt eksempel fra Ecto.Migration modulen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmacro</span> <span class="n">__using__</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+  <span class="kn">quote</span> <span class="ss">location:</span> <span class="ss">:keep</span> <span class="k">do</span>
+    <span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Migration</span>
+    <span class="nv">@disable_ddl_transaction</span> <span class="no">false</span>
+    <span class="nv">@before_compile</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Migration</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Ecto.Migration.__using__/1</code> makroen inkluderer et importkall slik at når du bruker <code class="highlighter-rouge">use Ecto.Migration</code> så vil den også kalle <code class="highlighter-rouge">import Ecto.Migration</code>. Den setter også opp modul attributer som vi kan anta kontrollerer Ecto sin atferd.</p>
+
+<p>For å oppsumere: use invokerer <code class="highlighter-rouge">__using__/1</code> i den spesifiserte modulen. For å virkelig forstå hva den gjør så anbefales det at du leser om <code class="highlighter-rouge">__using__/1</code>.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Del denne siden
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/no/lessons/basics/modules/&title=Moduler&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/no/lessons/basics/modules/&via=elixirschool&text=ElixirSchool: Moduler&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/no/lessons/basics/modules/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/no/lessons/basics/modules/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/no/lessons/basics/modules/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Moduler" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/no/lessons/basics/modules/&title=ElixirSchool: Moduler&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/no/lessons/basics/modules/&title=ElixirSchool: Moduler&description=Check out 'Moduler' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Moduler&body=Check out 'Moduler' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/no/lessons/basics/modules/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

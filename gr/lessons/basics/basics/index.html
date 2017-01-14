@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/gr/lessons/basics/basics/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Βασικά &middot; Elixir School
+
+">
+  <meta property="og:description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Βασικά &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Μαθήματα προγραμματισμού της γλώσσας Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Βασικά</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson  active" href="/gr/lessons/basics/basics/">Βασικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/basics/collections/">Συλλογές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/basics/pattern-matching/">Αντιπαραβολές Προτύπων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/basics/control-structures/">Δομές Ελέγχου</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/basics/functions/">Συναρτήσεις</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/basics/pipe-operator/">Τελεστής Σωλήνα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/basics/modules/">Ενότητες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/basics/sigils/">Σφραγίδες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/basics/documentation/">Τεκμηρίωση</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/gr/lessons/basics/testing/">Δοκιμές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/gr/lessons/basics/comprehensions/">Ανάγνωση Λιστών</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/gr/lessons/basics/strings/">Αλφαριθμητικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/gr/lessons/basics/mix-tasks/">Ειδικές Εργασίες Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Προχωρημένα</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/advanced/erlang/">Διαλειτουργικότητα με την Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/advanced/error-handling/">Διαχείριση Σφαλμάτων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/advanced/escripts/">Εκτελέσιμα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/advanced/concurrency/">Συγχρονισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-concurrency/">Συγχρονισμός OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-supervisors/">Επιτηρητές OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/advanced/metaprogramming/">Μεταπρογραμματισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/advanced/umbrella-projects/">Projects Ομπρέλας</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/advanced/typespec/">Προδιαγραφές και τύποι</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/advanced/behaviours/">Συμπεριφορές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Ιδιαιτερότητες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/specifics/eex/">Ένθετη Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βιβλιοθήκες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/libraries/guardian/">Guardian (Βασικά)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/basics/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/basics/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/basics/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/basics/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/basics/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/basics/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/basics/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/basics/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/basics/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/basics/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/basics/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/basics/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/basics/ ">my</a>
+      
+        <a href=" /no/lessons/basics/basics/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/basics/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/basics/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/basics/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/basics/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/basics/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/basics/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/basics/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Βασικά</h1>
+  <p>Κάνοντας την αρχή, βασικοί τύποι δεδομένων και βασικές λειτουργίες.</p>
+
+<h2>Πίνακας περιεχομένων</h2>
+<div id="toc"></div>
+
+<h2 id="section">Κάνοντας την αρχή</h2>
+
+<h3 id="elixir">Εγκατάσταση της Elixir</h3>
+
+<p>Οδηγίες εγκατάστασης για όλα τα λειτουργικά συστήματα μπορούν να βρεθούν στο elixir-lang.org, στον οδηγό <a href="http://elixir-lang.org/install.html">Installing Elixir</a>.</p>
+
+<p>Αφού εγκαταστήσετε την Elixir, μπορείτε έυκολα να επιβεβαιώσετε την εγκαταστημένη έκδοση.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>% elixir -v
+Erlang/OTP 19 [erts-8.0.2] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+Elixir 1.3.4
+</code></pre>
+</div>
+
+<h3 id="section-1">Δοκιμάζοντας τον Διαδραστικό Τρόπο</h3>
+
+<p>Η Elixir περιέχει το <code class="highlighter-rouge">iex</code>, ένα διαδραστικό κέλυφος, το οποίο μας επιτρέπει να επιβεβαιώνουμε εκφράσεις της Elixir καθώς τις γράφουμε.</p>
+
+<p>Για να ξεκινήσουμε, ας γράψουμε <code class="highlighter-rouge">iex</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Erlang/OTP 19 [erts-8.0.2] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+Interactive Elixir (1.3.4) - press Ctrl+C to exit (type h() ENTER for help)
+iex&gt;
+</code></pre>
+</div>
+
+<p>Ας προχωρήσουμε τις δοκιμές μας γράφοντας μερικές απλές εκφράσεις:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span>
+<span class="m">2</span><span class="o">+</span><span class="m">3</span>
+<span class="m">5</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span><span class="o">+</span><span class="m">3</span> <span class="o">==</span> <span class="m">5</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="sd">"</span><span class="s2">The quick brown fox jumps over the lazy dog"</span><span class="p">)</span>
+<span class="m">43</span>
+</code></pre>
+</div>
+
+<p>Μην ανησυχείτε αν δεν καταλαβαίνετε όλες τις εκφράσεις ακόμα, ελπίζουμε όμως να πιάνετε το νόημα.</p>
+
+<h2 id="section-2">Βασικοί Τύποι Δεδομένων</h2>
+
+<h3 id="section-3">Ακέραιοι</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">255</span>
+<span class="m">255</span>
+</code></pre>
+</div>
+
+<p>Υπάρχει προεγκατεστημένη υποστήριξη για δυαδικούς, οκταδικούς και δεκαεξαδικούς αριθμούς:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">0b0110</span>
+<span class="m">6</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">0</span><span class="n">o644</span>
+<span class="m">420</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">0x1F</span>
+<span class="m">31</span>
+</code></pre>
+</div>
+
+<h3 id="section-4">Κινητής Υποδιαστολής</h3>
+
+<p>Στην Elixir, οι αριθμοί κινητής υποδιαστολής απαιτούν ένα δεκαδικό ψηφίο μετά από τουλάχιστον ένα ψηφίο.  Έχουν 64 μπιτ διπλής ακρίβειας και υποστηρίζουν το <code class="highlighter-rouge">e</code> για τους εκθετικούς αριθμούς:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">3.14</span>
+ <span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="o">.</span><span class="m">14</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">SyntaxError</span><span class="p">)</span> <span class="ss">iex:</span><span class="m">2</span><span class="p">:</span> <span class="n">syntax</span> <span class="n">error</span> <span class="ss">before:</span> <span class="s1">'.'</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">1.0e-10</span>
+<span class="m">1.0e-10</span>
+</code></pre>
+</div>
+
+<h3 id="section-5">Δυαδικές Τιμές</h3>
+
+<p>Η Elixir υποστηρίζει τις τιμές <code class="highlighter-rouge">true</code> και <code class="highlighter-rouge">false</code> σαν δυαδικές.  Οποιαδήποτε τιμή εκτός των <code class="highlighter-rouge">false</code> και <code class="highlighter-rouge">nil</code> στέκεται σαν αληθής (truthy)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">true</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">false</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<h3 id="section-6">Άτομα</h3>
+
+<p>Ένα άτομο είναι μια σταθερά της οποίας το όνομα είναι και η τιμή της.  Αν είστε εξοικειωμένοι με την Ruby, τα άτομα είναι συνώνυμα με τα Σύμβολα:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:foo</span>
+<span class="ss">:foo</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:foo</span> <span class="o">==</span> <span class="ss">:bar</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<p>Οι δυαδικές τιμές <code class="highlighter-rouge">true</code> και <code class="highlighter-rouge">false</code> είναι επίσης τα άτομα <code class="highlighter-rouge">:true</code> και <code class="highlighter-rouge">:false</code> αντίστοιχα.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">true</span> <span class="o">|&gt;</span> <span class="n">is_atom</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:true</span> <span class="o">|&gt;</span> <span class="n">is_boolean</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:true</span> <span class="o">===</span> <span class="no">true</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Τα ονόματα των ενοτήτων (modules) στην Elixir είναι επίσης άτομα.  Το <code class="highlighter-rouge">MyApp.MyModule</code> είναι ένα έγκυρο άτομο, ακόμα και αν δεν έχει οριστεί τέτοια ενότητα ακόμα.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">is_atom</span><span class="p">(</span><span class="no">MyApp</span><span class="o">.</span><span class="no">MyModule</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Τα άτομα επίσης χρησιμοποιούνται για να αναφερθούμε σε κάποια ενότητα από τις βιβλιοθήκες της Erlang, συμπεριλαμβανομένων των ενσωματωμένων.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:crypto</span><span class="o">.</span><span class="n">rand_bytes</span> <span class="m">3</span>
+<span class="o">&lt;&lt;</span><span class="m">23</span><span class="p">,</span> <span class="m">104</span><span class="p">,</span> <span class="m">108</span><span class="o">&gt;&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="section-7">Αλφαριθμητικά</h3>
+
+<p>Τα αλφαριθμητικά στην Elixir είναι κωδικοποιημένα σε UTF-8 και βρίσκονται μέσα σε διπλά εισαγωγικά.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Hello"</span>
+<span class="sd">"</span><span class="s2">Hello"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">dziękuję"</span>
+<span class="sd">"</span><span class="s2">dziękuję"</span>
+</code></pre>
+</div>
+
+<p>Τα αλφαριθμητικά υποστηρίζουν αλλαγές γραμμών και ακολουθίες διαφυγής:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">foo
+...&gt; bar"</span>
+<span class="sd">"</span><span class="s2">foo\nbar"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">foo\nbar"</span>
+<span class="sd">"</span><span class="s2">foo\nbar"</span>
+</code></pre>
+</div>
+
+<p>Η Elixir επίσης υποστηρίζει πιο πολύπλοκους τύπους δεδομένων.  Θα μάθουμε περισσότερα για αυτούς όταν μάθουμε για τις Συλλογές και τις Συναρτήσεις</p>
+
+<h2 id="section-8">Βασικές Λειτουργίες</h2>
+
+<h3 id="section-9">Αριθμητικές</h3>
+
+<p>Η Elixir υποστηρίζει τους βασικούς τελεστές <code class="highlighter-rouge">+</code>, <code class="highlighter-rouge">-</code>, <code class="highlighter-rouge">*</code>, και <code class="highlighter-rouge">/</code>, όπως θα περιμένατε.  Είναι σημαντικό να παρατηρήσουμε ότι ο τελεστής <code class="highlighter-rouge">/</code> πάντα επιστρέφει αριμό κινητής υποδιαστολής:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">+</span> <span class="m">2</span>
+<span class="m">4</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">*</span> <span class="m">5</span>
+<span class="m">10</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">10</span> <span class="o">/</span> <span class="m">5</span>
+<span class="m">2.0</span>
+</code></pre>
+</div>
+
+<p>Αν χρειάζεστε ακέραια διαίρεση ή το υπόλοιπο της διαίρεσης, η Elixir περιέχει δύο χρήσιμες συναρτήσεις για να το πετύχει:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">div</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="m">2</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">rem</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="m">1</span>
+</code></pre>
+</div>
+
+<h3 id="section-10">Δυαδικές</h3>
+
+<p>Η Elixir παρέχει τους δυαδικούς τελεστές <code class="highlighter-rouge">||</code>, <code class="highlighter-rouge">&amp;&amp;</code> και <code class="highlighter-rouge">!</code>.  Αυτοί υποστηρίζουν όλους τους τύπους:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="o">-</span><span class="m">20</span> <span class="o">||</span> <span class="no">true</span>
+<span class="o">-</span><span class="m">20</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">false</span> <span class="o">||</span> <span class="m">42</span>
+<span class="m">42</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">42</span> <span class="o">&amp;&amp;</span> <span class="no">true</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">42</span> <span class="o">&amp;&amp;</span> <span class="no">nil</span>
+<span class="no">nil</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">!42</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">!false</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Υπάρχουν τρεις πρόσθετοι τελεστές το πρώτο όρισμα των οποίων πρέπει να είναι δυαδικός (<code class="highlighter-rouge">true</code> και <code class="highlighter-rouge">false</code>):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">true</span> <span class="ow">and</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">false</span> <span class="ow">or</span> <span class="no">true</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ow">not</span> <span class="no">false</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">42</span> <span class="ow">and</span> <span class="no">true</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span> <span class="n">argument</span> <span class="ss">error:</span> <span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ow">not</span> <span class="m">42</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span> <span class="n">argument</span> <span class="n">error</span>
+</code></pre>
+</div>
+
+<h3 id="section-11">Σύγκριση</h3>
+
+<p>Η Elixir έρχεται με όλους τους τελεστές σύγκρισης που έχουμε συνηθίσει: <code class="highlighter-rouge">==</code>, <code class="highlighter-rouge">!=</code>, <code class="highlighter-rouge">===</code>, <code class="highlighter-rouge">!==</code>, <code class="highlighter-rouge">&lt;=</code>, <code class="highlighter-rouge">&gt;=</code>, <code class="highlighter-rouge">&lt;</code> και <code class="highlighter-rouge">&gt;</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">1</span> <span class="o">&gt;</span> <span class="m">2</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">1</span> <span class="o">!=</span> <span class="m">2</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">==</span> <span class="m">2</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">&lt;=</span> <span class="m">3</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Για αυστηρή σύγκριση ακέραιων και κινητής υποδιαστολής χρησιμοποιήστε τον τελεστή <code class="highlighter-rouge">===</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">==</span> <span class="m">2.0</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">2</span> <span class="o">===</span> <span class="m">2.0</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<p>Ένα σημαντικό χαρακτηριστικό της Elixir είναι ότι οποιοιδήποτε δύο τύποι μπορούν να συγκριθούν, το οποίο είναι πολύ χρήσιμο στις ταξινομήσεις.  Δεν χρειάζεται να αποστηθίσουμε την σειρά ταξινόμησης, αλλά είναι σημαντικό να την γνωρίζουμε:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">αριθμός</span> <span class="o">&lt;</span> <span class="err">άτομο</span> <span class="o">&lt;</span> <span class="err">αναφορά</span> <span class="o">&lt;</span> <span class="err">θύρα</span> <span class="o">&lt;</span> <span class="n">pid</span> <span class="o">&lt;</span> <span class="n">tuple</span> <span class="o">&lt;</span> <span class="err">χάρτης</span> <span class="o">&lt;</span> <span class="err">λίστα</span> <span class="o">&lt;</span> <span class="n">bitstring</span>
+</code></pre>
+</div>
+
+<p>Αυτό μπορεί να οδηγήσει σε μερικές ενδιαφέρουσες, αλλά ισχύουσες, συγκρίσεις τις οποίες μπορεί να μην βρείτε σε άλλες γλώσσες:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:hello</span> <span class="o">&gt;</span> <span class="m">999</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:hello</span><span class="p">,</span> <span class="ss">:world</span><span class="p">}</span> <span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="no">false</span>
+</code></pre>
+</div>
+
+<h3 id="section-12">Ενσωμάτωση Αλφαριθμητικών</h3>
+
+<p>Αν έχετε χρησιμοποιήσει την Ruby, η ενσωμάτωση αλφαριθμητικών στην Elixir θα σας φανεί γνώριμη:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">Sean"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Γειά σου </span><span class="si">#{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="sd">"</span><span class="s2">Γειά σου Sean"</span>
+</code></pre>
+</div>
+
+<h3 id="section-13">Σύνδεση Αλφαριθμητικών</h3>
+
+<p>Η σύνδεση αλφαριθμητικών χρησιμοποεί τον τελεστή <code class="highlighter-rouge">&lt;&gt;</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">Sean"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Γεια σου "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+<span class="sd">"</span><span class="s2">Γεια σου Sean"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/gr/lessons/basics/basics/&title=Βασικά&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/gr/lessons/basics/basics/&via=elixirschool&text=ElixirSchool: Βασικά&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/gr/lessons/basics/basics/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/gr/lessons/basics/basics/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/gr/lessons/basics/basics/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Βασικά" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/gr/lessons/basics/basics/&title=ElixirSchool: Βασικά&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/gr/lessons/basics/basics/&title=ElixirSchool: Βασικά&description=Check out 'Βασικά' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Βασικά&body=Check out 'Βασικά' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/gr/lessons/basics/basics/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

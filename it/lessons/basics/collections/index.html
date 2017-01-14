@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lezioni sul linguaggio di programmazione Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/it/lessons/basics/collections/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Collezioni &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lezioni sul linguaggio di programmazione Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Collezioni &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lezioni sul linguaggio di programmazione Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Base</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/it/lessons/basics/basics/">Base</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/it/lessons/basics/collections/">Collezioni</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/it/lessons/basics/enum/">Enumerazioni</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/it/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/it/lessons/basics/control-structures/">Strutture di Controllo</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/it/lessons/basics/functions/">Funzioni</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/it/lessons/basics/pipe-operator/">Operatore Pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/it/lessons/basics/modules/">Composizione</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/it/lessons/basics/mix/">Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Avanzato</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/it/lessons/advanced/concurrency/">Concorrenza</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/collections/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/collections/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/collections/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/collections/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/collections/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/collections/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/collections/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/collections/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/collections/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/collections/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/collections/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/collections/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/collections/ ">my</a>
+      
+        <a href=" /no/lessons/basics/collections/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/collections/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/collections/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/collections/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/collections/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/collections/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/collections/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/collections/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Collezioni</h1>
+  <p>Liste, tuple, liste di keywords, mappe, dizionari e combinatori funzionali.</p>
+
+<h2>Tavola dei Contenuti</h2>
+<div id="toc"></div>
+
+<h2 id="liste">Liste</h2>
+
+<p>Le Liste sono semplici collezioni di valori, possono includere diversi tipi di dato; le liste possono includere valori ripetuti:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Elixir implementa le liste come liste linkate (<em>linked lists</em>). Questo significa che l’accesso ad un elemento di una lista è un’operazione <code class="highlighter-rouge">O(n)</code>. Per questa ragione, è solitamente più veloce inserire rispetto ad appendere un nuovo elemento:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="sd">"</span><span class="s2">π"</span><span class="p">]</span> <span class="o">++</span> <span class="n">list</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">π"</span><span class="p">,</span> <span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">++</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Cherry"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Cherry"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="concatenazione-di-liste">Concatenazione di Liste</h3>
+
+<p>Per concatenare le liste si una l’operatore <code class="highlighter-rouge">++/2</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span> <span class="o">++</span> <span class="p">[</span><span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">]</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="sottrazione-tra-liste">Sottrazione tra Liste</h3>
+
+<p>Il supporto alla sottrazione è fornito dall’operatore <code class="highlighter-rouge">--/2</code>; è possibile sottrarre un valore mancante:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="ss">:bar</span><span class="p">,</span> <span class="m">42</span><span class="p">]</span> <span class="o">--</span> <span class="p">[</span><span class="m">42</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">]</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="ss">:bar</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p><strong>Nota:</strong> viene usata la <a href="../basics#confronto">strict comparison</a> per controllare i valori.</p>
+
+<h3 id="head--tail">Head / Tail</h3>
+
+<p>Quando si usano le liste, è comune lavorare con la <em>testa</em> (head) e la <em>coda</em> (tail) della lista. La testa è il primo elemento della lista e la coda rappresenta gli elementi rimanenti. Elixir fornisce due metodi utili, <code class="highlighter-rouge">hd</code> e <code class="highlighter-rouge">tl</code>, per lavorare con queste parti:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">hd</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">tl</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Oltre alle funzioni menzionate in precedenza, puoi usare l’operatore <em>pipe</em> <code class="highlighter-rouge">|</code>; vedremo questo operatore nelle lezioni successive:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">h</span><span class="o">|</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">h</span>
+<span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="tuple">Tuple</h2>
+
+<p>Le tuple sono simili alle liste, ma sono conservate in memoria in modo adiancente. Ciò permette di accedere agli elementi in modo rapido, but rende le modifiche più dispendiose; la nuova tupla deve essere interamente copiata in memoria. Le tuple sono rappresentate con le parentesi graffe:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">}</span>
+<span class="p">{</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>È comune usare le tuple come meccanismo per ricevere informazioni addizionali dalle funzioni; l’utilità di questo sarà più evidente quando parleremo di <em>pattern matching</em>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sd">"</span><span class="s2">path/to/existing/file"</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">... contents ..."</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sd">"</span><span class="s2">path/to/unknown/file"</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="ss">:enoent</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="liste-di-keywords">Liste di Keywords</h2>
+
+<p>Le liste di keywords e le mappe sono collezioni associative di Elixir; entrambe implementano il modulo <code class="highlighter-rouge">Dict</code>. In Elixir, una lista di keywords è una speciale lista di tuple che hanno un atom come primo elemento; condividono le performance con le liste:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+<span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[{</span><span class="ss">:foo</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">},</span> <span class="p">{</span><span class="ss">:hello</span><span class="p">,</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}]</span>
+<span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Le tre caratteristiche delle liste di keywords sottolineano la loro importanza:</p>
+
+<ul>
+  <li>Le <em>chiavi</em> (keys) sono atoms.</li>
+  <li>Le chiavi sono ordinate.</li>
+  <li>Le chiavi non sono uniche.</li>
+</ul>
+
+<p>Per queste ragioni, le liste di keywords sono comunemente utilizzate per passare opzioni alle funzioni.</p>
+
+<h2 id="mappe">Mappe</h2>
+
+<p>In Elixir, le mappe sono il punto di riferimento per organizzare le coppie chiave-valore. Diversamente dalle liste di keywords, le mappe consentono di utilizzare qualsiasi tipo di dato come chiave e non seguono nessun ordinamento. Puoi definire una mappa con la sintassi <code class="highlighter-rouge">%{}</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="ss">:world</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="ss">:world</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">[</span><span class="ss">:foo</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">bar"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">[</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">]</span>
+<span class="ss">:world</span>
+</code></pre>
+</div>
+
+<p>Dalla versione 1.2 di Elixir, è possibile usare le variabli come chiavi per le mappe:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">key</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">hello"</span>
+<span class="sd">"</span><span class="s2">hello"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="n">key</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Se una chiave duplicata è aggiunta ad una mappa, sostituirà il valore precedente:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">hello world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">hello world"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Come possiamo notare dal risultato ottenuto sopra, c’è una sintassi speciale per le mappe che contengono solo chiavi di tipo atom:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span> <span class="o">==</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">:hello</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/it/lessons/basics/collections/&title=Collezioni&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/it/lessons/basics/collections/&via=elixirschool&text=ElixirSchool: Collezioni&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/it/lessons/basics/collections/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/it/lessons/basics/collections/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/it/lessons/basics/collections/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Collezioni" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/it/lessons/basics/collections/&title=ElixirSchool: Collezioni&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/it/lessons/basics/collections/&title=ElixirSchool: Collezioni&description=Check out 'Collezioni' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Collezioni&body=Check out 'Collezioni' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/it/lessons/basics/collections/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Leçons sur le langage de programmation Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/fr/lessons/basics/control-structures/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Structures de Contrôle &middot; Elixir School
+
+">
+  <meta property="og:description" content="Leçons sur le langage de programmation Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Structures de Contrôle &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Leçons sur le langage de programmation Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Bases</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/fr/lessons/basics/basics/">Bases</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/fr/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/fr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/fr/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/fr/lessons/basics/control-structures/">Structures de Contrôle</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/fr/lessons/basics/functions/">Fonctions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/fr/lessons/basics/pipe-operator/">L'opérateur Pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/fr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/fr/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/fr/lessons/basics/testing/">Tests</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/fr/lessons/basics/mix-tasks/">Tâches Mix Personnalisées</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/control-structures/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/control-structures/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/control-structures/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/control-structures/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/control-structures/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/control-structures/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/control-structures/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/control-structures/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/control-structures/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/control-structures/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/control-structures/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/control-structures/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/control-structures/ ">my</a>
+      
+        <a href=" /no/lessons/basics/control-structures/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/control-structures/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/control-structures/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/control-structures/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/control-structures/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/control-structures/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/control-structures/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/control-structures/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Structures de Contrôle</h1>
+  <p>Dans cette leçon nous allons voir les structures de contrôle à notre disposition dans Elixir.</p>
+
+<h2>Table des matières</h2>
+<div id="toc"></div>
+
+<h2 id="if-et-unless"><code class="highlighter-rouge">if</code> et <code class="highlighter-rouge">unless</code></h2>
+
+<p>Il y a des chances que vous ayez déjà rencontré <code class="highlighter-rouge">if/2</code>, si vous avez utilisé Ruby <code class="highlighter-rouge">unless/2</code> vous est familier. En Elixir ils fonctionnent de la même façon mais sont définis comme des macros, pas des constructions du language. Vous trouverez leur implementation dans le <a href="http://elixir-lang.org/docs/stable/elixir/#!Kernel.html">module Kernel</a>.</p>
+
+<p>A noter en Elixir, les seules valeurs équivalentes à <code class="highlighter-rouge">false</code> sont <code class="highlighter-rouge">nil</code> et le booléen <code class="highlighter-rouge">false</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">if</span> <span class="no">String</span><span class="o">.</span><span class="n">valid?</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Valid string!"</span>
+<span class="o">...&gt;</span> <span class="k">else</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Invalid string."</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Valid string!"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">if</span> <span class="sd">"</span><span class="s2">a string value"</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Truthy"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Truthy"</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">unless/2</code> s’utilise come <code class="highlighter-rouge">if/2</code> mis à part qu’il fonctionne sur la négation:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">unless</span> <span class="n">is_integer</span><span class="p">(</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Not an Int"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Not an Int"</span>
+</code></pre>
+</div>
+
+<h2 id="case"><code class="highlighter-rouge">case</code></h2>
+
+<p>S’il est nécessaire de tester plusieurs motifs nous pouvons utiliser <code class="highlighter-rouge">case</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hello World"</span><span class="p">}</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">result</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="n">result</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:error</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Uh oh!"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Catch all"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Hello World"</span>
+</code></pre>
+</div>
+
+<p>La variable <code class="highlighter-rouge">_</code> est une inclusion importante dans les déclarations <code class="highlighter-rouge">case</code>. Sans celle-ci, l’impossibilité de trouver une correspondance générera une erreur:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="ss">:even</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="ss">:odd</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Odd"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">CaseClauseError</span><span class="p">)</span> <span class="n">no</span> <span class="k">case</span> <span class="n">clause</span> <span class="ss">matching:</span> <span class="ss">:even</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="ss">:even</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="ss">:odd</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Odd"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Not Odd"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Not Odd"</span>
+</code></pre>
+</div>
+
+<p>Considérez <code class="highlighter-rouge">_</code> comme le <code class="highlighter-rouge">else</code> qui correspondra à “tout les autres valeurs”.<br />
+Comme <code class="highlighter-rouge">case</code> se base sur le pattern matching, les mêmes règles et restrictions s’appliquent. Si vous voulez tester une valeur par rapport à une variable existante, vous devez utiliser l’opérateur pin <code class="highlighter-rouge">^</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">pie</span> <span class="o">=</span> <span class="m">3.14</span> 
+ <span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="sd">"</span><span class="s2">cherry pie"</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="o">^</span><span class="n">pie</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Not so tasty"</span>
+<span class="o">...&gt;</span>   <span class="n">pie</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">I bet </span><span class="si">#{</span><span class="n">pie</span><span class="si">}</span><span class="s2"> is tasty"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">I bet cherry pie is tasty"</span>
+</code></pre>
+</div>
+
+<p>Un autre caractéristique sympa de <code class="highlighter-rouge">case</code> est son support des guard clauses:</p>
+
+<p><em>Cet exemple est tiré du guide officiel Elixir <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#case">Getting Started</a>.</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">}</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="m">3</span><span class="p">}</span> <span class="ow">when</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Will match"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Won't match"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Will match"</span>
+</code></pre>
+</div>
+
+<p>La documentation pour <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses">les expressions permises dans les guard clauses</a>.</p>
+
+<h2 id="cond"><code class="highlighter-rouge">cond</code></h2>
+
+<p>Lorsque nous avons besoin de faire correspondre des conditions et non des valeurs, nous pouvons utiliser <code class="highlighter-rouge">cond</code>; un peu comme <code class="highlighter-rouge">else if</code> ou <code class="highlighter-rouge">elsif</code> dans d’autres langages:</p>
+
+<p><em>Cet exemple est tiré du guide officiel Elixir <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#cond">Getting Started</a>.</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">cond</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="m">2</span> <span class="o">+</span> <span class="m">2</span> <span class="o">==</span> <span class="m">5</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">This will not be true"</span>
+<span class="o">...&gt;</span>   <span class="m">2</span> <span class="o">*</span> <span class="m">2</span> <span class="o">==</span> <span class="m">3</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Nor this"</span>
+<span class="o">...&gt;</span>   <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">2</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">But this will"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">But this will"</span>
+</code></pre>
+</div>
+
+<p>Comme <code class="highlighter-rouge">case</code>, <code class="highlighter-rouge">cond</code> générera une erreur s’il n’y a pas de correspondance. Pour palier à ca, on peux définir une condition <code class="highlighter-rouge">true</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">cond</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="m">7</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">0</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Incorrect"</span>
+<span class="o">...&gt;</span>   <span class="no">true</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Catch all"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Catch all"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Partager cette page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/fr/lessons/basics/control-structures/&title=Structures de Contrôle&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/fr/lessons/basics/control-structures/&via=elixirschool&text=ElixirSchool: Structures de Contrôle&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/fr/lessons/basics/control-structures/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/fr/lessons/basics/control-structures/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/fr/lessons/basics/control-structures/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Structures de Contrôle" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/fr/lessons/basics/control-structures/&title=ElixirSchool: Structures de Contrôle&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/fr/lessons/basics/control-structures/&title=ElixirSchool: Structures de Contrôle&description=Check out 'Structures de Contrôle' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Structures de Contrôle&body=Check out 'Structures de Contrôle' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/fr/lessons/basics/control-structures/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

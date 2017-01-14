@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lessons about the Elixir programming language">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/lessons/basics/mix/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Mix &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lessons about the Elixir programming language">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Mix &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lessons about the Elixir programming language</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Basics</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/basics/basics/">Basics</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/basics/control-structures/">Control Structures</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/basics/functions/">Functions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson  active" href="/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Advanced</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/advanced/error-handling/">Error Handling</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/advanced/escripts/">Executables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/advanced/concurrency/">Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/advanced/umbrella-projects/">Umbrella Projects</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/advanced/typespec/">Specifications and types</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Specifics</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Libraries</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/mix/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/mix/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/mix/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/mix/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/mix/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/mix/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/mix/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/mix/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/mix/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/mix/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/mix/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/mix/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/mix/ ">my</a>
+      
+        <a href=" /no/lessons/basics/mix/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/mix/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/mix/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/mix/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/mix/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/mix/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/mix/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/mix/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Mix</h1>
+  <p>Before we can dive into the deeper waters of Elixir we first need to learn about mix. If you’re familiar with Ruby mix is Bundler, RubyGems, and Rake combined. It’s a crucial part of any Elixir project and in this lesson we’re going to explore just a few of its great features. To see all that mix has to offer run <code class="highlighter-rouge">mix help</code>.</p>
+
+<p>Until now we’ve been working exclusively within <code class="highlighter-rouge">iex</code> which has limitations.  In order to build something substantial we need to divide our code up into many files to effectively manage it; mix lets us do that with projects.</p>
+
+<h2>Table of Contents</h2>
+<div id="toc"></div>
+
+<h2 id="new-projects">New Projects</h2>
+
+<p>When we’re ready to create a new Elixir project, mix makes it easy with the <code class="highlighter-rouge">mix new</code> command.  This will generate our project’s folder structure and necessary boilerplate.  This is pretty straightforward, so let’s get started:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new example
+</code></pre>
+</div>
+
+<p>From the output we can see that mix has created our directory and a number of boilerplate files:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">*</span> creating README.md
+<span class="k">*</span> creating .gitignore
+<span class="k">*</span> creating mix.exs
+<span class="k">*</span> creating config
+<span class="k">*</span> creating config/config.exs
+<span class="k">*</span> creating lib
+<span class="k">*</span> creating lib/example.ex
+<span class="k">*</span> creating <span class="nb">test</span>
+<span class="k">*</span> creating <span class="nb">test</span>/test_helper.exs
+<span class="k">*</span> creating <span class="nb">test</span>/example_test.exs
+</code></pre>
+</div>
+
+<p>In this lesson we’re going to focus our attention on <code class="highlighter-rouge">mix.exs</code>.  Here we configure our application, dependencies, environment, and version.  Open the file in your favorite editor, you should see something like this (comments removed for brevity):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Mixfile</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Project</span>
+
+  <span class="k">def</span> <span class="n">project</span> <span class="k">do</span>
+    <span class="p">[</span><span class="ss">app:</span> <span class="ss">:example</span><span class="p">,</span>
+     <span class="ss">version:</span> <span class="sd">"</span><span class="s2">0.0.1"</span><span class="p">,</span>
+     <span class="ss">elixir:</span> <span class="sd">"</span><span class="s2">~&gt; 1.0"</span><span class="p">,</span>
+     <span class="ss">build_embedded:</span> <span class="no">Mix</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="ss">:prod</span><span class="p">,</span>
+     <span class="ss">start_permanent:</span> <span class="no">Mix</span><span class="o">.</span><span class="n">env</span> <span class="o">==</span> <span class="ss">:prod</span><span class="p">,</span>
+     <span class="ss">deps:</span> <span class="n">deps</span><span class="p">]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+    <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:logger</span><span class="p">]]</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+    <span class="p">[]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>The first section we’ll look at is <code class="highlighter-rouge">project</code>.  Here we define the name of our application (<code class="highlighter-rouge">app</code>), specify our version (<code class="highlighter-rouge">version</code>), Elixir version (<code class="highlighter-rouge">elixir</code>), and finally our dependencies (<code class="highlighter-rouge">deps</code>).</p>
+
+<p>The <code class="highlighter-rouge">application</code> section is used during the generation of our application file which we’ll cover next.</p>
+
+<h2 id="interactive">Interactive</h2>
+
+<p>It may be necessary to use <code class="highlighter-rouge">iex</code> within the context of our application.  Thankfully for us, mix makes this easy.  We can start a new <code class="highlighter-rouge">iex</code> session:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>iex -S mix
+</code></pre>
+</div>
+
+<p>Starting <code class="highlighter-rouge">iex</code> this way will load your application and dependencies into the current runtime.</p>
+
+<h2 id="compilation">Compilation</h2>
+
+<p>Mix is smart and will compile your changes when necessary, but it may still be necessary explicitly compile your project.  In this section we’ll cover how to compile our project and what compilation does.</p>
+
+<p>To compile a mix project we only need to run <code class="highlighter-rouge">mix compile</code> in our base directory:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix compile
+</code></pre>
+</div>
+
+<p>There isn’t much to our project so the output isn’t too exciting but it should complete successfully:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Compiled lib/example.ex
+Generated example app
+</code></pre>
+</div>
+
+<p>When we compile a project mix creates a <code class="highlighter-rouge">_build</code> directory for our artifacts.  If we look inside <code class="highlighter-rouge">_build</code> we will see our compiled application: <code class="highlighter-rouge">example.app</code>.</p>
+
+<h2 id="managing-dependencies">Managing Dependencies</h2>
+
+<p>Our project doesn’t have any dependencies but will shortly, so we’ll go ahead and cover defining dependencies and fetching them.</p>
+
+<p>To add a new dependency we need to first add it to our <code class="highlighter-rouge">mix.exs</code> in the <code class="highlighter-rouge">deps</code> section.  Our dependency list is comprised of tuples with two required values and one optional: the package name as an atom, the version string, and optional options.</p>
+
+<p>For this example let’s look at a project with dependencies, like <a href="https://github.com/doomspork/phoenix_slim">phoenix_slim</a>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:phoenix</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.1 or ~&gt; 1.2"</span><span class="p">},</span>
+   <span class="p">{</span><span class="ss">:phoenix_html</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 2.3"</span><span class="p">},</span>
+   <span class="p">{</span><span class="ss">:cowboy</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.0"</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">:dev</span><span class="p">,</span> <span class="ss">:test</span><span class="p">]},</span>
+   <span class="p">{</span><span class="ss">:slime</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 0.14"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>As you probably discerned from the dependencies above, the <code class="highlighter-rouge">cowboy</code> dependency is only necessary during development and test.</p>
+
+<p>Once we’ve defined our dependencies there is one final step: fetching them.  This is analogous to <code class="highlighter-rouge">bundle install</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix deps.get
+</code></pre>
+</div>
+
+<p>That’s it!  We’ve defined and fetched our project dependencies.  Now we’re prepared to add dependencies when the time comes.</p>
+
+<h2 id="environments">Environments</h2>
+
+<p>Mix, much like Bundler, supports differing environments.  Out of the box mix works with three environments:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">:dev</code> — The default environment.</li>
+  <li><code class="highlighter-rouge">:test</code> — Used by <code class="highlighter-rouge">mix test</code>. Covered further in our next lesson.</li>
+  <li><code class="highlighter-rouge">:prod</code> — Used when we ship our application to production.</li>
+</ul>
+
+<p>The current environment can be accessed using <code class="highlighter-rouge">Mix.env</code>.  As expected, the environment can be changed via the <code class="highlighter-rouge">MIX_ENV</code> environment variable:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nv">MIX_ENV</span><span class="o">=</span>prod mix compile
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/lessons/basics/mix/&title=Mix&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/lessons/basics/mix/&via=elixirschool&text=ElixirSchool: Mix&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/lessons/basics/mix/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/lessons/basics/mix/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/lessons/basics/mix/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Mix" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/lessons/basics/mix/&title=ElixirSchool: Mix&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/lessons/basics/mix/&title=ElixirSchool: Mix&description=Check out 'Mix' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Mix&body=Check out 'Mix' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/lessons/basics/mix/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

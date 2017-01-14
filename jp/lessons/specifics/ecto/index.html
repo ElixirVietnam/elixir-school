@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="プログラミング言語Elixirのレッスン">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/jp/lessons/specifics/ecto/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Ecto &middot; Elixir School
+
+">
+  <meta property="og:description" content="プログラミング言語Elixirのレッスン">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Ecto &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">プログラミング言語Elixirのレッスン</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>基礎</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/basics/basics/">基本</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/basics/collections/">コレクション</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/basics/pattern-matching/">パターンマッチング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/basics/control-structures/">制御構造</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/basics/functions/">関数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/basics/pipe-operator/">パイプライン演算子</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/basics/modules/">モジュール</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/jp/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/jp/lessons/basics/documentation/">ドキュメント</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/jp/lessons/basics/testing/">テスト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/jp/lessons/basics/comprehensions/">内包表記</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/jp/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/jp/lessons/basics/mix-tasks/">カスタムMixタスク</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>上級</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/advanced/erlang/">Erlangとの相互運用</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/advanced/error-handling/">エラーハンドリング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/advanced/escripts/">実行ファイル</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/advanced/concurrency/">並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-concurrency/">OTPの並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-supervisors/">OTPスーパーバイザ</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/advanced/metaprogramming/">メタプログラミング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/advanced/umbrella-projects/">アンブレラプロジェクト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/advanced/typespec/">仕様と型</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>詳細</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/jp/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/specifics/eex/">埋め込みElixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/ecto/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/ecto/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/ecto/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/ecto/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/ecto/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/ecto/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/ecto/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/ecto/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/ecto/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/ecto/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/ecto/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/ecto/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/ecto/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/ecto/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/ecto/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/ecto/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/ecto/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/ecto/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/ecto/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/ecto/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/ecto/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Ecto</h1>
+  <p>Ectoは公式のElixirプロジェクトで、データベースのラッパと、総合的なクエリ言語を提供します。Ectoを用いることで、マイグレーションの作成やモデルの定義、レコードの挿入や更新、問合せが行えるようになります。</p>
+
+<h2>目次</h2>
+<div id="toc"></div>
+
+<h2 id="section">セットアップ</h2>
+
+<p>最初に、Ectoとデータベースのアダプタをプロジェクトの<code class="highlighter-rouge">mix.exs</code>に含める必要があります。対応しているデータベースアダプタの一覧はEctoのREADMEにある<a href="https://github.com/elixir-lang/ecto/blob/master/README.md#usage">Usage</a>の項で見つけることができます。今回の例ではPostgreSQLを使用します:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:ecto</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.0"</span><span class="p">},</span>
+   <span class="p">{</span><span class="ss">:postgrex</span><span class="p">,</span> <span class="sd">"</span><span class="s2">&gt;= 0.0.0"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>これでEctoとアダプタをapplicationのリストに追加できます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:ecto</span><span class="p">,</span> <span class="ss">:postgrex</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section-1">リポジトリ</h3>
+
+<p>最後に、プロジェクトのリポジトリ、すなわちデータベースのラッパを作成する必要があります。これは<code class="highlighter-rouge">mix ecto.gen.repo</code>タスクで行うことができます。EctoのMixタスクについては次で扱います。作成されたリポジトリ(Repoモジュール)は<code class="highlighter-rouge">lib/&lt;project name&gt;/repo.ex</code>内に置かれます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span>
+    <span class="ss">otp_app:</span> <span class="ss">:example_app</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section-2">スーパーバイザ</h3>
+
+<p>Repoを作成したら、スーパーバイザツリーを設定する必要があります。これは通常<code class="highlighter-rouge">lib/&lt;project name&gt;.ex</code>内にあります。</p>
+
+<p>重要なので注記しておきますと、Repoはスーパーバイザとして、<code class="highlighter-rouge">worker/3</code> <em>ではなく</em> <code class="highlighter-rouge">supervisor/3</code>を用いて設定されます。アプリケーションの生成時に<code class="highlighter-rouge">--sup</code>フラグを付けていれば、この設定はほとんど済んでいます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">App</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Application</span>
+
+  <span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="n">supervisor</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="p">]</span>
+
+    <span class="n">opts</span> <span class="o">=</span> <span class="p">[</span><span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">]</span>
+    <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>スーパーバイザについてのさらなる情報は、<a href="../../advanced/otp-supervisors">OTPスーパーバイザ</a>レッスンを確認してください。</p>
+
+<h3 id="section-3">設定</h3>
+
+<p>Ectoを設定するには、<code class="highlighter-rouge">config/config.exs</code>に項目を追加する必要があります。ここで、リポジトリやアダプタ、データベース、アカウント情報を記述します。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">config</span> <span class="ss">:example_app</span><span class="p">,</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="p">,</span>
+  <span class="ss">adapter:</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Postgres</span><span class="p">,</span>
+  <span class="ss">database:</span> <span class="sd">"</span><span class="s2">example_app"</span><span class="p">,</span>
+  <span class="ss">username:</span> <span class="sd">"</span><span class="s2">postgres"</span><span class="p">,</span>
+  <span class="ss">password:</span> <span class="sd">"</span><span class="s2">postgres"</span><span class="p">,</span>
+  <span class="ss">hostname:</span> <span class="sd">"</span><span class="s2">localhost"</span>
+</code></pre>
+</div>
+
+<h2 id="mix">Mixタスク</h2>
+
+<p>Ectoには、データベースと連携するための役に立つMixタスクがいくつかあります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mix ecto.create         <span class="c"># リポジトリに記憶域を作成する</span>
+mix ecto.drop           <span class="c"># リポジトリの記憶域を削除する</span>
+mix ecto.gen.migration  <span class="c"># リポジトリの新しいマイグレーションを生成する</span>
+mix ecto.gen.repo       <span class="c"># 新しいリポジトリを生成する</span>
+mix ecto.migrate        <span class="c"># リポジトリのマイグレーションを実行する</span>
+mix ecto.rollback       <span class="c"># リポジトリのマイグレーションを巻き戻す(ロールバックする)</span>
+</code></pre>
+</div>
+
+<h2 id="section-4">マイグレーション</h2>
+
+<p>マイグレーションを作成する最も良い方法は<code class="highlighter-rouge">mix ecto.gen.migration &lt;name&gt;</code>タスクです。ActiveRecordを使ったことがあれば、馴染みがあるでしょう。</p>
+
+<p>ユーザテーブルのマイグレーションを見ていくことから始めましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="no">Migrations</span><span class="o">.</span><span class="no">CreateUser</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Migration</span>
+
+  <span class="k">def</span> <span class="n">change</span> <span class="k">do</span>
+    <span class="n">create</span> <span class="n">table</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">add</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">unique:</span> <span class="no">true</span>
+      <span class="n">add</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">null:</span> <span class="no">false</span>
+      <span class="n">add</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+      <span class="n">add</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+
+      <span class="n">timestamps</span>
+    <span class="k">end</span>
+
+    <span class="n">create</span> <span class="n">unique_index</span><span class="p">(</span><span class="ss">:users</span><span class="p">,</span> <span class="p">[</span><span class="ss">:username</span><span class="p">],</span> <span class="ss">name:</span> <span class="ss">:unique_usernames</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>初期状態ではEctoは自動でインクリメントする主キー<code class="highlighter-rouge">id</code>を作成します。この例では標準的な<code class="highlighter-rouge">change/0</code>コールバックを用いていますが、Ectoはより粒度の細かい制御が必要な場合のために、<code class="highlighter-rouge">up/0</code>と<code class="highlighter-rouge">down/0</code>にも対応しています。</p>
+
+<p>思った通りかもしれませんが、<code class="highlighter-rouge">timestamps</code>をマイグレーションに加えると、<code class="highlighter-rouge">inserted_at</code>と<code class="highlighter-rouge">updated_at</code>が作成、管理されます。</p>
+
+<p>この新しいマイグレーションを適用するには<code class="highlighter-rouge">mix ecto.migrate</code>を実行してください。</p>
+
+<p>マイグレーションのさらなる情報はEctoドキュメントの<a href="http://hexdocs.pm/ecto/Ecto.Migration.html#content">Ecto.Migration</a>の項を参照してください。</p>
+
+<h2 id="section-5">モデル</h2>
+
+<p>マイグレーションが作成されたので、モデルへ移ります。モデルはスキーマ、ヘルパーメソッド、そしてチェンジセットを定義します。チェンジセットについては次の項で扱います。</p>
+
+<p>まずはマイグレーション用のモデルがどういったものかを見てみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">User</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Schema</span>
+  <span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Changeset</span>
+
+  <span class="n">schema</span> <span class="sd">"</span><span class="s2">users"</span> <span class="k">do</span>
+    <span class="n">field</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+    <span class="n">field</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+    <span class="n">field</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+
+    <span class="n">timestamps</span>
+  <span class="k">end</span>
+
+  <span class="nv">@required_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">(</span><span class="n">username</span> <span class="n">encrypted_password</span> <span class="n">email</span><span class="p">)</span>
+  <span class="nv">@optional_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="n">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">params</span> <span class="p">\\</span> <span class="ss">:empty</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">user</span>
+    <span class="o">|&gt;</span> <span class="n">cast</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nv">@required_fields</span><span class="p">,</span> <span class="nv">@optional_fields</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">unique_constraint</span><span class="p">(</span><span class="ss">:username</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>モデル内で定義するスキーマはマイグレーションで記述したものを厳密に表現します。ここではデータベースのフィールドの他に、2つの仮想的なフィールドも加えています。仮想フィールドはデータベースには保存されませんが、バリデーションのような仕組みに役立てることができます。実際の仮想フィールドは<a href="#section-8">Changeset</a>の項で見ることにします。</p>
+
+<h2 id="section-6">クエリ</h2>
+
+<p>リポジトリに問合せができるようになる前に、Query APIをインポートする必要がありますが、今のところは<code class="highlighter-rouge">from/2</code>をインポートするだけで良いです:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Query</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">from:</span> <span class="m">2</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Query APIの公式ドキュメントは<a href="http://hexdocs.pm/ecto/Ecto.Query.html">Ecto.Query</a>で見つけることができます。</p>
+
+<h3 id="section-7">基本</h3>
+
+<p>Ectoは素晴らしいQuery DSLを提供しており、問合せをわかりやすく表現することができます。全ての確認済みアカウントのユーザ名を探す場合では、このような感じのクエリを用いることができるでしょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alias</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="p">{</span><span class="no">Repo</span><span class="p">,</span><span class="no">User</span><span class="p">}</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">u</span><span class="o">.</span><span class="n">username</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">all/2</code>に加えて、Repoは<code class="highlighter-rouge">one/2</code>や<code class="highlighter-rouge">get/3</code>、<code class="highlighter-rouge">insert/2</code>、<code class="highlighter-rouge">delete/2</code>を含む多くのコールバックを提供しています。コールバックの全ての一覧は<a href="http://hexdocs.pm/ecto/Ecto.Repo.html#callbacks">Ecto.Repo#callbacks</a>で見つけることができます。</p>
+
+<h3 id="count">Count</h3>
+
+<p>確認済みのユーザ数を集計したい場合は、<code class="highlighter-rouge">count/1</code>を使うことができます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>重複値を除いて集計したい場合は <code class="highlighter-rouge">count/2</code> 関数があります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="ss">:distinct</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="group-by">Group By</h3>
+
+<p>ユーザを確認済みかどうかでグループ化するには<code class="highlighter-rouge">group_by</code>オプションを加えます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">group_by:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">confirmed</span><span class="p">,</span> <span class="n">count</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">id</span><span class="p">)]</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="order-by">Order By</h3>
+
+<p>ユーザを作成日で順序付け:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">order_by:</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">,</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">]</span>
+
+<span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">DESC</code>で順序付けするには:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">order_by:</span> <span class="p">[</span><span class="ss">desc:</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">],</span>
+    <span class="ss">select:</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">inserted_at</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="join">Join</h3>
+
+<p>ユーザに関連付いたプロフィールがあると仮定して、全ての確認済みアカウントのプロフィールを探しましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">p</span> <span class="ow">in</span> <span class="no">Profile</span><span class="p">,</span>
+    <span class="ss">join:</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">assoc</span><span class="p">(</span><span class="n">profile</span><span class="p">,</span> <span class="ss">:user</span><span class="p">),</span>
+    <span class="ss">where:</span> <span class="n">u</span><span class="o">.</span><span class="n">confirmed</span> <span class="o">==</span> <span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="fragment">Fragment</h3>
+
+<p>特定のデータベースに用意されている関数を使う必要があるような場合など、Query APIでは事足りない場合もたまにあります。<code class="highlighter-rouge">fragment/1</code>関数はこうした目的のためにあります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="n">from</span> <span class="n">u</span> <span class="ow">in</span> <span class="no">User</span><span class="p">,</span>
+    <span class="ss">where:</span> <span class="n">fragment</span><span class="p">(</span><span class="sd">"</span><span class="s2">downcase(?)"</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="o">==</span> <span class="o">^</span><span class="n">username</span>
+    <span class="ss">select:</span> <span class="n">u</span>
+</code></pre>
+</div>
+
+<p>さらなるクエリ例については<a href="https://github.com/phoenix-examples/ecto_query_library">phoenix-examples/ecto_query_library</a>で見つけることができます。</p>
+
+<h2 id="section-8">チェンジセット</h2>
+
+<p>前の項ではデータの検索方法を学習しましたが、挿入や更新についてはどうすれば良いでしょうか。このためには、Changesetが必要となります。</p>
+
+<p>Changesetはモデルが変更される際のフィルタやバリデーション、制約の維持を担います。</p>
+
+<p>以下の例では、ユーザアカウントを作成する際のチェンジセットに注目します。始めに、モデルを更新する必要があります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">User</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Schema</span>
+  <span class="kn">import</span> <span class="no">Ecto</span><span class="o">.</span><span class="no">Changeset</span>
+  <span class="kn">import</span> <span class="no">Comeonin</span><span class="o">.</span><span class="no">Bcrypt</span><span class="p">,</span> <span class="ss">only:</span> <span class="p">[</span><span class="ss">hashpwsalt:</span> <span class="m">1</span><span class="p">]</span>
+
+  <span class="n">schema</span> <span class="sd">"</span><span class="s2">users"</span> <span class="k">do</span>
+    <span class="n">field</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:encrypted_password</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span>
+    <span class="n">field</span> <span class="ss">:confirmed</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="no">false</span>
+    <span class="n">field</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+    <span class="n">field</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">virtual:</span> <span class="no">true</span>
+
+    <span class="n">timestamps</span>
+  <span class="k">end</span>
+
+  <span class="nv">@required_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">(</span><span class="n">username</span> <span class="n">email</span> <span class="n">password</span> <span class="n">password_confirmation</span><span class="p">)</span>
+  <span class="nv">@optional_fields</span> <span class="err">~</span><span class="n">w</span><span class="p">()</span>
+
+  <span class="k">def</span> <span class="n">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">params</span> <span class="p">\\</span> <span class="ss">:empty</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">user</span>
+    <span class="o">|&gt;</span> <span class="n">cast</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nv">@required_fields</span><span class="p">,</span> <span class="nv">@optional_fields</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">validate_length</span><span class="p">(</span><span class="ss">:password</span><span class="p">,</span> <span class="ss">min:</span> <span class="m">8</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">validate_password_confirmation</span><span class="p">()</span>
+    <span class="o">|&gt;</span> <span class="n">unique_constraint</span><span class="p">(</span><span class="ss">:username</span><span class="p">,</span> <span class="ss">name:</span> <span class="ss">:email</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">put_change</span><span class="p">(</span><span class="ss">:encrypted_password</span><span class="p">,</span> <span class="n">hashpwsalt</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:password</span><span class="p">]))</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">validate_password_confirmation</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">case</span> <span class="n">get_change</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password_confirmation</span><span class="p">)</span> <span class="k">do</span>
+      <span class="no">nil</span> <span class="o">-&gt;</span>
+        <span class="n">password_incorrect_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
+      <span class="n">confirmation</span> <span class="o">-&gt;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">get_field</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">confirmation</span> <span class="o">==</span> <span class="n">password</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">changeset</span><span class="p">,</span> <span class="k">else</span><span class="p">:</span> <span class="n">password_mismatch_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">password_mismatch_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">add_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password_confirmation</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Passwords does not match"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">password_incorrect_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">add_error</span><span class="p">(</span><span class="n">changeset</span><span class="p">,</span> <span class="ss">:password</span><span class="p">,</span> <span class="sd">"</span><span class="s2">is not valid"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">changeset/2</code>関数を改良し、<code class="highlighter-rouge">validate_password_confirmation/1</code>と <code class="highlighter-rouge">password_mismatch_error/1</code>と<code class="highlighter-rouge">password_incorrect_error/1</code>の3つのヘルパー関数を追加しました。</p>
+
+<p><code class="highlighter-rouge">changeset/2</code>の名前から推測されるように、これは新しいチェンジセットを作成します。この中で、<code class="highlighter-rouge">cast/4</code>を用いて、一連の必要あるいはオプションのフィールドからパラメータをチェンジセットへと変換します。次に、チェンジセットのパスワードの長さと、独自実装した関数を用いてパスワード確認のマッチ、そしてユーザ名が一意であるかを検証します。最後に、実際のデータベースのパスワードフィールドを更新します。ここで、チェンジセットにある値を更新するために、<code class="highlighter-rouge">put_change/3</code>を使用しています。</p>
+
+<p><code class="highlighter-rouge">User.changeset/2</code>は比較的簡単に使用できます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">alias</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="p">{</span><span class="no">User</span><span class="p">,</span><span class="no">Repo</span><span class="p">}</span>
+
+<span class="n">pw</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">passwords should be hard"</span>
+<span class="n">changeset</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">changeset</span><span class="p">(%</span><span class="no">User</span><span class="p">{},</span> <span class="p">%{</span><span class="ss">username:</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span>
+                    <span class="ss">email:</span> <span class="sd">"</span><span class="s2">sean@seancallan.com"</span><span class="p">,</span>
+                    <span class="ss">password:</span> <span class="n">pw</span><span class="p">,</span>
+                    <span class="ss">password_confirmation:</span> <span class="n">pw</span><span class="p">})</span>
+
+<span class="k">case</span> <span class="no">Repo</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">model</span><span class="p">}</span>        <span class="o">-&gt;</span> <span class="c1"># Inserted with success</span>
+  <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">changeset</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="c1"># Something went wrong</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>おしまいです！これで、いくつかのデータを保存する用意ができました。</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    このページをシェアする
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/jp/lessons/specifics/ecto/&title=Ecto&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/jp/lessons/specifics/ecto/&via=elixirschool&text=ElixirSchool: Ecto&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/jp/lessons/specifics/ecto/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/jp/lessons/specifics/ecto/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/jp/lessons/specifics/ecto/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Ecto" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/jp/lessons/specifics/ecto/&title=ElixirSchool: Ecto&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/jp/lessons/specifics/ecto/&title=ElixirSchool: Ecto&description=Check out 'Ecto' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Ecto&body=Check out 'Ecto' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/jp/lessons/specifics/ecto/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

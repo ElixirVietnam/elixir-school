@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/advanced/typespec/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Đặc tả và kiểu &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Đặc tả và kiểu &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson  active" href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/typespec/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/typespec/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/typespec/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/typespec/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/typespec/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/typespec/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/typespec/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/typespec/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/typespec/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/typespec/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/typespec/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/typespec/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/typespec/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/typespec/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/typespec/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/typespec/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/typespec/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/typespec/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/typespec/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/typespec/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/typespec/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Đặc tả và kiểu</h1>
+  <p>Trong bài học này, chúng ta sẽ học về cú pháp <code class="highlighter-rouge">@spec</code> và <code class="highlighter-rouge">@type</code>. <code class="highlighter-rouge">@spec</code> giống như là một cú pháp hỗ trợ để viết tài liệu, và có thể được phân tích bởi các công cụ khác, <code class="highlighter-rouge">@type</code> giúp chúng ta viết các code dễ đọc và dễ hiểu hơn.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="gii-thiu">Giới thiệu</h2>
+
+<p>Thông thường, bạn sẽ muốn mô tả giao diện cho hàm của bạn. Tất nhiện bạn có thể sử dụng <a href="../../basics/documentation">@doc annotation</a>, tuy nhiên nó chỉ là các thông tin cho các lập trình viên khác, mà không được kiểm tra trong lúc biên dịch. Cho mục đích này, Elixir cung cấp <code class="highlighter-rouge">@spec</code> annotation để mô tả các đặc tả của hàm sẽ được kiểm tra bởi trình biên dịch</p>
+
+<p>Tuy nhiên, trong một số trường hợp, các đặc tả sẽ trở nên khá lớn và phức tạp. Nếu bạn muốn giảm bớt tính phức tạp, nhưng vẫn muốn đưa ra định nghĩa cho các kiểu mới, Elixir cung cấp anotiation(tạm dịch là ký tự chú thích)<code class="highlighter-rouge">@type</code> để làm việc này. Nói cách khác, Elixir vẫn là một ngôn ngữ kiểu động (dynamic language). Nghĩa là tất cả các thông tin về kiểu sẽ bị trình biên dịch bỏ qua, nhưng nó có thể được sử dụng bởi các công cụ khác.</p>
+
+<h2 id="c-t">Đặc tả</h2>
+
+<p>Nếu đã có kinh nghiệm với Java và Ruby, bạn có thể coi đặc tả như là một <code class="highlighter-rouge">interface</code>. Đặc tả định nghĩa kiểu của các tham số của hàm, cũng như kiểu của giá trị trả về.</p>
+
+<p>Để định nghĩa kiểu đầu vào và đầu ra, chúng ta sử dụng <code class="highlighter-rouge">@spec</code> ngay trước định nghĩa hàm, các tham số cho <code class="highlighter-rouge">@spec</code> sẽ là tên của hàm, danh sách kiểu của các tham số cho hàm đó, tiếp theo là <code class="highlighter-rouge">::</code>, cuối cùng là kiểu của giá trị trả về</p>
+
+<p>Hãy cùng xem ví dụ dưới đây:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_product</span><span class="p">(</span><span class="n">integer</span><span class="p">)</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_product</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Mọi thứ trông vẫn tốt, và khi chúng ta gọi hàm này, một giá trị hợp lệ sẽ được trả về, nhưng hàm <code class="highlighter-rouge">Enum.sum</code> trả về <code class="highlighter-rouge">number</code> chứ không phải là <code class="highlighter-rouge">integer</code> như chúng ta mong muốn ở trong <code class="highlighter-rouge">@spec</code>. Đây có thể nguồn gốc của các lỗi! Có những công cụ như Dialyzer để phân tích tĩnh (static analysis) code có thể giúp chúng ta tìm những lỗi kiểu này. Chúng ta sẽ nói về chúng trong một bài học khác.</p>
+
+<h2 id="kiu-tu-bin">Kiểu tuỳ biến</h2>
+
+<p>Các đặc tả là rất tốt, tuy nhiên đôi khi các hàm của chúng ta làm việc với nhiều cấu trúc dữ liệu phức tạp hơn là các số hoặc là các tập hợp (collections). Trong trường hợp này, <code class="highlighter-rouge">@spec</code> có thể sẽ trở nên rất khó hiểu, hoặc khó thay đổi đối với các lập trình viên khác. Đôi khi các hàm cần nhận vào một lượng lớn các tham số, hoặc là trả về một dữ liệu phức tạp. Một danh sách dài các tham số có thể là một trong những chỗ “bốc mùi” (code smell) trong code. Trong các ngôn ngữ hướng đối tượng giống như Ruby và Java, chúng ta có thể dễ dàng định nghĩa các class để giải quyết vấn đề này. Elixir không có class những bởi vì nó rất dễ để mở rộng, chúng ta có thể định nghĩa kiểu của riêng chúng ta.</p>
+
+<p>Ngoài ra, Elixir chứa một vài kiểu cơ bản như <code class="highlighter-rouge">integer</code>, hoặc là <code class="highlighter-rouge">pid</code>. Bạn có thể tìm hiểu về danh sách các kiểu có sẵn của Elixir trong <a href="http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax">tài liệu</a>.</p>
+
+<h3 id="nh-ngha-kiu-tu-bin">Định nghĩa kiểu tuỳ biến</h3>
+
+<p>Hãy cùng thay đổi hàm <code class="highlighter-rouge">sum_times</code> và giới thiệu thêm một vài tham số mới:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">})</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Chúng ta giới thiệu thêm một struct trong <code class="highlighter-rouge">Examples</code> module, chứa hai trường <code class="highlighter-rouge">first</code> và <code class="highlighter-rouge">last</code>. Đây là phiên bản đơn giản hơn của module <code class="highlighter-rouge">Range</code>. Chúng ta sẽ nói về <code class="highlighter-rouge">struct</code> khi chúng ta thảo luận về <a href="../../basics/modules/#structs">modules</a>. Tưởng tượng rằng, chúng ta muốn mô tả đặc tả với <code class="highlighter-rouge">Examples</code> struct trong rất nhiều chỗ. Những đặc tả này có thể sẽ rất dài, phức tạp, và có thể là cội nguồn của các bug. Một giải pháp cho chuyện này là dùng <code class="highlighter-rouge">@type</code>.</p>
+
+<p>Elixir cung cấp ba cách dùng để định nghĩa kiểu:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">@type</code> – kiểu public. Các cấu trúc nội tại của kiểu là public</li>
+  <li><code class="highlighter-rouge">@typep</code> – kiểu private, và chỉ có thể sử dụng trong module mà nó được định nghĩa.</li>
+  <li><code class="highlighter-rouge">@opaque</code> – kiểu public, but cấu trúc nội tại là private</li>
+</ul>
+
+<p>Hãy cùng định nghĩa kiểu của chúng ta:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Examples</span> <span class="k">do</span>
+
+    <span class="n">defstruct</span> <span class="ss">first:</span> <span class="no">nil</span><span class="p">,</span> <span class="ss">last:</span> <span class="no">nil</span>
+
+    <span class="nv">@type</span> <span class="n">t</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">first</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">last</span><span class="p">}</span>
+
+    <span class="nv">@type</span> <span class="n">t</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">}</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Chúng ta định nghĩa kiểu <code class="highlighter-rouge">t(first, last)</code> để đại diện cho struct <code class="highlighter-rouge">%Examples{first: first, last: last}</code>. Lúc này, chúng ta thấy các kiểu có thể nhận vào các parameter, nhưng chúng ta cũng định nghĩa kiểu <code class="highlighter-rouge">t</code>, và lúc này nó đại diện cho struct <code class="highlighter-rouge">%Examples{first: integer, last: integer}</code>.</p>
+
+<p>Điểm khác nhau là gì? Cái đầu tiên đại diện cho <code class="highlighter-rouge">Examples</code> struct mà hai khoá có thể là bất cứ kiểu này. Cái thứ hai đại diện cho struct, trong đó các khoá là các <code class="highlighter-rouge">integer</code>. Điều này có nghĩa là đoạn code sau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="no">Examples</span><span class="o">.</span><span class="n">t</span><span class="p">)</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Tương đương với:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="no">Examples</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="n">integer</span><span class="p">))</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="vit-ti-liu-cho-kiu">Viết tài liệu cho kiểu</h3>
+
+<p>Thành phần cuối cùng chúng ta muốn thảo luận là về các để viết tài liệu cho kiểu. Như chúng ta đã biết từ bài <a href="../../basics/documentation">documentation</a>, chúng ta có <code class="highlighter-rouge">@doc</code> và <code class="highlighter-rouge">@moduledoc</code> để viết các tài liệu cho hàm và cho module. Để viết tài liệu cho kiểu, chúng ta có thể dùng <code class="highlighter-rouge">@typedoc</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Examples</span> <span class="k">do</span>
+
+    <span class="nv">@typedoc</span> <span class="sd">"""
+        Type that represents Examples struct with :first as integer and :last as integer.
+    """</span>
+    <span class="nv">@type</span> <span class="n">t</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">}</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">@typedoc</code> là tương tự <code class="highlighter-rouge">@doc</code> and <code class="highlighter-rouge">@moduledoc</code>.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/advanced/typespec/&title=Đặc tả và kiểu&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/advanced/typespec/&via=elixirschool&text=ElixirSchool: Đặc tả và kiểu&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/advanced/typespec/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/advanced/typespec/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/advanced/typespec/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Đặc tả và kiểu" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/advanced/typespec/&title=ElixirSchool: Đặc tả và kiểu&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/advanced/typespec/&title=ElixirSchool: Đặc tả và kiểu&description=Check out 'Đặc tả và kiểu' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Đặc tả và kiểu&body=Check out 'Đặc tả và kiểu' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/advanced/typespec/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

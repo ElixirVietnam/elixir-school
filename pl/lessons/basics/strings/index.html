@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lekcje programowania w języku Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/pl/lessons/basics/strings/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Ciągi znaków &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lekcje programowania w języku Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Ciągi znaków &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lekcje programowania w języku Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Podstawy</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/basics/basics/">Podstawy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/basics/collections/">Kolekcje</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/basics/pattern-matching/">Dopasowanie wzorców</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/basics/control-structures/">Struktury sterujące</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pl/lessons/basics/functions/">Funkcje</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pl/lessons/basics/pipe-operator/">Operator Potoku</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pl/lessons/basics/modules/">Organizacja kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pl/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pl/lessons/basics/sigils/">Sigile</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/pl/lessons/basics/documentation/">Dokumentowanie kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/pl/lessons/basics/testing/">Testowanie kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/pl/lessons/basics/comprehensions/">Składanie kolekcji</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson  active" href="/pl/lessons/basics/strings/">Ciągi znaków</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/pl/lessons/basics/mix-tasks/">Własne funkcje Mix'a</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Zaawansowane</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/advanced/erlang/">Współpraca z Erlangiem</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/advanced/error-handling/">Wyjątki i błędy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/advanced/escripts/">Uruchamianie programów</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/advanced/concurrency/">Współbieżność</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/advanced/otp-concurrency/">Współbieżność z OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pl/lessons/advanced/otp-supervisors/">Nadzorcy OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pl/lessons/advanced/metaprogramming/">Metaprogramowanie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pl/lessons/advanced/umbrella-projects/">Projekty zbiorcze</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pl/lessons/advanced/typespec/">Specyfikacje i typy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pl/lessons/advanced/behaviours/">Zachowania</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Specyficzne</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/strings/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/strings/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/strings/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/strings/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/strings/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/strings/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/strings/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/strings/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/strings/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/strings/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/strings/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/strings/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/strings/ ">my</a>
+      
+        <a href=" /no/lessons/basics/strings/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/strings/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/strings/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/strings/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/strings/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/strings/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/strings/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/strings/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Ciągi znaków</h1>
+  <p>Czym są ciągi znaków w Elixirze, listy znaków, grafemy i jak wygląda obsługa kodowania znaków.</p>
+
+<h2>Spis treści</h2>
+<div id="toc"></div>
+
+<h2 id="cigi-znakw">Ciągi znaków</h2>
+
+<p>W Elixirze ciąg znaków to nic innego jak sekwencja bajtów, przykładowo:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">string</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="m">104</span><span class="p">,</span><span class="m">101</span><span class="p">,</span><span class="m">108</span><span class="p">,</span><span class="m">108</span><span class="p">,</span><span class="m">111</span><span class="o">&gt;&gt;</span>
+<span class="sd">"</span><span class="s2">hello"</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Uwaga: używając <code class="highlighter-rouge">&lt;&lt; &gt;&gt;</code> określamy, iż liczby w środku kompilator powinien traktować jak bajty.</p>
+</blockquote>
+
+<h2 id="listy-znakw">Listy znaków</h2>
+
+<p>Wewnętrznie Elixir przechowuje ciągi znaków jako sekwencja bajtów, a nie tablice znaków, posiada jednak osobny typ do reprezentowania listy znaków. Różnica polega na tym, że ciągi znaków tworzymy z użyciem podwójnego cudzysłowu <code class="highlighter-rouge">"</code>, a  listy za pomocą pojedynczego <code class="highlighter-rouge">'</code>.</p>
+
+<p>Jaka jest różnica pomiędzy nimi? Każdy element na liście znaków to pojedynczy znak ASCII, popatrzmy:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">char_list</span> <span class="o">=</span> <span class="s1">'hello'</span>
+<span class="s1">'hello'</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">hd</span><span class="o">|</span><span class="n">tl</span><span class="p">]</span> <span class="o">=</span> <span class="n">char_list</span>
+<span class="s1">'hello'</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="n">hd</span><span class="p">,</span> <span class="n">tl</span><span class="p">}</span>
+<span class="p">{</span><span class="m">104</span><span class="p">,</span> <span class="s1">'ello'</span><span class="p">}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">char_list</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="k">fn</span> <span class="n">char</span><span class="p">,</span> <span class="n">acc</span> <span class="o">-&gt;</span> <span class="n">acc</span> <span class="o">&lt;&gt;</span> <span class="n">to_string</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">,"</span> <span class="k">end</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">104,101,108,108,111,"</span>
+</code></pre>
+</div>
+
+<p>Listy znaków istnieją w Elixirze, ponieważ są wymagane przez niektóre moduły Erlanga. Na co dzień korzysta się z ciągów znaków.</p>
+
+<h2 id="grafemy-i-kodowanie">Grafemy i kodowanie</h2>
+
+<p>Znaki kodowe to zwyczajne znaki Unicode, które mogą być reprezentowane przez jeden albo więcej bajtów, w zależności od tego w której części tabeli UTF-8 się znajdują. Znaki spoza zakresu US ASCII zawsze są zapisywane na co najmniej dwóch bajty. Na przykład znaki z akcentem albo tyldą: <code class="highlighter-rouge">á, ñ, è</code> są zazwyczaj zapisywane na dwóch bajtach. Znaki z języków azjatyckich są najczęściej zapisywane na trzech albo czterech bajtach. Grafemy zwierają jeden lub wiele znaków kodowych, które będą reprezentować pojedynczy znak (literę).</p>
+
+<p>Moduł <code class="highlighter-rouge">String</code> ma dwie metody do ich obsługi <code class="highlighter-rouge">graphemes/1</code> i <code class="highlighter-rouge">codepoints/1</code>. Przyjrzyjmy się na przykładzie:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">string</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">\u0061\u0301"</span>
+<span class="sd">"</span><span class="s2">á"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">codepoints</span> <span class="n">string</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">a"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">́"</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">graphemes</span> <span class="n">string</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">á"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="popularne-funkcje">Popularne funkcje</h2>
+
+<p>Przyjrzyjmy się teraz kilku popularnym i ważnym funkcjom z modułu <code class="highlighter-rouge">String</code>.</p>
+
+<h3 id="length1"><code class="highlighter-rouge">length/1</code></h3>
+
+<p>Zwraca liczbę grafemów w ciągu znaków.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span> <span class="sd">"</span><span class="s2">Hello"</span>
+<span class="m">5</span>
+</code></pre>
+</div>
+
+<h3 id="replace3"><code class="highlighter-rouge">replace/3</code></h3>
+
+<p>Zwraca nowy ciąg, w którym zmieniono fragmenty pasujące do wzorca na podane w parametrze. Czwarty parametr jest opcjonalny.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">e"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">a"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hallo"</span>
+</code></pre>
+</div>
+
+<h3 id="duplicate2"><code class="highlighter-rouge">duplicate/2</code></h3>
+
+<p>Tworzy nowy ciąg znaków będący n-krotnym powtórzeniem zadanego.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="sd">"</span><span class="s2">Oh my "</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Oh my Oh my Oh my "</span>
+</code></pre>
+</div>
+
+<h3 id="split2"><code class="highlighter-rouge">split/2</code></h3>
+
+<p>Zwraca listę ciągów znaków, będącą wynikiem podziału ciągu według podanego wzorca.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello World"</span><span class="p">,</span> <span class="sd">"</span><span class="s2"> "</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">World"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="wiczenia">Ćwiczenia</h2>
+
+<p>Czas na dwa proste ćwiczenia by utrwalić naszą wiedzę o ciągach znaków i module <code class="highlighter-rouge">String</code>!</p>
+
+<h3 id="anagramy">Anagramy</h3>
+
+<p>Słowa A i B są anagramami jeżeli zmieniając kolejność liter w jednym z nich otrzymamy drugie:</p>
+
+<p>A = Wiek<br />
+B = Weki</p>
+
+<p>Jak można w Elixirze sprawdzić czy słowa są anagramami?</p>
+
+<p>Najprościej jest posortować litery alfabetycznie i sprawdzić czy takie listy są sobie równe. Przykładowo:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Anagram</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">anagrams?</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">do</span>
+  	<span class="n">sort_string</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">sort_string</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">sort_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">string</span>
+    <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">downcase</span>
+    <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">graphemes</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Przyjrzyjmy się najpierw funkcji <code class="highlighter-rouge">anagrams?/2</code>. Na początek sprawdzamy, czy parametry są binarne, czy też nie. W Elixirze jest to sposób na weryfikację czy parametr jest ciągiem znaków, czy też nie.</p>
+
+<p>Następnie wywołujemy funkcję, która posortuje litery alfabetycznie. Najpierw zamieni wszystkie znaki na małe, a następnie korzystając z <code class="highlighter-rouge">String.graphemes</code>, stworzy listę znaków, która zostanie posortowana. Proste, prawda?</p>
+
+<p>Sprawdźmy wyniki w konsoli <code class="highlighter-rouge">iex</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">ohell"</span><span class="p">)</span>
+<span class="no">true</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="sd">"</span><span class="s2">María"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">íMara"</span><span class="p">)</span>
+<span class="no">true</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">FunctionClauseError</span><span class="p">)</span> <span class="n">no</span> <span class="n">function</span> <span class="n">clause</span> <span class="n">matching</span> <span class="ow">in</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="o">/</span><span class="m">2</span>
+    <span class="ss">iex:</span><span class="m">2</span><span class="p">:</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Ostatnie wywołanie <code class="highlighter-rouge">anagrams?</code> spowodowało <code class="highlighter-rouge">FunctionClauseError</code>. Błąd ten mówi, że nie można znaleźć dopasowania funkcji, która mogłaby zostać wywołana z niebinarnymi argumentami. I oto nam chodzi, by naszą funkcję móc wywołać tylko z ciągami znaków.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Podziel się
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/pl/lessons/basics/strings/&title=Ciągi znaków&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/pl/lessons/basics/strings/&via=elixirschool&text=ElixirSchool: Ciągi znaków&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/pl/lessons/basics/strings/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/pl/lessons/basics/strings/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/pl/lessons/basics/strings/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Ciągi znaków" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/pl/lessons/basics/strings/&title=ElixirSchool: Ciągi znaków&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/pl/lessons/basics/strings/&title=ElixirSchool: Ciągi znaków&description=Check out 'Ciągi znaków' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Ciągi znaków&body=Check out 'Ciągi znaków' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/pl/lessons/basics/strings/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

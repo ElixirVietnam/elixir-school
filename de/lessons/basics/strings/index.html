@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Übungen zur Programmiersprache Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/de/lessons/basics/strings/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Strings &middot; Elixir School
+
+">
+  <meta property="og:description" content="Übungen zur Programmiersprache Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Strings &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Übungen zur Programmiersprache Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Grundlagen</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/de/lessons/basics/basics/">Grundlagen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/de/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/basics/enum/">Enums</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/de/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/de/lessons/basics/control-structures/">Kontrollstrukturen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/de/lessons/basics/functions/">Funktionen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/de/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/de/lessons/basics/modules/">Module</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/de/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/de/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/de/lessons/basics/documentation/">Dokumentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/de/lessons/basics/testing/">Testen</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/de/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson  active" href="/de/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/de/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Erweitert</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/de/lessons/advanced/erlang/">Erlang-Interoperabilität</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/de/lessons/advanced/error-handling/">Fehlerbehandlung</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/advanced/escripts/">Ausführbare Dateien</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/de/lessons/advanced/concurrency/">Nebenläufigkeit</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/de/lessons/advanced/otp-concurrency/">OTP Nebenläufigkeit</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/de/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/de/lessons/advanced/metaprogramming/">Metaprogrammierung</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/de/lessons/advanced/umbrella-projects/">Umbrella-Projekte</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/de/lessons/advanced/typespec/">Spezifikationen und Typen</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Einzelheiten</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/de/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/strings/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/strings/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/strings/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/strings/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/strings/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/strings/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/strings/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/strings/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/strings/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/strings/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/strings/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/strings/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/strings/ ">my</a>
+      
+        <a href=" /no/lessons/basics/strings/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/strings/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/strings/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/strings/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/strings/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/strings/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/strings/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/strings/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Strings</h1>
+  <p>Strings, Characterlisten, Graphemes und Codepoints.</p>
+
+<h2>Inhaltsverzeichnis</h2>
+<div id="toc"></div>
+
+<h2 id="strings">Strings</h2>
+
+<p>Elixir Strings sind nichts weiter als eine Bytesequenz. Nimm zum Beispiel:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">string</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="m">104</span><span class="p">,</span><span class="m">101</span><span class="p">,</span><span class="m">108</span><span class="p">,</span><span class="m">108</span><span class="p">,</span><span class="m">111</span><span class="o">&gt;&gt;</span>
+<span class="sd">"</span><span class="s2">hello"</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>NOTE: Die « » Syntax sagt dem Compiler, dass die Elemente zwischen diesen Zeichen bytes sind.</p>
+</blockquote>
+
+<h2 id="characterlisten">Characterlisten</h2>
+
+<p>Intern werden Elixir Strings als Sequenz von bytes repräsentiert, statt ein Array an Charactern. Elixir hat auch einen Typ Characterlisten. Elixir Strings werden in doppelten Anführungszeichen geschrieben, während Characterlisten in einfachen Anführungszeichen geschrieben werden.</p>
+
+<p>Wo ist der Unterschied? Jeder Wert einer Characterliste ist der ASCII-Wert des Characters. Lass uns nachsehen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">char_list</span> <span class="o">=</span> <span class="s1">'hello'</span>
+<span class="s1">'hello'</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">hd</span><span class="o">|</span><span class="n">tl</span><span class="p">]</span> <span class="o">=</span> <span class="n">char_list</span>
+<span class="s1">'hello'</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="n">hd</span><span class="p">,</span> <span class="n">tl</span><span class="p">}</span>
+<span class="p">{</span><span class="m">104</span><span class="p">,</span> <span class="s1">'ello'</span><span class="p">}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">char_list</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="k">fn</span> <span class="n">char</span><span class="p">,</span> <span class="n">acc</span> <span class="o">-&gt;</span> <span class="n">acc</span> <span class="o">&lt;&gt;</span> <span class="n">to_string</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">,"</span> <span class="k">end</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">104,101,108,108,111,"</span>
+</code></pre>
+</div>
+
+<p>Wenn wir in Elixir programmieren benutzen wir Strings, keine Characterlisten. Die Unterstützung für Characterlisten ist hauptsächlich vorhanden, da es für einige Erlangmodule benötigt wird.</p>
+
+<h2 id="graphemes-und-codepoints">Graphemes und Codepoints</h2>
+
+<p>Codepoints sind nur einfache Unicode-characters, die als ein oder mehrere bytes repräsentiert werden, abhängig von der UTF-8-Kodierung. Characters außerhalb des ASCII-Zeichensatzes werden immer mit mehr als einem byte repräsentiert. Zum Beispiel werden Latin-Buchstaben mit einer Tilde oder Akzent (<code class="highlighter-rouge">á, ñ, è</code>) üblicherweise als zwei bytes encoded. Characters aus asiatischen Sprachen werden oft mit drei oder vier bytes encoded. Graphemes bestehen aus mehreren codepoints, die als einzelner Character gerendert werden.</p>
+
+<p>Das Stringmodul bietet bereits zwei Methoden, um sie zu erhalten, <code class="highlighter-rouge">graphemes/1</code> und <code class="highlighter-rouge">codepoints/1</code>. Lass uns ein Beispiel anschauen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">string</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">\u0061\u0301"</span>
+<span class="sd">"</span><span class="s2">á"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">codepoints</span> <span class="n">string</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">a"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">́"</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">graphemes</span> <span class="n">string</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">á"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="stringfunktionen">Stringfunktionen</h2>
+
+<p>Lass uns nochmal ein paar der wichtisten und nützlichsten Funktionen des Stringmoduls anschauen. Diese Lektion wird nur einen Teil der verfügbaren Funktionen behandeln. Um eine komplette Liste an Funktionen zu sehen besuche die offizielle <a href="http://elixir-lang.org/docs/stable/elixir/String.html"><code class="highlighter-rouge">String</code></a>-Dokumentation.</p>
+
+<h3 id="length1"><code class="highlighter-rouge">length/1</code></h3>
+
+<p>Gibt die Anzahl der Graphemes im String zurück.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span> <span class="sd">"</span><span class="s2">Hello"</span>
+<span class="m">5</span>
+</code></pre>
+</div>
+
+<h3 id="replace3"><code class="highlighter-rouge">replace/3</code></h3>
+
+<p>Gibt einen neuen String zurück, in dem das zu ersetzende pattern im String durch einen neuen String ersetzt wurde.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">e"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">a"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hallo"</span>
+</code></pre>
+</div>
+
+<h3 id="duplicate2"><code class="highlighter-rouge">duplicate/2</code></h3>
+
+<p>Gibt einen neuen String n-mal zurück.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="sd">"</span><span class="s2">Oh my "</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Oh my Oh my Oh my "</span>
+</code></pre>
+</div>
+
+<h3 id="split2"><code class="highlighter-rouge">split/2</code></h3>
+
+<p>Gibt eine Liste an Strings zurück, geteilt anhand eines patterns.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello World"</span><span class="p">,</span> <span class="sd">"</span><span class="s2"> "</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">World"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="bungen">Übungen</h2>
+
+<p>Lass uns ein paar einfache Übungen durchgehen, um zu zeigen, dass wir Strings verstehen!</p>
+
+<h3 id="anagramme">Anagramme</h3>
+
+<p>A und B werden als Anagramme betrachtet, wenn man sie so umwandeln kann, dass sie gleich lauten. Zum Beispiel:</p>
+
+<ul>
+  <li>A = super</li>
+  <li>B = perus</li>
+</ul>
+
+<p>Wenn wir die Buchstaben von String A umtauschen, können wir String B erhalten und andersrum.</p>
+
+<p>Aber wie können wir nun überprüfen, ob zwei Strings Anagramme in Elixir sind? Die einfachste Lösung ist die Grapheme alphabetisch zu sortieren und dann zu überprüfen, ob beide Listen gleich sind. Lass uns das probieren:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Anagram</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">anagrams?</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">sort_string</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">sort_string</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">sort_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">string</span>
+    <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">downcase</span>
+    <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">graphemes</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Lass uns zuerst <code class="highlighter-rouge">anagrams?/2</code> anschauen. Wir überprüfen, ob die Parameter, die wir erhalten, binär sind oder nicht. So überprüfen wir in Elixir, ob ein Parameter ein String ist.</p>
+
+<p>Danach rufen wir einfach nur eine Funktion auf, die die Strings in alphabetischer Reihenfolge sortiert. Als erstes wird der String nur mit Kleinbuchstaben geschrieben und dann <code class="highlighter-rouge">String.graphemes</code> aufgerufen, was eine Liste der Grapheme des Strings zurück gibt. Ziemlich einfach, was?</p>
+
+<p>Lass uns die Ausgabe in IEx anschauen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">ohell"</span><span class="p">)</span>
+<span class="no">true</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="sd">"</span><span class="s2">María"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">íMara"</span><span class="p">)</span>
+<span class="no">true</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">FunctionClauseError</span><span class="p">)</span> <span class="n">no</span> <span class="n">function</span> <span class="n">clause</span> <span class="n">matching</span> <span class="ow">in</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="o">/</span><span class="m">2</span>
+    <span class="ss">iex:</span><span class="m">2</span><span class="p">:</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Wie du sehen kannst resultiert der Aufruf von <code class="highlighter-rouge">anagrams?</code> in einem FunctionClauseError. Dieser Fehler sagt uns, dass es keine Funktion in unserem Modul gibt, welche auf das pattern zutrifft, zwei nicht-binäre Argumente zu erhalten. Das ist genau das, was wir wollen, um nur zwei Strings zu erhalten und nichts anderes.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/de/lessons/basics/strings/&title=Strings&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/de/lessons/basics/strings/&via=elixirschool&text=ElixirSchool: Strings&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/de/lessons/basics/strings/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/de/lessons/basics/strings/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/de/lessons/basics/strings/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Strings" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/de/lessons/basics/strings/&title=ElixirSchool: Strings&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/de/lessons/basics/strings/&title=ElixirSchool: Strings&description=Check out 'Strings' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Strings&body=Check out 'Strings' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/de/lessons/basics/strings/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lekcje programowania w języku Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/pl/lessons/advanced/escripts/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Uruchamianie programów &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lekcje programowania w języku Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Uruchamianie programów &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lekcje programowania w języku Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Podstawy</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/basics/basics/">Podstawy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/basics/collections/">Kolekcje</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/basics/pattern-matching/">Dopasowanie wzorców</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/basics/control-structures/">Struktury sterujące</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pl/lessons/basics/functions/">Funkcje</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pl/lessons/basics/pipe-operator/">Operator Potoku</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pl/lessons/basics/modules/">Organizacja kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pl/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pl/lessons/basics/sigils/">Sigile</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/pl/lessons/basics/documentation/">Dokumentowanie kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/pl/lessons/basics/testing/">Testowanie kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/pl/lessons/basics/comprehensions/">Składanie kolekcji</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/pl/lessons/basics/strings/">Ciągi znaków</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/pl/lessons/basics/mix-tasks/">Własne funkcje Mix'a</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Zaawansowane</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/advanced/erlang/">Współpraca z Erlangiem</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/advanced/error-handling/">Wyjątki i błędy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson  active" href="/pl/lessons/advanced/escripts/">Uruchamianie programów</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/advanced/concurrency/">Współbieżność</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/advanced/otp-concurrency/">Współbieżność z OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pl/lessons/advanced/otp-supervisors/">Nadzorcy OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pl/lessons/advanced/metaprogramming/">Metaprogramowanie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pl/lessons/advanced/umbrella-projects/">Projekty zbiorcze</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pl/lessons/advanced/typespec/">Specyfikacje i typy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pl/lessons/advanced/behaviours/">Zachowania</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Specyficzne</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/escripts/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/escripts/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/escripts/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/escripts/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/escripts/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/escripts/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/escripts/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/escripts/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/escripts/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/escripts/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/escripts/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/escripts/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/escripts/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/escripts/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/escripts/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/escripts/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/escripts/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/escripts/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/escripts/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/escripts/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/escripts/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Uruchamianie programów</h1>
+  <p>Do stworzenia pliku wykonywalnego w Elixirze służy escript. Escript generuje plik wykonywalny, który może zostać uruchomiony na każdym komputerze, na którym zainstalowano Erlanga.</p>
+
+<h2>Spis treści</h2>
+<div id="toc"></div>
+
+<h2 id="na-pocztek">Na początek</h2>
+
+<p>By utworzyć plik, który można uruchomić, za pomocą escriptu musimy zrobić tylko kilka drobnych rzeczy: zaimplementować funkcję <code class="highlighter-rouge">main/1</code> oraz zaktualizować konfigurację mixa.</p>
+
+<p>Na początek stwórzmy moduł, który będzie punktem startowym programu. W nim zaimplementujemy funkcję <code class="highlighter-rouge">main/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">CLI</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">main</span><span class="p">(</span><span class="n">args</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="c1"># Do stuff</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Następnie w pliku mixa dodajemy sekcję <code class="highlighter-rouge">:escript</code>, która zawiera opcję <code class="highlighter-rouge">:main_module</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">Mixfile</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">project</span> <span class="k">do</span>
+    <span class="p">[</span><span class="ss">app:</span> <span class="ss">:example_app</span><span class="p">,</span>
+     <span class="ss">version:</span> <span class="sd">"</span><span class="s2">0.0.1"</span><span class="p">,</span>
+     <span class="ss">escript:</span> <span class="n">escript</span><span class="p">]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">escript</span> <span class="k">do</span>
+    <span class="p">[</span><span class="ss">main_module:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">CLI</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="parsowanie-argumentw">Parsowanie argumentów</h2>
+
+<p>Do naszej aplikacji możemy przekazać pewne argumenty z linii poleceń. By je sparsować, użyjemy Elixirowego modułu <code class="highlighter-rouge">OptionParser.parse/2</code> z opcją <code class="highlighter-rouge">:switches</code>, która zawiera informacje, iż nasza flaga jest typu logicznego:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">CLI</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">main</span><span class="p">(</span><span class="n">args</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="n">args</span>
+    <span class="o">|&gt;</span> <span class="n">parse_args</span>
+    <span class="o">|&gt;</span> <span class="n">response</span>
+    <span class="o">|&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">parse_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="n">opts</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">_</span><span class="p">}</span> <span class="o">=</span>
+      <span class="n">args</span>
+      <span class="o">|&gt;</span> <span class="no">OptionParser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="ss">switches:</span> <span class="p">[</span><span class="ss">upcase:</span> <span class="ss">:boolean</span><span class="p">])</span>
+
+    <span class="p">{</span><span class="n">opts</span><span class="p">,</span> <span class="no">List</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">word</span><span class="p">)}</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">response</span><span class="p">({</span><span class="n">opts</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hello"</span><span class="p">}),</span> <span class="k">do</span><span class="p">:</span> <span class="n">response</span><span class="p">({</span><span class="n">opts</span><span class="p">,</span> <span class="sd">"</span><span class="s2">World"</span><span class="p">})</span>
+  <span class="k">defp</span> <span class="n">response</span><span class="p">({</span><span class="n">opts</span><span class="p">,</span> <span class="n">word</span><span class="p">})</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">opts</span><span class="p">[</span><span class="ss">:upcase</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="no">String</span><span class="o">.</span><span class="n">upcase</span><span class="p">(</span><span class="n">word</span><span class="p">),</span> <span class="k">else</span><span class="p">:</span> <span class="n">word</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="tworzenie-plikw-wykonywalnych">Tworzenie plików wykonywalnych</h2>
+
+<p>Jak już skonfigurujemy aplikację by używała escript, stworzenie pliku wykonywalnego z Mixem jest banalne:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">$</span> <span class="n">mix</span> <span class="n">escript</span><span class="o">.</span><span class="n">build</span>
+</code></pre>
+</div>
+
+<p>Zobaczmy jak to działa:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="err">$</span> <span class="o">./</span><span class="n">example_app</span> <span class="o">--</span><span class="n">upcase</span> <span class="no">Hello</span>
+<span class="no">WORLD</span>
+
+<span class="err">$</span> <span class="o">./</span><span class="n">example_app</span> <span class="no">Hi</span>
+<span class="no">Hi</span>
+</code></pre>
+</div>
+<p>I to wszystko! Właśnie stworzyliśmy nasz pierwszy program z użyciem escriptu.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Podziel się
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/pl/lessons/advanced/escripts/&title=Uruchamianie programów&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/pl/lessons/advanced/escripts/&via=elixirschool&text=ElixirSchool: Uruchamianie programów&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/pl/lessons/advanced/escripts/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/pl/lessons/advanced/escripts/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/pl/lessons/advanced/escripts/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Uruchamianie programów" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/pl/lessons/advanced/escripts/&title=ElixirSchool: Uruchamianie programów&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/pl/lessons/advanced/escripts/&title=ElixirSchool: Uruchamianie programów&description=Check out 'Uruchamianie programów' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Uruchamianie programów&body=Check out 'Uruchamianie programów' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/pl/lessons/advanced/escripts/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

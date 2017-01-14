@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="プログラミング言語Elixirのレッスン">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/jp/lessons/advanced/typespec/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  仕様と型 &middot; Elixir School
+
+">
+  <meta property="og:description" content="プログラミング言語Elixirのレッスン">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  仕様と型 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">プログラミング言語Elixirのレッスン</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>基礎</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/basics/basics/">基本</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/basics/collections/">コレクション</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/basics/pattern-matching/">パターンマッチング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/basics/control-structures/">制御構造</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/basics/functions/">関数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/basics/pipe-operator/">パイプライン演算子</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/basics/modules/">モジュール</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/jp/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/jp/lessons/basics/documentation/">ドキュメント</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/jp/lessons/basics/testing/">テスト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/jp/lessons/basics/comprehensions/">内包表記</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/jp/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/jp/lessons/basics/mix-tasks/">カスタムMixタスク</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>上級</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/advanced/erlang/">Erlangとの相互運用</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/advanced/error-handling/">エラーハンドリング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/advanced/escripts/">実行ファイル</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/advanced/concurrency/">並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-concurrency/">OTPの並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-supervisors/">OTPスーパーバイザ</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/advanced/metaprogramming/">メタプログラミング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/advanced/umbrella-projects/">アンブレラプロジェクト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson  active" href="/jp/lessons/advanced/typespec/">仕様と型</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>詳細</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/specifics/eex/">埋め込みElixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/typespec/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/typespec/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/typespec/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/typespec/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/typespec/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/typespec/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/typespec/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/typespec/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/typespec/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/typespec/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/typespec/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/typespec/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/typespec/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/typespec/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/typespec/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/typespec/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/typespec/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/typespec/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/typespec/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/typespec/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/typespec/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">仕様と型</h1>
+  <p>このレッスンでは <code class="highlighter-rouge">@spec</code> と <code class="highlighter-rouge">@type</code> の文法について学びます。最初の <code class="highlighter-rouge">@spec</code> はツールによって解析できるドキュメントを書くための文法をより完全にするものです。二番目の <code class="highlighter-rouge">@type</code> はコードをより読みやすく理解しやすいものにする手助けをしてくれます。</p>
+
+<h2>目次</h2>
+<div id="toc"></div>
+
+<h2 id="section">イントロダクション</h2>
+
+<p>あなたが自分で書いた関数のインターフェイスを記述したいというのはそんなに珍しいことではないでしょう。もちろん <a href="../../basics/documentation">@doc アノテーション</a>を使うこともできますが、他の開発者にとってそれはコンパイル時にチェックされない単なる情報に過ぎません。この目的のために、Elixirには <code class="highlighter-rouge">@spec</code> アノテーションがあり、コンパイラによってチェックされる関数の使用を記述することができます。</p>
+
+<p>しかしながらいくつかのケースにおいて仕様は相当に大きくなったり複雑になったりしがちです。複雑さを少なくしたいのなら独自の型の定義を導入したくなるかもしれません。そのためにElixirには <code class="highlighter-rouge">@type</code> アノテーションがあります。一方でElixirは結局のところ動的言語です。このことは型に関する情報は全てコンパイラには無視されますが、別のツールによって使われるということを意味します。</p>
+
+<h2 id="specification">仕様(specification)</h2>
+
+<p>もし、あなたがJavaまたはRubyの経験をお持ちなら仕様を <code class="highlighter-rouge">interface</code> だと考えてよいでしょう。仕様は関数の取るべき引数と戻り値の型を定義します。</p>
+
+<p>入出力の型を定義するには <code class="highlighter-rouge">@spec</code> ディレクティブを関数定義の直前に置いて <code class="highlighter-rouge">引数</code> として関数名、引数の型のリスト、そして <code class="highlighter-rouge">::</code> の後に戻り値の型を描きます。</p>
+
+<p>例を見てみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_product</span><span class="p">(</span><span class="n">integer</span><span class="p">)</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_product</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>この関数を呼べば有効な結果が返って万事OKそう、に見えますが、関数 <code class="highlighter-rouge">Enum.sum</code> は <code class="highlighter-rouge">integer</code> ではなく <code class="highlighter-rouge">number</code> を返します。バグの元になるところでした! コードを静的解析してこのようなバグを見つける手助けをしてくれる Dialyzer のようなツールもあります。それについてはまた別のレッスンで。</p>
+
+<h2 id="section-1">独自の型</h2>
+
+<p>仕様を書くのはよいことですが時として我々が作った関数は単なる数やコレクションよりも複雑なデータ構造を使って動作します。そのような関数を <code class="highlighter-rouge">@spec</code> で定義すると他の開発者が理解する、あるいは変更することが極めて難しくなってしまうかもしれません。関数は数多くの引数をとり複雑なデータを返さなければならないことがあります。長い引数のリストは潜在的にコードの中でヤバそうな匂いを漂わせるものです。RubyやJavaのようなオブジェクト指向言語ではこの問題を解決するのを助けるために容易にクラスを定義できます。Elixirにはクラスはありません。それは型を定義することで簡単に言語仕様が拡張できるからです。</p>
+
+<p>Elixirには何もせずとも最初から <code class="highlighter-rouge">integer</code> や <code class="highlighter-rouge">pid</code> といった基本的な型があります。全ての利用できる型の一覧は<a href="http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax">公式ドキュメント</a>にあります。</p>
+
+<h3 id="section-2">独自の型を定義する</h3>
+
+<p>では先ほどの <code class="highlighter-rouge">sum_times</code> 関数を変更していくつか引数を新しく追加しましょう。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">})</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Examples</code> というモジュールの中に <code class="highlighter-rouge">first</code> と <code class="highlighter-rouge">last</code> というフィールドを持った構造体を導入しました。これは <code class="highlighter-rouge">Range</code> モジュールの構造体の簡易版です。 <code class="highlighter-rouge">構造体</code> については<a href="../../basics/modules/#structs">モジュール</a>で述べます。さて、<code class="highlighter-rouge">Examples</code>構造体の仕様をあちこちで書かなくてはならなくなったとしましょう。長くて複雑な仕様を書くのは面倒ですしバグの元になりかねません。この問題を解決するのが <code class="highlighter-rouge">@type</code> です。</p>
+
+<p>Elixirには3つの型の指定方法があります:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">@type</code> - 単純な、公開された(public)型です。型の内部の構造は公開されます。</li>
+  <li><code class="highlighter-rouge">@typep</code> - 型は非公開(private)で定義されたモジュール内部でのみ使えます。</li>
+  <li><code class="highlighter-rouge">@opaque</code> - 型は公開されますが内部の構造は非公開です。</li>
+</ul>
+
+<p>では我々の型を定義してみましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Examples</span> <span class="k">do</span>
+
+    <span class="n">defstruct</span> <span class="ss">first:</span> <span class="no">nil</span><span class="p">,</span> <span class="ss">last:</span> <span class="no">nil</span>
+
+    <span class="nv">@type</span> <span class="n">t</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">first</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">last</span><span class="p">}</span>
+
+    <span class="nv">@type</span> <span class="n">t</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">}</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>これで<code class="highlighter-rouge">t(first, last)</code>型、つまり構造体 <code class="highlighter-rouge">%Examples{first: first, last: last}</code> を表すものが定義できました。ここで型には引数を取ることができることが見て取れますが、型 <code class="highlighter-rouge">t</code> について今度は構造体 <code class="highlighter-rouge">%Examples{first: integer, last: integer}</code> を表すようにも定義しています。</p>
+
+<p>この違いは何でしょう? 最初のものは構造体 <code class="highlighter-rouge">Examples</code> で2つの、任意の型になれるキーを持つものを表しています。2番めのものは構造体でキーがどちらも <code class="highlighter-rouge">integer</code> であるものを表しています。即ち以下のコードは:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="no">Examples</span><span class="o">.</span><span class="n">t</span><span class="p">)</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>以下のコードと等価であるということを意味します。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="no">Examples</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="n">integer</span><span class="p">))</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section-3">型ドキュメント</h3>
+
+<p>最後にお話しなくてはいけない項目はどのように我々が定義した型をドキュメントにするかということです。我々は既に<a href="../../basics/documentation">ドキュメント</a>のレッスンによって、関数やモジュールに関するドキュメントを作成するためには <code class="highlighter-rouge">@doc</code> 及び <code class="highlighter-rouge">@moduledoc</code> アノテーションがあることを知っていますね。型をドキュメント化するには <code class="highlighter-rouge">@typedoc</code> を使います:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Examples</span> <span class="k">do</span>
+
+    <span class="nv">@typedoc</span> <span class="sd">"""
+        Type that represents Examples struct with :first as integer and :last as integer.
+        Examplesを表す型は:firstを整数型、:lastを整数型として取る構造体を表す。
+    """</span>
+    <span class="nv">@type</span> <span class="n">t</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">}</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>命令 <code class="highlighter-rouge">@typedoc</code> は <code class="highlighter-rouge">@doc</code> 及び <code class="highlighter-rouge">@moduledoc</code> と同じようなものです。</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    このページをシェアする
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/jp/lessons/advanced/typespec/&title=仕様と型&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/jp/lessons/advanced/typespec/&via=elixirschool&text=ElixirSchool: 仕様と型&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/jp/lessons/advanced/typespec/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/jp/lessons/advanced/typespec/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/jp/lessons/advanced/typespec/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 仕様と型" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/jp/lessons/advanced/typespec/&title=ElixirSchool: 仕様と型&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/jp/lessons/advanced/typespec/&title=ElixirSchool: 仕様と型&description=Check out '仕様と型' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 仕様と型&body=Check out '仕様と型' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/jp/lessons/advanced/typespec/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

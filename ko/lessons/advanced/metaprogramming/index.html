@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/advanced/metaprogramming/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  메타 프로그래밍 &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  메타 프로그래밍 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson  active" href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/metaprogramming/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/metaprogramming/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/metaprogramming/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/metaprogramming/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/metaprogramming/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/metaprogramming/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/metaprogramming/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/metaprogramming/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/metaprogramming/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/metaprogramming/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/metaprogramming/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/metaprogramming/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/metaprogramming/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/metaprogramming/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/metaprogramming/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/metaprogramming/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/metaprogramming/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/metaprogramming/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/metaprogramming/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/metaprogramming/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/metaprogramming/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">메타 프로그래밍</h1>
+  <p>메타 프로그래밍은 코드를 사용해서 코드를 작성하는 방법입니다. 이를 통해 Elixir에서는 필요에 따라 언어를 확장할 수 있으며, 동적으로 코드를 변경할 수도 있습니다. Elixir가 어떤 식으로 표현되고 있는지를 확인하는 부분부터 시작해서, 이를 변경하고 확장하는 법을 배워보겠습니다.</p>
+
+<p>주의: 메타 프로그래밍은 다루기 어려우며, 필요할 때에만 사용해야 합니다. 과도한 사용은 이해하기도 어렵고 디버깅하기도 어려운 복잡한 코드를 만듭니다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="quote">Quote</h2>
+
+<p>메타 프로그래밍의 첫번째 단계는 표현식이 어떻게 나타나는지를 이해하는 것입니다. Elixir 코드는 내부적으로 추상 문법 트리(Abstract Syntax Tree, AST)로 표현하는데, 이는 함수 이름과 메타 데이터, 함수의 인자를 포함하는 튜플로 이루어져 있습니다.</p>
+
+<p>이러한 내부 구조를 확인하기 위해서 Elixir는 <code class="highlighter-rouge">quote/2</code> 함수를 제공합니다. <code class="highlighter-rouge">quote/2</code>를 사용해서 Elixir의 코드의 기저에 있는 표현식으로 변환할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello"</span>
+<span class="sd">"</span><span class="s2">Hello"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="ss">:world</span>
+<span class="ss">:world</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="m">1</span> <span class="o">+</span> <span class="m">2</span>
+<span class="p">{</span><span class="ss">:+</span><span class="p">,</span> <span class="p">[</span><span class="ss">context:</span> <span class="no">Elixir</span><span class="p">,</span> <span class="kn">import</span><span class="p">:</span> <span class="no">Kernel</span><span class="p">],</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="k">if</span> <span class="n">value</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">True"</span><span class="p">,</span> <span class="k">else</span><span class="p">:</span> <span class="sd">"</span><span class="s2">False"</span>
+<span class="p">{</span><span class="ss">:if</span><span class="p">,</span> <span class="p">[</span><span class="ss">context:</span> <span class="no">Elixir</span><span class="p">,</span> <span class="kn">import</span><span class="p">:</span> <span class="no">Kernel</span><span class="p">],</span>
+ <span class="p">[{</span><span class="ss">:value</span><span class="p">,</span> <span class="p">[],</span> <span class="no">Elixir</span><span class="p">},</span> <span class="p">[</span><span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">True"</span><span class="p">,</span> <span class="k">else</span><span class="p">:</span> <span class="sd">"</span><span class="s2">False"</span><span class="p">]]}</span>
+</code></pre>
+</div>
+
+<p>처음의 3개는 튜플을 반환하지 않는 것을 확인하셨나요? 이 함수를 호출했을 때 자기 자신을 반환하는 리터럴이 다섯 가지 존재합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:atom</span>
+<span class="ss">:atom</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">string"</span>
+<span class="sd">"</span><span class="s2">string"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="m">1</span> <span class="c1"># All numbers</span>
+<span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span> <span class="c1"># Lists</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">,</span> <span class="ss">:world</span><span class="p">}</span> <span class="c1"># 2 element tuples</span>
+<span class="p">{</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">,</span> <span class="ss">:world</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="unquote">Unquote</h2>
+
+<p>이제 코드의 내부 구조를 확인해 볼 수 있게 되었습니다만, 수정은 어떻게 할 수 있을까요? 새 코드나 값을 주입하기 위해서는 <code class="highlighter-rouge">unquote/1</code>를 사용합니다. <code class="highlighter-rouge">unquote/1</code>를 호출하면 호출된 값이 평가되어 AST에 주입됩니다. <code class="highlighter-rouge">unquote/1</code>의 동작을 확인하기 위해서 예를 몇 개 들어보죠.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">denominator</span> <span class="o">=</span> <span class="m">2</span>
+<span class="m">2</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">divide</span><span class="p">(</span><span class="m">42</span><span class="p">,</span> <span class="n">denominator</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:divide</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="m">42</span><span class="p">,</span> <span class="p">{</span><span class="ss">:denominator</span><span class="p">,</span> <span class="p">[],</span> <span class="no">Elixir</span><span class="p">}]}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">divide</span><span class="p">(</span><span class="m">42</span><span class="p">,</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">denominator</span><span class="p">))</span>
+<span class="p">{</span><span class="ss">:divide</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="m">42</span><span class="p">,</span> <span class="m">2</span><span class="p">]}</span>
+</code></pre>
+</div>
+
+<p>첫 번째 예제에서는 변수 <code class="highlighter-rouge">denominator</code>는 결과로 반환되는 AST가 변수에 접근하기 위한 튜플을 포함하게끔 만들어져 있습니다. <code class="highlighter-rouge">unquote/1</code> 예제에서 생성된 코드는 위에서 본 코드 대신 <code class="highlighter-rouge">denominator</code>의 값을 포함하고 있습니다.</p>
+
+<h2 id="section">매크로</h2>
+
+<p><code class="highlighter-rouge">quote/2</code>와 <code class="highlighter-rouge">unquote/1</code>에 대해서 이해했다면, 이제 매크로에 뛰어들 시간입니다. 모든 메타 프로그래밍과 마찬가지로, 매크로는 정말 필요할 때에만 사용해야 합니다.</p>
+
+<p>매크로는 간단하게 설명하자면 애플리케이션 코드에 삽입할 수 있도록 감싸진 표현식을 반환하도록 설계된 특별한 함수입니다. 함수처럼 호출하는 것이 아니라, 명령문을 감싸진 표현식으로 대체하는 모습을 상상해주세요. 매크로만 있다면 Elixir를 확장하거나, 애플리케이션에 동적으로 코드를 추가할 수 있습니다.</p>
+
+<p><code class="highlighter-rouge">defmacro/2</code>를 사용해서 매크로를 정의해보죠. Elixir의 많은 부분들도 매크로로 구성되어 있습니다. 예를 들기 위해서 매크로로 <code class="highlighter-rouge">unless</code>를 구현해 보겠습니다. 매크로는 감싸진 표현식을 반환해야 한다는 점을 잊지 마세요.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">OurMacro</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="k">unless</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">block</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span>
+      <span class="k">if</span> <span class="n">!unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>그럼 만든 모듈을 가져와서 사용해보죠.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">OurMacro</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">OurMacro</span><span class="o">.</span><span class="k">unless</span> <span class="no">true</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">OurMacro</span><span class="o">.</span><span class="k">unless</span> <span class="no">false</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="sd">"</span><span class="s2">Hi"</span>
+</code></pre>
+</div>
+
+<p>매크로는 애플리케이션의 코드를 대체하므로, 컴파일 시에 이를 제어할 수 있습니다. <code class="highlighter-rouge">Logger</code> 모듈에서 이에 적당한 예제를 찾아볼 수 있습니다. 로깅이 비활성화되어 있다면, 코드가 주입되지 않으며 로깅을 위한 어떤 참조나 함수 호출도 포함되지 않습니다. 이는 함수의 내부가 NOP(처리하지 않음)이더라도, 함수 호출에 대한 오버헤드가 존재하는 다른 언어와 다릅니다.</p>
+
+<p>실제로 확인하기 위해서, 활성화/비활성화가 가능한 간단한 로거를 만들어 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Logger</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">log</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="no">Application</span><span class="o">.</span><span class="n">get_env</span><span class="p">(</span><span class="ss">:logger</span><span class="p">,</span> <span class="ss">:enabled</span><span class="p">)</span> <span class="k">do</span>
+      <span class="kn">quote</span> <span class="k">do</span>
+        <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">Logged message: </span><span class="si">#{</span><span class="kn">unquote</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="kn">require</span> <span class="no">Logger</span>
+
+  <span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+    <span class="no">Logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sd">"</span><span class="s2">This is a log message"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>로깅을 활성화하면, <code class="highlighter-rouge">test</code> 함수는 다음과 같은 모습이 됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+  <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">Logged message: </span><span class="si">#{</span><span class="sd">"</span><span class="s2">This is a log message"</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>로깅을 비활성화하는 경우, 코드는 다음처럼 생성됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="section-1">디버깅</h2>
+
+<p>좋아요. 이제 <code class="highlighter-rouge">quote/2</code>, <code class="highlighter-rouge">unquote/1</code>의 사용법과 매크로 작성법을 배웠습니다. 하지만 큰 덩어리의 감싸진 코드가 있고 그걸 이해해야 한다면 어떻게 해야할까요? 이 경우 <code class="highlighter-rouge">Macro.to_string/2</code>를 사용할 수 있습니다. 이 예제를 살펴봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Macro</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="kn">quote</span><span class="p">(</span><span class="k">do</span><span class="p">:</span> <span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)))</span>
+<span class="sd">"</span><span class="s2">foo.bar(1, 2, 3)"</span>
+</code></pre>
+</div>
+
+<p>그리고 매크로로 생성된 코드를 확인하고 싶다면, 코드를 <code class="highlighter-rouge">Macro.expand/2</code>, <code class="highlighter-rouge">Macro.expand_once/2</code>로 합칠 수 있습니다. 이 함수는 주어진 감싸진 코드로 매크로를 확장합니다. 첫 번째는 여러 번 확장됩니다. 하지만 뒤에 것은 한번만 확장됩니다. 예를 들어, 이 전 단락의 <code class="highlighter-rouge">unless</code> 예제를 수정해 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">OurMacro</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="k">unless</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">block</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span>
+      <span class="k">if</span> <span class="n">!unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="kn">require</span> <span class="no">OurMacro</span>
+<span class="n">quoted</span> <span class="o">=</span> <span class="kn">quote</span> <span class="k">do</span>
+  <span class="no">OurMacro</span><span class="o">.</span><span class="k">unless</span> <span class="no">true</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>iex&gt; quoted |&gt; Macro.expand_once(__ENV__) |&gt; Macro.to_string |&gt; IO.puts
+if(!true) do
+  "Hi"
+end
+</code></pre>
+</div>
+
+<p>같은 코드를 <code class="highlighter-rouge">Macro.expand/2</code>로 실행하면, 흥미로운 결과가 나옵니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">quoted</span> <span class="o">|&gt;</span> <span class="no">Macro</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">__ENV__</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="no">Macro</span><span class="o">.</span><span class="n">to_string</span> <span class="o">|&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span>
+<span class="k">case</span><span class="p">(</span><span class="n">!true</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">x</span> <span class="ow">when</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="no">false</span><span class="p">,</span> <span class="no">nil</span><span class="p">]</span> <span class="o">-&gt;</span>
+    <span class="no">nil</span>
+  <span class="n">_</span> <span class="o">-&gt;</span>
+    <span class="sd">"</span><span class="s2">Hi"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Elixir에서 <code class="highlighter-rouge">if</code>는 매크로라 했던 것을 기억하시나요? 여기에서 기저의 <code class="highlighter-rouge">case</code> 구문으로 확장되는 것을 확인할 수 있습니다.</p>
+
+<h3 id="private-">Private 매크로</h3>
+
+<p>일반적이지는 않지만, Elixir는 Private 매크로도 지원합니다. <code class="highlighter-rouge">defmacrop</code>를 사용해서 정의할 수 있으며, 정의된 모듈에서만 호출할 수 있습니다. Private 매크로는 반드시 호출되기 전에 정의되어야 합니다.</p>
+
+<h3 id="macro-hygiene">청결한 매크로(Macro Hygiene)</h3>
+
+<p>청결한 매크로는 전개했을 때, 호출된 컨텍스트와 어떻게 상호작용할까요? 기본적으로 Elixir 매크로는 청결하며 컨텍스트와 충돌하지 않습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">hygienic</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span> <span class="o">=</span> <span class="o">-</span><span class="m">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">Example</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span> <span class="o">=</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">hygienic</span>
+<span class="o">-</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span>
+<span class="m">42</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">val</code>을 조작하고 싶은 경우에는 어떻까요? 청결하지 않은 변수를 원한다는 것을 알리기 위해서 <code class="highlighter-rouge">var!/2</code>를 사용하면 됩니다. <code class="highlighter-rouge">var!/2</code>를 사용하도록 예제를 고쳐봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">hygienic</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span> <span class="o">=</span> <span class="o">-</span><span class="m">1</span>
+  <span class="k">end</span>
+
+  <span class="k">defmacro</span> <span class="n">unhygienic</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span><span class="p">:</span> <span class="n">var!</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">=</span> <span class="o">-</span><span class="m">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>컨텍스트와 어떻게 상호작용하는지를 비교해보세요.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">Example</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span> <span class="o">=</span> <span class="m">42</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">hygienic</span>
+<span class="o">-</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span>
+<span class="m">42</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">unhygienic</span>
+<span class="o">-</span><span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">val</span>
+<span class="o">-</span><span class="m">1</span>
+</code></pre>
+</div>
+
+<p>매크로에서 <code class="highlighter-rouge">var!/2</code>를 사용하는 것으로 매크로에게 <code class="highlighter-rouge">val</code> 값을 넘기지 않고, 이를 조작하였습니다. 청결하지 않은 매크로를 사용하는 것은 최소화해야 합니다. <code class="highlighter-rouge">var!/2</code>를 사용하는 것은 변수 해결시에 충돌이 발생할 위험성을 증가시키게 됩니다.</p>
+
+<h3 id="section-2">바인딩</h3>
+
+<p>이미 <code class="highlighter-rouge">unquote/1</code>라는 편리한 매크로를 배웠습니다만, 이외에도 코드에 값을 주입하는 바인딩이라는 방법이 있습니다. 변수 바인딩을 통해 매크로의 내부에 여러 변수를 포함하고, 한번만 quote 되도록 보장하는 것으로 예상치 못한 재평가를 회피할 수 있습니다. 바인딩된 변수를 사용하려면 <code class="highlighter-rouge">quote/2</code>의 <code class="highlighter-rouge">bind_quoted</code> 옵션에 키워드 리스트를 넘겨주면 됩니다.</p>
+
+<p><code class="highlighter-rouge">bind_quote</code>의 이점을 직접 확인해보기 위해서 재평가 문제가 있는 예제를 봅시다. 식을 두번 출력하는 단순한 매크로입니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">double_puts</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="k">do</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="kn">unquote</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>현재 시스템 시간을 넘기고, 같은 내용이 두 번 출력될 것이라고 기대합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">double_puts</span><span class="p">(</span><span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">)</span>
+<span class="m">1450475941851668000</span>
+<span class="m">1450475941851733000</span>
+</code></pre>
+</div>
+
+<p>시간이 다릅니다! 무슨 일이 있었던 걸까요? <code class="highlighter-rouge">unquote/1</code>를 같은 표현식에 여러 번 사용하는 것은 재평가를 발생시키며 예상치 못한 결과를 가져옵니다. <code class="highlighter-rouge">bind_quoted</code>를 사용해서 예제를 변경해봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="k">defmacro</span> <span class="n">double_puts</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">quote</span> <span class="ss">bind_quoted:</span> <span class="p">[</span><span class="ss">expr:</span> <span class="n">expr</span><span class="p">]</span> <span class="k">do</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="n">expr</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="n">expr</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">require</span> <span class="no">Example</span>
+<span class="no">nil</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">double_puts</span><span class="p">(</span><span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">)</span>
+<span class="m">1450476083466500000</span>
+<span class="m">1450476083466500000</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">bind_quoted</code>를 통해 기대하는 결과를 얻었습니다. 같은 시간이 두 번 출력됩니다.</p>
+
+<p>여기까지 Elixir를 필요에 맞게 확장하기 위한 도구인 <code class="highlighter-rouge">quote/2</code>, <code class="highlighter-rouge">unquote/1</code>, <code class="highlighter-rouge">defmacro/2</code>에 대해서 배웠습니다.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/advanced/metaprogramming/&title=메타 프로그래밍&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/advanced/metaprogramming/&via=elixirschool&text=ElixirSchool: 메타 프로그래밍&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/advanced/metaprogramming/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/advanced/metaprogramming/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/advanced/metaprogramming/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 메타 프로그래밍" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/advanced/metaprogramming/&title=ElixirSchool: 메타 프로그래밍&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/advanced/metaprogramming/&title=ElixirSchool: 메타 프로그래밍&description=Check out '메타 프로그래밍' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 메타 프로그래밍&body=Check out '메타 프로그래밍' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/advanced/metaprogramming/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

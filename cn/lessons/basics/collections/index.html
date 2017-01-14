@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Elixir 编程语言教程">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/cn/lessons/basics/collections/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  集合 &middot; Elixir School
+
+">
+  <meta property="og:description" content="Elixir 编程语言教程">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  集合 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Elixir 编程语言教程</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>基础</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/cn/lessons/basics/basics/">基础</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/cn/lessons/basics/collections/">集合</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/cn/lessons/basics/enum/">Enum 模块</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/cn/lessons/basics/pattern-matching/">模式匹配</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/cn/lessons/basics/control-structures/">控制语句</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/cn/lessons/basics/functions/">函数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/cn/lessons/basics/pipe-operator/">管道操作符</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/cn/lessons/basics/modules/">组合</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/cn/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/cn/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/cn/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/cn/lessons/basics/testing/">测试</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/cn/lessons/basics/comprehensions/">推导</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/cn/lessons/basics/strings/">字符串</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>高级</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/cn/lessons/advanced/erlang/">和 Erlang 互操作</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/cn/lessons/advanced/escripts/">可执行文件</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/cn/lessons/advanced/concurrency/">并发</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/cn/lessons/advanced/otp-concurrency/">OTP 并发</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/cn/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/cn/lessons/advanced/metaprogramming/">元编程</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>专题</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/cn/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/cn/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/collections/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/collections/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/collections/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/collections/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/collections/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/collections/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/collections/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/collections/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/collections/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/collections/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/collections/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/collections/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/collections/ ">my</a>
+      
+        <a href=" /no/lessons/basics/collections/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/collections/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/collections/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/collections/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/collections/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/collections/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/collections/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/collections/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">集合</h1>
+  <p>列表、元组、关键字列表（keywords）、图（maps）、字典和函数组合子（combinators）</p>
+
+<h2>目录</h2>
+<div id="toc"></div>
+
+<h2 id="section">列表</h2>
+
+<p>列表是值的简单集合，可以包含不同的数据类型，而且可能包含相同的值。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Elixir 内部用链表实现列表，这表明获取列表长度是 <code class="highlighter-rouge">O(n)</code> 的操作。同样的原因，在头部插入比在尾部插入要快。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="sd">"</span><span class="s2">π"</span><span class="p">]</span> <span class="o">++</span> <span class="n">list</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">π"</span><span class="p">,</span> <span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">++</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Cherry"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Cherry"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="section-1">列表拼接</h3>
+
+<p>列表拼接使用 <code class="highlighter-rouge">++/2</code> 操作符：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span> <span class="o">++</span> <span class="p">[</span><span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">]</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>关于上面使用到的 <code class="highlighter-rouge">++/2</code> 格式的说明：在 Elixir 中（以及 Elixir 的基础语言 Erlang），函数和操作符的名字由两部分组成：名字和元数(arity)。元数是 Elixir 和 Erlang 代码非常核心的部分，它代表了给定函数接受的参数个数（比如这里的 2），元数和名字之间通过斜线分割。我们后面会讲到更多这方面的内容，知道这些已经能帮你理解它的含义了。</p>
+
+<h3 id="section-2">列表减法</h3>
+
+<p><code class="highlighter-rouge">--/2</code> 操作符支持列表的减法，而且减去不存在的值也是安全的。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="ss">:bar</span><span class="p">,</span> <span class="m">42</span><span class="p">]</span> <span class="o">--</span> <span class="p">[</span><span class="m">42</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">]</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="ss">:bar</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>要注意重复值的处理：对于左边列表中的每个值，右边只有首次出现的这个值会被删除：</p>
+
+<p>iex&gt; [1,2,2,3,2,3] – [1,2,3,2]<br />
+[2, 3]</p>
+
+<p>注意：这里的比较 是否相同使用的是<a href="https://github.com/doomspork/elixir-school/blob/9321df59a92a765bf64363badab6fddfdb4fe11e/lessons/basics/#comparison">严格比较(strict comparison)</a>。</p>
+
+<h3 id="section-3">头/尾</h3>
+
+<p>使用列表的时候，经常要和头部和尾部打交道：列表的头部是列表的第一个元素；尾部是除去第一个元素剩下的列表。<br />
+Elixir 提供了两个函数 <code class="highlighter-rouge">hd</code> 和 <code class="highlighter-rouge">tl</code> 来获取这两个部分。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">hd</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">tl</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>除了上面的提到的函数，你还可以使用 <code class="highlighter-rouge">|</code> 操作符，我们在后面的教程中还会看到这种用法。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">h</span><span class="o">|</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="p">[</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">h</span>
+<span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="section-4">元组</h2>
+<p>元组和列表很像，但是元组在内存中是连续存放的。这样的话，获取元组的长度很快，但是修改元组的操作很昂贵：新的元组必须重新在内存中拷贝一份。<br />
+定义元组要用花括号：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">}</span>
+<span class="p">{</span><span class="m">3.14</span><span class="p">,</span> <span class="ss">:pie</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Apple"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>元组一个很常见的用法是作为函数的返回值，来返回额外的信息。当介绍到模式匹配的时候，这种用法的好处就显而易见了。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sd">"</span><span class="s2">path/to/existing/file"</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">... contents ..."</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="sd">"</span><span class="s2">path/to/unknown/file"</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="ss">:enoent</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="section-5">关键字列表</h2>
+
+<p>关键字列表（keywords）和图（maps）是 Elixir 中两个相关的集合：它们都实现了 <code class="highlighter-rouge">Dict</code> 模块。Elixir 的关键字列表是一种特殊的列表：列表里的内容是二元元组，并且二元组的第一个元素必须是原子。它和列表的行为完全一致。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+<span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[{</span><span class="ss">:foo</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">},</span> <span class="p">{</span><span class="ss">:hello</span><span class="p">,</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}]</span>
+<span class="p">[</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>关键字列表非常重要，它有以下的特性：</p>
+
+<ul>
+  <li>键（key）都是原子</li>
+  <li>键（key）是有序的（定义后，顺序不会改变）</li>
+  <li>键（key）是唯一的</li>
+</ul>
+
+<p>因为这些原因，关键字列表最常见的用法是作为参数传递给函数。</p>
+
+<h2 id="section-6">图</h2>
+
+<p>Elixir 的图（maps）是键值对结构的第一选择，和关键字列表（keywords）不同，图允许任意类型的数据作为键，而且数据并不严格排序。你可以使用 <code class="highlighter-rouge">%{}</code> 来定义图：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="ss">:world</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span> <span class="o">=&gt;</span> <span class="ss">:world</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">[</span><span class="ss">:foo</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">bar"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">[</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">]</span>
+<span class="ss">:world</span>
+</code></pre>
+</div>
+
+<p>Elixir 1.2 版本中，也可以把变量作为图的键（key）：</p>
+
+<p>iex&gt; key = “hello”<br />
+“hello”<br />
+iex&gt; %{key =&gt; “world”}<br />
+%{“hello” =&gt; “world”}</p>
+
+<p>如果重复的键添加到图中，后面的值会覆盖之前的值：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">hello world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">hello world"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>从上面的运行结果中，你或许发现了一些不同：存储键只有原子的图，可以不用 <code class="highlighter-rouge">=&gt;</code>，直接使用关键字列表的语法：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span> <span class="o">==</span> <span class="p">%{</span><span class="ss">:foo</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">:hello</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>图另一个有趣的特性是：它们提供了自己更新和获取原子键（key）的语法：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">%{</span><span class="n">map</span> <span class="o">|</span> <span class="ss">foo:</span> <span class="sd">"</span><span class="s2">baz"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">foo:</span> <span class="sd">"</span><span class="s2">baz"</span><span class="p">,</span> <span class="ss">hello:</span> <span class="sd">"</span><span class="s2">world"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">.</span><span class="n">hello</span>
+<span class="sd">"</span><span class="s2">world"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    分享本页面
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/cn/lessons/basics/collections/&title=集合&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/cn/lessons/basics/collections/&via=elixirschool&text=ElixirSchool: 集合&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/cn/lessons/basics/collections/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/cn/lessons/basics/collections/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/cn/lessons/basics/collections/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 集合" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/cn/lessons/basics/collections/&title=ElixirSchool: 集合&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/cn/lessons/basics/collections/&title=ElixirSchool: 集合&description=Check out '集合' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 集合&body=Check out '集合' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/cn/lessons/basics/collections/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

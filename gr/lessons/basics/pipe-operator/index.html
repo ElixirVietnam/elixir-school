@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/gr/lessons/basics/pipe-operator/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Τελεστής Σωλήνα &middot; Elixir School
+
+">
+  <meta property="og:description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Τελεστής Σωλήνα &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Μαθήματα προγραμματισμού της γλώσσας Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Βασικά</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/basics/basics/">Βασικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/basics/collections/">Συλλογές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/basics/pattern-matching/">Αντιπαραβολές Προτύπων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/basics/control-structures/">Δομές Ελέγχου</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/basics/functions/">Συναρτήσεις</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson  active" href="/gr/lessons/basics/pipe-operator/">Τελεστής Σωλήνα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/basics/modules/">Ενότητες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/basics/sigils/">Σφραγίδες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/basics/documentation/">Τεκμηρίωση</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/gr/lessons/basics/testing/">Δοκιμές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/gr/lessons/basics/comprehensions/">Ανάγνωση Λιστών</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/gr/lessons/basics/strings/">Αλφαριθμητικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/gr/lessons/basics/mix-tasks/">Ειδικές Εργασίες Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Προχωρημένα</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/advanced/erlang/">Διαλειτουργικότητα με την Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/advanced/error-handling/">Διαχείριση Σφαλμάτων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/advanced/escripts/">Εκτελέσιμα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/advanced/concurrency/">Συγχρονισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-concurrency/">Συγχρονισμός OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-supervisors/">Επιτηρητές OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/advanced/metaprogramming/">Μεταπρογραμματισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/advanced/umbrella-projects/">Projects Ομπρέλας</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/advanced/typespec/">Προδιαγραφές και τύποι</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/advanced/behaviours/">Συμπεριφορές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Ιδιαιτερότητες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/specifics/eex/">Ένθετη Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βιβλιοθήκες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/libraries/guardian/">Guardian (Βασικά)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/pipe-operator/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/pipe-operator/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/pipe-operator/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/pipe-operator/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/pipe-operator/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/pipe-operator/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/pipe-operator/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/pipe-operator/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/pipe-operator/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/pipe-operator/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/pipe-operator/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/pipe-operator/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/pipe-operator/ ">my</a>
+      
+        <a href=" /no/lessons/basics/pipe-operator/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/pipe-operator/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/pipe-operator/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/pipe-operator/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/pipe-operator/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/pipe-operator/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/pipe-operator/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/pipe-operator/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Τελεστής Σωλήνα</h1>
+  <p>Ο τελεστής σωλήνα <code class="highlighter-rouge">|&gt;</code> μεταφέρει το αποτέλεσμα μιας έκφρασης σαν το πρώτο όρισμα μιας άλλης έκφρασης.</p>
+
+<h2>Πίνακας περιεχομένων</h2>
+<div id="toc"></div>
+
+<h2 id="section">Εισαγωγή</h2>
+
+<p>Ο προγραμματισμός μπορεί να φέρει ακαταστασία.  Τόση ακαταστασία που οι κλήσεις συναρτήσεων μπορεί να είναι τόσο ένθετες που γίνεται δύσκολο να τις παρακολουθήσουμε. Λάβετε υπόψιν σας το παρακάτω παράδειγμα:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">foo</span><span class="p">(</span><span class="n">bar</span><span class="p">(</span><span class="n">baz</span><span class="p">(</span><span class="n">new_function</span><span class="p">(</span><span class="n">other_function</span><span class="p">()))))</span>
+</code></pre>
+</div>
+
+<p>Εδώ, περνάμε την τιμή της <code class="highlighter-rouge">other_function/1</code> στην <code class="highlighter-rouge">new_function/1</code>, και την <code class="highlighter-rouge">new_function/1</code> στην <code class="highlighter-rouge">baz/1</code>, την <code class="highlighter-rouge">baz/1</code> στην <code class="highlighter-rouge">bar/1</code> και τέλος το αποτέλεσμα της <code class="highlighter-rouge">bar/1</code> στην <code class="highlighter-rouge">foo/1</code>.  Η Elixir κάνει μια πραγματιστική προσέγγιση σε αυτό το συντακτικό χάος δίνοντάς μας τον τελεστή σωλήνα.  Ο τελεστής σωλήνα (<code class="highlighter-rouge">|&gt;</code>) <em>δέχεται το αποτέλεσμα μιας έκφρασης και το μεταφέρει</em>.  Ας δούμε το ίδιο παράδειγμα ξαναγραμμένο χρησιμοποιώντας τον τελεστή σωλήνα:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">other_function</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">new_function</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">baz</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">bar</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">foo</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p>Ο σωλήνας δέχεται το αποτέλεσμα στην αριστερή, και το περνάει στην δεξιά μεριά.</p>
+
+<h2 id="section-1">Παραδείγματα</h2>
+
+<p>Για αυτό το σετ παραδειγμάτων, θα χρησιμοποιήσουμε την ενότητα Αλφαρηθμητικών της Elixir.</p>
+
+<ul>
+  <li>Κερματισμός Αλφαρηθμητικών (χαλαρός)</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Η Elixir τα σπάει"</span> <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">split</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Η"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">τα"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">σπάει"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Αλλαγή σε κεφαλαία των κερμάτων</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Η Elixir τα σπάει"</span> <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">upcase</span> <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">split</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Η"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">ELIXIR"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">ΤΑ"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">ΣΠΑΕΙ"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Έλεγχος κατάληξης</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">elixir"</span> <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">ends_with?</span><span class="p">(</span><span class="sd">"</span><span class="s2">ixir"</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h2 id="section-2">Καλές Πρακτικές</h2>
+
+<p>Αν το πλήθος ορισμάτων μιας συνάρτησης είναι πάνω από 1, τότε χρησιμοποιήστε παρενθέσεις.  Δεν είναι πολύ σημαντικό για την Elixir, αλλά βοηθάει άλλους προγραμματιστές που μπορεί να παρερμηνεύσουν των κώδικά σας.  Αν πάρουμε το δεύτερο παράδειγμα και αφαιρέσουμε τις παρενθέσεις από την <code class="highlighter-rouge">Enum.map/2</code>, συναντούμε την παρακάτω προειδοποίηση:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">iex&gt; </span><span class="s2">"Η Elixir τα σπάει"</span> |&gt; String.split |&gt; Enum.map &amp;String.upcase/1
+iex: warning: you are piping into a <span class="k">function </span>call without parentheses, which may be ambiguous. Please wrap the <span class="k">function </span>you are piping into <span class="k">in </span>parenthesis. For example:
+
+foo 1 |&gt; bar 2 |&gt; baz 3
+
+Should be written as:
+
+foo<span class="o">(</span>1<span class="o">)</span> |&gt; bar<span class="o">(</span>2<span class="o">)</span> |&gt; baz<span class="o">(</span>3<span class="o">)</span>
+
+<span class="o">[</span><span class="s2">"Η"</span>, <span class="s2">"ELIXIR"</span>, <span class="s2">"ΤΑ"</span>, <span class="s2">"ΣΠΑΕΙ"</span><span class="o">]</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/gr/lessons/basics/pipe-operator/&title=Τελεστής Σωλήνα&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/gr/lessons/basics/pipe-operator/&via=elixirschool&text=ElixirSchool: Τελεστής Σωλήνα&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/gr/lessons/basics/pipe-operator/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/gr/lessons/basics/pipe-operator/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/gr/lessons/basics/pipe-operator/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Τελεστής Σωλήνα" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/gr/lessons/basics/pipe-operator/&title=ElixirSchool: Τελεστής Σωλήνα&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/gr/lessons/basics/pipe-operator/&title=ElixirSchool: Τελεστής Σωλήνα&description=Check out 'Τελεστής Σωλήνα' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Τελεστής Σωλήνα&body=Check out 'Τελεστής Σωλήνα' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/gr/lessons/basics/pipe-operator/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

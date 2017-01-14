@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/advanced/gen-stage/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  GenStage &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  GenStage &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson  active" href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/gen-stage/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/gen-stage/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/gen-stage/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/gen-stage/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/gen-stage/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/gen-stage/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/gen-stage/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/gen-stage/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/gen-stage/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/gen-stage/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/gen-stage/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/gen-stage/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/gen-stage/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/gen-stage/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/gen-stage/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/gen-stage/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/gen-stage/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/gen-stage/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/gen-stage/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/gen-stage/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/gen-stage/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">GenStage</h1>
+  <p>Trong bài này ta sẽ có cái nhìn cận cảnh về GenStage, nó đóng vai trò gì, và chúng ta có thể dùng nó như thế nào trong ứng dụng.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="gii-thiu">Giới thiệu</h2>
+
+<p>Vậy GenStage là gì? Nói một cách sách vở thì nó là một “cách đặc tả luồng tính toán của Elixir”, nhưng nó có nghĩa gì với chúng ta?</p>
+
+<p>Nó có nghĩa là GenState cung cấp cho chúng ta cách định nghĩa luồng công việc cần làm thành các bước (giai đoạn) độc lập trong những process riêng biệt. Nếu bạn từng làm việc với pipelines trước đó thì sẽ không lạ gì khái niệm này.</p>
+
+<p>Để hiểu rõ hơn cách nó làm việc, ta hãy hình dung một mô hình producer-consumer (tạm dịch: mô hình sản xuất - tiêu thụ) đơn giản:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[A] -&gt; [B] -&gt; [C]
+</code></pre>
+</div>
+
+<p>Trong ví dụ này chúng ta có ba giai đoạn: <code class="highlighter-rouge">A</code> là một producer, <code class="highlighter-rouge">B</code> là một producer-consumer và <code class="highlighter-rouge">C</code> là một consumer. <code class="highlighter-rouge">A</code> cung cấp một giá trị được tiêu thụ bởi <code class="highlighter-rouge">B</code>, <code class="highlighter-rouge">B</code> thực hiện một số việc và trả giá trị mới cho consumer <code class="highlighter-rouge">C</code>; vai trò của mỗi giai đoạn đều quan trọng và chúng ta sẽ xem tiếp nó trong phần tiếp theo.</p>
+
+<p>Ví dụ của chúng ta là mô hình producer-to-consumer 1-đối-1 nên không có vấn đề khi có nhiều producer và nhiều consumer ở bất kì giai đoạn nào.</p>
+
+<p>Để có thể dễ dàng hình dung những khái niệm này, ta sẽ cấu trúc một luồng với GenStage nhưng trước hết, ta hãy xem qua các vai trò trong GenStage một chút:</p>
+
+<h2 id="consumers-v-producers">Consumers và Producers</h2>
+
+<p>Như đã đọc, vai trò mà ta trao cho mỗi giai đoạn là quan trọng. Đặc tả của GenStage nhận ba vai trò:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">:producer</code> — Một nguồn. Một Producer sẽ đợi yêu cầu từ consumer và trả lời các sự kiện được yêu cầu.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:producer_consumer</code> — Vừa là nguồn vừa là hồ chứa. Producer-consumer vừa có thể trả lời yêu cầu cho các consumer, vừa có thể yêu cầu sự kiện từ các producer khác.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:consumer</code> — Một hồ chứa. Một Consumer sẽ gửi yêu cầu và nhận kết quả từ producer.</p>
+  </li>
+</ul>
+
+<p>Ai đó vừa nói rằng các producer <em>đợi</em> yêu cầu ư? Với GenStage các consumer gửi yêu cầu ngược lên và xử lý dữ liệu từ producer. Cơ chế này được gọi là back-pressure (tạm dịch: phản áp lực). Back-pressure giúp cho producer không tạo quá nhiều áp lực khi các consumer đang bận.</p>
+
+<p>Và ta đã xem xong các vai trò trong GenStage, giờ hãy bắt đầu với ứng dụng.</p>
+
+<h2 id="bt-u">Bắt đầu</h2>
+
+<p>Ở ví dụ này ta sẽ xây dựng một ứng dụng GenStage mà nó xuất ra các con số, lựa chọn các con số chẵn và cuối cùng in chúng ra.</p>
+
+<p>Với ứng dụng này chúng ta sẽ sử dụng cả ba vai trò trong GenStage. Producer sẽ chịu trách nhiệm đếm và xuất các con số. Một producer-consumer sẽ lọc ra những con số chẵn và sau đó trả lời yêu cầu từ bên dưới. Cuối cùng ta sẽ tạo một consumer để hiển thị các con số còn lại.</p>
+
+<p>Chúng ta sẽ bắt đầu với việc sinh ra một dự án với supervision tree (tạm dịch: cây giám sát).</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new genstage_example --sup
+<span class="gp">$ </span><span class="nb">cd </span>genstage_example
+</code></pre>
+</div>
+
+<p>Sau đó thêm <code class="highlighter-rouge">gen_stage</code> vào các thư viện trong <code class="highlighter-rouge">mix.exs</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+    <span class="p">[</span>
+      <span class="p">{</span><span class="ss">:gen_stage</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 0.7"</span><span class="p">},</span>
+    <span class="p">]</span>
+  <span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Chúng ta cần tải thư viện về và biên dịch trước khi xem tiếp:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix <span class="k">do </span>deps.get, compile
+</code></pre>
+</div>
+
+<p>Giờ thì ta đã sẵn sàng để viết producer rồi!</p>
+
+<h2 id="producer">Producer</h2>
+
+<p>Bước đầu tiên của ứng dụng GenStage là tạo producer. Như đã nói từ trước, chúng ta muốn tạo một producer xuất một dãy các con số. File producer là như sau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mkdir lib/genstage_example
+<span class="gp">$ </span>touch lib/genstage_example/producer.ex
+</code></pre>
+</div>
+
+<p>Sau đó thêm code vào:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Experimental</span><span class="o">.</span><span class="no">GenStage</span>
+
+  <span class="kn">use</span> <span class="no">GenStage</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">initial</span> <span class="p">\\</span> <span class="m">0</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">GenStage</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:producer</span><span class="p">,</span> <span class="n">counter</span><span class="p">}</span>
+
+  <span class="k">def</span> <span class="n">handle_demand</span><span class="p">(</span><span class="n">demand</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="no">Enum</span><span class="o">.</span><span class="n">to_list</span><span class="p">(</span><span class="n">state</span><span class="o">..</span><span class="n">state</span> <span class="o">+</span> <span class="n">demand</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span>
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="p">(</span><span class="n">state</span> <span class="o">+</span> <span class="n">demand</span><span class="p">)}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Có hai phần quan trọng cần chú ý ở đây là <code class="highlighter-rouge">init/1</code> và <code class="highlighter-rouge">handle_demand/2</code>. Trong <code class="highlighter-rouge">init/1</code> ta thiết lập trạng thái khởi tạo như vẫn thường làm với GenServer, nhưng quan trọng hơn là ta phải đánh dấu nó là một producer. GenStage sẽ dựa vào kết quả trả về từ hàm <code class="highlighter-rouge">init/1</code> của chúng ta để phân loại process.</p>
+
+<p>Hàm <code class="highlighter-rouge">handle_demand/2</code> là phần chủ yếu và <strong>phải được cài đặt</strong> của tất cả producer của GenStage. Ở đây ta sẽ trả về một dãy các số theo yêu cầu của consumer và nâng cờ đếm (<code class="highlighter-rouge">counter</code>) lên. Yêu cầu của consumer (<code class="highlighter-rouge">demand</code> trong đoạn code trên) được đại diện bởi một số nguyên tùy vào số sự kiện mà nó có thể xử lý, mặc định là 1000.</p>
+
+<h2 id="producer-consumer">Producer Consumer</h2>
+
+<p>Giờ ta đã có một producer để sinh các con số rồi, tiếp đến sẽ là producer-consumer. Chúng ta sẽ muốn gửi yêu cầu các con số từ producer, sau đó lọc ra các con số chẵn, rồi cuối cùng trả lời các yêu cầu.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>touch lib/genstage_example/producer_consumer.ex
+</code></pre>
+</div>
+
+<p>Ta cập nhật file cho nó giống với đoạn code bên dưới:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span>  <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Experimental</span><span class="o">.</span><span class="no">GenStage</span>
+  <span class="kn">use</span> <span class="no">GenStage</span>
+
+  <span class="kn">require</span> <span class="no">Integer</span>
+
+  <span class="k">def</span> <span class="n">start_link</span> <span class="k">do</span>
+    <span class="no">GenStage</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:state_doesnt_matter</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:producer_consumer</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">subscribe_to:</span> <span class="p">[</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_events</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">numbers</span> <span class="o">=</span>
+      <span class="n">events</span>
+      <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">&amp;</span><span class="no">Integer</span><span class="o">.</span><span class="n">is_even</span><span class="o">/</span><span class="m">1</span><span class="p">)</span>
+
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">numbers</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Chú ý là producer-consumer mà ta vừa viết có một tùy chỉnh mới trong <code class="highlighter-rouge">init/1</code> và một hàm mới <code class="highlighter-rouge">handle_event/3</code>. Trong tùy chỉnh <code class="highlighter-rouge">subscribe_to</code>, ta chỉ ra cho GenStage biết là producer-consumer cần được giao tiếp với một producer cụ thể nào.</p>
+
+<p>Phương thức <code class="highlighter-rouge">handle_event/3</code> sẽ chịu trách nhiệm xử lý chính, là nơi mà ta nhận các sự kiện tiếp theo, xử lý chúng và trả dữ liệu đã xử lý về. Ta thấy rằng consumer cũng được cài đặt theo cách khá giống nhau, nhưng cái khác nằm ở chỗ dữ liệu <code class="highlighter-rouge">handle_event/3</code> trả về và cách nó được sử dụng.<br />
+Khi ta đánh dấu process là một producer-consumer, tham số thứ hai của tuple (<code class="highlighter-rouge">numbers</code> trong trường hợp này) được dùng để trả lời cho yêu cầu của consumer ở bên dưới. Trong consumer giá trị này sẽ được loại bỏ.</p>
+
+<h2 id="consumer">Consumer</h2>
+
+<p>Và giờ thì tới lượt consumer:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>touch lib/genstage_example/consumer.ex
+</code></pre>
+</div>
+
+<p>Vì consumer và producer-consumer khá giống nhau nên code của chúng ta trông không khác nhau lắm:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Experimental</span><span class="o">.</span><span class="no">GenStage</span>
+  <span class="kn">use</span> <span class="no">GenStage</span>
+
+  <span class="k">def</span> <span class="n">start_link</span> <span class="k">do</span>
+    <span class="no">GenStage</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:state_doesnt_matter</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:consumer</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">subscribe_to:</span> <span class="p">[</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_events</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">event</span> <span class="o">&lt;-</span> <span class="n">events</span> <span class="k">do</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">inspect</span> <span class="p">{</span><span class="n">self</span><span class="p">(),</span> <span class="n">event</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+    <span class="k">end</span>
+
+    <span class="c1"># As a consumer we never emit events</span>
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="p">[],</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Như ta đã nói qua ở phần trước, consumer không tạo sự kiện, nên giá trị thứ hai trong tuple sẽ được loại bỏ:</p>
+
+<h2 id="rp-chng-li-vi-nhau">Ráp chúng lại với nhau</h2>
+
+<p>Bây giờ producer, producer-consumer và consumer đã sẵn sàng, ta sẽ ráp chúng lại với nhau.</p>
+
+<p>Ta bắt đầu bằng việc mở file <code class="highlighter-rouge">lib/genstage_example.ex</code> và thêm process mới vào supervisor tree:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+  <span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span><span class="p">,</span> <span class="ss">warn:</span> <span class="no">false</span>
+
+  <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span><span class="p">,</span> <span class="p">[</span><span class="m">0</span><span class="p">]),</span>
+    <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span><span class="p">,</span> <span class="p">[]),</span>
+    <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span><span class="p">,</span> <span class="p">[]),</span>
+  <span class="p">]</span>
+
+  <span class="n">opts</span> <span class="o">=</span> <span class="p">[</span><span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">]</span>
+  <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Nếu mọi thứ được cài đặt chính xác, ta có thể chạy dự án và nó sẽ hoạt động như bên dưới:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix run --no-halt
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 2, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 4, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 6, :state_doesnt_matter}</span>
+...
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 229062, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 229064, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 229066, :state_doesnt_matter}</span>
+</code></pre>
+</div>
+
+<p>Xong rồi! Ứng dụng sẽ chỉ xuất các con số chẵn như ta mong đợi và nó chạy quá <em>mượt</em>.</p>
+
+<p>Lúc này thì ta đã chạy được một pipeline với một producer xuất các con số, một producer-consumer loại bỏ các con số lẻ và một consumer hiển thị các thứ này và tiếp tục chạy theo luồng.</p>
+
+<h2 id="chy-a-producer-v-consumer">Chạy đa Producer và Consumer</h2>
+
+<p>Như đã đề cập trong phần Giới thiệu, ta có thể có nhiều hơn một producer hoặc consumer. Hãy cùng xem lại ví dụ lúc nãy.</p>
+
+<p>Nếu ta thử chạy <code class="highlighter-rouge">IO.inspec/1</code> trong ví dụ ta sẽ thấy tất cả sự kiện đều được xử lý bởi một PID duy nhất. Ta hãy chỉnh sửa file <code class="highlighter-rouge">lib/genstage_example.ex</code> một chút để chạy nhiều worker.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span><span class="p">,</span> <span class="p">[</span><span class="m">0</span><span class="p">]),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span><span class="p">,</span> <span class="p">[]),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">id:</span> <span class="m">1</span><span class="p">),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">id:</span> <span class="m">2</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Bây giờ thì ta đã cấu hình xong hai consumer, ta hãy cùng xem nó hiển thị gì khi chạy ứng dụng:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix run --no-halt
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 2, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.121.0&gt;, 4, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 6, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 8, :state_doesnt_matter}</span>
+...
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 86478, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.121.0&gt;, 87338, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 86480, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 86482, :state_doesnt_matter}</span>
+</code></pre>
+</div>
+
+<p>Như bạn thấy giờ ta đã có nhiều PID, đơn giản bằng cách thêm một dòng code và cấp ID cho các consumer.</p>
+
+<h2 id="ng-dng-thc-tin">Ứng dụng thực tiễn</h2>
+
+<p>Giờ ta đã biết GenStage và dựng được ứng dụng đầu tiên, nhưng ứng dụng <em>thực tiễn</em> của GenStage là gì?</p>
+
+<ul>
+  <li>
+    <p>Data Transformation Pipeline - Producer không nhất thiết phải là bộ sinh số đơn giản. Chúng ta có thể tạo ra các sự kiện từ database và thậm chí từ các nguồn như Kafka của Apache. Kết hợp với producer-consumer và consumer, ta có thể xử lý, sắp xếp, phân loại và lưu trữ thông số khi có dữ liệu.</p>
+  </li>
+  <li>
+    <p>Work Queue - Vì sự kiện có thể là bất cứ thứ gì, ta có thể sinh ra một loạt các công việc sẽ được hoàn thành bởi một loạt các consumer.</p>
+  </li>
+  <li>
+    <p>Event Processing - Tương tự như data pipeline, ta có thể nhận, xử lý, sắp xếp hay thao tác các sự kiện được tạo ra theo thời gian thực từ các nguồn.</p>
+  </li>
+</ul>
+
+<p>Và đó chỉ là <em>một vài</em> ví dụ đơn giản của GenStage.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/advanced/gen-stage/&title=GenStage&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/advanced/gen-stage/&via=elixirschool&text=ElixirSchool: GenStage&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/advanced/gen-stage/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/advanced/gen-stage/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/advanced/gen-stage/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: GenStage" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/advanced/gen-stage/&title=ElixirSchool: GenStage&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/advanced/gen-stage/&title=ElixirSchool: GenStage&description=Check out 'GenStage' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: GenStage&body=Check out 'GenStage' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/advanced/gen-stage/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

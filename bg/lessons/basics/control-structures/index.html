@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Уроци за езика за програмиране Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/bg/lessons/basics/control-structures/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Контролни структури &middot; Elixir School
+
+">
+  <meta property="og:description" content="Уроци за езика за програмиране Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Контролни структури &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Уроци за езика за програмиране Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Основи</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/bg/lessons/basics/basics/">Основи</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/bg/lessons/basics/collections/">Колекции</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/bg/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/bg/lessons/basics/pattern-matching/">Съпоставка с образец</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/bg/lessons/basics/control-structures/">Контролни структури</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/bg/lessons/basics/functions/">Функции</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/bg/lessons/basics/pipe-operator/">Поточен оператор</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/bg/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/bg/lessons/basics/documentation/">Документация</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/bg/lessons/basics/mix-tasks/">Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/control-structures/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/control-structures/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/control-structures/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/control-structures/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/control-structures/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/control-structures/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/control-structures/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/control-structures/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/control-structures/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/control-structures/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/control-structures/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/control-structures/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/control-structures/ ">my</a>
+      
+        <a href=" /no/lessons/basics/control-structures/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/control-structures/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/control-structures/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/control-structures/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/control-structures/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/control-structures/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/control-structures/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/control-structures/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Контролни структури</h1>
+  <p>В този урок ще разгледаме какви контролни структури са достъпни за нас в Elixir.</p>
+
+<h2>Съдържание</h2>
+<div id="toc"></div>
+
+<h2 id="if--unless"><code class="highlighter-rouge">if</code> и <code class="highlighter-rouge">unless</code></h2>
+
+<p>Най-вероятно сте срещали <code class="highlighter-rouge">if/2</code> преди, а ако сте ползвали Ruby сте запознати с <code class="highlighter-rouge">unless/2</code>.  При Elixir те работят по същия начин, но са дефинирани като макроси, а не конструкции на езика; Може да намерите тяхната имплементация в <a href="http://elixir-lang.org/docs/stable/elixir/#!Kernel.html">Kernel module</a>.</p>
+
+<p>Трябва да се отбележи, че в Elixir единствените неверни стойности са <code class="highlighter-rouge">nil</code> и булевото <code class="highlighter-rouge">false</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">if</span> <span class="no">String</span><span class="o">.</span><span class="n">valid?</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Valid string!"</span>
+<span class="o">...&gt;</span> <span class="k">else</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Invalid string."</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Valid string!"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">if</span> <span class="sd">"</span><span class="s2">a string value"</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Truthy"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Truthy"</span>
+</code></pre>
+</div>
+
+<p>Използването на <code class="highlighter-rouge">unless/2</code> е като <code class="highlighter-rouge">if/2</code>, само че работи върху невярното:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">unless</span> <span class="n">is_integer</span><span class="p">(</span><span class="sd">"</span><span class="s2">hello"</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="sd">"</span><span class="s2">Not an Int"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Not an Int"</span>
+</code></pre>
+</div>
+
+<h2 id="case"><code class="highlighter-rouge">case</code></h2>
+
+<p>Ако е необходимо да се съпоставя върху няколко образеца, може да използваме <code class="highlighter-rouge">case</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hello World"</span><span class="p">}</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">result</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="n">result</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:error</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Uh oh!"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Catch all"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Hello World"</span>
+</code></pre>
+</div>
+
+<p>Променливата <code class="highlighter-rouge">_</code> е важна добавка в условията на <code class="highlighter-rouge">case</code>. Без нея при ненамиране на съпоставка ще се генерира грешка:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="ss">:even</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="ss">:odd</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Odd"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">CaseClauseError</span><span class="p">)</span> <span class="n">no</span> <span class="k">case</span> <span class="n">clause</span> <span class="ss">matching:</span> <span class="ss">:even</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="ss">:even</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="ss">:odd</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Odd"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Not Odd"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Not Odd"</span>
+</code></pre>
+</div>
+
+<p>Гледайте на <code class="highlighter-rouge">_</code> като на <code class="highlighter-rouge">else</code>, който ще се съпостави с “всичко друго”.<br />
+Понеже <code class="highlighter-rouge">case</code> разчита на patern matching, всички правила и рестрикции са валидни.  Ако възнамерявате да съпоставяте срещу съществуващи променливи, трябва да използвате оператора <code class="highlighter-rouge">^</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">pie</span> <span class="o">=</span> <span class="m">3.14</span>
+<span class="m">3.14</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="sd">"</span><span class="s2">cherry pie"</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="o">^</span><span class="n">pie</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Not so tasty"</span>
+<span class="o">...&gt;</span>   <span class="n">pie</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">I bet </span><span class="si">#{</span><span class="n">pie</span><span class="si">}</span><span class="s2"> is tasty"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">I bet cherry pie is tasty"</span>
+</code></pre>
+</div>
+
+<p>Друго добро свойство на <code class="highlighter-rouge">case</code> е неговата поддръжка за предпазващи клаузи:</p>
+
+<p><em>Този пример е директно от официалното ръководство на Elixir <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#case">Начални стъпки</a>.</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">}</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="m">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="m">3</span><span class="p">}</span> <span class="ow">when</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Will match"</span>
+<span class="o">...&gt;</span>   <span class="n">_</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Won't match"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Will match"</span>
+</code></pre>
+</div>
+
+<p>Проветеве официалната документация за <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses">Допустими изрази в предпазващи клаузи</a>.</p>
+
+<h2 id="cond"><code class="highlighter-rouge">cond</code></h2>
+
+<p>Когато трябва да съпоставяме условия, а не стойности, може да се обърнем към <code class="highlighter-rouge">cond</code>; това е сходно с <code class="highlighter-rouge">else if</code> или <code class="highlighter-rouge">elsif</code> от други езици:</p>
+
+<p><em>Този пример е директно от официалното ръководство на Elixir <a href="http://elixir-lang.org/getting-started/case-cond-and-if.html#cond">Начални стъпки</a>.</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">cond</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="m">2</span> <span class="o">+</span> <span class="m">2</span> <span class="o">==</span> <span class="m">5</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">This will not be true"</span>
+<span class="o">...&gt;</span>   <span class="m">2</span> <span class="o">*</span> <span class="m">2</span> <span class="o">==</span> <span class="m">3</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">Nor this"</span>
+<span class="o">...&gt;</span>   <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">2</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="sd">"</span><span class="s2">But this will"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">But this will"</span>
+</code></pre>
+</div>
+
+<p>Както при <code class="highlighter-rouge">case</code>, <code class="highlighter-rouge">cond</code> ще генерира грешка, ако няма съпоставка.  За да се справим с това, може да дефинираме условия и да го устойностим като <code class="highlighter-rouge">true</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">cond</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="m">7</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">0</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Incorrect"</span>
+<span class="o">...&gt;</span>   <span class="no">true</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Catch all"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">Catch all"</span>
+</code></pre>
+</div>
+
+<h2 id="with"><code class="highlighter-rouge">with</code></h2>
+
+<p>Специалната форма <code class="highlighter-rouge">with</code> е полезна, когато бихте използвали внедрени <code class="highlighter-rouge">case</code> клаузи или при ситуации, които трудно могат да бъдат обвързани. Изразът <code class="highlighter-rouge">with</code> е съставен от ключовата дума, генератори и на последно място израз.</p>
+
+<p>Ще дискутираме генераторите повече в урока за обхващане на списъци (List Comprehensions), но засега имаме нужда само да знаем, че те използват съпоставка с образец, за да сравнят дясната страна откъм <code class="highlighter-rouge">&lt;-</code> към лявата.</p>
+
+<p>Ще започнем с прост пример с <code class="highlighter-rouge">with</code> и след това ще разгледаме още няколко:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">first:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">last:</span> <span class="sd">"</span><span class="s2">Callan"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">first:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">last:</span> <span class="sd">"</span><span class="s2">Callan"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">with</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">first</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:first</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">last</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:last</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="k">do</span><span class="p">:</span> <span class="n">last</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">, "</span> <span class="o">&lt;&gt;</span> <span class="n">first</span>
+<span class="sd">"</span><span class="s2">Callan, Sean"</span>
+</code></pre>
+</div>
+
+<p>В случай, че израз не може да бъде съпоставен, несъпоставената част ще бъде върната обратно:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="p">%{</span><span class="ss">first:</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">first:</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">with</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">first</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:first</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">last</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:last</span><span class="p">),</span>
+<span class="o">...&gt;</span>      <span class="k">do</span><span class="p">:</span> <span class="n">last</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">, "</span> <span class="o">&lt;&gt;</span> <span class="n">first</span>
+<span class="ss">:error</span>
+</code></pre>
+</div>
+
+<p>Нека сега разгледаме по-голям пример без <code class="highlighter-rouge">with</code> и след това да опитаме да го пренапишем:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">case</span> <span class="no">Repo</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span> <span class="k">do</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">user</span><span class="p">}</span> <span class="o">-&gt;</span>
+    <span class="k">case</span> <span class="no">Guardian</span><span class="o">.</span><span class="n">encode_and_sign</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="ss">:token</span><span class="p">,</span> <span class="n">claims</span><span class="p">)</span> <span class="k">do</span>
+      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">}</span> <span class="o">-&gt;</span>
+        <span class="n">important_stuff</span><span class="p">(</span><span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">)</span>
+      <span class="n">error</span> <span class="o">-&gt;</span> <span class="n">error</span>
+    <span class="k">end</span>
+  <span class="n">error</span> <span class="o">-&gt;</span> <span class="n">error</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Когато използваме <code class="highlighter-rouge">with</code> разполагаме с код, който е лесен за разбиране и съдържа по-малко редове:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">with</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">user</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Repo</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">changeset</span><span class="p">),</span>
+  <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="no">Guardian</span><span class="o">.</span><span class="n">encode_and_sign</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:token</span><span class="p">),</span>
+  <span class="k">do</span><span class="p">:</span> <span class="n">important_stuff</span><span class="p">(</span><span class="n">jwt</span><span class="p">,</span> <span class="n">full_claims</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Споделете тази страница
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/bg/lessons/basics/control-structures/&title=Контролни структури&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/bg/lessons/basics/control-structures/&via=elixirschool&text=ElixirSchool: Контролни структури&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/bg/lessons/basics/control-structures/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/bg/lessons/basics/control-structures/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/bg/lessons/basics/control-structures/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Контролни структури" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/bg/lessons/basics/control-structures/&title=ElixirSchool: Контролни структури&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/bg/lessons/basics/control-structures/&title=ElixirSchool: Контролни структури&description=Check out 'Контролни структури' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Контролни структури&body=Check out 'Контролни структури' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/bg/lessons/basics/control-structures/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

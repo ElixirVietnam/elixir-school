@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="プログラミング言語Elixirのレッスン">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/jp/lessons/specifics/plug/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Plug &middot; Elixir School
+
+">
+  <meta property="og:description" content="プログラミング言語Elixirのレッスン">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Plug &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">プログラミング言語Elixirのレッスン</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>基礎</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/basics/basics/">基本</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/basics/collections/">コレクション</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/basics/pattern-matching/">パターンマッチング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/basics/control-structures/">制御構造</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/basics/functions/">関数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/basics/pipe-operator/">パイプライン演算子</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/basics/modules/">モジュール</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/jp/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/jp/lessons/basics/documentation/">ドキュメント</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/jp/lessons/basics/testing/">テスト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/jp/lessons/basics/comprehensions/">内包表記</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/jp/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/jp/lessons/basics/mix-tasks/">カスタムMixタスク</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>上級</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/advanced/erlang/">Erlangとの相互運用</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/advanced/error-handling/">エラーハンドリング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/advanced/escripts/">実行ファイル</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/advanced/concurrency/">並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-concurrency/">OTPの並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-supervisors/">OTPスーパーバイザ</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/advanced/metaprogramming/">メタプログラミング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/advanced/umbrella-projects/">アンブレラプロジェクト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/advanced/typespec/">仕様と型</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>詳細</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson  active" href="/jp/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/specifics/eex/">埋め込みElixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/plug/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/plug/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/plug/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/plug/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/plug/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/plug/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/plug/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/plug/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/plug/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/plug/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/plug/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/plug/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/plug/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/plug/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/plug/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/plug/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/plug/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/plug/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/plug/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/plug/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/plug/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Plug</h1>
+  <p>Rubyをよくご存知なら、PlugはところどころSinatraの面影をもつRackだと考えることができます。PlugはWebアプリケーションのための仕様と、Webサーバーのためのアダプタを提供します。Elixirのコアの一部ではなく、公式のElixirプロジェクトです。</p>
+
+<h2>目次</h2>
+<div id="toc"></div>
+
+<h2 id="section">インストール</h2>
+
+<p>インストールはmixを使えばとても簡単です。Plugをインストールするには<code class="highlighter-rouge">mix.exs</code>に2つの小さな変更を行う必要があります。始めに、PlugとWebサーバーの両方を依存関係として追加します。WebサーバーはCowboyを使います:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:cowboy</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.0.0"</span><span class="p">},</span>
+   <span class="p">{</span><span class="ss">:plug</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.0"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>あとは、WebサーバーとPlugを共にOTPアプリケーションへと追加するだけです:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:cowboy</span><span class="p">,</span> <span class="ss">:logger</span><span class="p">,</span> <span class="ss">:plug</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="section-1">仕様</h2>
+
+<p>Plugを作り始めるためには、Plugの仕様を知り、それを正しく守る必要があります。ありがたいことに、必要なのは2つの関数、<code class="highlighter-rouge">init/1</code>と<code class="highlighter-rouge">call/2</code>だけです。</p>
+
+<p><code class="highlighter-rouge">init/1</code>関数はPlugのオプションを初期化するのに用いられ、そのオプションは<code class="highlighter-rouge">call/2</code>関数の2つ目の引数として渡されます。初期化されたオプションに加えて、<code class="highlighter-rouge">call/2</code>関数は<code class="highlighter-rouge">%Plug.Conn</code>を最初の引数として受け取り、接続を返すことが想定されています。</p>
+
+<p>以下は、”Hello World!”を返す単純なPlugです:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">HelloWorldPlug</span> <span class="k">do</span>
+  <span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">options</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">options</span>
+
+  <span class="k">def</span> <span class="n">call</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">_opts</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">conn</span>
+    <span class="o">|&gt;</span> <span class="n">put_resp_content_type</span><span class="p">(</span><span class="sd">"</span><span class="s2">text/plain"</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">send_resp</span><span class="p">(</span><span class="m">200</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hello World!"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="plug">Plugの作成</h2>
+
+<p>この例では、リクエストが幾つかの必要な引数を持っているかどうかを確かめるPlugを作ります。Plugにバリデーションを実装することで、有効なリクエストのみがアプリケーションに渡されるのを確実にすることができます。ここで作るPlugは2つのオプション、<code class="highlighter-rouge">:paths</code>と<code class="highlighter-rouge">:fields</code>で初期化されると想定します。これらはロジックを適用するパスと、必要なフィールドを表しています。</p>
+
+<p><em>注記</em>: Plugは全てのリクエストに適用されます。これが、リクエストの選別処理をし、その一部にのみロジックを適用させる理由です。リクエストを無視するには、単にその接続をやり過ごします。</p>
+
+<p>実装の済んだPlugを見ていくことから始めて、それがどう動いているかを議論していきます。Plugを<code class="highlighter-rouge">lib/plug/verify_request.ex</code>に作ります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">VerifyRequest</span> <span class="k">do</span>
+  <span class="kn">import</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span>
+
+  <span class="k">defmodule</span> <span class="no">IncompleteRequestError</span> <span class="k">do</span>
+    <span class="nv">@moduledoc</span> <span class="sd">"""
+    必要なフィールドが見つからない時に発生させるエラー。
+    """</span>
+
+    <span class="k">defexception</span> <span class="ss">message:</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="ss">plug_status:</span> <span class="m">400</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">options</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">options</span>
+
+  <span class="k">def</span> <span class="n">call</span><span class="p">(%</span><span class="no">Plug</span><span class="o">.</span><span class="no">Conn</span><span class="p">{</span><span class="ss">request_path:</span> <span class="n">path</span><span class="p">}</span> <span class="o">=</span> <span class="n">conn</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">[</span><span class="ss">:paths</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="n">verify_request!</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">body_params</span><span class="p">,</span> <span class="n">opts</span><span class="p">[</span><span class="ss">:fields</span><span class="p">])</span>
+    <span class="n">conn</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">verify_request!</span><span class="p">(</span><span class="n">body_params</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">verified</span> <span class="o">=</span> <span class="n">body_params</span>
+               <span class="o">|&gt;</span> <span class="no">Map</span><span class="o">.</span><span class="n">keys</span>
+               <span class="o">|&gt;</span> <span class="n">contains_fields?</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+    <span class="k">unless</span> <span class="n">verified</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="k">raise</span> <span class="no">IncompleteRequestError</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">contains_fields?</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">fields</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="no">Enum</span><span class="o">.</span><span class="n">all?</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">))</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>最初に注目すべきは、新しい例外<code class="highlighter-rouge">IncompleteRequestError</code>を定義していることと、そのオプションの1つが<code class="highlighter-rouge">:plug_status</code>であることです。このオプションが利用可能なら、万が一例外が発生した場合に、PlugがHTTPステータスコードを設定するのに用います。</p>
+
+<p>2つめの箇所は<code class="highlighter-rouge">call/2</code>メソッドで、これは検証ロジックを適用するかどうかを制御する場所になります。リクエストパスが<code class="highlighter-rouge">:paths</code>オプションに含まれている時だけ、<code class="highlighter-rouge">verify_request!/2</code>を呼び出します。</p>
+
+<p>最後の箇所はプライベート関数の<code class="highlighter-rouge">verify_request!/2</code>で、必要な<code class="highlighter-rouge">:fields</code>が全て存在しているかどうかを検証します。万が一いくつか欠けている場合は、<code class="highlighter-rouge">Incompleterequesterror</code>を発生させます。</p>
+
+<h2 id="plugrouter">Plug.Routerの使用</h2>
+
+<p><code class="highlighter-rouge">VerifyRequest</code>Plugができたので、ルータへと進みましょう。ElixirにはSinatraのようなフレームワークが必要なさそうに思えつつありますが、ルーターはPlugを使えば無料で手に入ります。</p>
+
+<p>手始めに、<code class="highlighter-rouge">lib/plug/router.ex</code>のファイルを作り、以下をコピーしましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Router</span>
+
+  <span class="n">plug</span> <span class="ss">:match</span>
+  <span class="n">plug</span> <span class="ss">:dispatch</span>
+
+  <span class="n">get</span> <span class="sd">"</span><span class="s2">/"</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">200</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Welcome"</span><span class="p">)</span>
+  <span class="n">match</span> <span class="n">_</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">404</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Oops!"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>これは必要最小限のルータですが、コード自身がうまく中身を説明してくれているはずです。<code class="highlighter-rouge">use Plug.Router</code>でマクロをいくつか読み込み、それから2つの組み込みのPlug、<code class="highlighter-rouge">:match</code>と<code class="highlighter-rouge">:dispatch</code>を配置します。2つのルータが定義され、1つはルート(<code class="highlighter-rouge">/</code>)へのGETリクエストを制御します。2つめではそれ以外の全てのリクエストにマッチして、404メッセージを返すことができます。</p>
+
+<p>このルータにPlugを追加しましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Router</span>
+
+  <span class="n">alias</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">VerifyRequest</span>
+
+  <span class="n">plug</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Parsers</span><span class="p">,</span> <span class="ss">parsers:</span> <span class="p">[</span><span class="ss">:urlencoded</span><span class="p">,</span> <span class="ss">:multipart</span><span class="p">]</span>
+  <span class="n">plug</span> <span class="no">VerifyRequest</span><span class="p">,</span> <span class="ss">fields:</span> <span class="p">[</span><span class="sd">"</span><span class="s2">content"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">mimetype"</span><span class="p">],</span>
+                      <span class="ss">paths:</span>  <span class="p">[</span><span class="sd">"</span><span class="s2">/upload"</span><span class="p">]</span>
+  <span class="n">plug</span> <span class="ss">:match</span>
+  <span class="n">plug</span> <span class="ss">:dispatch</span>
+
+  <span class="n">get</span> <span class="sd">"</span><span class="s2">/"</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">200</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Welcome"</span><span class="p">)</span>
+  <span class="n">post</span> <span class="sd">"</span><span class="s2">/upload"</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">201</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Uploaded"</span><span class="p">)</span>
+  <span class="n">match</span> <span class="n">_</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">send_resp</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="m">404</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Oops!"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>完了です！Plugを配置して、<code class="highlighter-rouge">/upload</code>へのリクエストが<code class="highlighter-rouge">"content"</code>と<code class="highlighter-rouge">"mimetype"</code>を両方とも含むことを確かめ、含む場合のみルートのコードが実行されるようにしました。</p>
+
+<p>今のところ<code class="highlighter-rouge">/upload</code>エンドポイントはあまり役に立ちませんが、Plugを作り、結合する方法については理解しました。</p>
+
+<h2 id="web">Webアプリの実行</h2>
+
+<p>アプリケーションを実行するには、その前にWebサーバ、ここではCowboyのセットアップと設定を行う必要があります。今のところは、ただ実行するのに必要なだけの変更をコードに行うだけですが、後のレッスンで詳細を掘り下げていきます。</p>
+
+<p><code class="highlighter-rouge">mix.exs</code>の<code class="highlighter-rouge">application</code>部分を更新して、Elixirにアプリケーションについて教えるとともにアプリケーションの環境変数を設定することから始めましょう。これらの変更で、コードはこのようになるはずです:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:cowboy</span><span class="p">,</span> <span class="ss">:plug</span><span class="p">],</span>
+   <span class="ss">mod:</span> <span class="p">{</span><span class="no">Example</span><span class="p">,</span> <span class="p">[]},</span>
+   <span class="ss">env:</span> <span class="p">[</span><span class="ss">cowboy_port:</span> <span class="m">8080</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>次に、Cowboyを起動し管理するため、<code class="highlighter-rouge">lib/example.ex</code>を更新する必要があります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Application</span>
+
+  <span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="no">Application</span><span class="o">.</span><span class="n">get_env</span><span class="p">(</span><span class="ss">:example</span><span class="p">,</span> <span class="ss">:cowboy_port</span><span class="p">,</span> <span class="m">8080</span><span class="p">)</span>
+
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="no">Plug</span><span class="o">.</span><span class="no">Adapters</span><span class="o">.</span><span class="no">Cowboy</span><span class="o">.</span><span class="n">child_spec</span><span class="p">(</span><span class="ss">:http</span><span class="p">,</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">port:</span> <span class="n">port</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>(オプション) <code class="highlighter-rouge">:cowboy_port</code> を <code class="highlighter-rouge">config/config.exs</code> に追加してください。</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">use</span> <span class="no">Mix</span><span class="o">.</span><span class="no">Config</span>
+
+<span class="n">config</span> <span class="ss">:example</span><span class="p">,</span> <span class="ss">cowboy_port:</span> <span class="m">8080</span>
+</code></pre>
+</div>
+
+<p>これで、アプリケーションを起動するために、以下のコマンドを使用できます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix run --no-halt
+</code></pre>
+</div>
+
+<h2 id="plug-1">Plugのテスト</h2>
+
+<p>Plugのテストは<code class="highlighter-rouge">Plug.Test</code>のおかげでとても容易です。テストを簡単にするための便利な関数が多く含まれています。</p>
+
+<p>ルータのテストを理解できるかどうか確かめてください:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">RouterTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="kn">use</span> <span class="no">Plug</span><span class="o">.</span><span class="no">Test</span>
+
+  <span class="n">alias</span> <span class="no">Example</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">Router</span>
+
+  <span class="nv">@content</span> <span class="sd">"</span><span class="s2">&lt;html&gt;&lt;body&gt;Hi!&lt;/body&gt;&lt;/html&gt;"</span>
+  <span class="nv">@mimetype</span> <span class="sd">"</span><span class="s2">text/html"</span>
+
+  <span class="nv">@opts</span> <span class="no">Router</span><span class="o">.</span><span class="n">init</span><span class="p">([])</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">returns welcome"</span> <span class="k">do</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="p">(</span><span class="ss">:get</span><span class="p">,</span> <span class="sd">"</span><span class="s2">/"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">)</span>
+           <span class="o">|&gt;</span> <span class="no">Router</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nv">@opts</span><span class="p">)</span>
+
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="ss">:sent</span>
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="m">200</span>
+  <span class="k">end</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">returns uploaded"</span> <span class="k">do</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="p">(</span><span class="ss">:post</span><span class="p">,</span> <span class="sd">"</span><span class="s2">/upload"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">content=</span><span class="si">#{</span><span class="nv">@content</span><span class="si">}</span><span class="s2">&amp;mimetype=</span><span class="si">#{</span><span class="nv">@mimetype</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+           <span class="o">|&gt;</span> <span class="n">put_req_header</span><span class="p">(</span><span class="sd">"</span><span class="s2">content-type"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">application/x-www-form-urlencoded"</span><span class="p">)</span>
+           <span class="o">|&gt;</span> <span class="no">Router</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nv">@opts</span><span class="p">)</span>
+
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="ss">:sent</span>
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="m">201</span>
+  <span class="k">end</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">returns 404"</span> <span class="k">do</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">conn</span><span class="p">(</span><span class="ss">:get</span><span class="p">,</span> <span class="sd">"</span><span class="s2">/missing"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">)</span>
+           <span class="o">|&gt;</span> <span class="no">Router</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nv">@opts</span><span class="p">)</span>
+
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="ss">:sent</span>
+    <span class="n">assert</span> <span class="n">conn</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="m">404</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="plug-2">利用可能なPlug</h2>
+
+<p>多くのPlugが難しい設定なしに利用可能です。一覧は<a href="https://github.com/elixir-lang/plug#available-plugs">ここ</a>のPlugのドキュメントにあります。</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    このページをシェアする
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/jp/lessons/specifics/plug/&title=Plug&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/jp/lessons/specifics/plug/&via=elixirschool&text=ElixirSchool: Plug&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/jp/lessons/specifics/plug/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/jp/lessons/specifics/plug/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/jp/lessons/specifics/plug/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Plug" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/jp/lessons/specifics/plug/&title=ElixirSchool: Plug&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/jp/lessons/specifics/plug/&title=ElixirSchool: Plug&description=Check out 'Plug' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Plug&body=Check out 'Plug' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/jp/lessons/specifics/plug/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

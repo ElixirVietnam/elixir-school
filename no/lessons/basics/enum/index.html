@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Leksjoner i programmeringsspråket Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/no/lessons/basics/enum/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Enum &middot; Elixir School
+
+">
+  <meta property="og:description" content="Leksjoner i programmeringsspråket Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Enum &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Leksjoner i programmeringsspråket Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Grunnleggende</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/no/lessons/basics/basics/">Grunnleggende Elixir</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/no/lessons/basics/collections/">Kolleksjoner</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson  active" href="/no/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/no/lessons/basics/pattern-matching/">Mønstersammenligning</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/no/lessons/basics/control-structures/">Kontrollstrukturer</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/no/lessons/basics/pipe-operator/">Pipeoperatoren</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/no/lessons/basics/modules/">Moduler</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/no/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/no/lessons/basics/sigils/">Sigiler</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/no/lessons/basics/documentation/">Dokumentasjon</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/enum/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/enum/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/enum/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/enum/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/enum/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/enum/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/enum/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/enum/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/enum/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/enum/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/enum/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/enum/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/enum/ ">my</a>
+      
+        <a href=" /no/lessons/basics/enum/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/enum/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/enum/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/enum/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/enum/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/enum/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/enum/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/enum/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Enum</h1>
+  <p>Et sett med algoritmer for å iterere over kolleksjoner.</p>
+
+<h2>Innholdsfortegnelse</h2>
+<div id="toc"></div>
+
+<h2 id="enum">Enum</h2>
+
+<p>Modulen <code class="highlighter-rouge">Enum</code> inneholder over hundre funksjoner som vi kan benytte av oss når vi jobber med kolleksjoner.</p>
+
+<p>Denne leksjonen vil kun dekke en brøkdel av de tilgjengelige funksjonene. For en komplett liste av alle funksjonene, se den offisielle  <a href="http://elixir-lang.org/docs/stable/elixir/Enum.html"><code class="highlighter-rouge">Enum</code></a> dokumentasjonen, eller <a href="http://elixir-lang.org/docs/stable/elixir/Stream.html"><code class="highlighter-rouge">Stream</code></a> for lazy enums.</p>
+
+<h3 id="all">all?</h3>
+
+<p>Ved bruk av <code class="highlighter-rouge">all?</code> (og de fleste andre av Enums funksjoner), forsyner vi kolleksjonens elementer med en funksjon. I <code class="highlighter-rouge">all?</code> sitt tilfelle, må hele kolleksjonen evalueres til <code class="highlighter-rouge">true</code>, ellers vil <code class="highlighter-rouge">false</code> bli returnert:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">all?</span><span class="p">([</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="m">3</span> <span class="k">end</span><span class="p">)</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">all?</span><span class="p">([</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">1</span> <span class="k">end</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="any">any?</h3>
+
+<p>I motsetning til eksemplet over, vil <code class="highlighter-rouge">any?</code> returnere <code class="highlighter-rouge">true</code> hvis minst et av elementene evalueres til <code class="highlighter-rouge">true</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">any?</span><span class="p">([</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="m">5</span> <span class="k">end</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="chunk">chunk</h3>
+
+<p>Hvis vi trenger å dele opp kolleksjonen i mindre deler, kan vi benytte oss av funksjonen <code class="highlighter-rouge">chunk</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">chunk</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">],</span> <span class="m">2</span><span class="p">)</span>
+<span class="p">[[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">],</span> <span class="p">[</span><span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">],</span> <span class="p">[</span><span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">]]</span>
+</code></pre>
+</div>
+
+<p>Det finnes flere alternativer for <code class="highlighter-rouge">chunk</code>, men vi blir ikke å gå igjennom dem. Se  <a href="http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2"><code class="highlighter-rouge">chunk/2</code></a> i den offisielle dokumentasjonen for å lære mer.</p>
+
+<h3 id="chunkby">chunk_by</h3>
+
+<p>Hvis vi trenger å gruppere kolleksjonen vår basert på noe annet enn størrelse, kan vi bruke funksjonen <code class="highlighter-rouge">chunk_by</code>. Den tar en gitt kolleksjon og en funksjon som argument, og når retur verdien av funksjonen endrer seg så vil en ny gruppe bli lagd og den starter så å lage den neste gruppen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">chunk_by</span><span class="p">([</span><span class="sd">"</span><span class="s2">one"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">two"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">three"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">four"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">five"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[[</span><span class="sd">"</span><span class="s2">one"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">two"</span><span class="p">],</span> <span class="p">[</span><span class="sd">"</span><span class="s2">three"</span><span class="p">],</span> <span class="p">[</span><span class="sd">"</span><span class="s2">four"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">five"</span><span class="p">]]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">chunk_by</span><span class="p">([</span><span class="sd">"</span><span class="s2">one"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">two"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">three"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">four"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">five"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">six"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[[</span><span class="sd">"</span><span class="s2">one"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">two"</span><span class="p">],</span> <span class="p">[</span><span class="sd">"</span><span class="s2">three"</span><span class="p">],</span> <span class="p">[</span><span class="sd">"</span><span class="s2">four"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">five"</span><span class="p">],</span> <span class="p">[</span><span class="sd">"</span><span class="s2">six"</span><span class="p">]]</span>
+</code></pre>
+</div>
+
+<h3 id="mapevery">map_every</h3>
+
+<p>Noen ganger så vil det å dele opp en kolleksjon, ikke være akkurat det vi trenger. Hvis dette er tilfellet så kan <code class="highlighter-rouge">map_every/3</code> brukes til å kun endre på spesifikke elementer.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map_every</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">],</span> <span class="m">2</span><span class="p">,</span> <span class="k">fn</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="m">2</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="each">each</h3>
+
+<p>Det kan bli nøvendig å måtte iterere over en kolleksjon uten å produsere en verdi. Vi kan da bruke funksjonen <code class="highlighter-rouge">each</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">each</span><span class="p">([</span><span class="sd">"</span><span class="s2">one"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">two"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">three"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">end</span><span class="p">)</span>
+<span class="n">one</span>
+<span class="n">two</span>
+<span class="n">three</span>
+</code></pre>
+</div>
+
+<p><strong>Merk</strong>: Funksjonen <code class="highlighter-rouge">each</code> returnerer atomet <code class="highlighter-rouge">:ok</code>.</p>
+
+<h3 id="map">map</h3>
+
+<p>For å forsyne funksjonen vår til hvert element, og produsere en ny kolleksjon kan vi benytte oss av <code class="highlighter-rouge">map</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">([</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">-</span> <span class="m">1</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[</span><span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="min">min</h3>
+
+<p>For å finne den minste verdien i kolleksjonen vår kan vi bruke <code class="highlighter-rouge">min/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="m">5</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">])</span>
+<span class="o">-</span><span class="m">1</span>
+</code></pre>
+</div>
+
+<p>Funksjonen <code class="highlighter-rouge">min/2</code> gjør det samme, men tillater oss å spesifisere en standard verdi til <code class="highlighter-rouge">Enum</code> i en anonym funksjon som blir sendt inn:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">min</span><span class="p">([],</span> <span class="k">fn</span> <span class="o">-&gt;</span> <span class="ss">:foo</span> <span class="k">end</span><span class="p">)</span>
+<span class="ss">:foo</span>
+</code></pre>
+</div>
+
+<h3 id="max">max</h3>
+
+<p><code class="highlighter-rouge">max/1</code> returnerer den største verdien i kolleksjonen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="m">5</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">])</span>
+<span class="m">5</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">max/2</code> gjør det samme og oppfører seg som <code class="highlighter-rouge">min/2</code>,<br />
+den tillater oss å sende inn en anonym funksjon med en standard verdi til <code class="highlighter-rouge">Enum</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="no">Enum</span><span class="o">.</span><span class="n">max</span><span class="p">([],</span> <span class="k">fn</span> <span class="o">-&gt;</span> <span class="ss">:bar</span> <span class="k">end</span><span class="p">)</span>
+<span class="ss">:bar</span>
+</code></pre>
+</div>
+
+<h3 id="reduce">reduce</h3>
+
+<p>Vi kan vanne ut kolleksjonen vår ned til kun et enkelt element ved å bruke <code class="highlighter-rouge">reduce</code>. Vi kan tilføye en valgfri akkumulator (<code class="highlighter-rouge">10</code> i eksemplet under) til funksjonen vår. Hvis ingen akkumulator er gitt, vil det første elementet bli brukt:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">],</span> <span class="m">10</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">acc</span> <span class="k">end</span><span class="p">)</span>
+<span class="m">16</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">acc</span> <span class="k">end</span><span class="p">)</span>
+<span class="m">6</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p">([</span><span class="sd">"</span><span class="s2">a"</span><span class="p">,</span><span class="sd">"</span><span class="s2">b"</span><span class="p">,</span><span class="sd">"</span><span class="s2">c"</span><span class="p">],</span> <span class="sd">"</span><span class="s2">1"</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">acc</span><span class="p">)</span><span class="o">-&gt;</span> <span class="n">x</span> <span class="o">&lt;&gt;</span> <span class="n">acc</span> <span class="k">end</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">cba1"</span>
+</code></pre>
+</div>
+
+<h3 id="sort">sort</h3>
+
+<p>Sortering av en kolleksjon er enkelt ved hjelp av to <code class="highlighter-rouge">sort</code> funksjoner. Det første alternativet bruker Elixirs eget begrep for sortering til å avgjøre sorteringsrekkefølgen:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">])</span>
+<span class="p">[</span><span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="ss">:foo</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="no">Enum</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">])</span>
+<span class="p">[</span><span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="no">Enum</span><span class="p">,</span> <span class="ss">:foo</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Den andre alternativet lar oss velge sorteringsrekkefølgen selv:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># Med vår egen funksjon</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p">([%{</span><span class="ss">:val</span> <span class="o">=&gt;</span> <span class="m">4</span><span class="p">},</span> <span class="p">%{</span><span class="ss">:val</span> <span class="o">=&gt;</span> <span class="m">1</span><span class="p">}],</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="p">[</span><span class="ss">:val</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">[</span><span class="ss">:val</span><span class="p">]</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[%{</span><span class="ss">val:</span> <span class="m">4</span><span class="p">},</span> <span class="p">%{</span><span class="ss">val:</span> <span class="m">1</span><span class="p">}]</span>
+
+<span class="c1"># uten vår egen funksjon</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p">([%{</span><span class="ss">:count</span> <span class="o">=&gt;</span> <span class="m">4</span><span class="p">},</span> <span class="p">%{</span><span class="ss">:count</span> <span class="o">=&gt;</span> <span class="m">1</span><span class="p">}])</span>
+<span class="p">[%{</span><span class="ss">count:</span> <span class="m">1</span><span class="p">},</span> <span class="p">%{</span><span class="ss">count:</span> <span class="m">4</span><span class="p">}]</span>
+</code></pre>
+</div>
+
+<h3 id="uniqby">uniq_by</h3>
+
+<p>Vi kan benytte oss av <code class="highlighter-rouge">uniq_by/2</code> for å fjerne duplikater fra kolleksjonen vår:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">uniq_by</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">],</span> <span class="k">fn</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Denne funksjonen var tidligere kjent som <code class="highlighter-rouge">uniq/1</code> som vil bli deprekert i Elixir 1.4, men fortsatt tilgjengelig (med advarsler).</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Del denne siden
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/no/lessons/basics/enum/&title=Enum&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/no/lessons/basics/enum/&via=elixirschool&text=ElixirSchool: Enum&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/no/lessons/basics/enum/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/no/lessons/basics/enum/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/no/lessons/basics/enum/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Enum" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/no/lessons/basics/enum/&title=ElixirSchool: Enum&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/no/lessons/basics/enum/&title=ElixirSchool: Enum&description=Check out 'Enum' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Enum&body=Check out 'Enum' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/no/lessons/basics/enum/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

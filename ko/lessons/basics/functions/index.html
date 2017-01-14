@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/basics/functions/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  함수 &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  함수 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson  active" href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/functions/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/functions/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/functions/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/functions/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/functions/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/functions/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/functions/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/functions/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/functions/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/functions/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/functions/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/functions/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/functions/ ">my</a>
+      
+        <a href=" /no/lessons/basics/functions/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/functions/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/functions/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/functions/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/functions/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/functions/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/functions/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/functions/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">함수</h1>
+  <p>Elixir를 포함한 많은 함수형 언어에서, 함수들은 일급 시민입니다. 우리는 Elixir를 특별하게 해주는 함수의 유형에 대해 배우고, 그것을 어떻게 이용하는지 배울 것입니다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="section">익명 함수</h2>
+
+<p>익명 함수는 말그대로 이름이 없습니다. <code class="highlighter-rouge">Enum</code> 수업에서 보았듯이, 함수는 빈번히 다른 함수로 넘겨지게 됩니다. Elixir에서 익명 함수를 정의하기 위해, <code class="highlighter-rouge">fn</code> 그리고 <code class="highlighter-rouge">end</code> 키워드가 필요합니다. 익명 함수 내에서 매개변수의 개수를 정의할 수 있으며, 함수의 몸체는 <code class="highlighter-rouge">-&gt;</code>로 구분됩니다.</p>
+
+<p>기초적인 예제를 보도록 합시다.</p>
+
+<pre><code class="language-elixirre">iex&gt; sum = fn (a, b) -&gt; a + b end
+iex&gt; sum.(2, 3)
+5
+</code></pre>
+
+<h3 id="section-1">&amp;으로 줄여쓰기</h3>
+
+<p>Elixir로 프로그래밍 하다보면, 익명 함수를 이용하여 줄여쓰는 것을 흔히 볼 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span> <span class="o">+</span> <span class="nv">&amp;2</span><span class="p">)</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">sum</span><span class="o">.</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="m">5</span>
+</code></pre>
+</div>
+
+<p>줄여쓰기를 했을 때 매개변수들은 <code class="highlighter-rouge">&amp;1</code>, <code class="highlighter-rouge">&amp;2</code>, <code class="highlighter-rouge">&amp;3</code>, 등과 같이 다룰 수 있다고 추측할 수 있습니다.</p>
+
+<h2 id="section-2">패턴매칭</h2>
+
+<p>Elixir에서 패턴매칭은 단순히 변수를 다루는 데서 그치지 않고, 함수 시그니처에서도 적용될 수 있다는 것을 이 섹션에서 확인할 것입니다.</p>
+
+<p>Elixir에서는 매칭하여 대응되는 함수를 불러일으키는 매개변수의 집합을 식별하기 위해 패턴매칭을 사용합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">handle_result</span> <span class="o">=</span> <span class="k">fn</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">result</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Handling result..."</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:error</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">An error has occurred!"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">some_result</span> <span class="o">=</span> <span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">handle_result</span><span class="o">.</span><span class="p">({</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">some_result</span><span class="p">})</span>
+<span class="no">Handling</span> <span class="n">result</span><span class="o">...</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">handle_result</span><span class="o">.</span><span class="p">({</span><span class="ss">:error</span><span class="p">})</span>
+<span class="no">An</span> <span class="n">error</span> <span class="n">has</span> <span class="n">occurred!</span>
+</code></pre>
+</div>
+
+<h2 id="section-3">이름이 있는 함수</h2>
+
+<p>차후에 호출할 수 있도록 함수를 이름과 같이 정의할 수 있습니다. 이는 모듈 내에서 <code class="highlighter-rouge">def</code> 키워드로 정의됩니다. 지금은 이름이 있는 함수를 다루는 것에 집중하도록 하고, 다음 수업에서 모듈에 대해 더 배울 것입니다.</p>
+
+<p>모듈 내에서 정의된 함수는 다른 모듈에서 접근이 가능하며, 이는 Elixir에서 특히 유용한 요소 중 하나입니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+</code></pre>
+</div>
+
+<p>만약 함수의 몸체를 한 줄로 쓰고 싶은 경우, 우리는 <code class="highlighter-rouge">do:</code>를 이용하여 축약할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>패턴매칭에 대한 지식과 이름있는 함수를 이용하여 재귀를 맛보도록 하죠.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Length</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">of</span><span class="p">([]),</span> <span class="k">do</span><span class="p">:</span> <span class="m">0</span>
+  <span class="k">def</span> <span class="n">of</span><span class="p">([</span><span class="n">_</span><span class="o">|</span><span class="n">t</span><span class="p">]),</span> <span class="k">do</span><span class="p">:</span> <span class="m">1</span> <span class="o">+</span> <span class="n">of</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Length</span><span class="o">.</span><span class="n">of</span> <span class="p">[]</span>
+<span class="m">0</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Length</span><span class="o">.</span><span class="n">of</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="m">3</span>
+</code></pre>
+</div>
+
+<h3 id="section-4">함수 이름짓기와 인자 개수</h3>
+
+<p>앞서 함수는 주어진 이름과 인자 개수를 조합해 이름짓는다는 이야기를 했습니다. 이 말은 이렇게 할 수 있다는 이야기입니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter2</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, anonymous person!"</span>   <span class="c1"># hello/0</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>        <span class="c1"># hello/1</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name1</span><span class="p">,</span> <span class="n">name2</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, </span><span class="si">#{</span><span class="n">name1</span><span class="si">}</span><span class="s2"> and </span><span class="si">#{</span><span class="n">name2</span><span class="si">}</span><span class="s2">"</span>
+                                                <span class="c1"># hello/2</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter2</span><span class="o">.</span><span class="n">hello</span><span class="p">()</span>
+<span class="sd">"</span><span class="s2">Hello, anonymous person!"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter2</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Fred"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Fred"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter2</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Fred"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Jane"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Fred and Jane"</span>
+</code></pre>
+</div>
+
+<p>함수 이름을 주석으로 달아두었습니다. 첫 번째 구현은 인자를 받지 않습니다. 그래서 <code class="highlighter-rouge">hello/0</code>라 합니다. 두 번째는 하나의 인자를 받고 <code class="highlighter-rouge">hello/1</code>라 하고 계속 이런 식입니다. 다른 언어의 함수 오버로드와는 다르게 3개의 서로 <em>다른</em> 함수가 존재합니다.(아까 전에 설명했던 패턴매칭은 인자 개수가 같은 함수의 선언이 여러 번 있을 때만 적용됩니다.)</p>
+
+<h3 id="private-">Private 함수</h3>
+
+<p>다른 모듈에서 함수에 접근하는 것을 원하지 않는다면, 정의된 모듈 내에서만 호출될 수 있도록 private 함수를 이용할 수 있습니다. Elixir에서는 그것들을 <code class="highlighter-rouge">defp</code> 키워드를 이용하여 정의할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">phrase</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">phrase</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">UndefinedFunctionError</span><span class="p">)</span> <span class="n">undefined</span> <span class="ss">function:</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">phrase</span><span class="o">/</span><span class="m">0</span>
+    <span class="no">Greeter</span><span class="o">.</span><span class="n">phrase</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h3 id="section-5">가드</h3>
+
+<p><a href="../control-structures">제어 구조</a> 강의에서 가드에 대해 간략하게 다뤘으니, 이제 이름이 있는 함수에 어떻게 적용할 수 있는지 알아보도록 하겠습니다. Elixir에서 함수가 매치되기만 하면, 존재하는 어떤 가드든지 테스트될 것입니다.</p>
+
+<p>동일한 시그니쳐를 가진 두 함수가 정의된 다음의 예제에서, 인자의 타입에 따라 어떤 함수를 이용할 지 가드를 통해 결정합니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_list</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">names</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">, "</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">hello</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">Hello, Sean, Steve"</span>
+</code></pre>
+</div>
+
+<h3 id="section-6">기본값 인자</h3>
+
+<p>인자에 기본값을 할당하고 싶다면, <code class="highlighter-rouge">인자 \\ 값</code> 문법을 이용할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span><span class="p">(</span><span class="n">country</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">en"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">es"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hola, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">es"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hola, Sean"</span>
+</code></pre>
+</div>
+
+<p>가드 예제에 기본값 인자를 적용한 경우를 다뤄보도록 합시다. 아마 다음과 같이 나타낼 수 있을 겁니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_list</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">names</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">, "</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">hello</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span><span class="p">(</span><span class="n">country</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">en"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">es"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hola, "</span>
+<span class="k">end</span>
+
+<span class="o">**</span> <span class="p">(</span><span class="no">CompileError</span><span class="p">)</span> <span class="k">def</span> <span class="n">hello</span><span class="o">/</span><span class="m">2</span> <span class="n">has</span> <span class="n">default</span> <span class="n">values</span> <span class="ow">and</span> <span class="n">multiple</span> <span class="n">clauses</span><span class="p">,</span> <span class="n">define</span> <span class="n">a</span> <span class="n">function</span> <span class="n">head</span> <span class="n">with</span> <span class="n">the</span> <span class="n">defaults</span>
+</code></pre>
+</div>
+
+<p>Elixir에서는 여러 매칭 함수에 기본값 인자가 들어가는 것을 권장하지 않습니다. 혼동할 수 있기 때문입니다. 이를 다루기 위해서, 기본값 인자가 들어있는 함수 선언문을 추가해봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">country</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_list</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">names</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">, "</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">hello</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">country</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span><span class="p">(</span><span class="n">country</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">en"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">es"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hola, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">Hello, Sean, Steve"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">],</span> <span class="sd">"</span><span class="s2">es"</span>
+<span class="sd">"</span><span class="s2">Hola, Sean, Steve"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/basics/functions/&title=함수&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/basics/functions/&via=elixirschool&text=ElixirSchool: 함수&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/basics/functions/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/basics/functions/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/basics/functions/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 함수" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/basics/functions/&title=ElixirSchool: 함수&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/basics/functions/&title=ElixirSchool: 함수&description=Check out '함수' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 함수&body=Check out '함수' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/basics/functions/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

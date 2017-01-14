@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Уроци за езика за програмиране Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/bg/lessons/basics/functions/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Функции &middot; Elixir School
+
+">
+  <meta property="og:description" content="Уроци за езика за програмиране Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Функции &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Уроци за езика за програмиране Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Основи</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/bg/lessons/basics/basics/">Основи</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/bg/lessons/basics/collections/">Колекции</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/bg/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/bg/lessons/basics/pattern-matching/">Съпоставка с образец</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/bg/lessons/basics/control-structures/">Контролни структури</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson  active" href="/bg/lessons/basics/functions/">Функции</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/bg/lessons/basics/pipe-operator/">Поточен оператор</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/bg/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/bg/lessons/basics/documentation/">Документация</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/bg/lessons/basics/mix-tasks/">Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/functions/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/functions/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/functions/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/functions/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/functions/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/functions/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/functions/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/functions/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/functions/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/functions/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/functions/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/functions/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/functions/ ">my</a>
+      
+        <a href=" /no/lessons/basics/functions/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/functions/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/functions/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/functions/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/functions/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/functions/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/functions/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/functions/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Функции</h1>
+  <p>В Elixir и много функционални езици, функциите са граждани “първи клас”.  Ще научим за видовете функции в Elixir, какво ги отличава и как да ги използваме.</p>
+
+<h2>Съдържание</h2>
+<div id="toc"></div>
+
+<h2 id="section">Анонимни функции</h2>
+
+<p>Както името подсказва, анонимната функция няма име.  Както видяхме в урока относно <code class="highlighter-rouge">Enum</code>, те често се подават към други функции.  За да дефинираме анонимна функция в Elixir се нуждаем от ключовите думи <code class="highlighter-rouge">fn</code> и <code class="highlighter-rouge">end</code>.  Между тях може да дефинираме всякакъв брой параметри и имплементации на функции, разграничени от <code class="highlighter-rouge">-&gt;</code>.</p>
+
+<p>Нека погледнем един прост пример:</p>
+
+<pre><code class="language-elixirre">iex&gt; sum = fn (a, b) -&gt; a + b end
+iex&gt; sum.(2, 3)
+5
+</code></pre>
+
+<h3 id="section-1">Съкращението &amp;</h3>
+
+<p>Да се използват анонимни функции е толкова често срещано в  Elixir, че за употребата им има съкращение:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="o">=</span> <span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span> <span class="o">+</span> <span class="nv">&amp;2</span><span class="p">)</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">sum</span><span class="o">.</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="m">5</span>
+</code></pre>
+</div>
+
+<p>Както сигурно сте се досетили, в съкратената версия параметрите ни са достъпни за нас като <code class="highlighter-rouge">&amp;1</code>, <code class="highlighter-rouge">&amp;2</code>, <code class="highlighter-rouge">&amp;3</code>, и т.н.</p>
+
+<h2 id="section-2">Съпоставка с образец</h2>
+
+<p>Съпоставката с образец не е ограничена само до променливи в Elixir, може да се приложи и върху функции, както ще видим в тази секция.</p>
+
+<p>Elixir използва съпоставката с образец, за да идентифицира първия подходящ набор от параметри и извиква съответната имплементация:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">handle_result</span> <span class="o">=</span> <span class="k">fn</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">result</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Handling result..."</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:error</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">An error has occurred!"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">some_result</span> <span class="o">=</span> <span class="m">1</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">handle_result</span><span class="o">.</span><span class="p">({</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">some_result</span><span class="p">})</span>
+<span class="no">Handling</span> <span class="n">result</span><span class="o">...</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">handle_result</span><span class="o">.</span><span class="p">({</span><span class="ss">:error</span><span class="p">})</span>
+<span class="no">An</span> <span class="n">error</span> <span class="n">has</span> <span class="n">occurred!</span>
+</code></pre>
+</div>
+
+<h2 id="section-3">Именовани функции</h2>
+
+<p>Можем да дефинираме функции с имена, за да ги достъпваме на по-късен етап, тези наименовани функции се дефинират с ключовата дума <code class="highlighter-rouge">def</code> в модул.  Ще научим повече за модулите в следващите уроци, засега ще се фокусираме само върху именовани функции.</p>
+
+<p>Функции дефинирани в модул са достъпни и от други модули, това е изключително полезна конструкция в Elixir:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+</code></pre>
+</div>
+
+<p>Ако нашата имплементация на функция е само един ред, може да я скъсим допълнително с <code class="highlighter-rouge">do:</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Въоръжени със знанието за съпоставка с образец, нека разгледаме рекурсия използвайки именовани функции:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Length</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">of</span><span class="p">([]),</span> <span class="k">do</span><span class="p">:</span> <span class="m">0</span>
+  <span class="k">def</span> <span class="n">of</span><span class="p">([</span><span class="n">_</span><span class="o">|</span><span class="n">t</span><span class="p">]),</span> <span class="k">do</span><span class="p">:</span> <span class="m">1</span> <span class="o">+</span> <span class="n">of</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Length</span><span class="o">.</span><span class="n">of</span> <span class="p">[]</span>
+<span class="m">0</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Length</span><span class="o">.</span><span class="n">of</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+<span class="m">3</span>
+</code></pre>
+</div>
+
+<h3 id="arity">Именоване на фукнции и Arity</h3>
+
+<p>Споменахме по-рано, че функциите се именоват с комбинация от дадено име и arity(броя аргументи). Това означава, че може да се правят неща като:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter2</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, anonymous person!"</span>   <span class="c1"># hello/0</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>        <span class="c1"># hello/1</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name1</span><span class="p">,</span> <span class="n">name2</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, </span><span class="si">#{</span><span class="n">name1</span><span class="si">}</span><span class="s2"> and </span><span class="si">#{</span><span class="n">name2</span><span class="si">}</span><span class="s2">"</span>
+                                                <span class="c1"># hello/2</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter2</span><span class="o">.</span><span class="n">hello</span><span class="p">()</span>
+<span class="sd">"</span><span class="s2">Hello, anonymous person!"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter2</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Fred"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Fred"</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter2</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Fred"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Jane"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Fred and Jane"</span>
+</code></pre>
+</div>
+
+<p>Изредили сме имената на функциите в коментарите отгоре. Първата имплементация приема нула аргумента, за това е <code class="highlighter-rouge">hello/0</code>; втората приема един аргумент и е <code class="highlighter-rouge">hello/1</code>, и т.н. За разлика от предефинирани функции в някои други езици, за тези се мисли като <strong>отделни</strong> една от друга. (Съпоставката с образец, описан преди момент, се отнася само когато няколко дефиниции са осигурени за дефиниции на функции със <strong>същия</strong> брой аргументи.)</p>
+
+<h3 id="section-4">Частни функции</h3>
+
+<p>Когато не желаем други модули да достъпват дадена функция може да ползваме частни функции, които могат да бъдат достъпвани само от техния модул.  Можем да ги дефинираме в Elixir посредством <code class="highlighter-rouge">defp</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">phrase</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">phrase</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">UndefinedFunctionError</span><span class="p">)</span> <span class="n">undefined</span> <span class="ss">function:</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">phrase</span><span class="o">/</span><span class="m">0</span>
+    <span class="no">Greeter</span><span class="o">.</span><span class="n">phrase</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h3 id="section-5">Ограничители</h3>
+
+<p>Бегло споменахме ограничители в урока <a href="../control-structures">Контролни структури</a>, сега ще видим как да ги приложим към именовани функции.  Веднъж като Elixir е намерил подходяща функция всички съществуващи ограничители ще бъдат тествани.</p>
+
+<p>В следващия пример имаме две еднакво разписани функции, разчитаме на ограничители, за да разберем коя да бъде използвана базирано на типа на аргумента:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_list</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">names</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">, "</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">hello</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">Hello, Sean, Steve"</span>
+</code></pre>
+</div>
+
+<h3 id="section-6">Аргументи по подразбиране</h3>
+
+<p>Ако искаме да имаме стойност по подразбиране за аргумент използваме синтаксиса <code class="highlighter-rouge">аргумент \\ стойност</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span><span class="p">(</span><span class="n">country</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">en"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">es"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hola, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hello, Sean"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">es"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hola, Sean"</span>
+</code></pre>
+</div>
+
+<p>Когато комбинираме примера ни с ограничители със стойности по подразбиране, се сблъскваме с проблем.  Нека видим как изглежда:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_list</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">names</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">, "</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">hello</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span><span class="p">(</span><span class="n">country</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">en"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">es"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hola, "</span>
+<span class="k">end</span>
+
+<span class="o">**</span> <span class="p">(</span><span class="no">CompileError</span><span class="p">)</span> <span class="k">def</span> <span class="n">hello</span><span class="o">/</span><span class="m">2</span> <span class="n">has</span> <span class="n">default</span> <span class="n">values</span> <span class="ow">and</span> <span class="n">multiple</span> <span class="n">clauses</span><span class="p">,</span> <span class="n">define</span> <span class="n">a</span> <span class="n">function</span> <span class="n">head</span> <span class="n">with</span> <span class="n">the</span> <span class="n">defaults</span>
+</code></pre>
+</div>
+
+<p>Elixir не харесва аргументи със стойност по подразбиране при наличие на няколко подходящи функции, това води до объркване.  За да се справим с това добавяме описателна функция с нашите стойности по подразбиране:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Greeter</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">country</span> <span class="p">\\</span> <span class="sd">"</span><span class="s2">en"</span><span class="p">)</span>
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">country</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_list</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">names</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">, "</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">hello</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">country</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">phrase</span><span class="p">(</span><span class="n">country</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="n">name</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">en"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hello, "</span>
+  <span class="k">defp</span> <span class="n">phrase</span><span class="p">(</span><span class="sd">"</span><span class="s2">es"</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="sd">"</span><span class="s2">Hola, "</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">Hello, Sean, Steve"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Greeter</span><span class="o">.</span><span class="n">hello</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Steve"</span><span class="p">],</span> <span class="sd">"</span><span class="s2">es"</span>
+<span class="sd">"</span><span class="s2">Hola, Sean, Steve"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Споделете тази страница
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/bg/lessons/basics/functions/&title=Функции&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/bg/lessons/basics/functions/&via=elixirschool&text=ElixirSchool: Функции&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/bg/lessons/basics/functions/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/bg/lessons/basics/functions/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/bg/lessons/basics/functions/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Функции" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/bg/lessons/basics/functions/&title=ElixirSchool: Функции&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/bg/lessons/basics/functions/&title=ElixirSchool: Функции&description=Check out 'Функции' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Функции&body=Check out 'Функции' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/bg/lessons/basics/functions/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

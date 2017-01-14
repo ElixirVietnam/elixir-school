@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lekcje programowania w języku Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/pl/lessons/specifics/eex/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Embedded Elixir (EEx) &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lekcje programowania w języku Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Embedded Elixir (EEx) &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lekcje programowania w języku Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Podstawy</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/basics/basics/">Podstawy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/basics/collections/">Kolekcje</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/basics/pattern-matching/">Dopasowanie wzorców</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/basics/control-structures/">Struktury sterujące</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pl/lessons/basics/functions/">Funkcje</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pl/lessons/basics/pipe-operator/">Operator Potoku</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pl/lessons/basics/modules/">Organizacja kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pl/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pl/lessons/basics/sigils/">Sigile</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/pl/lessons/basics/documentation/">Dokumentowanie kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/pl/lessons/basics/testing/">Testowanie kodu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/pl/lessons/basics/comprehensions/">Składanie kolekcji</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/pl/lessons/basics/strings/">Ciągi znaków</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/pl/lessons/basics/mix-tasks/">Własne funkcje Mix'a</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Zaawansowane</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/advanced/erlang/">Współpraca z Erlangiem</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/advanced/error-handling/">Wyjątki i błędy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/pl/lessons/advanced/escripts/">Uruchamianie programów</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/advanced/concurrency/">Współbieżność</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/advanced/otp-concurrency/">Współbieżność z OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/pl/lessons/advanced/otp-supervisors/">Nadzorcy OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/pl/lessons/advanced/metaprogramming/">Metaprogramowanie</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/pl/lessons/advanced/umbrella-projects/">Projekty zbiorcze</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/pl/lessons/advanced/typespec/">Specyfikacje i typy</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/pl/lessons/advanced/behaviours/">Zachowania</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Specyficzne</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/pl/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/pl/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson  active" href="/pl/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/pl/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/pl/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/eex/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/eex/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/eex/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/eex/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/eex/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/eex/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/eex/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/eex/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/eex/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/eex/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/eex/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/eex/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/eex/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/eex/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/eex/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/eex/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/eex/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/eex/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/eex/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/eex/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/eex/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Embedded Elixir (EEx)</h1>
+  <p>Tak jak w Ruby mamy ERB, a w Javie istnieje JSP, tak i Elixir ma EEx - Embedded Elixir. Dzięki EEx możemy osadzać kod Elixira w ciągach znaków.</p>
+
+<h2>Spis treści</h2>
+<div id="toc"></div>
+
+<h2 id="api">API</h2>
+
+<p>API EEx pozwala na pracę zarówno z ciągami znaków jak i plikami. Jest ono podzielone na trzy główne komponenty: prostą ewaluację, definiowanie funkcji i kompilację do AST Elixira.</p>
+
+<h3 id="ewaluacja">Ewaluacja</h3>
+
+<p>Używając funkcji <code class="highlighter-rouge">eval_string/3</code> i <code class="highlighter-rouge">eval_file/2</code> możemy ewaluować ciągi znaków jak i pliki. Jest to najprostsze podejście, ale też najwolniejsze ponieważ kod jest tylko interpretowany, a nie kompilowany.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">EEx</span><span class="o">.</span><span class="n">eval_string</span> <span class="sd">"</span><span class="s2">Hi, &lt;%= name %&gt;"</span><span class="p">,</span> <span class="p">[</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">Hi, Sean"</span>
+</code></pre>
+</div>
+
+<h3 id="definiowanie-funkcji">Definiowanie funkcji</h3>
+
+<p>Najszybszą, i preferowaną, metodą użycia EEx jest osadzenie szablonu w module dzięki czemu można go skompilować. By to zrobić potrzebujemy w czasie kompilacji modułu pliku z szablonem oraz makr <code class="highlighter-rouge">function_from_string/5</code> i <code class="highlighter-rouge">function_from_file/5</code>.</p>
+
+<p>Przenieśmy nasze powitanie do osobnego pliku, szablonu, i zdefiniujmy dla niego funkcję w module:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># greeting.eex</span>
+<span class="no">Hi</span><span class="p">,</span> <span class="o">&lt;%=</span> <span class="n">name</span> <span class="p">%</span><span class="o">&gt;</span>
+
+<span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+  <span class="kn">require</span> <span class="no">EEx</span>
+  <span class="no">EEx</span><span class="o">.</span><span class="n">function_from_file</span> <span class="ss">:def</span><span class="p">,</span> <span class="ss">:greeting</span><span class="p">,</span> <span class="sd">"</span><span class="s2">greeting.eex"</span><span class="p">,</span> <span class="p">[</span><span class="ss">:name</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">greeting</span><span class="p">(</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hi, Sean"</span>
+</code></pre>
+</div>
+
+<h3 id="kompilacja">Kompilacja</h3>
+
+<p>W końcu, EEx pozwala nam na bezpośrednie stworzenie AST Elixira z ciągu znaków lub z pliku za pomocą funkcji, odpowiednio <code class="highlighter-rouge">compile_string/2</code> i <code class="highlighter-rouge">compile_file/2</code>.  Funkcje  te są przede wszystkim używane przez wyżej opisane API, ale są też dostępne jeżeli chcemy stworzyć własną obsługę wbudowanego Elixira.</p>
+
+<h2 id="znaczniki">Znaczniki</h2>
+
+<p>Domyślnie EEx wspiera cztery znaczniki:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="p">%</span> <span class="n">Wyra</span><span class="err">ż</span><span class="n">enie</span> <span class="no">Elixir</span> <span class="o">-</span> <span class="n">wywo</span><span class="err">ł</span><span class="n">anie</span> <span class="n">zwracaj</span><span class="err">ą</span><span class="n">ce</span> <span class="n">warto</span><span class="err">ść</span> <span class="p">%</span><span class="o">&gt;</span>
+<span class="o">&lt;%=</span> <span class="n">Wyra</span><span class="err">ż</span><span class="n">enie</span> <span class="no">Elixir</span> <span class="o">-</span> <span class="n">zamieniane</span> <span class="n">na</span> <span class="n">rezultat</span> <span class="n">wyra</span><span class="err">ż</span><span class="n">enia</span> <span class="p">%</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="p">%%</span> <span class="n">Wyra</span><span class="err">ż</span><span class="n">enie</span> <span class="no">EEx</span> <span class="o">-</span> <span class="n">warto</span><span class="err">ść</span> <span class="n">po</span> <span class="n">ewaluowacji</span> <span class="n">wyra</span><span class="err">ż</span><span class="n">enia</span> <span class="p">%</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="p">%</span><span class="c1"># Komentarz - usuwany ze źródła %&gt;</span>
+</code></pre>
+</div>
+
+<p>Wszystkie wyrażenia, które coś zwracają <strong>muszą</strong> używać znaku równości (<code class="highlighter-rouge">=</code>).  Ważną rzeczą jest to, że w przeciwieństwie do innych języków szablonów EEx nie traktuje wyrażeń w rodzaju <code class="highlighter-rouge">if</code> w specjalny sposób.  Bez znaku <code class="highlighter-rouge">=</code> nic nie zostanie wyświetlone:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;%=</span> <span class="k">if</span> <span class="no">true</span> <span class="k">do</span> <span class="p">%</span><span class="o">&gt;</span>
+  <span class="n">je</span><span class="err">ż</span><span class="n">eli</span> <span class="n">prawda</span>
+<span class="o">&lt;</span><span class="p">%</span> <span class="k">else</span> <span class="p">%</span><span class="o">&gt;</span>
+  <span class="n">je</span><span class="err">ż</span><span class="n">eli</span> <span class="n">fa</span><span class="err">ł</span><span class="n">sz</span>
+<span class="o">&lt;</span><span class="p">%</span> <span class="k">end</span> <span class="p">%</span><span class="o">&gt;</span>
+</code></pre>
+</div>
+
+<h2 id="silnik">Silnik</h2>
+
+<p>Domyślnie Elixir używa silnika <code class="highlighter-rouge">EEx.SmartEngine</code>, który zawiera wsparcie dla przypisywania zmiennych (na przykład <code class="highlighter-rouge">@name</code>):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">EEx</span><span class="o">.</span><span class="n">eval_string</span> <span class="sd">"</span><span class="s2">Hi, &lt;%= @name %&gt;"</span><span class="p">,</span> <span class="ss">assigns:</span> <span class="p">[</span><span class="ss">name:</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">]</span>
+<span class="sd">"</span><span class="s2">Hi, Sean"</span>
+</code></pre>
+</div>
+
+<p>Przypisania obecne w <code class="highlighter-rouge">EEx.SmartEngine</code> są bardzo przydatne ponieważ pozwalają wprowadzać zmiany bez konieczności rekompilacji szblonu.</p>
+
+<p>Zainteresowany stworzeniem własnego silnika? Sprawdź jak działa <a href="http://elixir-lang.org/docs/stable/eex/EEx.Engine.html"><code class="highlighter-rouge">EEx.Engine</code></a> by zobaczyć co jest wymagane.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Podziel się
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/pl/lessons/specifics/eex/&title=Embedded Elixir (EEx)&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/pl/lessons/specifics/eex/&via=elixirschool&text=ElixirSchool: Embedded Elixir (EEx)&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/pl/lessons/specifics/eex/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/pl/lessons/specifics/eex/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/pl/lessons/specifics/eex/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Embedded Elixir (EEx)" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/pl/lessons/specifics/eex/&title=ElixirSchool: Embedded Elixir (EEx)&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/pl/lessons/specifics/eex/&title=ElixirSchool: Embedded Elixir (EEx)&description=Check out 'Embedded Elixir (EEx)' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Embedded Elixir (EEx)&body=Check out 'Embedded Elixir (EEx)' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/pl/lessons/specifics/eex/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

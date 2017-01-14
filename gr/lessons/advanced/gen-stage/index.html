@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/gr/lessons/advanced/gen-stage/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  GenStage &middot; Elixir School
+
+">
+  <meta property="og:description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  GenStage &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Μαθήματα προγραμματισμού της γλώσσας Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βασικά</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/basics/basics/">Βασικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/basics/collections/">Συλλογές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/basics/pattern-matching/">Αντιπαραβολές Προτύπων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/basics/control-structures/">Δομές Ελέγχου</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/basics/functions/">Συναρτήσεις</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/basics/pipe-operator/">Τελεστής Σωλήνα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/basics/modules/">Ενότητες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/basics/sigils/">Σφραγίδες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/basics/documentation/">Τεκμηρίωση</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/gr/lessons/basics/testing/">Δοκιμές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/gr/lessons/basics/comprehensions/">Ανάγνωση Λιστών</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/gr/lessons/basics/strings/">Αλφαριθμητικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/gr/lessons/basics/mix-tasks/">Ειδικές Εργασίες Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Προχωρημένα</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/advanced/erlang/">Διαλειτουργικότητα με την Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/advanced/error-handling/">Διαχείριση Σφαλμάτων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/advanced/escripts/">Εκτελέσιμα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/advanced/concurrency/">Συγχρονισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-concurrency/">Συγχρονισμός OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-supervisors/">Επιτηρητές OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/advanced/metaprogramming/">Μεταπρογραμματισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/advanced/umbrella-projects/">Projects Ομπρέλας</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/advanced/typespec/">Προδιαγραφές και τύποι</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/advanced/behaviours/">Συμπεριφορές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson  active" href="/gr/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Ιδιαιτερότητες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/specifics/eex/">Ένθετη Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βιβλιοθήκες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/libraries/guardian/">Guardian (Βασικά)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/gen-stage/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/gen-stage/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/gen-stage/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/gen-stage/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/gen-stage/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/gen-stage/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/gen-stage/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/gen-stage/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/gen-stage/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/gen-stage/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/gen-stage/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/gen-stage/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/gen-stage/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/gen-stage/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/gen-stage/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/gen-stage/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/gen-stage/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/gen-stage/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/gen-stage/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/gen-stage/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/gen-stage/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">GenStage</h1>
+  <p>Σε αυτό το μάθημα θα δούμε πιο αναλυτικά το GenStage, τι ρόλο παίζει και πως θα το αξιοποιήσουμε στις εφαρμογές μας.</p>
+
+<h2>Πίνακας περιεχομένων</h2>
+<div id="toc"></div>
+
+<h2 id="section">Εισαγωγή</h2>
+
+<p>Τι είναι το GenStage; Από την επίσημη τεκμηρίωση, είναι “ένας προσδιοριμός και μια επεξεργαστική ροή για την Elixir”, αλλά τι σημαίνει αυτό για εμάς;</p>
+
+<p>Σημαίνει ότι το GenStage μας παρέχει έναν τρόπο να ορίζουμε έναν αγωγό εργασίας που εκτελείται από ανεξάρτητα βήματα (ή στάδια) σε ξεχωριστές διεργασίες.  Αν έχετε δουλέψει με αγωγούς στο παρελθόν τότε μερικές από τις έννοιες θα σας είναι γνώριμες.</p>
+
+<p>Για να κατανοήσετε καλύτερα πως δουλεύει, ας σκεφτούμε μια απλή ροή παραγωγού-καταναλωτή:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[A] -&gt; [B] -&gt; [C]
+</code></pre>
+</div>
+
+<p>Σε αυτό το παράδειγμα έχουμε τρία στάδια: το <code class="highlighter-rouge">A</code> είναι ένας παραγωγός, το <code class="highlighter-rouge">B</code> είναι ένας παραγωγός-καταναλωτής και το <code class="highlighter-rouge">C</code> είναι ένας καταναλωτής.  το <code class="highlighter-rouge">A</code> παράγει μια τιμή η οποία καταναλώνεται από το <code class="highlighter-rouge">B</code>, το <code class="highlighter-rouge">B</code> κάνει κάποια εργασία και επιστρέφει μια νέα τιμή η οποία λαμβάνεται από τον καταναλωτή μας <code class="highlighter-rouge">C</code>.  Ο ρόλος του σταδίου μας είναι σημαντικός, όπως θα δούμε στον επόμενο τομέα.</p>
+
+<p>Παρόλο που το παράδειγμά μας είναι 1-προς-1 παραγωγός-προς-καταναλωτή, είναι δυνατό να έχουμε πολλαπλούς παραγωγούς και πολλαπλούς καταναλωτές σε οποιοδήποτε στάδιο.</p>
+
+<p>Για να παρουσιάσουμε καλύτερα αυτές τις έννοιες θα κατασκευάσουμε έναν αγωγό με το GenStage, αλλά πρώτα ας εξερευνήσουμε περισσότερο τους ρόλους στους οποίος βασίζεται το GenStage.</p>
+
+<h2 id="section-1">Καταναλωτές και Παραγωγοί</h2>
+
+<p>Όπως έχουμε διαβάσει, ο ρόλος που δίνουμε στο στάδιό μας είναι σημαντικός. Οι προδιαγραφές του GenStage αναγνωρίζουν τρεις ρόλους:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">:producer</code> — Μια πηγή.  Οι παραγωγοί περιμένουν για ζήτηση από τους καταναλωτές και ανταποκρίνονται με τα συμβάντα που ζητήθηκαν.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:producer_consumer</code> — Ταυτόχρονα μια πηγή και ένας προορισμός.  Οι παραγωγοί-καταναλωτές μπορούν να ανταποκριθούν στη ζήτηση από άλλους καταναλωτές και να ζητήσουν συμβάντα από παραγωγούς.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:consumer</code> — Ένας προορισμός.  Ένας καταναλωτής ζητάει και λαμβάνει δεδομένα από παραγωγούς.</p>
+  </li>
+</ul>
+
+<p>Παρατηρείτε ότι οι παραγωγοί μας <em>περιμένουν</em> για ζήτηση; Με το GenStage οι καταναλωτές στέλνουν αιτήσεις προς τα πάνω και επεξεργάζονται τα δεδομένα από τον παραγωγό.  Αυτό διευκολύνει ένα μηχανισμό γνωστό ως αντίθλιψη.  Η αντίθλιψη βάζει το βάρος στον παραγωγό ώστε να μην πιέζει υπερβολικά όταν οι καταναλωτές είναι απασχολημένοι.</p>
+
+<p>Τώρα που καλύψαμε τους ρόλους στο GenStage, ας ξεκινήσουμε με την εφαρμογή μας.</p>
+
+<h2 id="section-2">Ξεκινώντας</h2>
+
+<p>Σε αυτό το παράδειγμα θα κατασκευάσουμε μια εφαρμογή GenStage που στέλνει αριθμούς, ταξινομεί τους ζυγούς και τέλος τους τυπώνει.</p>
+
+<p>Για την εφαρμογή μας θα χρησιμοποιήσουμε και τους τρεις ρόλους GenStage. Ο παραγωγός μας θα είναι υπεύθυνος για το μέτρημα και την αποστολή των αριθμών.  Θα χρησιμοποιήσουμε ένα παραγωγό-καταναλωτή για να φιλτράρουμε τους ζυγούς αριθμούς και αργότερα να ανταποκρινόμαστε στη ζήτηση από κάτω.  Τέλος θα χτίσουμε ένα καταναλωτή για να εμφανίσουμε τους εναπομείναντες αριθμούς.</p>
+
+<p>Θα ξεκινήσουμε δημιουργώντας ένα project με ένα δέντρο παρακολούθησης:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix new genstage_example --sup
+<span class="gp">$ </span><span class="nb">cd </span>genstage_example
+</code></pre>
+</div>
+
+<p>Ας αναβαθμίσουμε τις εξαρτήσεις μας στο <code class="highlighter-rouge">mix.exs</code> για να συμπεριλάβουμε το <code class="highlighter-rouge">gen_stage</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+    <span class="p">[</span>
+      <span class="p">{</span><span class="ss">:gen_stage</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 0.7"</span><span class="p">},</span>
+    <span class="p">]</span>
+  <span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Θα πρέπει να κατεβάσουμε τις εξαρτήσεις μας και να τις συντάξουμε πριν προχωρήσουμε:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix <span class="k">do </span>deps.get, compile
+</code></pre>
+</div>
+
+<p>Τώρα είμαστε έτοιμοι να χτίστουμε τον παραγωγό μας!</p>
+
+<h2 id="section-3">Παραγωγός</h2>
+
+<p>Το πρώτο βήμα της εφαρμογής GenStage μας είναι να δημιουργήσουμε τον παραγωγό μας. Όπως συζητήσαμε πριν θέλουμε να δημιουργήσουμε ένα παραγωγό που στέλνει μια συνεχή ροή αριθμών.  Ας δημιουργήσουμε το αρχείο παραγωγού:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mkdir lib/genstage_example
+<span class="gp">$ </span>touch lib/genstage_example/producer.ex
+</code></pre>
+</div>
+
+<p>Τώρα μπορούμε να προσθέσουμε τον κώδικα:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Experimental</span><span class="o">.</span><span class="no">GenStage</span>
+
+  <span class="kn">use</span> <span class="no">GenStage</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">initial</span> <span class="p">\\</span> <span class="m">0</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">GenStage</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">counter</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:producer</span><span class="p">,</span> <span class="n">counter</span><span class="p">}</span>
+
+  <span class="k">def</span> <span class="n">handle_demand</span><span class="p">(</span><span class="n">demand</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="no">Enum</span><span class="o">.</span><span class="n">to_list</span><span class="p">(</span><span class="n">state</span><span class="o">..</span><span class="n">state</span> <span class="o">+</span> <span class="n">demand</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span>
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="p">(</span><span class="n">state</span> <span class="o">+</span> <span class="n">demand</span><span class="p">)}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Τα δύο πιο σημαντικά μέρη που πρέπει να σημειώσουμε εδώ είναι οι <code class="highlighter-rouge">init/1</code> και <code class="highlighter-rouge">handle_demand/2</code>.  Στην <code class="highlighter-rouge">init/1</code> ορίζουμε την αρχική κατάσταση όπως θα κάναμε στους GenServers μας αλλά το πιο σημαντικό είναι ότι μας βάζουμε την ταμπέλα του παραγωγού.  Η απάντηση της συνάρτησής μας <code class="highlighter-rouge">init/1</code> είναι αυτή στην οποία στηρίζεται το GenStage για να ταξινομήσει την διεργασία μας.</p>
+
+<p>Η συνάρτηση <code class="highlighter-rouge">handle_demand/2</code> είναι εκεί που βρίσκεται η πλειοψηφία των παραγωγών μας και πρέπει να υλοποιηθεί από όλους τους GenStage παραγωγούς.  Εδώ επιστρέφουμε το σετ των αριθμών που ζητούνται από τους καταναλωτές μας και αυξάνουμε το μετρητή μας.  Η ζήτηση από τους καταναλωτές, η μεταβλητή <code class="highlighter-rouge">demand</code> στον κώδικα από πάνω, είναι ένας ακέραιος που αναπαριστά τον αριθμό των συμβάντων που μπορούν να χειριστούν, με προκαθορισμένο το 1000.</p>
+
+<h2 id="section-4">Παραγωγός Καταναλωτής</h2>
+
+<p>Τώρα που έχουμε έναν παραγωγό-γεννήτρια αριθμών ας μεταβούμε στον παραγωγό-καταναλωτή μας.  Θα θέλουμε να ζητήσουμε αριθμούς από τον παραγωγό μας, να αφαιρέσουμε τους μονούς και να απαντήσουμε στη ζήτηση.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>touch lib/genstage_example/producer_consumer.ex
+</code></pre>
+</div>
+
+<p>Ας αναβαθμίσουμε το αρχείο μας για να δείχνει όπως ο κώδικας στο παράδειγμα:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span>  <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Experimental</span><span class="o">.</span><span class="no">GenStage</span>
+  <span class="kn">use</span> <span class="no">GenStage</span>
+
+  <span class="kn">require</span> <span class="no">Integer</span>
+
+  <span class="k">def</span> <span class="n">start_link</span> <span class="k">do</span>
+    <span class="no">GenStage</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:state_doesnt_matter</span><span class="p">,</span> <span class="ss">name:</span> <span class="bp">__MODULE__</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:producer_consumer</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">subscribe_to:</span> <span class="p">[</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_events</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">numbers</span> <span class="o">=</span>
+      <span class="n">events</span>
+      <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">&amp;</span><span class="no">Integer</span><span class="o">.</span><span class="n">is_even</span><span class="o">/</span><span class="m">1</span><span class="p">)</span>
+
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">numbers</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Όπως ίσως παρατηρήσατε, με τον παραγωγό-καταναλωτή μας παρουσιάζουμε μια νέα συνάρτηση, την <code class="highlighter-rouge">handle_events/3</code> και μια ένα επιλογή στην <code class="highlighter-rouge">init/1</code>.  Με την επιλογή <code class="highlighter-rouge">subscribe_to</code> καθοδηγούμε το GenStage να μας βάλει σε επικοινωνία με ένα συγκεκριμμένο παραγωγό.</p>
+
+<p>Η μέθοδος <code class="highlighter-rouge">handle_events/3</code> είναι η κινητήριος δύναμή μας, εκεί όπου λαμβάνουμε τα εισερχόμενα συμβάντα, τα επεξεργαζόμαστε και επιστρέφουμε το μεταμορφωμένο σετ.  Όπως θα δούμε οι καταναλωτές υλοποιούνται με περίπου τον ίδιο τρόπο αλλά η σημαντική διαφορά είναι στο τι επιστρέφει η μέθοδος <code class="highlighter-rouge">handle_events/3</code> και στο πως χρησιμοποιείται. Όταν μαρκάρουμε την διεργασία μας σαν παραγωγό-καταναλωτή το δεύτερο όρισμα της τούπλας μας, η <code class="highlighter-rouge">numbers</code> σε αυτή την περίπτωση, χρησιμοποιείται για να ανταποκριθεί στη ζήτηση προς τα κάτω.  Στους καταναλωτές αυτή η τιμή απορρίπτεται.</p>
+
+<h2 id="section-5">Καταναλωτής</h2>
+
+<p>Τελευταίο αλλά εξίσου σημαντικό έχουμε τον καταναλωτή μας.  Ας ξεκινήσουμε:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>touch lib/genstage_example/consumer.ex
+</code></pre>
+</div>
+
+<p>Από τη στιγμή που οι καταναλωτές και οι παραγωγοί-καταναλωτές είναι τόσο όμοιοι ο κώδικάς μας δεν θα δείχνει τόσο διαφορετικός:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span> <span class="k">do</span>
+  <span class="n">alias</span> <span class="no">Experimental</span><span class="o">.</span><span class="no">GenStage</span>
+  <span class="kn">use</span> <span class="no">GenStage</span>
+
+  <span class="k">def</span> <span class="n">start_link</span> <span class="k">do</span>
+    <span class="no">GenStage</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:state_doesnt_matter</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:consumer</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="ss">subscribe_to:</span> <span class="p">[</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span><span class="p">]}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_events</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">event</span> <span class="o">&lt;-</span> <span class="n">events</span> <span class="k">do</span>
+      <span class="no">IO</span><span class="o">.</span><span class="n">inspect</span> <span class="p">{</span><span class="n">self</span><span class="p">(),</span> <span class="n">event</span><span class="p">,</span> <span class="n">state</span><span class="p">}</span>
+    <span class="k">end</span>
+
+    <span class="c1"># As a consumer we never emit events</span>
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="p">[],</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Όπως είδαμε στον προηγούμενο τομέα ο καταναλωτής μας δεν στέλνει συμβάντα, έτσι η δεύτερη τιμή στην τούπλα μας θα απορριφθεί.</p>
+
+<h2 id="section-6">Συνδεση</h2>
+
+<p>Τώρα που έχουμε τον παραγωγό μας, τον παραγωγό-καταναλωτή και τον καταναλωτή έτοιμους είμαστε έτοιμοι να τους συνδέσουμε.</p>
+
+<p>Ας ξεκινήσουμε ανοίγοντας το <code class="highlighter-rouge">lib/genstage_example.ex</code> και προσθέτοντας τις διεργασίες μας στο δέντρο παρακολούθησης:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+  <span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span><span class="p">,</span> <span class="ss">warn:</span> <span class="no">false</span>
+
+  <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span><span class="p">,</span> <span class="p">[</span><span class="m">0</span><span class="p">]),</span>
+    <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span><span class="p">,</span> <span class="p">[]),</span>
+    <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span><span class="p">,</span> <span class="p">[]),</span>
+  <span class="p">]</span>
+
+  <span class="n">opts</span> <span class="o">=</span> <span class="p">[</span><span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">GenstageExample</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">]</span>
+  <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Αν όλα είναι σωστά, μπορούμε να τρέξουμε το project και θα πρέπει να δούμε τα πάντα να δουλέυουν:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix run --no-halt
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 2, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 4, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 6, :state_doesnt_matter}</span>
+...
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 229062, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 229064, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.109.0&gt;, 229066, :state_doesnt_matter}</span>
+</code></pre>
+</div>
+
+<p>Τα καταφέραμε!  Όπως αναμέναμε η εφαρμογή μας στέλνει μόνο ζυγούς αριθμούς και το κάνει <em>γρήγορα</em>.</p>
+
+<p>Σε αυτό το σημείο έχουμε ένα σωλήνα που λειτουργεί.  Υπαρχει ένας παραγωγός που στέλνει αριθμούς, ένας παραγωγός καταναλωτής που διαγράφει τους μονούς αριθμούς, και ένας καταναλωτής που τα εμφανίζει όλα αυτά και συνεχίζει τη ροή.  Αναφέραμε στην εισαγωγή ότι θα μπορούσαμε να έχουμε πάνω από ένα παραγωγούς ή καταναλωτές, οπότε ας ρίξουμε μια ματιά σε αυτά.</p>
+
+<p>Αν εξετάσουμε την έξοδο της <code class="highlighter-rouge">IO.inspect/1</code> από το παράδειγμά μας θα δούμε ότι κάθε συμβάν το χειρίζεται μια μοναδική PID.  Ας κάνουμε κάποιες αλλαγές για πολλαπλούς εργάτες αλλάζοντας το <code class="highlighter-rouge">lib/genstage_example.ex</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Producer</span><span class="p">,</span> <span class="p">[</span><span class="m">0</span><span class="p">]),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">ProducerConsumer</span><span class="p">,</span> <span class="p">[]),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">id:</span> <span class="m">1</span><span class="p">),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">GenstageExample</span><span class="o">.</span><span class="no">Consumer</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">id:</span> <span class="m">2</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Τώρα που ορίσαμε δύο καταναλωτές ας δούμε τι παίρνουμε αν τρέξουμε τώρα την εφαρμογή μας:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mix run --no-halt
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 2, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.121.0&gt;, 4, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 6, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 8, :state_doesnt_matter}</span>
+...
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 86478, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.121.0&gt;, 87338, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 86480, :state_doesnt_matter}</span>
+<span class="o">{</span><span class="c">#PID&lt;0.120.0&gt;, 86482, :state_doesnt_matter}</span>
+</code></pre>
+</div>
+
+<p>Όπως θα δείτε τώρα έχουμε πολλαπλά PID, απλά προσθέτοντας μια γραμμή κώδικα και δίνοντας ID στους καταναλωτές μας.</p>
+
+<h2 id="section-7">Περιπτώσεις Χρήσης</h2>
+
+<p>Τώρα που καλύψαμε το GenStage και χτίσαμε το πρώτη μας δοκιμαστική εφαρμογή, ποιές είναι μερικές από τις <em>πραγματικές</em> περιπτώσεις χρήσης για το GenStage;</p>
+
+<ul>
+  <li>
+    <p>Σωλήνας Μετατροπής Δεδομένων — Οι παραγωγοί δεν χρειάζεται να είναι απλές γεννήτριες αριθμών, θα μπορούσαμε να παράγουμε συμβάντα από μια βάση δεδομένων ή ακόμα από μια άλλη πηγή όπως η Apache Kafka.  Με ένα συνδυασμό παραγωγών-καταναλωτών και καταναλωτών θα μπορούσαμε να παράγουμε, ταξινομήσουμε, καταγράψουμε και αποθηκεύσουμε μετρήσεις καθώς γίνονται διαθέσιμες.</p>
+  </li>
+  <li>
+    <p>Ουρά Εργασίας — Αφού τα συμβάντα μπορούν να είναι οτιδήποτε θα μπορούσαμε να παράγουμε εργασίες μονάδων για να ολοκληρωθούν από μια σειρά καταναλωτών.</p>
+  </li>
+  <li>
+    <p>Επεξεργασία Συμβάντων — Παρόμοια στο σωλήνα δεδομένων θα μπορούσαμε να λαμβάνουμε, επεξεργαζόμαστε, ταξινομούμε και να δρούμε πάνω σε συμβάντα που στέλντονται σε πραγματικό χρόνο από τις πηγές μας.</p>
+  </li>
+</ul>
+
+<p>Αυτές είναι μόλιες <em>μερικές</em> από τις πιθανότητες για το GenStage.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/gr/lessons/advanced/gen-stage/&title=GenStage&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/gr/lessons/advanced/gen-stage/&via=elixirschool&text=ElixirSchool: GenStage&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/gr/lessons/advanced/gen-stage/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/gr/lessons/advanced/gen-stage/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/gr/lessons/advanced/gen-stage/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: GenStage" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/gr/lessons/advanced/gen-stage/&title=ElixirSchool: GenStage&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/gr/lessons/advanced/gen-stage/&title=ElixirSchool: GenStage&description=Check out 'GenStage' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: GenStage&body=Check out 'GenStage' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/gr/lessons/advanced/gen-stage/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

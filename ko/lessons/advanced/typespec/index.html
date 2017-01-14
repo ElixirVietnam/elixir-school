@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/advanced/typespec/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  스펙과 타입 &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  스펙과 타입 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson  active" href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/typespec/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/typespec/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/typespec/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/typespec/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/typespec/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/typespec/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/typespec/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/typespec/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/typespec/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/typespec/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/typespec/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/typespec/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/typespec/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/typespec/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/typespec/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/typespec/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/typespec/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/typespec/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/typespec/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/typespec/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/typespec/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">스펙과 타입</h1>
+  <p>이번 수업에서 <code class="highlighter-rouge">@spec</code>과 <code class="highlighter-rouge">@type</code> 구문을 공부해보도록 하겠습니다. <code class="highlighter-rouge">@spec</code>이 문서화 도구가 코드를 분석해서 문서화에 힘을 실어주는 구문이라면, <code class="highlighter-rouge">@type</code>은 읽고 이해하기에 더 쉬운 코드를 쓸 수 있게 도와주는 구문입니다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="section">소개</h2>
+
+<p>여러분들이 작성한 함수의 인터페이스를 설명하고 싶어할 때가 종종 있습니다. 물론 이런 내용을 <a href="../../basics/documentation">@doc 주석</a> 안에서 설명할 수도 있겠지만, 이런 정보는 다른 개발자들에게만 보일 뿐이지 컴파일 할 때 쓰이는 부분은 아닙니다. Elixir에 있는 <code class="highlighter-rouge">@spec</code>을 사용해서, 함수의 명세를 작성하고 컴파일러가 확인할 수 있도록 할 수 있습니다.</p>
+
+<p>하지만 때로는 함수의 명세가 너무 크고 복잡해질 수 있습니다. 단순화를 위해, 커스텀 타입 도입을 고려할 수 있습니다. Elixir에는 <code class="highlighter-rouge">@type</code> 주석으로 커스텀 타입을 정의할 수 있습니다. 한편 Elixir는 여전히 동적 언어입니다. 이 말인즉슨, 타입에 관련된 모든 정보는 컴파일러가 확인하지 않을 것이며, 다른 도구에서만 사용할 것입니다.</p>
+
+<h2 id="section-1">스펙</h2>
+
+<p>Java나 Ruby를 사용해보신 분들이라면 specification을 <code class="highlighter-rouge">interface</code>처럼 생각하실 수 있습니다. Specification에서 함수의 인자나 리턴값이 어떤 타입일지를 정의합니다.</p>
+
+<p>함수를 정의하는 코드 바로 위에 <code class="highlighter-rouge">@spec</code>을 쓰고, 그 뒤에 파라미터의 타입을 파라미터로 호출하듯 함수의 이름과 파라미터 타입, <code class="highlighter-rouge">::</code> 뒤에 리턴되는 값을 적어줍니다.</p>
+
+<p>아례 예시를 한번 살펴보도록 하지요.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_product</span><span class="p">(</span><span class="n">integer</span><span class="p">)</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_product</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>전부 다 괜찮아 보이고, 함수를 호출하면 올바른 값이 리턴되겠지요. 하지만 <code class="highlighter-rouge">Enum.sum</code> 함수는 <code class="highlighter-rouge">@spec</code>에서 예상했던 <code class="highlighter-rouge">integer</code>가 아니라 <code class="highlighter-rouge">number</code>를 리턴합니다. 이런 부분에서 버그가 생겨날 수 있어요! 코드를 정적 분석해주는 Dialyzer 같은 도구를 사용해서 이런 종류의 버그를 찾아낼 수 있습니다. 이런 정적 분석 도구를 사용하는 법에 대해서는 다른 수업에서 다루어 보겠습니다.</p>
+
+<h2 id="section-2">커스텀 타입</h2>
+
+<p>스펙을 작성하는 것도 좋지만, 때로는 우리들이 구현한 함수가 간단한 함수나 컬렉션보다 복잡한 자료 구조를 처리해야 할 수도 있습니다. 이런 함수를 <code class="highlighter-rouge">@spec</code>으로 정의한다면, 다른 개발자들이 이해하거나 수정하기가 힘들어질 수 있습니다. 종종 함수가 많은 파라메터를 필요로 하거나, 복잡한 데이터를 리턴해야 할 때가 있습니다. 하지만 파라메터 목록이 길어질수록 코드의 품질이 떨어질 가능성도 점점 커집니다. Ruby나 Java 같은 객체 지향 언어를 사용했더라면, 간편하게 클래스를 구현해서 문제를 해결할 수 있었을 것입니다. Elixir에서는 클래스가 없고, 대신에 타입을 정의해서 언어를 확장할 수 있습니다.</p>
+
+<p>막 설치를 끝내고 난 Elixir에는 <code class="highlighter-rouge">integer</code>나 <code class="highlighter-rouge">pid</code> 같은 기본적인 타입이 있는데요. <a href="http://elixir-lang.org/docs/stable/elixir/typespecs.html#types-and-their-syntax">공식 문서(Types and Their Syntax)</a>에서 사용할 수 있는 타입의 전체 목록을 찾아볼 수 있습니다.</p>
+
+<h3 id="section-3">커스텀 타입 정의하기</h3>
+
+<p>추가적으로 파라미터를 도입하는 쪽으로 <code class="highlighter-rouge">sum_times</code> 함수를 수정해보겠습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">})</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Range</code> 모듈 안에 있는 구조체를 단순하게 만들어, <code class="highlighter-rouge">Examples</code> 모듈 안에 <code class="highlighter-rouge">first</code>와 <code class="highlighter-rouge">last</code> 필드를 가진 구조체를 도입하였습니다. 구조체는 <a href="ko/lessons/basics/modules/#section-2">모듈</a>에서 한번 이야기해 본 적이 있었습니다. 그런데, 코드의 여러 부분에서 <code class="highlighter-rouge">Examples</code> 구조체에 대한 스펙을 정의해야 하는 상황을 상상해 봅시다. 길고 복잡한 스펙을 쓰자니 성가실 뿐더러, 이 부분에서 버그가 생겨날 가능성이 커질 수도 있습니다. 이 문제를 해결하기 위해서 <code class="highlighter-rouge">@type</code>을 사용할 수 있습니다.</p>
+
+<p>Elixir에서 타입을 지정하는 방법에는 세 가지가 있습니다.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">@type</code> – 그냥 공개 타입입니다. 타입의 내부 구조까지도 공개합니다.</li>
+  <li><code class="highlighter-rouge">@typep</code> – 공개하지 않은 타입이고, 이 타입을 정의하고 있는 모듈 안에서만 사용할 수 있습니다.</li>
+  <li><code class="highlighter-rouge">@opaque</code> – 타입은 공개되어 있지만, 타입의 내부 구조는 숨겨져 있습니다.</li>
+</ul>
+
+<p>이제 타입을 정의해 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Examples</span> <span class="k">do</span>
+
+    <span class="n">defstruct</span> <span class="ss">first:</span> <span class="no">nil</span><span class="p">,</span> <span class="ss">last:</span> <span class="no">nil</span>
+
+    <span class="nv">@type</span> <span class="n">t</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">first</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">last</span><span class="p">}</span>
+
+    <span class="nv">@type</span> <span class="n">t</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">}</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>구조체 <code class="highlighter-rouge">%Examples{first: first, last: last}</code>를 나타내는 타입 <code class="highlighter-rouge">t(first, last)</code>를 정의하였습니다. 여기에서 타입이 인수를 취할 수 있다는 걸 알 수 있지만, 이번에는 타입 <code class="highlighter-rouge">t</code>도 정의한 데다가 이번에는 <code class="highlighter-rouge">%Examples{first: integer, last: integer}</code> 구조체를 나타내는 타입입니다.</p>
+
+<p>어떻게 다를까요? 첫번째는 아무 타입이나 가질 수 있는 두 키를 가진 <code class="highlighter-rouge">Example</code> 구조체입니다. 한편 두번째는 키가 정수(<code class="highlighter-rouge">integer</code>)인 구조체를 나타냅니다. 다시 말해 아래처럼 코드를 작성하면</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="no">Examples</span><span class="o">.</span><span class="n">t</span><span class="p">)</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>아래 코드와 같은 의미가 됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">@spec</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="no">Examples</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="n">integer</span><span class="p">))</span> <span class="p">::</span> <span class="n">integer</span>
+<span class="k">def</span> <span class="n">sum_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">params</span><span class="o">.</span><span class="n">first</span><span class="o">..</span><span class="n">params</span><span class="o">.</span><span class="n">last</span> <span class="k">do</span>
+        <span class="n">i</span>
+    <span class="k">end</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">fn</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span> <span class="o">*</span> <span class="n">a</span> <span class="k">end</span><span class="p">)</span>
+       <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sum</span>
+       <span class="o">|&gt;</span> <span class="n">round</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h3 id="section-4">타입 문서화하기</h3>
+
+<p>마지막으로 타입을 문서화하는 방법을 다루어 보겠습니다. <a href="../../basics/documentation">문서화</a> 수업에서 함수와 모듈를 문서화할 때에는 <code class="highlighter-rouge">@doc</code>과 <code class="highlighter-rouge">@moduledoc</code>을 사용한다는 것을 배웠었지요. 타입을 문서화할 때에는 <code class="highlighter-rouge">@typedoc</code>을 사용할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Examples</span> <span class="k">do</span>
+    
+    <span class="nv">@typedoc</span> <span class="sd">"""
+        integer인 :first와 integer인 :last를 갖고 있는 Examples 구조체를 대표하는 타입.
+    """</span>
+    <span class="nv">@type</span> <span class="n">t</span> <span class="p">::</span> <span class="p">%</span><span class="no">Examples</span><span class="p">{</span><span class="ss">first:</span> <span class="n">integer</span><span class="p">,</span> <span class="ss">last:</span> <span class="n">integer</span><span class="p">}</span>
+
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">@typedoc</code> 주석은 <code class="highlighter-rouge">@doc</code>이나 <code class="highlighter-rouge">@moduledoc</code>과 비슷합니다.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/advanced/typespec/&title=스펙과 타입&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/advanced/typespec/&via=elixirschool&text=ElixirSchool: 스펙과 타입&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/advanced/typespec/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/advanced/typespec/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/advanced/typespec/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 스펙과 타입" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/advanced/typespec/&title=ElixirSchool: 스펙과 타입&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/advanced/typespec/&title=ElixirSchool: 스펙과 타입&description=Check out '스펙과 타입' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 스펙과 타입&body=Check out '스펙과 타입' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/advanced/typespec/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

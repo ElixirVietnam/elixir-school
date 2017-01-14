@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Elixir 编程语言教程">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/cn/lessons/basics/strings/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  字符串 &middot; Elixir School
+
+">
+  <meta property="og:description" content="Elixir 编程语言教程">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  字符串 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Elixir 编程语言教程</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>基础</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/cn/lessons/basics/basics/">基础</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/cn/lessons/basics/collections/">集合</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/cn/lessons/basics/enum/">Enum 模块</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/cn/lessons/basics/pattern-matching/">模式匹配</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/cn/lessons/basics/control-structures/">控制语句</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/cn/lessons/basics/functions/">函数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/cn/lessons/basics/pipe-operator/">管道操作符</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/cn/lessons/basics/modules/">组合</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/cn/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/cn/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/cn/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/cn/lessons/basics/testing/">测试</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/cn/lessons/basics/comprehensions/">推导</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson  active" href="/cn/lessons/basics/strings/">字符串</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>高级</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/cn/lessons/advanced/erlang/">和 Erlang 互操作</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/cn/lessons/advanced/escripts/">可执行文件</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/cn/lessons/advanced/concurrency/">并发</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/cn/lessons/advanced/otp-concurrency/">OTP 并发</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/cn/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/cn/lessons/advanced/metaprogramming/">元编程</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>专题</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/cn/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/cn/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/strings/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/strings/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/strings/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/strings/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/strings/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/strings/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/strings/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/strings/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/strings/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/strings/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/strings/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/strings/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/strings/ ">my</a>
+      
+        <a href=" /no/lessons/basics/strings/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/strings/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/strings/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/strings/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/strings/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/strings/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/strings/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/strings/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">字符串</h1>
+  <p>字符串、字符列表、字素(Graphemes) 和字码点（Codepoints）。</p>
+
+<h2>目录</h2>
+<div id="toc"></div>
+
+<h2 id="section">字符串</h2>
+
+<p>Elixir 字符串就是字节序列，我们来看一个例子：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">string</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="m">104</span><span class="p">,</span><span class="m">101</span><span class="p">,</span><span class="m">108</span><span class="p">,</span><span class="m">108</span><span class="p">,</span><span class="m">111</span><span class="o">&gt;&gt;</span>
+<span class="sd">"</span><span class="s2">hello"</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>NOTE: 使用 <code class="highlighter-rouge">&lt;&lt; &gt;&gt;</code> 是告诉编译器这个符号里面的内容是字节。</p>
+</blockquote>
+
+<h2 id="section-1">字符列表</h2>
+
+<p>在 Elixir 内部，字符串是字节序列表示的，而不是字符数组。Elixir 也有一个字符列表的类型：字符串是双引号括起来的，而字符列表是单引号括起来的。</p>
+
+<p>这两者有什么区别呢？字符列表的每个值都是 ASCII 码。我们来深入了解一下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">char_list</span> <span class="o">=</span> <span class="s1">'hello'</span>
+<span class="s1">'hello'</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">hd</span><span class="o">|</span><span class="n">tl</span><span class="p">]</span> <span class="o">=</span> <span class="n">char_list</span>
+<span class="s1">'hello'</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="n">hd</span><span class="p">,</span> <span class="n">tl</span><span class="p">}</span>
+<span class="p">{</span><span class="m">104</span><span class="p">,</span> <span class="s1">'ello'</span><span class="p">}</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">char_list</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="k">fn</span> <span class="n">char</span><span class="p">,</span> <span class="n">acc</span> <span class="o">-&gt;</span> <span class="n">acc</span> <span class="o">&lt;&gt;</span> <span class="n">to_string</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">&lt;&gt;</span> <span class="sd">"</span><span class="s2">,"</span> <span class="k">end</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">104,101,108,108,111,"</span>
+</code></pre>
+</div>
+
+<p>在使用 Elixir 编程的时候，通常会使用字符串，而不是字符列表。字符列表之所以存在，是因为有些 Erlang 模块要用到它。</p>
+
+<h2 id="section-2">字素和字码点</h2>
+
+<p>字码点（Codepoint）就是一个或者多个字节表示的 Unicode 字符（根据 UTF-8 编码方式，每个字码点会有长度不同）。ASCII 码之外的字符一般都会由多个字节表示，比如带有波浪线或者声调的拉丁字符 (<code class="highlighter-rouge">á, ñ, è</code>) 一般都是两个字节表示的。而亚洲语言的字符一般都是三个或者四个字节。字素（Graphemes）就是一个字符的表示，通常由多个字码点组成。</p>
+
+<p><code class="highlighter-rouge">String</code> 模块已经提供了两个方法来获取这两种方式的值：<code class="highlighter-rouge">graphemes/1</code> 和 <code class="highlighter-rouge">codepoints/1</code>。我们来看一下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">string</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">\u0061\u0301"</span>
+<span class="sd">"</span><span class="s2">á"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">codepoints</span> <span class="n">string</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">a"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">́"</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">graphemes</span> <span class="n">string</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">á"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="section-3">字符串函数</h2>
+
+<p>这个部分我们看一下 <code class="highlighter-rouge">String</code> 模块最常用的一些函数。本课程只会介绍其中的一部分，如果要了解所有的函数，请参考<a href="http://elixir-lang.org/docs/stable/elixir/String.html">官方 <code class="highlighter-rouge">String</code> 文档</a>。</p>
+
+<h3 id="length1"><code class="highlighter-rouge">length/1</code></h3>
+
+<p>返回字符串中的字素的数量：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span> <span class="sd">"</span><span class="s2">Hello"</span>
+<span class="m">5</span>
+</code></pre>
+</div>
+
+<h3 id="replace3"><code class="highlighter-rouge">replace/3</code></h3>
+
+<p>返回一个新的字符串，它的值是把原来某些模式替换成新的字符串得到的：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">e"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">a"</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Hallo"</span>
+</code></pre>
+</div>
+
+<h3 id="duplicate2"><code class="highlighter-rouge">duplicate/2</code></h3>
+
+<p>返回重复了 n 遍的字符串：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="sd">"</span><span class="s2">Oh my "</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">Oh my Oh my Oh my "</span>
+</code></pre>
+</div>
+
+<h3 id="split2"><code class="highlighter-rouge">split/2</code></h3>
+
+<p>返回把原字符串按照某个模式分隔后的字符串列表：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello World"</span><span class="p">,</span> <span class="sd">"</span><span class="s2"> "</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">World"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="section-4">练习</h2>
+
+<p>我们来做个小的练习，证明已经掌握了字符串的知识。</p>
+
+<h3 id="section-5">重组字符串</h3>
+
+<p>A 和 B 如果能通过重组变得和对方一样，就认为两者是重组字符串。比如：</p>
+
+<ul>
+  <li>A = super</li>
+  <li>B = perus</li>
+</ul>
+
+<p>如果我们重组 A 字符串中的元素就可以得到 B，反之亦然。</p>
+
+<p>那么，怎么才能用 Elixir 判断两个字符串是否为重组字符串呢？最简单的办法就是对两个字符串的字符进行排序，然后比较排序号的结果是否相等。我们来试试这个方法：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Anagram</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">anagrams?</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">when</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_binary</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">sort_string</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">sort_string</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">sort_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">string</span>
+    <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">downcase</span>
+    <span class="o">|&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">graphemes</span>
+    <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>先看一下 <code class="highlighter-rouge">anagrams?/2</code>，首先我们会检查接受的参数是否为 binaries，这是 Elixir 检查参数是否为字符串的方法。<br />
+然后，我们会调用把字符串按照字母表排序的函数，这个函数首先把所有字符转换成小写，然后调用 <code class="highlighter-rouge">String.graphemes</code> 得到字符串中字素的列表。思路很清晰，对吧？</p>
+
+<p>我们来通过 iex 看一下输出结果：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">ohell"</span><span class="p">)</span>
+<span class="no">true</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="sd">"</span><span class="s2">María"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">íMara"</span><span class="p">)</span>
+<span class="no">true</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">FunctionClauseError</span><span class="p">)</span> <span class="n">no</span> <span class="n">function</span> <span class="n">clause</span> <span class="n">matching</span> <span class="ow">in</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="o">/</span><span class="m">2</span>
+    <span class="ss">iex:</span><span class="m">2</span><span class="p">:</span> <span class="no">Anagram</span><span class="o">.</span><span class="n">anagrams?</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>正如上面展示的，最后一次调用 <code class="highlighter-rouge">anagrams?</code> 返回了 <code class="highlighter-rouge">FunctionClauseError</code>，这个错误就是告诉我们模块中没有接受两个非字符串的函数。这正是我们期望的结果：只接受字符串作为参数，其他都不允许。</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    分享本页面
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/cn/lessons/basics/strings/&title=字符串&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/cn/lessons/basics/strings/&via=elixirschool&text=ElixirSchool: 字符串&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/cn/lessons/basics/strings/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/cn/lessons/basics/strings/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/cn/lessons/basics/strings/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 字符串" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/cn/lessons/basics/strings/&title=ElixirSchool: 字符串&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/cn/lessons/basics/strings/&title=ElixirSchool: 字符串&description=Check out '字符串' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 字符串&body=Check out '字符串' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/cn/lessons/basics/strings/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

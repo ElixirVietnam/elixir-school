@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/advanced/otp-supervisors/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  OTP 슈퍼바이저 &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  OTP 슈퍼바이저 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/otp-supervisors/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/otp-supervisors/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/otp-supervisors/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/otp-supervisors/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/otp-supervisors/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/otp-supervisors/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/otp-supervisors/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/otp-supervisors/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/otp-supervisors/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/otp-supervisors/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/otp-supervisors/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/otp-supervisors/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/otp-supervisors/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/otp-supervisors/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/otp-supervisors/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/otp-supervisors/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/otp-supervisors/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/otp-supervisors/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/otp-supervisors/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/otp-supervisors/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/otp-supervisors/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">OTP 슈퍼바이저</h1>
+  <p>슈퍼바이저(Supervisor)는 다른 프로세스의 감시라는 단 하나의 목적에 특화된 프로세스입니다. 자식 프로세스가 실패하면 자동으로 재시작해주는 것으로 장애에 대한 내성이 높은(Fault-tolerant) 애플리케이션을 만들 수 있게 해줍니다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="section">설정</h2>
+
+<p>슈퍼바이저의 마법은 <code class="highlighter-rouge">Supervisor.start_link</code> 함수의 내부에 있습니다. 슈퍼바이저와 자식 프로세스를 실행하면서, 슈퍼바이저가 자식 프로세스를 관리하기 위해 사용할 전략을 정의할 수 있습니다.</p>
+
+<p>자식 프로세스는 리스트와 <code class="highlighter-rouge">Supervisor.Spec</code>에 포함된 <code class="highlighter-rouge">worker/3</code> 함수를 사용해서 정의됩니다. <code class="highlighter-rouge">worker/3</code> 함수는 모듈, 인자, 옵션을 받습니다. 내부적으로 <code class="highlighter-rouge">worker/3</code>는 초기화할 때 주어진 인자를 사용해서 <code class="highlighter-rouge">start_link/3</code>을 호출합니다.</p>
+
+<p><a href="../../advanced/otp-concurrency">OTP의 동시성</a>에서 구현한 SimpleQueue를 사용해서 시작해봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">SimpleQueue</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="ss">name:</span> <span class="no">SimpleQueue</span><span class="p">])</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>프로세스가 정지하거나 종료되면, 슈퍼바이저는 아무 일도 없었던 것처럼 프로세스를 재기동할 것입니다.</p>
+
+<h3 id="section-1">전략</h3>
+
+<p>현재 슈퍼바이저가 사용 가능한 4개의 재기동 전략이 있습니다.</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">:one_for_one</code> - 실패한 자식 프로세스만을 재기동합니다.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:one_for_all</code> - 실패한 이벤트에 포함되어 있는 모든 자식 프로세스를 재기동합니다.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:rest_for_one</code> - 실패한 프로세스와 그 프로세스보다 이후에 생성된 모든 프로세스를 재기동합니다.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:simple_one_for_one</code> - 자식 프로세스가 동적으로 추가된다면 최적입니다. 슈퍼바이저 사양은 자식을 단 하나만 가질 필요가 있습니다만 자식은 여러번 생성할 수 있습니다. 이 전략은 동적으로 관리되는 자식을 시작하고 멈춰야 하는 경우에 사용할 의도로 만들어졌습니다.</p>
+  </li>
+</ul>
+
+<h3 id="section-2">재시작 값</h3>
+
+<p>자식 프로세스의 충돌을 처리하는 방법은 여럿 있습니다.</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">:permanent</code> - 자식은 언제나 재시작합니다.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:temporary</code> - 자식을 재시작하지 않습니다.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:transient</code> - 자식이 비정상적으로 종료되었을 때만 재시작합니다.</p>
+  </li>
+</ul>
+
+<p>필수 옵션은 아니며, 기본 값은 <code class="highlighter-rouge">:permanent</code>입니다.</p>
+
+<h3 id="section-3">중첩</h3>
+
+<p>워커 프로세스에 이어서, 슈퍼바이저를 관리(supervise)해 슈퍼바이저 트리를 생성하도록 할 수도 있습니다. <code class="highlighter-rouge">worker/3</code>을 <code class="highlighter-rouge">supervisor/3</code>으로 변경하기만 하면 됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">supervisor</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">ConnectionSupervisor</span><span class="p">,</span> <span class="p">[[</span><span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">ConnectionSupervisor</span><span class="p">]]),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">SimpleQueue</span><span class="p">,</span> <span class="p">[[],</span> <span class="p">[</span><span class="ss">name:</span> <span class="no">SimpleQueue</span><span class="p">]])</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="task-">Task 슈퍼바이저</h2>
+
+<p>Task는 전용 슈퍼바이저인 <code class="highlighter-rouge">Task.Supervisor</code>를 가지고 있습니다. 동적으로 태스크를 생성하도록 설계되어 있으며, 내부적으로 <code class="highlighter-rouge">:simple_one_for_one</code>을 사용합니다.</p>
+
+<h3 id="section-4">설정하기</h3>
+
+<p><code class="highlighter-rouge">Task.Supervisor</code>를 사용하는 것은 다른 슈퍼바이저를 사용하는 것과 별반 다르지 않습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">supervisor</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">,</span> <span class="p">[[</span><span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">TaskSupervisor</span><span class="p">,</span> <span class="ss">restart:</span> <span class="ss">:transient</span><span class="p">]]),</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Supervisor</code>와 <code class="highlighter-rouge">Task.Supervisor</code>의 중요한 차이점은 기본 재시작 전략이 <code class="highlighter-rouge">:temporary</code> (태스크를 절대 재시작하지 않음)라는 점입니다.</p>
+
+<h3 id="section-5">관리되는 태스크</h3>
+
+<p>슈퍼바이저가 시작된 상태에서 <code class="highlighter-rouge">start_child/2</code> 함수를 사용해서 관리되는(supervised) 태스크를 생성할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="no">Supervisor</span><span class="o">.</span><span class="n">start_child</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">TaskSupervisor</span><span class="p">,</span> <span class="k">fn</span> <span class="o">-&gt;</span> <span class="n">background_work</span> <span class="k">end</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>태스크가 도중에 정지한다면 그 즉시 재기동됩니다. 이는 받아야 할 접속이 있거나, 백그라운드 작업을 수행하는 경우에 특히 유용할 것입니다.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/advanced/otp-supervisors/&title=OTP 슈퍼바이저&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/advanced/otp-supervisors/&via=elixirschool&text=ElixirSchool: OTP 슈퍼바이저&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/advanced/otp-supervisors/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/advanced/otp-supervisors/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/advanced/otp-supervisors/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: OTP 슈퍼바이저" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/advanced/otp-supervisors/&title=ElixirSchool: OTP 슈퍼바이저&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/advanced/otp-supervisors/&title=ElixirSchool: OTP 슈퍼바이저&description=Check out 'OTP 슈퍼바이저' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: OTP 슈퍼바이저&body=Check out 'OTP 슈퍼바이저' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/advanced/otp-supervisors/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

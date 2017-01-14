@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lessons about the Elixir programming language">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/lessons/libraries/poolboy/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Poolboy &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lessons about the Elixir programming language">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Poolboy &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lessons about the Elixir programming language</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Basics</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/basics/basics/">Basics</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/basics/control-structures/">Control Structures</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/basics/functions/">Functions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Advanced</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/advanced/error-handling/">Error Handling</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/advanced/escripts/">Executables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/advanced/concurrency/">Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/advanced/umbrella-projects/">Umbrella Projects</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/advanced/typespec/">Specifications and types</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Specifics</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Libraries</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/libraries/poolboy/ ">en</a>
+      
+        <a href=" /jp/lessons/libraries/poolboy/ ">jp</a>
+      
+        <a href=" /cn/lessons/libraries/poolboy/ ">cn</a>
+      
+        <a href=" /es/lessons/libraries/poolboy/ ">es</a>
+      
+        <a href=" /pt/lessons/libraries/poolboy/ ">pt</a>
+      
+        <a href=" /vi/lessons/libraries/poolboy/ ">vi</a>
+      
+        <a href=" /ru/lessons/libraries/poolboy/ ">ru</a>
+      
+        <a href=" /sk/lessons/libraries/poolboy/ ">sk</a>
+      
+        <a href=" /fr/lessons/libraries/poolboy/ ">fr</a>
+      
+        <a href=" /gr/lessons/libraries/poolboy/ ">gr</a>
+      
+        <a href=" /it/lessons/libraries/poolboy/ ">it</a>
+      
+        <a href=" /pl/lessons/libraries/poolboy/ ">pl</a>
+      
+        <a href=" /my/lessons/libraries/poolboy/ ">my</a>
+      
+        <a href=" /no/lessons/libraries/poolboy/ ">no</a>
+      
+        <a href=" /ko/lessons/libraries/poolboy/ ">ko</a>
+      
+        <a href=" /id/lessons/libraries/poolboy/ ">id</a>
+      
+        <a href=" /uk/lessons/libraries/poolboy/ ">uk</a>
+      
+        <a href=" /tr/lessons/libraries/poolboy/ ">tr</a>
+      
+        <a href=" /bg/lessons/libraries/poolboy/ ">bg</a>
+      
+        <a href=" /de/lessons/libraries/poolboy/ ">de</a>
+      
+        <a href=" /bn/lessons/libraries/poolboy/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Poolboy</h1>
+  <p>You can easily exhaust your system resources if you allow concurrent processes to run arbitrarily. Poolboy prevents having to incur the overhead by creating a pool of workers to limit the number of concurrent processes.</p>
+
+<h2>Table of Contents</h2>
+<div id="toc"></div>
+
+<h2 id="why-use-poolboy">Why use Poolboy?</h2>
+
+<p>Let’s think of a specific example for a moment. You are tasked to build an application for saving user profile information to the database. If you’ve created a process for every user registration, you would create unbounded number of connections. At some point those connections start competing for the limited resources available in your database server. Eventually your application gets timeouts and various exceptions due to the overhead from that contention.</p>
+
+<p>The solution to this problem is using set of workers (processes) to limit the number of connections instead of creating a process for every user registration. Then you can easily avoid running out of your system resources.</p>
+
+<p>That’s where Poolboy comes in. It creates a pool of workers managed by a <code class="highlighter-rouge">Supervisor</code> without any effort on your part to do it manually. There are many libraries which use Poolboy under the covers. For example, <code class="highlighter-rouge">postgrex</code>’s connection pool <em>(which is leveraged by Ecto when using PostgreSQL)</em> and <code class="highlighter-rouge">redis_poolex</code> <em>(Redis connection pool)</em> are some popular libraries which use Poolboy.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Installation is a breeze with mix. All we need to do is add Poolboy as a dependency to our <code class="highlighter-rouge">mix.exs</code>.</p>
+
+<p>Let’s create an application first:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ mix new poolboy_app --sup
+$ mix deps.get
+</code></pre>
+</div>
+
+<p>Add Poolboy as a dependency to our <code class="highlighter-rouge">mix.exs</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defp</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[{</span><span class="ss">:poolboy</span><span class="p">,</span> <span class="sd">"</span><span class="s2">~&gt; 1.5.1"</span><span class="p">}]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>And add Poolboy to our OTP application:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span><span class="ss">applications:</span> <span class="p">[</span><span class="ss">:logger</span><span class="p">,</span> <span class="ss">:poolboy</span><span class="p">]]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="the-configuration-options">The configuration options</h2>
+
+<p>We need to know a little bit about the various configuration options in order to start using Poolboy.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">:name</code> - the pool name. Scope can be <code class="highlighter-rouge">:local</code>, <code class="highlighter-rouge">:global</code>, or <code class="highlighter-rouge">:via</code>.</li>
+  <li><code class="highlighter-rouge">:worker_module</code> - the module that represents the worker.</li>
+  <li><code class="highlighter-rouge">:size</code> - maximum pool size.</li>
+  <li><code class="highlighter-rouge">:max_overflow</code> - maximum number of workers created if pool is empty. (optional)</li>
+  <li><code class="highlighter-rouge">:strategy</code> - <code class="highlighter-rouge">:lifo</code> or <code class="highlighter-rouge">:fifo</code>, determines whether checked in workers should be placed first or last in the line of available workers. Default is <code class="highlighter-rouge">:lifo</code>. (optional)</li>
+</ul>
+
+<h2 id="configuring-poolboy">Configuring Poolboy</h2>
+
+<p>For this example, we’ll create a pool of workers that are responsible for handling requests to calculate the square root of a number. We’ll keep the example simple so that we can keep our focus on Poolboy.</p>
+
+<p>Let’s define the Poolboy configuration options and add it as a child worker as part of our application start.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">PoolboyApp</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Application</span>
+
+  <span class="k">defp</span> <span class="n">poolboy_config</span> <span class="k">do</span>
+    <span class="p">[{</span><span class="ss">:name</span><span class="p">,</span> <span class="p">{</span><span class="ss">:local</span><span class="p">,</span> <span class="ss">:worker</span><span class="p">}},</span>
+      <span class="p">{</span><span class="ss">:worker_module</span><span class="p">,</span> <span class="no">Worker</span><span class="p">},</span>
+      <span class="p">{</span><span class="ss">:size</span><span class="p">,</span> <span class="m">5</span><span class="p">},</span>
+      <span class="p">{</span><span class="ss">:max_overflow</span><span class="p">,</span> <span class="m">2</span><span class="p">}]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">start</span><span class="p">(</span><span class="n">_type</span><span class="p">,</span> <span class="n">_args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span><span class="p">,</span> <span class="ss">warn:</span> <span class="no">false</span>
+
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="ss">:poolboy</span><span class="o">.</span><span class="n">child_spec</span><span class="p">(</span><span class="ss">:worker</span><span class="p">,</span> <span class="n">poolboy_config</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="p">]</span>
+
+    <span class="n">opts</span> <span class="o">=</span> <span class="p">[</span><span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">,</span> <span class="ss">name:</span> <span class="no">PoolboyApp</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">]</span>
+    <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>The first thing we defined is the configuration options for the pool. We assigned a unique pool <code class="highlighter-rouge">:name</code>, set the <code class="highlighter-rouge">:scope</code> to local, and the <code class="highlighter-rouge">:size</code> of the pool to have total of five workers. Also, in case all workers are under load, we tell it to create two more workers to help with the load using the <code class="highlighter-rouge">:max_overflow</code> option. <em>(<code class="highlighter-rouge">overflow</code> workers do go away once they complete their work.)</em></p>
+
+<p>Next, we added <code class="highlighter-rouge">poolboy.child_spec/3</code> function to the array of children so that the pool of workers will be started when the application starts.</p>
+
+<p>The <code class="highlighter-rouge">child_spec/3</code> function takes three arguments; Name of the pool, pool configuration, and the third argument that is passed to the <code class="highlighter-rouge">worker.start_link</code> function. In our case, it is just an empty list.</p>
+
+<h2 id="creating-worker">Creating Worker</h2>
+<p>The worker module will be a simple GenServer calculating the square root of a number, sleeping for one second, and printing out the pid of the worker:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Worker</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">GenServer</span>
+
+  <span class="k">def</span> <span class="n">start_link</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">GenServer</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="no">nil</span><span class="p">,</span> <span class="p">[])</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="no">nil</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="n">handle_call</span><span class="p">({</span><span class="ss">:square_root</span><span class="p">,</span> <span class="n">x</span><span class="p">},</span> <span class="n">_from</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">process </span><span class="si">#{</span><span class="n">inspect</span> <span class="n">self</span><span class="si">}</span><span class="s2"> calculating square root of </span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">"</span>
+    <span class="ss">:timer</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">)</span>
+    <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="ss">:math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">state</span><span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="using-poolboy">Using Poolboy</h2>
+
+<p>Now that we have our <code class="highlighter-rouge">Worker</code>, we can test Poolboy. Let’s create a simple module that creates concurrent processes using <code class="highlighter-rouge">:poolboy.transaction</code> function:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Test</span> <span class="k">do</span>
+  <span class="nv">@timeout</span> <span class="m">60000</span>
+
+  <span class="k">def</span> <span class="n">start</span> <span class="k">do</span>
+     <span class="n">tasks</span> <span class="o">=</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="m">1</span><span class="o">..</span><span class="m">20</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-&gt;</span>
+        <span class="no">Task</span><span class="o">.</span><span class="n">async</span><span class="p">(</span><span class="k">fn</span> <span class="o">-&gt;</span> <span class="ss">:poolboy</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span><span class="ss">:worker</span><span class="p">,</span>
+          <span class="o">&amp;</span><span class="p">(</span><span class="no">GenServer</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">,</span> <span class="p">{</span><span class="ss">:square_root</span><span class="p">,</span> <span class="n">i</span><span class="p">})),</span> <span class="nv">@timeout</span><span class="p">)</span>
+        <span class="k">end</span><span class="p">)</span>
+     <span class="k">end</span><span class="p">)</span>
+     <span class="no">Enum</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="n">task</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="n">await</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="nv">@timeout</span><span class="p">))</span> <span class="k">end</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</code></pre>
+</div>
+<p>If you do not have available pool workers, Poolboy will timeout after the default timeout period (five seconds) and won’t accept any new requests. In our example, we’ve increased the default timeout to one minute in order to demonstrate how we can change the default timeout value.</p>
+
+<p>Even though we’re attempting to create multiple processes <em>(total of twenty in the example above)</em> <code class="highlighter-rouge">:poolboy.transaction</code> function will limit the total of created processes to five <em>(plus two overflow workers if needed)</em> as we defined it in our configuration. All requests will be handled by the pool of workers rather than creating a new process for each and every request.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/lessons/libraries/poolboy/&title=Poolboy&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/lessons/libraries/poolboy/&via=elixirschool&text=ElixirSchool: Poolboy&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/lessons/libraries/poolboy/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/lessons/libraries/poolboy/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/lessons/libraries/poolboy/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Poolboy" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/lessons/libraries/poolboy/&title=ElixirSchool: Poolboy&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/lessons/libraries/poolboy/&title=ElixirSchool: Poolboy&description=Check out 'Poolboy' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Poolboy&body=Check out 'Poolboy' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/lessons/libraries/poolboy/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

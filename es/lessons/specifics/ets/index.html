@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lecciones acerca del lenguaje de programación Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/es/lessons/specifics/ets/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Almacenamiento de términos de Erlang (ETS) &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lecciones acerca del lenguaje de programación Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Almacenamiento de términos de Erlang (ETS) &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lecciones acerca del lenguaje de programación Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Básico</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/basics/basics/">Básico</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/basics/collections/">Colecciones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/basics/pattern-matching/">Coincidencia de Patrones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/es/lessons/basics/control-structures/">Estructuras de control</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/es/lessons/basics/functions/">Funciones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/es/lessons/basics/pipe-operator/">Operador Pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/es/lessons/basics/modules/">Composición</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/es/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/es/lessons/basics/testing/">Pruebas</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Avanzado</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/advanced/erlang/">Interoperabilidad Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/advanced/error-handling/">Manejo de errores</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/advanced/escripts/">Ejecutables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/advanced/concurrency/">Concurrencia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Específico</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/specifics/eex/">Elixir Embebido (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson  active" href="/es/lessons/specifics/ets/">Almacenamiento de términos de Erlang (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/ets/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/ets/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/ets/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/ets/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/ets/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/ets/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/ets/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/ets/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/ets/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/ets/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/ets/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/ets/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/ets/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/ets/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/ets/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/ets/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/ets/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/ets/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/ets/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/ets/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/ets/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Almacenamiento de términos de Erlang (ETS)</h1>
+  <p>Almacenamiento de términos de Erlang, comúnmente conocido como ETS, es un potente motor de almacenamiento incorporado en OTP y disponible para utilizar en Elixir. En esta lección vamos a ver cómo interactuar con ETS y cómo se pueden emplear en nuestras aplicaciones.</p>
+
+<h2>Tabla de contenidos</h2>
+<div id="toc"></div>
+
+<h2 id="descripcin-general">Descripción General</h2>
+
+<p>ETS es un robusto almacén en memoria para objetos Elixir y Erlang que viene incluido. ETS es capaz de almacenar grandes cantidades de datos y ofrece un tiempo constante para el acceso a datos.</p>
+
+<p>Las tablas en ETS son creadas y son propiedad de los procesos individuales. Cuando un proceso propietario termina, sus tablas son destruidas. Por defecto ETS esta limitado a 1400 tablas por nodo.</p>
+
+<h2 id="creando-tablas">Creando Tablas</h2>
+
+<p>Las tablas son creadas con <code class="highlighter-rouge">new/2</code>, aceptando un nombre de tabla y un conjunto de opciones, este devuelve un identificador de tabla que se puede utilizar en las operaciones subsiguientes.</p>
+
+<p>Para nuestro ejemplo vamos a crear una tabla para almacenar y buscar usuarios por su apodo:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">table</span> <span class="o">=</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">[</span><span class="ss">:set</span><span class="p">,</span> <span class="ss">:protected</span><span class="p">])</span>
+<span class="m">8212</span>
+</code></pre>
+</div>
+
+<p>Al igual que con GenServers, hay una manera de acceder a las tablas de ETS por su nombre en lugar de su identificador. Para hacer esto necesitamos incluir <code class="highlighter-rouge">:named_table</code> y podemos acceder a nuestra tabla directamente por su nombre:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">[</span><span class="ss">:set</span><span class="p">,</span> <span class="ss">:protected</span><span class="p">,</span> <span class="ss">:named_table</span><span class="p">])</span>
+<span class="ss">:user_lookup</span>
+</code></pre>
+</div>
+
+<h3 id="tipos-de-tablas">Tipos de Tablas</h3>
+
+<p>Existen cuatro tipos de tablas disponibles en ETS:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">set</code> — Este es el tipo de tabla por defecto.  Un valor por clave.  Las claves son únicas.</li>
+  <li><code class="highlighter-rouge">ordered_set</code> — Similar a <code class="highlighter-rouge">set</code> pero ordenadas por los términos Erlang/Elixir.  Es importante tener en cuenta que la comparación de clave es diferente dentro de <code class="highlighter-rouge">ordered_set</code>.  Las llaves no deben coincidir siempre y cuando se comparen igualmente, tanto 1 y 1.0 se consideran iguales.</li>
+  <li><code class="highlighter-rouge">bag</code> — Muchos objetos por claves pero solo una instancia de cada objeto por clave.</li>
+  <li><code class="highlighter-rouge">duplicate_bag</code> — Muchos objetos por clave, duplicados permitidos.</li>
+</ul>
+
+<h3 id="controles-de-acceso">Controles de Acceso</h3>
+
+<p>El control de acceso en ETS es similar al control de acceso con módulos:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">public</code> — Lectura/Escritura disponible para todos los procesos.</li>
+  <li><code class="highlighter-rouge">protected</code> — Lectura  disponible para todos los procesos.  Escritura disponible solo para el proceso propietario. Este es el valor predeterminado.</li>
+  <li><code class="highlighter-rouge">private</code> — Lectura/Escritura limitada al proceso propietario.</li>
+</ul>
+
+<h2 id="insertando-datos">Insertando Datos</h2>
+
+<p>ETS no tiene esquemas, la única limitación es que los datos deben ser almacenados como una tupla cuyo primer elemento es la clave. Para agregar nuevos datos podemos usar <code class="highlighter-rouge">insert/2</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]})</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Cuando usamos <code class="highlighter-rouge">insert/2</code> con un <code class="highlighter-rouge">set</code> o <code class="highlighter-rouge">ordered_set</code> los datos existentes serán reemplazados. Para prevenir esto existe <code class="highlighter-rouge">insert_new/2</code> que devuelve <code class="highlighter-rouge">false</code> para claves existentes:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">insert_new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]})</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">insert_new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">3100"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">]})</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h2 id="recuperacin-de-datos">Recuperación de Datos</h2>
+
+<p>ETS nos ofrece algunas maneras convenientes y flexibles para recuperar los datos almacenados. Vamos a ver cómo recuperar los datos por clave y por medio de diferentes formas de coincidencia de patrones.</p>
+
+<p>El más eficiente, e ideal, método de recuperación es la búsqueda de claves. Si bien es útil, el método de concordancia itera a través de la tabla y debe utilizarse con moderación, especialmente en caso de grandes conjuntos de datos.</p>
+
+<h3 id="bsqueda-de-claves">Búsqueda de claves</h3>
+
+<p>Dada una clave, podemos utilizar <code class="highlighter-rouge">lookup/2</code> para recuperar todos los registros con esa clave:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">)</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<h3 id="concordancia-simple">Concordancia Simple</h3>
+
+<p>ETS fue construido para Erlang, así que tenga cuidado, las variables de comparación pueden sentirse un  <em>poco</em> anticuadas.</p>
+
+<p>Para especificar una variable en nuestro juego usamos los átomos <code class="highlighter-rouge">:"$1"</code>, <code class="highlighter-rouge">:"$2"</code>, <code class="highlighter-rouge">:"$3"</code>, y así sucesivamente; el número de variable refleja la posición de los resultados y no la posición del juego. Para valores que no estamos interesados usamos la <code class="highlighter-rouge">:"_"</code> variable.</p>
+
+<p>Los valores también se pueden utilizar en emparejamiento, pero sólo las variables se devolverán como parte de nuestro resultado. Vamos a poner todos los elementos y ver cómo funciona:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">})</span>
+<span class="p">[[</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">]]</span>
+</code></pre>
+</div>
+
+<p>Veamos otro ejemplo para ver cómo las variables influyen en el orden de la lista resultante:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$99"</span><span class="p">,</span> <span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">})</span>
+<span class="p">[[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">],</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">],</span>
+ <span class="p">[</span><span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">],</span> <span class="sd">"</span><span class="s2">3100"</span><span class="p">]]</span>
+</code></pre>
+</div>
+
+<p>¿Qué pasa si queremos que nuestro objeto original no sea una lista? Podemos usar <code class="highlighter-rouge">match_object/2</code>, que independientemente de las variables devuelve todo nuestro objeto:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match_object</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">})</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]},</span>
+ <span class="p">{</span><span class="sd">"</span><span class="s2">3100"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">]}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match_object</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"_"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">})</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<h3 id="bsqueda-avanzada">Búsqueda Avanzada</h3>
+
+<p>Hemos aprendido acerca de los casos de los juegos sencillos pero ¿que si queremos algo más parecido a una consulta SQL? Afortunadamente hay una sintaxis más robusta disponible para nosotros. Para buscar nuestros datos con <code class="highlighter-rouge">select/2</code> necesitamos construir una lista de tuplas con tres aridad. Estas tuplas representan nuestro patrón, cero o más guardias, y un formato de valor de retorno.</p>
+
+<p>Nuestras variables de emparejamiento y dos nuevas variables, <code class="highlighter-rouge">:"$$"</code> y <code class="highlighter-rouge">:"$_"</code> pueden ser usados para construir el valor de retorno. Estas nuevas variables son accesos directos para el formato del resultado; <code class="highlighter-rouge">:"$$"</code> Obtiene resultados como listas y <code class="highlighter-rouge">:"$_"</code> los objetos de datos originales.</p>
+
+<p>Vamos a tomar uno de nuestros anteriores ejemplos <code class="highlighter-rouge">match/2</code> y convertirlo en un <code class="highlighter-rouge">select/2</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match_object</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">})</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]},</span>
+ <span class="p">{</span><span class="sd">"</span><span class="s2">3100"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">]}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">[{{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">},</span> <span class="p">[],</span> <span class="p">[</span><span class="ss">:"$_"</span><span class="p">]}])</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]},</span>
+ <span class="p">{</span><span class="sd">"</span><span class="s2">spork"</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elixir"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<p>Aunque <code class="highlighter-rouge">select/2</code> permite un mayor control sobre qué y cómo recuperar los registros, la sintaxis es bastante desagradable y sólo lo será aún más. Para manejar esto el módulo ETS incluye <code class="highlighter-rouge">fun2ms/1</code>, para convertir las funciones en match_specs. Con <code class="highlighter-rouge">fun2ms/1</code> podemos crear consultas utilizando una función de sintaxis familiar.</p>
+
+<p>Vamos a usar <code class="highlighter-rouge">fun2ms/1</code> y <code class="highlighter-rouge">select/2</code> para encontrar todos los nombres de usuario con 2 o más lenguajes:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">fun</span> <span class="o">=</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">fun2ms</span><span class="p">(</span><span class="k">fn</span> <span class="p">{</span><span class="n">username</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">langs</span><span class="p">}</span> <span class="ow">when</span> <span class="n">length</span><span class="p">(</span><span class="n">langs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">2</span> <span class="o">-&gt;</span> <span class="n">username</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[{{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$2"</span><span class="p">},</span> <span class="p">[{</span><span class="ss">:&gt;</span><span class="p">,</span> <span class="p">{</span><span class="ss">:length</span><span class="p">,</span> <span class="ss">:"$2"</span><span class="p">},</span> <span class="m">2</span><span class="p">}],</span> <span class="p">[</span><span class="ss">:"$1"</span><span class="p">]}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="n">fun</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">3100"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>¿Quieres saber más acerca de especificación partido? Echa un vistazo a la documentación oficial de Erlang <a href="http://www.erlang.org/doc/apps/erts/match_spec.html">match_spec</a>.</p>
+
+<h2 id="eliminando-datos">Eliminando Datos</h2>
+
+<h3 id="removiendo-registros">Removiendo Registros</h3>
+
+<p>Eliminar términos es tan sencillo como <code class="highlighter-rouge">insert/2</code> y <code class="highlighter-rouge">lookup/2</code>. Con <code class="highlighter-rouge">delete/2</code> sólo necesitamos nuestra tabla y la clave. Esto elimina la clave y sus valores:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="removiendo-tablas">Removiendo Tablas</h3>
+
+<p>Las tablas ETS no son basura recolectada al menos el padre sea terminado. A veces puede ser necesario eliminar una tabla completa sin necesidad de terminar el proceso propietario. Para ello podemos utilizar <code class="highlighter-rouge">delete/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h2 id="ejemplos-de-uso-de-ets">Ejemplos de uso de ETS</h2>
+
+<p>Debido a lo que hemos aprendido previamente vamos a poner todo junto y construir una cache sencilla para operaciones costosas. Vamos a implementar una funcion <code class="highlighter-rouge">get/4</code> para tomar un módulo, función, argumentos y opciones. Por ahora la única opción de la que nos preocuparemos es <code class="highlighter-rouge">:ttl</code>.</p>
+
+<p>Para este ejemplo asumiremos que las tablas ETS han sido creadas como parte de otro proceso, como un supervisor:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleCache</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  A simple ETS based cache for expensive function calls.
+  """</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Retrieve a cached value or apply the given function caching and returning
+  the result.
+  """</span>
+  <span class="k">def</span> <span class="n">get</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">opts</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="k">case</span> <span class="n">lookup</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="k">do</span>
+      <span class="no">nil</span> <span class="o">-&gt;</span>
+        <span class="n">ttl</span> <span class="o">=</span> <span class="no">Keyword</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">opts</span><span class="p">,</span> <span class="ss">:ttl</span><span class="p">,</span> <span class="m">3600</span><span class="p">)</span>
+        <span class="n">cache_apply</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ttl</span><span class="p">)</span>
+      <span class="n">result</span> <span class="o">-&gt;</span> <span class="n">result</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Lookup a cached result and check the freshness
+  """</span>
+  <span class="k">defp</span> <span class="n">lookup</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">case</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="ss">:simple_cache</span><span class="p">,</span> <span class="p">[</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">])</span> <span class="k">do</span>
+      <span class="p">[</span><span class="n">result</span><span class="o">|</span><span class="n">_</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">check_freshness</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+      <span class="p">[]</span> <span class="o">-&gt;</span> <span class="no">nil</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Compare the result expiration against the current system time.
+  """</span>
+  <span class="k">defp</span> <span class="n">check_freshness</span><span class="p">({</span><span class="n">mfa</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">expiration</span><span class="p">})</span> <span class="k">do</span>
+    <span class="k">cond</span> <span class="k">do</span>
+      <span class="n">expiration</span> <span class="o">&gt;</span> <span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">(</span><span class="ss">:seconds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">result</span>
+      <span class="ss">:else</span> <span class="o">-&gt;</span> <span class="no">nil</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Apply the function, calculate expiration, and cache the result.
+  """</span>
+  <span class="k">defp</span> <span class="n">cache_apply</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ttl</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">apply</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">expiration</span> <span class="o">=</span> <span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">(</span><span class="ss">:seconds</span><span class="p">)</span> <span class="o">+</span> <span class="n">ttl</span>
+    <span class="ss">:ets</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="ss">:simple_cache</span><span class="p">,</span> <span class="p">{[</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span> <span class="n">expiration</span><span class="p">})</span>
+    <span class="n">result</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Para demostrar la caché vamos a utilizar una función que devuelve la hora del sistema y un TTL de 10 segundos. Como se verá en el siguiente ejemplo, obtenemos el resultado almacenado en caché hasta que el valor haya expirado:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+    <span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">(</span><span class="ss">:seconds</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:simple_cache</span><span class="p">,</span> <span class="p">[</span><span class="ss">:named_table</span><span class="p">])</span>
+<span class="ss">:simple_cache</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089115</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleCache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">ExampleApp</span><span class="p">,</span> <span class="ss">:test</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">ttl:</span> <span class="m">10</span><span class="p">)</span>
+<span class="m">1451089119</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089123</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089127</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleCache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">ExampleApp</span><span class="p">,</span> <span class="ss">:test</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">ttl:</span> <span class="m">10</span><span class="p">)</span>
+<span class="m">1451089119</span>
+</code></pre>
+</div>
+
+<p>Después de 10 segundos si intentamos de nuevo, deberíamos obtener resultados actualizados:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089131</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleCache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">ExampleApp</span><span class="p">,</span> <span class="ss">:test</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">ttl:</span> <span class="m">10</span><span class="p">)</span>
+<span class="m">1451089134</span>
+</code></pre>
+</div>
+
+<p>Como se puede ver, ahora somos capaces de implementar una caché escalable y rápida sin ningún tipo de dependencias externas, y este es sólo uno de los muchos usos para ETS.</p>
+
+<h2 id="ets-basado-en-disco">ETS basado en disco</h2>
+
+<p>Ahora sabemos que ETS es para almacenamiento de términos en memoria, ¿pero que si necesitamos almacenamiento basado en disco? Para eso tenemos Almacenamiento de Términos Basado en Disco o DETS para abreviar. Las APIs de ETS y DETS son intercambiables con la excepción de cómo se crean las tablas. DETS depende de <code class="highlighter-rouge">open_file/2</code> y no requiere la opcion <code class="highlighter-rouge">:named_table</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">table</span><span class="p">}</span> <span class="o">=</span> <span class="ss">:dets</span><span class="o">.</span><span class="n">open_file</span><span class="p">(</span><span class="ss">:disk_storage</span><span class="p">,</span> <span class="p">[</span><span class="ss">type:</span> <span class="ss">:set</span><span class="p">])</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="ss">:disk_storage</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:dets</span><span class="o">.</span><span class="n">insert_new</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]})</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">select_all</span> <span class="o">=</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">fun2ms</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span>
+<span class="p">[{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="ss">:"$1"</span><span class="p">]}]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:dets</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">select_all</span><span class="p">)</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<p>Si sale de <code class="highlighter-rouge">iex</code> y buscas en su directorio local, verás un nuevo archivo <code class="highlighter-rouge">disk_storage</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ls | grep -c disk_storage
+1
+</code></pre>
+</div>
+
+<p>Una última cosa a tener en cuenta es que DETS no soporta <code class="highlighter-rouge">ordered_set</code> como ETS, solamente <code class="highlighter-rouge">set</code>, <code class="highlighter-rouge">bag</code>, y <code class="highlighter-rouge">duplicate_bag</code>.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/es/lessons/specifics/ets/&title=Almacenamiento de términos de Erlang (ETS)&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/es/lessons/specifics/ets/&via=elixirschool&text=ElixirSchool: Almacenamiento de términos de Erlang (ETS)&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/es/lessons/specifics/ets/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/es/lessons/specifics/ets/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/es/lessons/specifics/ets/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Almacenamiento de términos de Erlang (ETS)" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/es/lessons/specifics/ets/&title=ElixirSchool: Almacenamiento de términos de Erlang (ETS)&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/es/lessons/specifics/ets/&title=ElixirSchool: Almacenamiento de términos de Erlang (ETS)&description=Check out 'Almacenamiento de términos de Erlang (ETS)' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Almacenamiento de términos de Erlang (ETS)&body=Check out 'Almacenamiento de términos de Erlang (ETS)' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/es/lessons/specifics/ets/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

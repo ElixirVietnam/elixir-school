@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/libraries/guardian/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Guardian (Cơ bản) &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Guardian (Cơ bản) &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/libraries/guardian/ ">en</a>
+      
+        <a href=" /jp/lessons/libraries/guardian/ ">jp</a>
+      
+        <a href=" /cn/lessons/libraries/guardian/ ">cn</a>
+      
+        <a href=" /es/lessons/libraries/guardian/ ">es</a>
+      
+        <a href=" /pt/lessons/libraries/guardian/ ">pt</a>
+      
+        <a href=" /vi/lessons/libraries/guardian/ ">vi</a>
+      
+        <a href=" /ru/lessons/libraries/guardian/ ">ru</a>
+      
+        <a href=" /sk/lessons/libraries/guardian/ ">sk</a>
+      
+        <a href=" /fr/lessons/libraries/guardian/ ">fr</a>
+      
+        <a href=" /gr/lessons/libraries/guardian/ ">gr</a>
+      
+        <a href=" /it/lessons/libraries/guardian/ ">it</a>
+      
+        <a href=" /pl/lessons/libraries/guardian/ ">pl</a>
+      
+        <a href=" /my/lessons/libraries/guardian/ ">my</a>
+      
+        <a href=" /no/lessons/libraries/guardian/ ">no</a>
+      
+        <a href=" /ko/lessons/libraries/guardian/ ">ko</a>
+      
+        <a href=" /id/lessons/libraries/guardian/ ">id</a>
+      
+        <a href=" /uk/lessons/libraries/guardian/ ">uk</a>
+      
+        <a href=" /tr/lessons/libraries/guardian/ ">tr</a>
+      
+        <a href=" /bg/lessons/libraries/guardian/ ">bg</a>
+      
+        <a href=" /de/lessons/libraries/guardian/ ">de</a>
+      
+        <a href=" /bn/lessons/libraries/guardian/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Guardian (Cơ bản)</h1>
+  <p><a href="https://github.com/ueberauth/guardian">Guardian</a> là một thư viện xác thực danh tính người dùng được sử dụng rộng rãi dựa trên chuẩn <a href="https://jwt.io/">JWT</a> (Javascript Web Token).</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="jwts">JWTs</h2>
+
+<p>Một JWT cung cấp một token với nhiều thông tin để xác thực danh tính người dùng. Trong khi nhiều hệ thống xác thực khác, chỉ cung cấp truy cập tới chủ thể của token, JWT còn cho chúng ta các thông tin khác như :</p>
+
+<ul>
+  <li>Ai đã tạo token</li>
+  <li>Token đó dùng cho ai</li>
+  <li>Hệ thống nào sử dụng token</li>
+  <li>Thời điểm issued được tạo</li>
+  <li>Thời điểm issue hết hạn</li>
+</ul>
+
+<p>Guardian cung cấp thêm một số tính năng khác như :</p>
+
+<ul>
+  <li>Kiểu của token là gì</li>
+  <li>Những hành vi nào được làm</li>
+</ul>
+
+<p>Đây là các fields cơ bản trong JWT. Bạn tùy ý thêm bất cứ thông tin nào cần cho ứng dụng của bạn. Nhớ rằng, nên giữ cho JWT không có quá nhiều trường, để JWT có thể vừa vặn trong HTTP header.</p>
+
+<p>Sự phong phú này cho phép bạn truyền JWTs khắp hệ thống của bạn.</p>
+
+<h3 id="s-dng-chng--u">Sử dụng chúng ở đâu</h3>
+
+<p>JWT tokens có thể sử dụng xác thực danh tính ở bộ phận bất kỳ của ứng dụng.</p>
+
+<ul>
+  <li>Các ứng dụng Single page</li>
+  <li>Các controllers (qua phiên làm việc trình duyệt)</li>
+  <li>Các controllers (qua authorization headers - API)</li>
+  <li>Các kênh Phoenix</li>
+  <li>Các request Service to service</li>
+  <li>Inter-process</li>
+  <li>Chứng thực bởi bên thứ 3</li>
+  <li>Chức năng nhớ tự động</li>
+  <li>Các giao diện khác - raw TCP, UDP, CLI, etc</li>
+</ul>
+
+<p>JWT tokens có thể sử dụng ở bất cứ chỗ nào trong ứng dụng cần thực hiện hành vi xác thực danh tính.</p>
+
+<h3 id="ti-c-s-dng-cho-mt-c-s-d-liu-khng">Tôi có sử dụng cho một cơ sở dữ liệu không?</h3>
+
+<p>Bạn không cần kiểm tra JWT qua một cơ sở dữ liệu. Cách đơn giản bạn dựa trên thời điểm tạo và thời điểm hết hạn để điều khiển truy cập. Thường thi bạn sẽ mở cơ sở dữ liệu để tra cứu người dùng nào đó nhưng JWT tự thân nó không cần điều này.</p>
+
+<p>Ví dụ, nếu bạn sử dụng JWT để xác thực danh tính thông qua giao thức UDP, bạn có thể không cần dùng cơ sở dữ liệu. Nén tất cả thông tin bạn cần một cách trực tiếp vào token khi bạn khởi tạo nó. Sau đó bạn có thể kiểm tra tính hợp lệ của token bằng cách kiểm tra xem nó có được mã hoá đúng hay không.</p>
+
+<p>Tuy nhiên bạn có thể sử dụng một cơ sở dữ liệu kiểm soát JWT. Nếu sử dụng cơ sở dữ liệu, bạn có khả năng kiểm tra xem token có còn hợp lệ hay không - tức là nó vẫn chưa bị huỷ bỏ. Hoặc bạn có thể sử dụng các bản ghi trong cơ sở dữ liệu để bắt tất cả các token của user 5 là sẽ bị log out. Điều này khá dễ dàng trong Guardian bởi sử dụng <a href="https://github.com/hassox/guardian_db">GuardianDb</a>. GuardianDb sử dụng Guardians ‘Hooks’ để thực hiện kiểm tra xác thực, lưu và xóa khỏi DB. Chúng ta sẽ đề cập nó sau.</p>
+
+<h2 id="thit-lp">Thiết lập</h2>
+
+<p>Có nhiều lựa chọn cho việc thiết lập Guardian. Chúng ta đề cập tới chúng ở vài điểm nhưng chỉ ở mức rất đơn giản.</p>
+
+<h3 id="thit-lp-ti-gin">Thiết lập tối giản</h3>
+
+<p>Để bắt đầu đơn giản bạn chỉ cần vài thứ.</p>
+
+<h4 id="cu-hnh">Cấu hình</h4>
+
+<p><code class="highlighter-rouge">mix.exs</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">application</span> <span class="k">do</span>
+  <span class="p">[</span>
+    <span class="ss">mod:</span> <span class="p">{</span><span class="no">MyApp</span><span class="p">,</span> <span class="p">[]},</span>
+    <span class="ss">applications:</span> <span class="p">[</span><span class="ss">:guardian</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+  <span class="p">]</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="n">deps</span> <span class="k">do</span>
+  <span class="p">[</span>
+    <span class="p">{</span><span class="ss">guardian:</span> <span class="sd">"</span><span class="s2">~&gt; x.x"</span><span class="p">},</span>
+    <span class="o">...</span>
+  <span class="p">]</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">config/config.ex</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">config</span> <span class="ss">:guardian</span><span class="p">,</span> <span class="no">Guardian</span><span class="p">,</span>
+  <span class="ss">issuer:</span> <span class="sd">"</span><span class="s2">MyAppId"</span><span class="p">,</span>
+  <span class="ss">secret_key:</span> <span class="no">Mix</span><span class="o">.</span><span class="n">env</span><span class="p">,</span> <span class="c1"># trong mỗi tệp tin cấu hình từng môi trường bạn nên ghi đè nó nếu nó là ngoại vi</span>
+  <span class="ss">serializer:</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">GuardianSerializer</span>
+</code></pre>
+</div>
+
+<p>Đây chỉ là thiết lập ở mức tối thiểu để bạn sử dụng Guardian. Bạn không nên để khoá bí mật của bạn trực tiếp trong file config.exs. Thay vì đó, mỗi một trường nên có một khoá bí mật riêng. Điều này có thể thực hiện bằng cách thiết lập trong các file config/dev.exs, config/test.exs. Với môi trường staging và production, các khoá này cần phải là các khoá mạnh (e.g: sử dụng <code class="highlighter-rouge">mix phoenix.gen.secret</code> để sinh ra)</p>
+
+<p><code class="highlighter-rouge">lib/my_app/guardian_serializer.ex</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">GuardianSerializer</span> <span class="k">do</span>
+  <span class="nv">@behaviour</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Serializer</span>
+
+  <span class="n">alias</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">Repo</span>
+  <span class="n">alias</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">User</span>
+
+  <span class="k">def</span> <span class="n">for_token</span><span class="p">(</span><span class="n">user</span> <span class="o">=</span> <span class="p">%</span><span class="no">User</span><span class="p">{}),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span> <span class="ss">:ok</span><span class="p">,</span> <span class="sd">"</span><span class="s2">User:</span><span class="si">#{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span>
+  <span class="k">def</span> <span class="n">for_token</span><span class="p">(</span><span class="n">_</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span> <span class="ss">:error</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Unknown resource type"</span> <span class="p">}</span>
+
+  <span class="k">def</span> <span class="n">from_token</span><span class="p">(</span><span class="sd">"</span><span class="s2">User:"</span> <span class="o">&lt;&gt;</span> <span class="n">id</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span> <span class="ss">:ok</span><span class="p">,</span> <span class="no">Repo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="n">id</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">def</span> <span class="n">from_token</span><span class="p">(</span><span class="n">_</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span> <span class="ss">:error</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Unknown resource type"</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+<p>Serializer của bạn đảm nhiệm phần tìm kiếm tài nguyên ở trong trường <code class="highlighter-rouge">sub</code> (subject). Nó có thể tìm trong DB, một API hoặc thậm chí trong nội dung một chuỗi đơn giản.<br />
+Nó cũng chịu trách nhiệm cho việc serializer các tài nguyên trong trường <code class="highlighter-rouge">sub</code>.</p>
+
+<p>Đây là cấu hình đơn giản nhất, đủ để chúng ta bắt đầu. Trên thực tế, bạn có thể làm được rất nhiều thứ nếu bạn muốn.</p>
+
+<h4 id="s-dng-trong-ng-dng">Sử dụng trong ứng dụng</h4>
+
+<p>Lúc này chúng ta đã cấu hình xong Guardian, chúng ta cần tích hợp nó vào trong ứng dụng. Bởi vì đây chỉ là cấu hình đơn giản nhất, chúng ta sẽ bắt đầu bằng việc xem xét các request HTTP.</p>
+
+<h2 id="cc-yu-cu-trong-giao-thc-http">Các yêu cầu trong giao thức HTTP</h2>
+
+<p>Guardian cung cấp một số Plugs để dễ dàng nhúng vào HTTP requests. Bạn có thể học về Plug tại đây <a href="../specifics/plug/">separate lesson</a>. Guardian làm việc không nhất thiết cần Phoenix, nhưng chúng ta sử dụng Phoenix trong ví dụ dưới đây sẽ dễ dàng mô tả cách hoạt động.</p>
+
+<p>Dễ nhất là sử dụng HTTP qua router - module route của Phoenix. Bởi vì Guardian tích hợp HTTP hoàn toàn dựa trên plugs, bạn có thể sử dụng nó bất kỳ chỗ nào có sử dụng plug.</p>
+
+<p>Luồng tiến trình chung của Guardian plug là:</p>
+
+<ol>
+  <li>Tìm ra một token trong request và xác minh nó : <code class="highlighter-rouge">Verify*</code> plugs</li>
+  <li>Tìm ra tài nguyên tương ứng với mỗi token: <code class="highlighter-rouge">LoadResource</code> plug</li>
+  <li>Đảm bảo tính hợp lệ của token đó nếu không từ chối nó. <code class="highlighter-rouge">EnsureAuthenticated</code> plug</li>
+</ol>
+
+<p>Để đáp ứng tất cả các nhu cầu của các nhà phát triển ứng dụng, Guardian hiện thực các pha riêng rẽ. Để tìm token sử dụng <code class="highlighter-rouge">Verify*</code> plugs.</p>
+
+<p>Hãy cùng tạo một số pipelines.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">pipeline</span> <span class="ss">:maybe_browser_auth</span> <span class="k">do</span>
+  <span class="n">plug</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">VerifySession</span>
+  <span class="n">plug</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">VerifyHeader</span><span class="p">,</span> <span class="ss">realm:</span> <span class="sd">"</span><span class="s2">Bearer"</span>
+  <span class="n">plug</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">LoadResource</span>
+<span class="k">end</span>
+
+<span class="n">pipeline</span> <span class="ss">:ensure_authed_access</span> <span class="k">do</span>
+  <span class="n">plug</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="no">EnsureAuthenticated</span><span class="p">,</span> <span class="p">%{</span><span class="sd">"</span><span class="s2">typ"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">access"</span><span class="p">,</span> <span class="ss">handler:</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">HttpErrorHandler</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Các pipelines có thể được sử dụng để tạo các yêu cầu xác thực khác nhau. Pipeline thứ nhất cố gắng tìm kiếm ra token đầu tiên trong phiên làm việc, nếu không có, nó sẽ tìm token trong header. Nếu nó tìm thấy token, nó sẽ đọc/ghi các thông tin cho bạn.</p>
+
+<p>Pipeline thứ 2 cần token hợp lệ, xác nhận hợp lệ token hiện tại và đánh dấu nó “access”. Để sử dụng nó, ta thêm chúng vào scope.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">scope</span> <span class="sd">"</span><span class="s2">/"</span><span class="p">,</span> <span class="no">MyApp</span> <span class="k">do</span>
+  <span class="n">pipe_through</span> <span class="p">[</span><span class="ss">:browser</span><span class="p">,</span> <span class="ss">:maybe_browser_auth</span><span class="p">]</span>
+
+  <span class="n">get</span> <span class="sd">"</span><span class="s2">/login"</span><span class="p">,</span> <span class="no">LoginController</span><span class="p">,</span> <span class="ss">:new</span>
+  <span class="n">post</span> <span class="sd">"</span><span class="s2">/login"</span><span class="p">,</span> <span class="no">LoginController</span><span class="p">,</span> <span class="ss">:create</span>
+  <span class="n">delete</span> <span class="sd">"</span><span class="s2">/login"</span><span class="p">,</span> <span class="no">LoginController</span><span class="p">,</span> <span class="ss">:delete</span>
+<span class="k">end</span>
+
+<span class="n">scope</span> <span class="sd">"</span><span class="s2">/"</span><span class="p">,</span> <span class="no">MyApp</span> <span class="k">do</span>
+  <span class="n">pipe_through</span> <span class="p">[</span><span class="ss">:browser</span><span class="p">,</span> <span class="ss">:maybe_browser_auth</span><span class="p">,</span> <span class="ss">:ensure_authed_access</span><span class="p">]</span>
+
+  <span class="n">resource</span> <span class="sd">"</span><span class="s2">/protected/things"</span><span class="p">,</span> <span class="no">ProtectedController</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Các login routes ở trên sẽ chứng thực danh tính của user nếu cùng một đối tượng. Scope thứ hai đảm bảo rằng có một token hợp lệ được truyền cho tất cả các actions.<br />
+Bạn không nhất thiết phải đặt chúng trong các pipelines. Bạn có thể đặt chúng trong các controller để có thể tuỳ biến một cách linh hoạt, tuy nhiên, ở đây chúng ta đã sử dụng cấu hình đơn giản nhất.</p>
+
+<p>Chúng ta chưa nói phần mã sau này dùng. Đó là bắt các lỗi xảy ra khi ấy thêm <code class="highlighter-rouge">EnsureAuthenticated</code> plug. Đây là một module rất đơn giản trả về tới user</p>
+
+<ul>
+  <li><code class="highlighter-rouge">unauthenticated/2</code></li>
+  <li><code class="highlighter-rouge">unauthorized/2</code></li>
+</ul>
+
+<p>Cả hai chức năng nhận một struct Plug.Conn và các parameter đầu vào sẽ có các lỗi tương ứng xảy ra. Bạn thậm chí có thể sử dụng một Phoenix controller!</p>
+
+<h4 id="bn-trong-controller">Bên trong controller</h4>
+
+<p>Bên trong controller, để truy cập vào user hiện tại đang logged in, chúng ta có một vài cách. Hãy bắt đầu với cách đơn giản nhất.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">MyController</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">Web</span><span class="p">,</span> <span class="ss">:controller</span>
+  <span class="kn">use</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Phoenix</span><span class="o">.</span><span class="no">Controller</span>
+
+  <span class="k">def</span> <span class="n">some_action</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">claims</span><span class="p">)</span> <span class="k">do</span>
+    <span class="c1"># làm gì đó</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Bằng việc sử dụng <code class="highlighter-rouge">Guardian.Phoenix.Controller</code> module, các action sẽ nhận 2 tham trị mà bạn tùy ý sử dụng pattern match cho chúng. Nên nhớ, nếu bạn không sử dụng <code class="highlighter-rouge">EnsureAuthenticated</code> bạn có thể nhận giá trị nil cho user và claims.</p>
+
+<p>Mặt khác - chúng ta có cách viết lắt léo/rườm rà hơn sau - là để sử dụng plug helpers.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">MyController</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">MyApp</span><span class="o">.</span><span class="no">Web</span><span class="p">,</span> <span class="ss">:controller</span>
+
+  <span class="k">def</span> <span class="n">some_action</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="n">authenticated?</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">user</span> <span class="o">=</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="n">current_resource</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="c1"># Không phải user</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h4 id="ng-nhpthot">Đăng nhập/Thoát</h4>
+
+<p>Đăng nhập và thoát của phiên làm việc trên trình duyệt là rất đơn giản. Trong controller login ta viết như sau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">create</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+  <span class="k">case</span> <span class="n">find_the_user_and_verify_them_from_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">user</span><span class="p">}</span> <span class="o">-&gt;</span>
+      <span class="n">conn</span>
+      <span class="o">|&gt;</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="n">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:access</span><span class="p">)</span> <span class="c1"># Ở đây ta dùng access. Các token khác có thể sử dụng, như :resfresh vân vân</span>
+      <span class="o">|&gt;</span> <span class="n">respond_somehow</span><span class="p">()</span>
+    <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">}</span> <span class="o">-&gt;</span>
+      <span class="c1"># xử lý xảy ra lỗi xác minh user</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="n">delete</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">conn</span>
+  <span class="o">|&gt;</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="n">sign_out</span><span class="p">()</span>
+  <span class="o">|&gt;</span> <span class="n">respond_somehow</span><span class="p">()</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Khi sử dụng API đăng nhập, nó có chút khác biệt bởi vì ở đó không có dựa trên session và bạn cần cung cấp một raw token - token gốc trở về lại cho người dùng. Hàm này tiện lợi khi bạn không có ý định cho việc sử dụng một session.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">create</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+  <span class="k">case</span> <span class="n">find_the_user_and_verify_them_from_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">user</span><span class="p">}</span> <span class="o">-&gt;</span>
+      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">jwt</span><span class="p">,</span> <span class="n">_claims</span><span class="p">}</span> <span class="o">=</span> <span class="no">Guardian</span><span class="o">.</span><span class="n">encode_and_sign</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:access</span><span class="p">)</span>
+      <span class="n">conn</span>
+      <span class="o">|&gt;</span> <span class="n">respond_somehow</span><span class="p">({</span><span class="ss">token:</span> <span class="n">jwt</span><span class="p">})</span>
+    <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">}</span> <span class="o">-&gt;</span>
+      <span class="c1"># xử lý xảy ra lỗi xác minh user</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="n">delete</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">jwt</span> <span class="o">=</span> <span class="no">Guardian</span><span class="o">.</span><span class="no">Plug</span><span class="o">.</span><span class="n">current_token</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+  <span class="no">Guardian</span><span class="o">.</span><span class="n">revoke!</span><span class="p">(</span><span class="n">jwt</span><span class="p">)</span>
+  <span class="n">respond_somehow</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Bản chất việc session đăng nhập trình duyệt gọi <code class="highlighter-rouge">encode_and_sign</code> vẫn thế vì vậy bạn có thể sử dụng chúng khá tương tự.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/libraries/guardian/&title=Guardian (Cơ bản)&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/libraries/guardian/&via=elixirschool&text=ElixirSchool: Guardian (Cơ bản)&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/libraries/guardian/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/libraries/guardian/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/libraries/guardian/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Guardian (Cơ bản)" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/libraries/guardian/&title=ElixirSchool: Guardian (Cơ bản)&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/libraries/guardian/&title=ElixirSchool: Guardian (Cơ bản)&description=Check out 'Guardian (Cơ bản)' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Guardian (Cơ bản)&body=Check out 'Guardian (Cơ bản)' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/libraries/guardian/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

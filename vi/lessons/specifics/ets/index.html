@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/specifics/ets/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Erlang Term Storage (ETS) &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Erlang Term Storage (ETS) &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson  active" href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/ets/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/ets/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/ets/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/ets/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/ets/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/ets/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/ets/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/ets/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/ets/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/ets/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/ets/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/ets/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/ets/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/ets/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/ets/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/ets/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/ets/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/ets/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/ets/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/ets/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/ets/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Erlang Term Storage (ETS)</h1>
+  <p>Erlang Term Storage, thường được biết như ETS, là hệ thống lưu trữ mạnh mẽ được xây dựng dựa trên OTP và sử dụng được trong Elixir. Trong bài này chúng ta sẽ tìm hiểu làm thế nào để kết nối tới ETS và sử dụng trong ứng dụng của bạn.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="tng-quan">Tổng quan</h2>
+
+<p>ETS là một kiểu lưu trữ trong bộ nhớ mạnh mẽ cho những objects trong Elixir và Erlang. ETS có khả năng lưu trữ một lượng lớn dữ liệu và hỗ trợ truy cập với thời gian hằng số.</p>
+
+<p>Mỗi một bảng ETS được tạo và sở hữu bởi một process riêng biệt. Khi một process kết thúc, những bảng của nó sẽ bị xoá. Mặc định ETS giới hạn 1400 bảng cho mỗi node.</p>
+
+<h2 id="to-bng">Tạo bảng</h2>
+
+<p>Bảng được tạo với <code class="highlighter-rouge">new/2</code>, với tên bảng, các tuỳ chỉnh và trả về một nhận diện để bạn có thể thực hiện các thao tác sau đó.</p>
+
+<p>Ví dụ chúng ta tạo bảng để lưu trữ và tìm những users thông qua nickname của họ:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">table</span> <span class="o">=</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">[</span><span class="ss">:set</span><span class="p">,</span> <span class="ss">:protected</span><span class="p">])</span>
+<span class="m">8212</span>
+</code></pre>
+</div>
+
+<p>Giống như GenServers, có một cách để truy cập bảng trong ETS bằng tên thay vì nhận diện. Để làm vậy chúng ta cần thêm vào <code class="highlighter-rouge">:named_table</code>. Sau đó chúng ta có thể truy cập trực tiếp thông qua tên:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">[</span><span class="ss">:set</span><span class="p">,</span> <span class="ss">:protected</span><span class="p">,</span> <span class="ss">:named_table</span><span class="p">])</span>
+<span class="ss">:user_lookup</span>
+</code></pre>
+</div>
+
+<h3 id="cc-loi-bng">Các loại bảng</h3>
+
+<p>Có 4 loại bảng trong ETS:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">set</code> — Đây là kiểu mặc định. Mỗi giá trị ứng với mỗi khoá. Các khoá là duy nhất.</li>
+  <li><code class="highlighter-rouge">ordered_set</code> — Giống với <code class="highlighter-rouge">set</code> nhưng được sắp xếp bởi Erlang/Elixir term. Quan trọng là so sánh khoá sẽ khác trong <code class="highlighter-rouge">ordered_set</code>. Khoá không cần phải giống miễn là chúng bằng nhau. 1 và 1.0 được xem như là bằng nhau.</li>
+  <li><code class="highlighter-rouge">bag</code> — Nhiều objects tương ứng với mỗi khoá, nhưng chỉ duy nhất một thể hiện của object cho mỗi khoá.</li>
+  <li><code class="highlighter-rouge">duplicate_bag</code> — Nhiều object cho mỗi khoá, và cho phép trùng nhau.</li>
+</ul>
+
+<h3 id="qun-l-truy-cp">Quản lý truy cập</h3>
+
+<p>Quản lý truy cập trong Elixir khá tương tự với những modules khác:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">public</code> — Đọc/Ghi cho mọi processes.</li>
+  <li><code class="highlighter-rouge">protected</code> — Đọc cho mọi processes. Nhưng chỉ process sở hữu ETS mới có quyền ghi. Đây là mặc định.</li>
+  <li><code class="highlighter-rouge">private</code> — Đọc/Ghi giới hạn cho process sở hữu ETS.</li>
+</ul>
+
+<h2 id="thm-d-liu">Thêm dữ liệu</h2>
+
+<p>ETS không có schema. Giới hạn duy nhất là dữ liệu phải được lưu trữ như tuple với thành phần đầu tiên là khoá. Để thêm dữ liệu chúng ta sử dụng <code class="highlighter-rouge">insert/2</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]})</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Khi sử dụng <code class="highlighter-rouge">insert/2</code> cho <code class="highlighter-rouge">set</code> hay <code class="highlighter-rouge">ordered_set</code> dữ liệu có sẵn sẽ bị thay thế. Để tránh tình trạng này, câu lệnh <code class="highlighter-rouge">insert_new/2</code> trả về <code class="highlighter-rouge">false</code> cho những khoá đã tồn tại:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">insert_new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]})</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">insert_new</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">3100"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">]})</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h2 id="ly-d-liu">Lấy dữ liệu</h2>
+
+<p>ETS hỗ trợ ta một vài phương pháp để lấy dữ liệu đã được lưu trữ. Chúng ta sẽ tìm hiểu làm thế nào để lấy dữ liệu thông qua khoá và pattern matching.</p>
+
+<p>Cách hiệu quả, lý tưởng là tìm kiếm qua khoá. Matching cũng tương đối hữu dụng cho bảng khi sử dụng cho một tập dữ liệu lớn.</p>
+
+<h3 id="tm-kim-kho">Tìm kiếm khoá</h3>
+
+<p>Với một khoá, chúng ta có thể sử dụng <code class="highlighter-rouge">lookup/2</code> để lấy tất cả các record tương ứng với khoá đó.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">)</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<h3 id="match-n-gin">Match đơn giản</h3>
+
+<p>ETS được xây dựng trên Erlang, vì vậy cẩn thận với match những tham số khá là <em>kì lạ</em>.</p>
+
+<p>Để chỉ ra biến trong việc match, chúng ta sử dụng atoms <code class="highlighter-rouge">:"$1"</code>, <code class="highlighter-rouge">:"$2"</code>, <code class="highlighter-rouge">:"$3"</code> và tương tự vậy. Biến số phản ánh kết quả không phải là vị trí. Với những giá trị mà chúng ta không quan tâm, chúng ta sử dụng <code class="highlighter-rouge">:"_"</code>.</p>
+
+<p>Những giá trị có thể được sử dụng trong matching, nhưng chỉ duy nhất biến sẽ được trả về như là một phần của kết quả. Đặt nó lại với nhau và xem cách nó hoạt động:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">})</span>
+<span class="p">[[</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">]]</span>
+</code></pre>
+</div>
+
+<p>Cùng tìm hiểu một ví dụ khác để xem những biến này sẽ ảnh hưởng thứ tự trả về như thế nào:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$99"</span><span class="p">,</span> <span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">})</span>
+<span class="p">[[</span><span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">],</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">],</span>
+ <span class="p">[</span><span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">],</span> <span class="sd">"</span><span class="s2">3100"</span><span class="p">]]</span>
+</code></pre>
+</div>
+
+<p>Nếu chúng ta muốn lấy ra object gốc mà không phải một list thì sao? Chúng ta có thể sử dụng <code class="highlighter-rouge">match_object/2</code>, mặc dù những biến này trả về toàn bộ object.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match_object</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">})</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]},</span>
+ <span class="p">{</span><span class="sd">"</span><span class="s2">3100"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">]}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match_object</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"_"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">})</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<h3 id="tm-kim-nng-cao">Tìm kiếm nâng cao</h3>
+
+<p>Chúng ta đã học về cách match những trường hợp đơn giản, nhưng nếu chúng ta muốn thứ gì đó giống với SQL query? Rất may có một syntax mạnh mẽ hơn cho chúng ta. Để tìm kiếm dữ liệu với <code class="highlighter-rouge">select/2</code> chúng ta cần phải tạo một danh sách các tuple với 3 tham số. Những tuple đại diện cho pattern của chúng ta, dữ liệu rỗng hay nâng cao hơn và trả về kiểu giá trị.</p>
+
+<p><code class="highlighter-rouge">:"$$"</code> và <code class="highlighter-rouge">:"$"</code> có thể được sử dụng để tạo nên giá trị trả về. Những biến mới này là những shortcut cho kiểu giá trị; <code class="highlighter-rouge">:"$$"</code> lấy kết quả như là một dánh sách và <code class="highlighter-rouge">:"$"</code> lấy dữ liệu gốc.</p>
+
+<p>Lấy lại ví dụ trước <code class="highlighter-rouge">match/2</code> và chuyển nó thành <code class="highlighter-rouge">select/2</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">match_object</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">})</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]},</span>
+ <span class="p">{</span><span class="sd">"</span><span class="s2">3100"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">JavaScript"</span><span class="p">]}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="p">[{{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">},</span> <span class="p">[],</span> <span class="p">[</span><span class="ss">:"$_"</span><span class="p">]}])</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]},</span>
+ <span class="p">{</span><span class="sd">"</span><span class="s2">spork"</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elixir"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<p>Mặc dù <code class="highlighter-rouge">select/2</code> cho phép điều khiển sâu hơn cách mà chúng ta lấy những kết quả, syntax này không thân thiện và chỉ càng phức tạp hơn. Để xử lý vấn đề này ETS thêm vào <code class="highlighter-rouge">fun2ms/1</code>, biến functions thành match_specs. Với <code class="highlighter-rouge">fun2ms/1</code> chúng ta có thể tạo queries với những syntax cho function quen thuộc.</p>
+
+<p>Hãy sử dụng <code class="highlighter-rouge">fun2ms/1</code> và <code class="highlighter-rouge">select/2</code> để tìm tất cả usernames với nhiều hơn 2 ngôn ngữ:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">fun</span> <span class="o">=</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">fun2ms</span><span class="p">(</span><span class="k">fn</span> <span class="p">{</span><span class="n">username</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">langs</span><span class="p">}</span> <span class="ow">when</span> <span class="n">length</span><span class="p">(</span><span class="n">langs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">2</span> <span class="o">-&gt;</span> <span class="n">username</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[{{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"_"</span><span class="p">,</span> <span class="ss">:"$2"</span><span class="p">},</span> <span class="p">[{</span><span class="ss">:&gt;</span><span class="p">,</span> <span class="p">{</span><span class="ss">:length</span><span class="p">,</span> <span class="ss">:"$2"</span><span class="p">},</span> <span class="m">2</span><span class="p">}],</span> <span class="p">[</span><span class="ss">:"$1"</span><span class="p">]}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="n">fun</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">3100"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Muốn tìm hiểu thêm về các định nghĩa match, đọc qua về tài liệu chính thức của Erlang về <a href="http://www.erlang.org/doc/apps/erts/match_spec.html">match_spec</a>.</p>
+
+<h2 id="xo-d-liu">Xoá dữ liệu</h2>
+
+<h3 id="xo-records">Xoá records</h3>
+
+<p>Xoá terms khá rã ràng với <code class="highlighter-rouge">insert/2</code> và <code class="highlighter-rouge">lookup/2</code>. Với <code class="highlighter-rouge">delete/2</code> chúng ta cần bảng và khoá. Điều này xoá cả khoá và giá trị của nó:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">,</span> <span class="sd">"</span><span class="s2">doomspork"</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="xo-bng">Xoá bảng</h3>
+
+<p>Bảng trong ETS không được dọn trừ khi parent của nó bị xoá. Thỉnh thoảng nó có thể cần thiết khi xoá toàn bộ một bảng mà không xoá process chứa nó. Để làm vậy chúng ta sử dụng <code class="highlighter-rouge">delete/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="ss">:user_lookup</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h2 id="v-d-v-cch-s-dng-ets">Ví dụ về cách sử dụng ETS</h2>
+
+<p>Tổng kết lại những gì chúng ta đã học ở trên, kết hợp mọi thứ lại và tạo một cache đơn giản cho những tính toán phức tạp. Chúng ta sẽ cài đặt <code class="highlighter-rouge">get/4</code> với tham số là module, function, arguments và options. Từ đây chúng ta chỉ quan tâm về <code class="highlighter-rouge">:ttl</code></p>
+
+<p>Với ví dụ này chúng ta giả sử bảng ETS đã được tạo như một phần của process như là supervisor:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SimpleCache</span> <span class="k">do</span>
+  <span class="nv">@moduledoc</span> <span class="sd">"""
+  A simple ETS based cache for expensive function calls.
+  """</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Retrieve a cached value or apply the given function caching and returning
+  the result.
+  """</span>
+  <span class="k">def</span> <span class="n">get</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">opts</span> <span class="p">\\</span> <span class="p">[])</span> <span class="k">do</span>
+    <span class="k">case</span> <span class="n">lookup</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="k">do</span>
+      <span class="no">nil</span> <span class="o">-&gt;</span>
+        <span class="n">ttl</span> <span class="o">=</span> <span class="no">Keyword</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">opts</span><span class="p">,</span> <span class="ss">:ttl</span><span class="p">,</span> <span class="m">3600</span><span class="p">)</span>
+        <span class="n">cache_apply</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ttl</span><span class="p">)</span>
+      <span class="n">result</span> <span class="o">-&gt;</span> <span class="n">result</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Lookup a cached result and check the freshness
+  """</span>
+  <span class="k">defp</span> <span class="n">lookup</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">case</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="ss">:simple_cache</span><span class="p">,</span> <span class="p">[</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">])</span> <span class="k">do</span>
+      <span class="p">[</span><span class="n">result</span><span class="o">|</span><span class="n">_</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="n">check_freshness</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+      <span class="p">[]</span> <span class="o">-&gt;</span> <span class="no">nil</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Compare the result expiration against the current system time.
+  """</span>
+  <span class="k">defp</span> <span class="n">check_freshness</span><span class="p">({</span><span class="n">mfa</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">expiration</span><span class="p">})</span> <span class="k">do</span>
+    <span class="k">cond</span> <span class="k">do</span>
+      <span class="n">expiration</span> <span class="o">&gt;</span> <span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">(</span><span class="ss">:seconds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">result</span>
+      <span class="ss">:else</span> <span class="o">-&gt;</span> <span class="no">nil</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="nv">@doc</span> <span class="sd">"""
+  Apply the function, calculate expiration, and cache the result.
+  """</span>
+  <span class="k">defp</span> <span class="n">cache_apply</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ttl</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">apply</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+    <span class="n">expiration</span> <span class="o">=</span> <span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">(</span><span class="ss">:seconds</span><span class="p">)</span> <span class="o">+</span> <span class="n">ttl</span>
+    <span class="ss">:ets</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="ss">:simple_cache</span><span class="p">,</span> <span class="p">{[</span><span class="n">mod</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">],</span> <span class="n">result</span><span class="p">,</span> <span class="n">expiration</span><span class="p">})</span>
+    <span class="n">result</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Để minh hoạ cache chúng ta sẽ sử dụng function cái mà trả về giờ hệ thống và TTL của 10 giây. Bạn sẽ thấy ở ví dụ dưới, chúng ta sẽ lưu lại kết quả cho đến khi giá trị hết hiệu lực:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleApp</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">test</span> <span class="k">do</span>
+    <span class="ss">:os</span><span class="o">.</span><span class="n">system_time</span><span class="p">(</span><span class="ss">:seconds</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:simple_cache</span><span class="p">,</span> <span class="p">[</span><span class="ss">:named_table</span><span class="p">])</span>
+<span class="ss">:simple_cache</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089115</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleCache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">ExampleApp</span><span class="p">,</span> <span class="ss">:test</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">ttl:</span> <span class="m">10</span><span class="p">)</span>
+<span class="m">1451089119</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089123</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089127</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleCache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">ExampleApp</span><span class="p">,</span> <span class="ss">:test</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">ttl:</span> <span class="m">10</span><span class="p">)</span>
+<span class="m">1451089119</span>
+</code></pre>
+</div>
+
+<p>Sau 10 giây nếu chúng ta thử lại chúng ta sẽ nhận một kết quả khác:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="n">test</span>
+<span class="m">1451089131</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">SimpleCache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="no">ExampleApp</span><span class="p">,</span> <span class="ss">:test</span><span class="p">,</span> <span class="p">[],</span> <span class="ss">ttl:</span> <span class="m">10</span><span class="p">)</span>
+<span class="m">1451089134</span>
+</code></pre>
+</div>
+
+<p>Như bạn thấy chúng ta có thể cài đặt một hệ thống cache nhanh và có khả năng nhân rộng mà không phụ thuộc bất kì gì ở bên ngoài và đây là một trong nhiều tính năng của ETS.</p>
+
+<h2 id="disk-based-ets">Disk-based ETS</h2>
+
+<p>Chúng ta biết ETS là lưu trữ trong bộ nhớ nhưng nếu chúng ta cần lưu trữ trên disk thì sao? Vì vậy chúng ta có Disk Based Term Storage, hay ngắn gọn DETS. ETS và DETS là như nhau chỉ với khác biệt là cách mà bảng được tạo. DETS dựa vào <code class="highlighter-rouge">open_file/2</code> và không cần <code class="highlighter-rouge">:named_table</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">table</span><span class="p">}</span> <span class="o">=</span> <span class="ss">:dets</span><span class="o">.</span><span class="n">open_file</span><span class="p">(</span><span class="ss">:disk_storage</span><span class="p">,</span> <span class="p">[</span><span class="ss">type:</span> <span class="ss">:set</span><span class="p">])</span>
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="ss">:disk_storage</span><span class="p">}</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:dets</span><span class="o">.</span><span class="n">insert_new</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="p">{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]})</span>
+<span class="no">true</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">select_all</span> <span class="o">=</span> <span class="ss">:ets</span><span class="o">.</span><span class="n">fun2ms</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="nv">&amp;1</span><span class="p">))</span>
+<span class="p">[{</span><span class="ss">:"$1"</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="ss">:"$1"</span><span class="p">]}]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:dets</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">select_all</span><span class="p">)</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">doomspork"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Sean"</span><span class="p">,</span> <span class="p">[</span><span class="sd">"</span><span class="s2">Elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ruby"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Java"</span><span class="p">]}]</span>
+</code></pre>
+</div>
+
+<p>Nếu bạn thoát <code class="highlighter-rouge">iex</code> và nhìn vào cây thư mục hiện tại, bạn sẽ thấy file mới <code class="highlighter-rouge">disk_storage</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ls | grep -c disk_storage
+1
+</code></pre>
+</div>
+
+<p>Điều cuối cùng cần lưu ý là DETS không support <code class="highlighter-rouge">ordered_set</code> giống như ETS, chỉ có <code class="highlighter-rouge">set</code>, <code class="highlighter-rouge">bag</code> và <code class="highlighter-rouge">duplicated_bag</code>.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/specifics/ets/&title=Erlang Term Storage (ETS)&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/specifics/ets/&via=elixirschool&text=ElixirSchool: Erlang Term Storage (ETS)&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/specifics/ets/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/specifics/ets/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/specifics/ets/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Erlang Term Storage (ETS)" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/specifics/ets/&title=ElixirSchool: Erlang Term Storage (ETS)&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/specifics/ets/&title=ElixirSchool: Erlang Term Storage (ETS)&description=Check out 'Erlang Term Storage (ETS)' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Erlang Term Storage (ETS)&body=Check out 'Erlang Term Storage (ETS)' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/specifics/ets/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

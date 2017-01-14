@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/basics/testing/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Testing &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Testing &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson  active" href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/testing/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/testing/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/testing/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/testing/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/testing/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/testing/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/testing/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/testing/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/testing/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/testing/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/testing/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/testing/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/testing/ ">my</a>
+      
+        <a href=" /no/lessons/basics/testing/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/testing/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/testing/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/testing/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/testing/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/testing/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/testing/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/testing/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Testing</h1>
+  <p>Testing là một phần quan trọng của phát triển phần mềm. Trong bài này, chúng ta sẽ học cách để test code Elixir với ExUnit và một vài best practice để làm chuyện này.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="exunit">ExUnit</h2>
+
+<p>Thư viện test được đính kèm với Elixir là ExUnit, và nó cũng bao gồm tất cả mọi thứ mà chúng ta cần để test code. Trước khi đi tiếp, cần đặc biệt chú ý là các file test được cài đặt như là một Elixir scripts, vì thế chúng ta cần đặt tên các file này với phần mở rộng là <code class="highlighter-rouge">.exs</code>. Để có thể chạy các test, chúng ta cần khởi động ExUnit bằng cách gọi <code class="highlighter-rouge">ExUnit.start()</code>, thông thường chúng ta để việc khởi động này trong file <code class="highlighter-rouge">test/test_helper.exs</code>.</p>
+
+<p>Khi chúng ta sinh ra dự án mẫu trong bài học trước, mix đã tự động tạo các test đơn giản, chúng ta có thể thấy nó trong <code class="highlighter-rouge">test/example_test.exs</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="n">doctest</span> <span class="no">Example</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">the truth"</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">2</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Chúng ta có thể chạy toàn bộ test bằng lệnh <code class="highlighter-rouge">mix test</code>. Nếu chúng ta làm vậy, chúng ta sẽ thấy output như dưới đây:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Finished <span class="k">in </span>0.03 seconds <span class="o">(</span>0.02s on load, 0.01s on tests<span class="o">)</span>
+1 tests, 0 failures
+</code></pre>
+</div>
+
+<h3 id="assert">assert</h3>
+
+<p>Nếu bạn muốn viết các test thì trước hết bạn cần làm quen với <code class="highlighter-rouge">assert</code>, trong một vài frameworks <code class="highlighter-rouge">should</code> hoặc là <code class="highlighter-rouge">expect</code> sẽ đóng vai trò của <code class="highlighter-rouge">assert</code>.</p>
+
+<p>Chúng ta sử dụng <code class="highlighter-rouge">assert</code> macro để test tính đúng đắn của một biểu thức. Nếu biểu thức là không đúng, một lỗi sẽ được văng ra, và bộ test sẽ thất bại. Hãy cùng sửa ví dụ của chúng ta để bộ test thất bại:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="n">doctest</span> <span class="no">Example</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">the truth"</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">3</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Giờ nếu chạy <code class="highlighter-rouge">mix test</code>, chúng ta có thể thấy output tương tự như sau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  1<span class="o">)</span> <span class="nb">test </span>the truth <span class="o">(</span>ExampleTest<span class="o">)</span>
+     <span class="nb">test</span>/example_test.exs:5
+     Assertion with <span class="o">==</span> failed
+     code: 1 + 1 <span class="o">==</span> 3
+     lhs:  2
+     rhs:  3
+     stacktrace:
+       <span class="nb">test</span>/example_test.exs:6
+
+......
+
+Finished <span class="k">in </span>0.03 seconds <span class="o">(</span>0.02s on load, 0.01s on tests<span class="o">)</span>
+1 tests, 1 failures
+</code></pre>
+</div>
+
+<p>ExUnit sẽ nói cho chúng ta biết chính xác test sai ở đâu, giá trị mong muốn là gì, và giá trị thực tế là gì.</p>
+
+<h3 id="refute">refute</h3>
+
+<p><code class="highlighter-rouge">refute</code> đối với <code class="highlighter-rouge">assert</code> giống như <code class="highlighter-rouge">unless</code> với <code class="highlighter-rouge">if</code>.  Dùng <code class="highlighter-rouge">refute</code> khi bạn muốn đảm bảo một lệnh là luôn luôn sai.</p>
+
+<h3 id="assertraise">assert_raise</h3>
+
+<p>Đôi khi, chúng ta cần assert rằng một lỗi sẽ bị văng ra, chúng ta có thể làm điều đó với <code class="highlighter-rouge">assert_raise</code>. Hãy cùng xem ví dụ với <code class="highlighter-rouge">assert_raise</code> trong bài học tới về Plug.</p>
+
+<h3 id="assertreceive">assert_receive</h3>
+
+<p>Trong ứng dụng Elixir chứa các actors/processes mà chúng gửi thông điệp tới nhau, bạn thường muốn test xem message nào được gửi đi. Từ việc ExUnit được chạy trong chính một process, nó có thể nhận message như bất cứ process nào khác, do vậy bạn có thể assert bằng cách dùng macro <code class="highlighter-rouge">assert_received</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">SendingProcess</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">run</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">send</span> <span class="n">pid</span><span class="p">,</span> <span class="ss">:ping</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">defmodule</span> <span class="no">TestReceive</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">receives ping"</span> <span class="k">do</span>
+    <span class="no">SendingProcess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="n">assert_received</span> <span class="ss">:ping</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">assert_received</code> không đợi các thông điệp, với <code class="highlighter-rouge">assert_receive</code> bạn có thể xác định một khoảng thời gian chờ.</p>
+
+<h2 id="captureio-and-capturelog">capture_io and capture_log</h2>
+
+<p>Có thể lấy ra output của một ứng dụng với <code class="highlighter-rouge">ExUnit.captureIO</code> mà không cần thay đổi ứng dụng. Đơn giản chỉ cần truyền hàm để sinh output vào:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">OutputTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="kn">import</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">CaptureIO</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">outputs Hello World"</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="n">capture_io</span><span class="p">(</span><span class="k">fn</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Hello World"</span> <span class="k">end</span><span class="p">)</span> <span class="o">==</span> <span class="sd">"</span><span class="s2">Hello World\n"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">ExUnit.CaptureLog</code> là tương đương, nhưng để lấy ra output của <code class="highlighter-rouge">Logger</code>.</p>
+
+<h2 id="cu-hnh-test">Cấu hình Test</h2>
+
+<p>Trong một số trường hợp, chúng ta sẽ cần phải thực hiện việc cấu hình trước khi test. Để làm điểu này, chúng ta sử dụng <code class="highlighter-rouge">setup</code> và <code class="highlighter-rouge">setup_all</code> macro. <code class="highlighter-rouge">setup</code> sẽ trả được chạy trước mọi test và <code class="highlighter-rouge">setup_all</code> sẽ chỉ chạy duy nhất một lần cho cả bộ test. Các hàm này mong muốn trả về một tuple <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code>, trong đó state sẽ được sử dụng cho các test của chúng ta.</p>
+
+<p>Để lấy ví dụ, chúng ta sử lại code như sau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="n">doctest</span> <span class="no">Example</span>
+
+  <span class="n">setup_all</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="ss">number:</span> <span class="m">2</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">the truth"</span><span class="p">,</span> <span class="n">state</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="n">state</span><span class="p">[</span><span class="ss">:number</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="mocking">Mocking</h2>
+
+<p>Câu trả lời đơn giản với mocking trong Elixir là: đừng sử dụng nó. Bạn có thể muốn tìm tới mock một cách tự nhiên, nhưng cộng đồng Elixir không khuyến khích bạn làm chuyện đó.</p>
+
+<p>Bạn có thể đọc chi tiết hơn trong <a href="http://blog.plataformatec.com.br/2015/10/mocks-and-explicit-contracts/">bài viết rất hay này</a>. Tóm lại, thay vì mock một phụ thuộc để test (mock như một <em>động từ</em>), có rất nhiều lợi ích nếu định nghĩa một giao diện cụ thể cho các code ở bên ngoài ứng dụng của chúng ta, và sử dụng Mock (như là <em>danh từ</em>) để cài đặt test.</p>
+
+<p>Để thay đổi các cài đặt trong ứng dụng, cách được đưa ra là truyền module như là một tham số, và sử dụng một giá trị mặc định. Nếu điều này không khả thi, hãy sử dụng cơ chế cấu hình mặc định. Để tạo ra các cài đặt mock, bạn không cần thiết phải sử dụng một thư viện mock đặc biệt, chỉ cần sử dụng behaviour và callback là đủ.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/basics/testing/&title=Testing&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/basics/testing/&via=elixirschool&text=ElixirSchool: Testing&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/basics/testing/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/basics/testing/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/basics/testing/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Testing" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/basics/testing/&title=ElixirSchool: Testing&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/basics/testing/&title=ElixirSchool: Testing&description=Check out 'Testing' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Testing&body=Check out 'Testing' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/basics/testing/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

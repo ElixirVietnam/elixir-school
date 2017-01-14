@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lessons about the Elixir programming language">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/lessons/basics/sigils/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Sigils &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lessons about the Elixir programming language">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Sigils &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lessons about the Elixir programming language</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Basics</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/basics/basics/">Basics</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/basics/control-structures/">Control Structures</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/basics/functions/">Functions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson  active" href="/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Advanced</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/advanced/error-handling/">Error Handling</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/advanced/escripts/">Executables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/advanced/concurrency/">Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/advanced/umbrella-projects/">Umbrella Projects</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/advanced/typespec/">Specifications and types</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Specifics</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Libraries</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/sigils/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/sigils/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/sigils/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/sigils/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/sigils/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/sigils/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/sigils/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/sigils/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/sigils/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/sigils/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/sigils/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/sigils/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/sigils/ ">my</a>
+      
+        <a href=" /no/lessons/basics/sigils/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/sigils/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/sigils/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/sigils/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/sigils/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/sigils/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/sigils/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/sigils/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Sigils</h1>
+  <p>Working with and creating sigils.</p>
+
+<h2>Table of Contents</h2>
+<div id="toc"></div>
+
+<h2 id="sigils-overview">Sigils Overview</h2>
+
+<p>Elixir provides an alternative syntax for representing and working with literals. A sigil will start with a tilde <code class="highlighter-rouge">~</code> followed by a character. The Elixir core provides us with some built in sigils however, it is possible to create our own when we need to extend the language.</p>
+
+<p>A list of available sigils include:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">~C</code> Generates a character list <strong>with no</strong> escaping or interpolation</li>
+  <li><code class="highlighter-rouge">~c</code> Generates a character list <strong>with</strong> escaping and interpolation</li>
+  <li><code class="highlighter-rouge">~R</code> Generates a regular expression <strong>with no</strong> escaping or interpolation</li>
+  <li><code class="highlighter-rouge">~r</code> Generates a regular expression <strong>with</strong> escaping and interpolation</li>
+  <li><code class="highlighter-rouge">~S</code> Generates a string <strong>with no</strong> escaping or interpolation</li>
+  <li><code class="highlighter-rouge">~s</code> Generates a string <strong>with</strong> escaping and interpolation</li>
+  <li><code class="highlighter-rouge">~W</code> Generates a word list <strong>with no</strong> escaping or interpolation</li>
+  <li><code class="highlighter-rouge">~w</code> Generates a word list <strong>with</strong> escaping and interpolation</li>
+  <li><code class="highlighter-rouge">~N</code> Generates a <code class="highlighter-rouge">NaiveDateTime</code> struct</li>
+</ul>
+
+<p>A list of delimiters include:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">&lt;...&gt;</code> A pair of pointy brackets</li>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">...</span><span class="p">}</span></code> A pair of curly brackets</li>
+  <li><code class="highlighter-rouge">[...]</code> A pair of square brackets</li>
+  <li><code class="highlighter-rouge">(...)</code> A pair of parenthesis</li>
+  <li><code class="highlighter-rouge">|...|</code> A pair of pipes</li>
+  <li><code class="highlighter-rouge">/.../</code> A pair of forward slashes</li>
+  <li><code class="highlighter-rouge">"..."</code> A pair of double quotes</li>
+  <li><code class="highlighter-rouge">'...'</code> A pair of single quotes</li>
+</ul>
+
+<h3 id="char-list">Char List</h3>
+
+<p>The <code class="highlighter-rouge">~c</code> and <code class="highlighter-rouge">~C</code> sigils generate character lists respectively. For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">c</span><span class="o">/</span><span class="m">2</span> <span class="o">+</span> <span class="m">7</span> <span class="o">=</span> <span class="c1">#{2 + 7}/</span>
+<span class="s1">'2 + 7 = 9'</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="no">C</span><span class="o">/</span><span class="m">2</span> <span class="o">+</span> <span class="m">7</span> <span class="o">=</span> <span class="c1">#{2 + 7}/</span>
+<span class="s1">'2 + 7 = #{2 + 7}'</span>
+</code></pre>
+</div>
+
+<p>We can see the lowercased <code class="highlighter-rouge">~c</code> interpolates the calculation, whereas the uppercased <code class="highlighter-rouge">~C</code> sigil does not. We will see that this uppercase / lowercase sequence is a common theme throughout the built in sigils.</p>
+
+<h3 id="regular-expressions">Regular Expressions</h3>
+
+<p>The <code class="highlighter-rouge">~r</code> and <code class="highlighter-rouge">~R</code> sigils are used to represent Regular Expressions. We create them either on the fly or for use within the <code class="highlighter-rouge">Regex</code> functions. For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">re</span> <span class="o">=</span> <span class="sr">~r/elixir/</span>
+<span class="err">~</span><span class="o">/</span><span class="n">elixir</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Elixir"</span> <span class="o">=~</span> <span class="n">re</span>
+<span class="no">false</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">elixir"</span> <span class="o">=~</span> <span class="n">re</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>We can see that in the first test for equality, that <code class="highlighter-rouge">Elixir</code> does not match with the regular expression. This is because it is capitalized. Because Elixir supports Perl Compatible Regular Expressions (PCRE), we can append <code class="highlighter-rouge">i</code> to the end of our sigil to turn off case sensitivity.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">re</span> <span class="o">=</span> <span class="sr">~r/elixir/</span><span class="n">i</span>
+<span class="err">~</span><span class="o">/</span><span class="n">elixir</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Elixir"</span> <span class="o">=~</span> <span class="n">re</span>
+<span class="no">true</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">elixir"</span> <span class="o">=~</span> <span class="n">re</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Further, Elixir provides the <a href="http://elixir-lang.org/docs/stable/elixir/Regex.html">Regex</a> API which is built on top of Erlang’s regular expression library. Let’s implement <code class="highlighter-rouge">Regex.split/2</code> using a regex sigil:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">string</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">100_000_000"</span>
+<span class="sd">"</span><span class="s2">100_000_000"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Regex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">~r/_/</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">100"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">000"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">000"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>As we can see, the string <code class="highlighter-rouge">"100_000_000"</code> is split on the underscore thanks to our <code class="highlighter-rouge">~r/_/</code> sigil. The <code class="highlighter-rouge">Regex.split</code> function returns a list.</p>
+
+<h3 id="string">String</h3>
+
+<p>The <code class="highlighter-rouge">~s</code> and <code class="highlighter-rouge">~S</code> sigils are used to generate string data. For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">s</span><span class="o">/</span><span class="n">the</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">hat</span> <span class="n">on</span> <span class="n">the</span> <span class="n">mat</span><span class="o">/</span>
+<span class="sd">"</span><span class="s2">the cat in the hat on the mat"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="no">S</span><span class="o">/</span><span class="n">the</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">hat</span> <span class="n">on</span> <span class="n">the</span> <span class="n">mat</span><span class="o">/</span>
+<span class="sd">"</span><span class="s2">the cat in the hat on the mat"</span>
+</code></pre>
+</div>
+
+<p>What is the difference? The difference is similar to the Character List sigil that we looked at. The answer is interpolation and the use of escape sequences. If we take another example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">s</span><span class="o">/</span><span class="n">welcome</span> <span class="n">to</span> <span class="n">elixir</span> <span class="c1">#{String.downcase "school"}/</span>
+<span class="sd">"</span><span class="s2">welcome to elixir school"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="no">S</span><span class="o">/</span><span class="n">welcome</span> <span class="n">to</span> <span class="n">elixir</span> <span class="c1">#{String.downcase "school"}/</span>
+<span class="sd">"</span><span class="s2">welcome to elixir \</span><span class="si">#{</span><span class="no">String</span><span class="o">.</span><span class="n">downcase</span> <span class="p">\</span><span class="sd">"</span><span class="s2">school\"</span><span class="si">}</span><span class="s2">"</span>
+</code></pre>
+</div>
+
+<h3 id="word-list">Word List</h3>
+
+<p>The word list sigil can come in handy time to time. It can save both time, keystrokes and arguably reduce the complexity within the codebase. Take this simple example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">w</span><span class="o">/</span><span class="n">i</span> <span class="n">love</span> <span class="n">elixir</span> <span class="n">school</span><span class="o">/</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">i"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">love"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">school"</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="no">W</span><span class="o">/</span><span class="n">i</span> <span class="n">love</span> <span class="n">elixir</span> <span class="n">school</span><span class="o">/</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">i"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">love"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">school"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>We can see that what is typed between the delimiters is separated by whitespace into a list. However, there is no difference between these two examples. Again, the difference comes with the interpolation and escape sequences. Take the following example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">w</span><span class="o">/</span><span class="n">i</span> <span class="n">love</span> <span class="c1">#{'e'}lixir school/</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">i"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">love"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">school"</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="no">W</span><span class="o">/</span><span class="n">i</span> <span class="n">love</span> <span class="c1">#{'e'}lixir school/</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">i"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">love"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">\</span><span class="si">#{</span><span class="s1">'e'</span><span class="si">}</span><span class="s2">lixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">school"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="naivedatetime">NaiveDateTime</h3>
+
+<p>A <a href="http://elixir-lang.org/docs/stable/elixir/NaiveDateTime.html">NaiveDateTime</a> can be useful for quickly creating a struct to represent a <code class="highlighter-rouge">DateTime</code> <strong>without</strong> a timezone.</p>
+
+<p>For the most part, we should avoid creating a <code class="highlighter-rouge">NaiveDateTime</code> struct directly. However, it is very useful for pattern matching. For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">NaiveDateTime</span><span class="o">.</span><span class="n">from_iso8601</span><span class="p">(</span><span class="sd">"</span><span class="s2">2015-01-23 23:50:07"</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="err">~</span><span class="no">N</span><span class="p">[</span><span class="m">2015</span><span class="o">-</span><span class="m">01</span><span class="o">-</span><span class="m">23</span> <span class="m">23</span><span class="p">:</span><span class="m">50</span><span class="p">:</span><span class="m">07</span><span class="p">]}</span>
+</code></pre>
+</div>
+
+<h2 id="creating-sigils">Creating Sigils</h2>
+
+<p>One of the goals of Elixir is to be an extendable programming language. It should come as no surprise then that you can easily create your own custom sigils. In this example, we will create a sigil to convert a string to uppercase. As there is already a function for this in the Elixir Core (<code class="highlighter-rouge">String.upcase/1</code>), we will wrap our sigil around that function.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">defmodule</span> <span class="no">MySigils</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">def</span> <span class="n">sigil_u</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="p">[]),</span> <span class="k">do</span><span class="p">:</span> <span class="no">String</span><span class="o">.</span><span class="n">upcase</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="no">MySigils</span>
+<span class="no">nil</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">u</span><span class="o">/</span><span class="n">elixir</span> <span class="n">school</span><span class="o">/</span>
+<span class="no">ELIXIR</span> <span class="no">SCHOOL</span>
+</code></pre>
+</div>
+
+<p>First we define a module called <code class="highlighter-rouge">MySigils</code> and within that module, we created a function called <code class="highlighter-rouge">sigil_u</code>. As there is no existing <code class="highlighter-rouge">~u</code> sigil in the existing sigil space, we will use it. The <code class="highlighter-rouge">_u</code> indicates that we wish use <code class="highlighter-rouge">u</code> as the character after the tilde. The function definition must take two arguments, an input and a list.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/lessons/basics/sigils/&title=Sigils&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/lessons/basics/sigils/&via=elixirschool&text=ElixirSchool: Sigils&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/lessons/basics/sigils/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/lessons/basics/sigils/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/lessons/basics/sigils/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Sigils" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/lessons/basics/sigils/&title=ElixirSchool: Sigils&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/lessons/basics/sigils/&title=ElixirSchool: Sigils&description=Check out 'Sigils' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Sigils&body=Check out 'Sigils' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/lessons/basics/sigils/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

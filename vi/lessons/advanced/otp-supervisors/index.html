@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/advanced/otp-supervisors/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  OTP Supervisors &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  OTP Supervisors &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson  active" href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/otp-supervisors/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/otp-supervisors/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/otp-supervisors/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/otp-supervisors/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/otp-supervisors/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/otp-supervisors/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/otp-supervisors/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/otp-supervisors/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/otp-supervisors/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/otp-supervisors/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/otp-supervisors/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/otp-supervisors/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/otp-supervisors/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/otp-supervisors/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/otp-supervisors/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/otp-supervisors/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/otp-supervisors/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/otp-supervisors/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/otp-supervisors/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/otp-supervisors/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/otp-supervisors/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">OTP Supervisors</h1>
+  <p>Supervisor (tạm dịch là giám trình - tiến trình giám sát) là các tiến trình (process) đặc biệt với chỉ một mục đích: quản lý các tiến trình khác. Giám trình cho phép chúng ta tạo ra các ứng dụng chống chịu lỗi (fault-tolerent) bằng cách tự động khởi động lại các tiến trình con khi chúng bị hỏng.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="cu-hnh">Cấu hình</h2>
+
+<p>Phép thuật của giám trình nằm trong hàm <code class="highlighter-rouge">Supervisor.start_link/2</code>. Ngoài việc khởi động giám trình và các tiến trình con, nó cho phép chúng ta định nghĩa chiến thuật cho giám trình để quản lý các tiến trình con.</p>
+
+<p>Các tiến trình con được định nghĩa bằng cách sử dụng một danh sách, và hàm <code class="highlighter-rouge">worker/3</code> (được import từ module <code class="highlighter-rouge">Supervisor.Spec</code>). Hàm <code class="highlighter-rouge">worker/3</code> nhận vào một module, các đối số, và một tập các tuỳ chọn. Ở bên dưới <code class="highlighter-rouge">worker/3</code> gọi tới hàm <code class="highlighter-rouge">start_link/3</code> với các đối số trong quá trình khởi tạo.</p>
+
+<p>Chúng ta sẽ bắt đầu với SimpleQueue trong bài <a href="../../advanced/otp-concurrency">OTP Concurrency</a>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">SimpleQueue</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="ss">name:</span> <span class="no">SimpleQueue</span><span class="p">])</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Nếu tiến trình của chúng ta bị lỗi, hoặc bị tắt đi, giám trình sẽ tự động khởi động lại nó như chưa có điều gì xảy ra.</p>
+
+<h3 id="cc-chin-thut">Các chiến thuật:</h3>
+
+<p>Hiện tại, có bốn chiến thuật khác nhau để khởi động lại các tiến trình con:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">:one_for_one</code> - Chỉ khởi động lại tiến trình con bị hỏng.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:one_for_all</code> - Khởi động lại tất cả các tiến trình con, nếu có một tiến trình con bị hỏng.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:rest_for_one</code> - Khởi động lại tiến trình con bị hỏng, và tất cả các tiến trình khác khởi động sau tiến trình đó.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:simple_one_for_one</code> - Đây là chiến thuật tốt nhất cho các tiến trình con được gắn vào giám trình một cách động. Giám trình yêu cẩu chỉ chứa duy nhất một tiến trình con, nhưng tiến trình này có thể được sinh ra nhiều lần. Chiến thuật này được sử dụng khi bạn muốn khởi động và tắt đi tiến trình con một cách động.</p>
+  </li>
+</ul>
+
+<h3 id="restart-values">Restart values</h3>
+
+<p>Có một vài cách tiếp cận để quản lý việc các tiến trình con bị hỏng:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">:permanent</code> - Tiến trình con luôn luôn được khởi động lại.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:temporary</code> - Tiến trình con không bao giờ được khởi động lại.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">:transient</code> - Tiến trình con chỉ được khởi động lại, nếu như nó bị tắt một cách không bình thường.</p>
+  </li>
+</ul>
+
+<p>Giá trị mặc định là <code class="highlighter-rouge">:permanent</code>.</p>
+
+<h3 id="lng">Lồng</h3>
+
+<p>Ngoài việc sử dụng với các tiến trình worker, chúng ta cũng có thể dùng giám trình để tạo ra một cây các giám trình. Điểm khác biệt duy nhất là gọi <code class="highlighter-rouge">supervisor/3</code> thay cho <code class="highlighter-rouge">worker/3</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">supervisor</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">ConnectionSupervisor</span><span class="p">,</span> <span class="p">[[</span><span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">ConnectionSupervisor</span><span class="p">]]),</span>
+  <span class="n">worker</span><span class="p">(</span><span class="no">SimpleQueue</span><span class="p">,</span> <span class="p">[[],</span> <span class="p">[</span><span class="ss">name:</span> <span class="no">SimpleQueue</span><span class="p">]])</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="task-supervisor">Task Supervisor</h2>
+
+<p>Task có một kiểu giám trình đặc biệt là <code class="highlighter-rouge">Task.Supervisor</code>. Được thiết kế cho các task động, <code class="highlighter-rouge">Task.Supervisor</code> sử dụng chiến thuật <code class="highlighter-rouge">:simple_one_for_one</code>.</p>
+
+<h3 id="cu-hnh-1">Cấu hình</h3>
+
+<p>Việc thêm vào <code class="highlighter-rouge">Task.Supervisor</code> cũng giống với các loại giám trình khác khác.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Supervisor</span><span class="o">.</span><span class="no">Spec</span>
+
+<span class="n">children</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">supervisor</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="no">Supervisor</span><span class="p">,</span> <span class="p">[[</span><span class="ss">name:</span> <span class="no">ExampleApp</span><span class="o">.</span><span class="no">TaskSupervisor</span><span class="p">,</span> <span class="ss">restart:</span> <span class="ss">:transient</span><span class="p">]]),</span>
+<span class="p">]</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Supervisor</span><span class="o">.</span><span class="n">start_link</span><span class="p">(</span><span class="n">children</span><span class="p">,</span> <span class="ss">strategy:</span> <span class="ss">:one_for_one</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Điểm khác biệt chính giữa <code class="highlighter-rouge">Supervisor</code> và <code class="highlighter-rouge">Task.Supervisor</code> đó là, chiến thuật khởi động lại mặc định là <code class="highlighter-rouge">:temporary</code> (tức là task sẽ không bao giờ được khởi động lại).</p>
+
+<h3 id="supervised-tasks">Supervised Tasks</h3>
+
+<p>Với các giám trình đã được chạy, chúng ta có thể dùng <code class="highlighter-rouge">start_child/2</code> để tạo ra một task bị giám sát:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="no">Supervisor</span><span class="o">.</span><span class="n">start_child</span><span class="p">(</span><span class="no">ExampleApp</span><span class="o">.</span><span class="no">TaskSupervisor</span><span class="p">,</span> <span class="k">fn</span> <span class="o">-&gt;</span> <span class="n">background_work</span> <span class="k">end</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Nếu task của chúng ta bị hỏng, nó sẽ được khởi động lại. Điều này đặc biệt hữu dụng khi làm việc với các kết nối từ bên ngoài hoặc các công việc xử lý dưới nền.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/advanced/otp-supervisors/&title=OTP Supervisors&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/advanced/otp-supervisors/&via=elixirschool&text=ElixirSchool: OTP Supervisors&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/advanced/otp-supervisors/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/advanced/otp-supervisors/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/advanced/otp-supervisors/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: OTP Supervisors" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/advanced/otp-supervisors/&title=ElixirSchool: OTP Supervisors&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/advanced/otp-supervisors/&title=ElixirSchool: OTP Supervisors&description=Check out 'OTP Supervisors' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: OTP Supervisors&body=Check out 'OTP Supervisors' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/advanced/otp-supervisors/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

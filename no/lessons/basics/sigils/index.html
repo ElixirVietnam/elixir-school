@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Leksjoner i programmeringsspråket Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/no/lessons/basics/sigils/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Sigiler &middot; Elixir School
+
+">
+  <meta property="og:description" content="Leksjoner i programmeringsspråket Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Sigiler &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Leksjoner i programmeringsspråket Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Grunnleggende</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/no/lessons/basics/basics/">Grunnleggende Elixir</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/no/lessons/basics/collections/">Kolleksjoner</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/no/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/no/lessons/basics/pattern-matching/">Mønstersammenligning</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/no/lessons/basics/control-structures/">Kontrollstrukturer</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/no/lessons/basics/pipe-operator/">Pipeoperatoren</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/no/lessons/basics/modules/">Moduler</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/no/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson  active" href="/no/lessons/basics/sigils/">Sigiler</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/no/lessons/basics/documentation/">Dokumentasjon</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/sigils/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/sigils/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/sigils/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/sigils/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/sigils/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/sigils/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/sigils/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/sigils/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/sigils/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/sigils/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/sigils/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/sigils/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/sigils/ ">my</a>
+      
+        <a href=" /no/lessons/basics/sigils/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/sigils/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/sigils/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/sigils/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/sigils/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/sigils/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/sigils/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/sigils/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Sigiler</h1>
+  <p>Bruke og lage sigiler.</p>
+
+<h2>Innholdsfortegnelse</h2>
+<div id="toc"></div>
+
+<h2 id="sigil-oversikt">Sigil Oversikt</h2>
+
+<p>Elixir har en alternativ syntaks for å representere og jobbe med literaler. En sigil starter med en tilde <code class="highlighter-rouge">~</code> etterfulgt av en bokstav. Elixir inkluderer et par standard sigiler, men det er også mulig å opprette sine egne sigiler.</p>
+
+<p>En liste av tilgjengelige sigiler:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">~C</code> Lager en enkel karakterliste <strong>uten</strong> avsnitt eller tekst interpolasjon</li>
+  <li><code class="highlighter-rouge">~c</code> Lager en enkel karakterliste <strong>med</strong> avsnitt eller tekst interpolasjon</li>
+  <li><code class="highlighter-rouge">~R</code> Lager et regulært uttrykk <strong>uten</strong> avsnitt og tekst interpolasjon</li>
+  <li><code class="highlighter-rouge">~r</code> Lager et regulært uttrykk <strong>med</strong> avsnitt og tekst interpolasjon</li>
+  <li><code class="highlighter-rouge">~S</code> Lager en streng <strong>uten</strong> avsnitt og tekst interpolasjon</li>
+  <li><code class="highlighter-rouge">~s</code> Lager en streng <strong>med</strong> avsnitt eller tekst interpolasjon</li>
+  <li><code class="highlighter-rouge">~W</code> Lager en liste av ord <strong>uten</strong> avsnitt og tekst interpolasjon</li>
+  <li><code class="highlighter-rouge">~w</code> Lager en liste av ord <strong>med</strong> avsnitt og tekst interpolasjon</li>
+</ul>
+
+<p>Skilletegn i Elixir:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">&lt;...&gt;</code> Et par av vinkelparenteser</li>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">...</span><span class="p">}</span></code> Et par av krøllete parenteser</li>
+  <li><code class="highlighter-rouge">[...]</code> Et par av firkant parenteser</li>
+  <li><code class="highlighter-rouge">(...)</code> Et par av parenteser</li>
+  <li><code class="highlighter-rouge">|...|</code> Et par av loddrett strek</li>
+  <li><code class="highlighter-rouge">/.../</code> Et par av skråstrek</li>
+  <li><code class="highlighter-rouge">"..."</code> Et par av dobbelt anførselstegn</li>
+  <li><code class="highlighter-rouge">'...'</code> Et par av enkelte anførselstegn</li>
+</ul>
+
+<h3 id="enkel-karakterliste">Enkel karakterliste</h3>
+
+<p>Sigilet <code class="highlighter-rouge">~c</code> og <code class="highlighter-rouge">~C</code> lager en enkel karakterliste, eksempel:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">c</span><span class="o">/</span><span class="m">2</span> <span class="o">+</span> <span class="m">7</span> <span class="o">=</span> <span class="c1">#{2 + 7}/</span>
+<span class="s1">'2 + 7 = 9'</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="no">C</span><span class="o">/</span><span class="m">2</span> <span class="o">+</span> <span class="m">7</span> <span class="o">=</span> <span class="c1">#{2 + 7}/</span>
+<span class="s1">'2 + 7 = #{2 + 7}'</span>
+</code></pre>
+</div>
+
+<p>Vi kan se at <code class="highlighter-rouge">~c</code> tekst interpolerer regnestykket, mens ~<code class="highlighter-rouge">C</code> ikke gjør det. Slike forskjeller mellom små og store bokstaver er ganske vanlig med de innebygde sigilene.</p>
+
+<h3 id="regulre-uttrykk">Regulære Uttrykk</h3>
+
+<p>Sigilene <code class="highlighter-rouge">~r</code> og <code class="highlighter-rouge">~R</code> er brukt til å representere regulære uttrykk. Vi kan enten lage de på sparket, eller benytte de i funksjonene som tar i bruk Regex. For eksempel:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">re</span> <span class="o">=</span> <span class="sr">~r/elixir/</span>
+<span class="err">~</span><span class="o">/</span><span class="n">elixir</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Elixir"</span> <span class="o">=~</span> <span class="n">re</span>
+<span class="no">false</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">elixir"</span> <span class="o">=~</span> <span class="n">re</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>I den første testen tester vi for ekvalitet, og vi ser at Elixir ikke er ekvivalent med det regulære uttrykket. Dette er fordi E-en i <code class="highlighter-rouge">Elixir</code> har stor forbokstav, mens det regulære uttrykket kun sjekker for små bokstaver. Elixir støtter regulære uttrykk som er kompatible med Perl. Vi kan legge til en <code class="highlighter-rouge">i</code> i enden av sigilet for å unngå at den skiler mellom stor og liten bokstav:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">re</span> <span class="o">=</span> <span class="sr">~r/elixir/</span><span class="n">i</span>
+<span class="err">~</span><span class="o">/</span><span class="n">elixir</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">Elixir"</span> <span class="o">=~</span> <span class="n">re</span>
+<span class="no">true</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="sd">"</span><span class="s2">elixir"</span> <span class="o">=~</span> <span class="n">re</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<p>Elixir har en innebygd Regex modul <a href="http://elixir-lang.org/docs/stable/elixir/Regex.html">Regex</a> som bygger videre på Erlang sitt regulære uttrykk bibliotek. La oss implementere Regex.split/2 ved å bruke en regex sigil</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">string</span> <span class="o">=</span> <span class="sd">"</span><span class="s2">100_000_000"</span>
+<span class="sd">"</span><span class="s2">100_000_000"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Regex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">~r/_/</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">100"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">000"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">000"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Strengen <code class="highlighter-rouge">"100_000_000"</code> er splittet på understreken takket være <code class="highlighter-rouge">~r/_/</code> sigilet, og Regex.split returnerer en liste.</p>
+
+<h3 id="streng">Streng</h3>
+
+<p><code class="highlighter-rouge">~s</code> og <code class="highlighter-rouge">~S</code> sigilene er brukt for å lage en større mengde med tekst, for eksempel:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">s</span><span class="o">/</span><span class="no">Katten</span> <span class="n">i</span> <span class="n">hatten</span> <span class="n">p</span><span class="err">å</span> <span class="n">matta</span><span class="o">/</span>
+<span class="sd">"</span><span class="s2">Katten i hatten på matta"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="no">S</span><span class="o">/</span><span class="no">Katten</span> <span class="n">i</span> <span class="n">hatten</span> <span class="n">p</span><span class="err">å</span> <span class="n">matta</span><span class="o">/</span>
+<span class="sd">"</span><span class="s2">Katten i hatten på matta"</span>
+</code></pre>
+</div>
+
+<p>Forskjellen er likt med karakter liste sigilet som vi så på tidligere. Det som er forskjellig er bruken av avsnitt og slike sekvenser. For eksempel:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">s</span><span class="o">/</span><span class="no">Velkommen</span> <span class="n">til</span> <span class="n">elixir</span> <span class="c1">#{String.downcase "skolen"}/</span>
+<span class="sd">"</span><span class="s2">velkommen til elixir skolen"</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="no">S</span><span class="o">/</span><span class="n">velkommen</span> <span class="n">til</span> <span class="n">elixir</span> <span class="c1">#{String.downcase "skolen"}/</span>
+<span class="sd">"</span><span class="s2">velkommen til elixir \</span><span class="si">#{</span><span class="no">String</span><span class="o">.</span><span class="n">downcase</span> <span class="p">\</span><span class="sd">"</span><span class="s2">skolen\"</span><span class="si">}</span><span class="s2">"</span>
+</code></pre>
+</div>
+
+<h3 id="ordlister">Ordlister</h3>
+
+<p>Ordlistesigilet kan spare både tid og antall tastetrykk. For eksempel:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">w</span><span class="o">/</span><span class="n">jeg</span> <span class="n">elsker</span> <span class="n">elixir</span> <span class="n">skolen</span><span class="o">/</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">jeg"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elsker"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">skolen"</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="no">W</span><span class="o">/</span><span class="n">jeg</span> <span class="n">elsker</span> <span class="n">elixir</span> <span class="n">skolen</span><span class="o">/</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">jeg"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elsker"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">skolen"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Vi kan se at det som er skilt med skilletegn er separert med mellomrom til en liste. Men, det er ingen forskjell mellom disse to eksemplene. Forskjellen kommer med tekstinterpolering og avsnittssekvenser. Ta det følgende eksempelet:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">w</span><span class="o">/</span><span class="n">jeg</span> <span class="n">elsker</span> <span class="c1">#{'e'}lixir skolen/</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">i"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">love"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">school"</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="no">W</span><span class="o">/</span><span class="n">jeg</span> <span class="n">elsker</span> <span class="c1">#{'e'}lixir skolen/</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">jeg"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">elsker"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">\</span><span class="si">#{</span><span class="s1">'e'</span><span class="si">}</span><span class="s2">lixir"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">skolen"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="lage-sigiler">Å Lage Sigiler</h2>
+
+<p>Et av målene til Elixir er å være et utvidtbart programmeringsspråk. I dette eksempelet, så vil vi lage et sigil for å konverterer en tekststreng i små bokstaver til store bokstaver. Etter som det allerede er en funksjon for dette i standard biblioteket (<code class="highlighter-rouge">String.upcase/1</code>), så vil vi lage en sigil som tar i bruk denne funksjonen.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="k">defmodule</span> <span class="no">MineSigiler</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">def</span> <span class="n">sigil_u</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="p">[]),</span> <span class="k">do</span><span class="p">:</span> <span class="no">String</span><span class="o">.</span><span class="n">upcase</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="no">MineSigiler</span>
+<span class="no">nil</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="err">~</span><span class="n">u</span><span class="o">/</span><span class="n">elixir</span> <span class="n">skolen</span><span class="o">/</span>
+<span class="no">ELIXIR</span> <span class="no">SKOLEN</span>
+</code></pre>
+</div>
+
+<p>Først definerer vi en modul med navnet <code class="highlighter-rouge">MineSigiler</code>. Vi lager så en funksjon med navnet <code class="highlighter-rouge">sigil_u</code>. Siden Elixir ikke har en standard <code class="highlighter-rouge">~u</code> sigil, kan vi bruke dette tegnet. <code class="highlighter-rouge">_u</code> endelsen i funksjonen indikerer at vi ønsker å benytte bokstaven <code class="highlighter-rouge">u</code> etter tilde ~ tegnet for å benytte sigilen. Når man lager en egen funksjon som skal fungere som en sigil, kreves det to argumenter - et input, og en liste.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Del denne siden
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/no/lessons/basics/sigils/&title=Sigiler&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/no/lessons/basics/sigils/&via=elixirschool&text=ElixirSchool: Sigiler&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/no/lessons/basics/sigils/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/no/lessons/basics/sigils/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/no/lessons/basics/sigils/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Sigiler" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/no/lessons/basics/sigils/&title=ElixirSchool: Sigiler&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/no/lessons/basics/sigils/&title=ElixirSchool: Sigiler&description=Check out 'Sigiler' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Sigiler&body=Check out 'Sigiler' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/no/lessons/basics/sigils/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

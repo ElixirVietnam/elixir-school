@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/specifics/mnesia/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Mnesia &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Mnesia &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson  active" href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/specifics/mnesia/ ">en</a>
+      
+        <a href=" /jp/lessons/specifics/mnesia/ ">jp</a>
+      
+        <a href=" /cn/lessons/specifics/mnesia/ ">cn</a>
+      
+        <a href=" /es/lessons/specifics/mnesia/ ">es</a>
+      
+        <a href=" /pt/lessons/specifics/mnesia/ ">pt</a>
+      
+        <a href=" /vi/lessons/specifics/mnesia/ ">vi</a>
+      
+        <a href=" /ru/lessons/specifics/mnesia/ ">ru</a>
+      
+        <a href=" /sk/lessons/specifics/mnesia/ ">sk</a>
+      
+        <a href=" /fr/lessons/specifics/mnesia/ ">fr</a>
+      
+        <a href=" /gr/lessons/specifics/mnesia/ ">gr</a>
+      
+        <a href=" /it/lessons/specifics/mnesia/ ">it</a>
+      
+        <a href=" /pl/lessons/specifics/mnesia/ ">pl</a>
+      
+        <a href=" /my/lessons/specifics/mnesia/ ">my</a>
+      
+        <a href=" /no/lessons/specifics/mnesia/ ">no</a>
+      
+        <a href=" /ko/lessons/specifics/mnesia/ ">ko</a>
+      
+        <a href=" /id/lessons/specifics/mnesia/ ">id</a>
+      
+        <a href=" /uk/lessons/specifics/mnesia/ ">uk</a>
+      
+        <a href=" /tr/lessons/specifics/mnesia/ ">tr</a>
+      
+        <a href=" /bg/lessons/specifics/mnesia/ ">bg</a>
+      
+        <a href=" /de/lessons/specifics/mnesia/ ">de</a>
+      
+        <a href=" /bn/lessons/specifics/mnesia/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Mnesia</h1>
+  <p>Mnesia là một hệ thống nặng kí trong việc quản trị cơ sở dữ liệu thời gian thực.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="tng-quan">Tổng quan</h2>
+
+<p>Mnesia là hệ quản trị cơ sở dữ liệu (DBMS) được lấy từ Erlang Runtime System và có thể sử dụng thuần thục trong Elixir. Mnesia là <em>relational and object hybrid data model</em> được phát triển để phù hợp với các ứng dụng phân tán dù lớn hay nhỏ.</p>
+
+<h2 id="khi-no-th-s-dng">Khi nào thì sử dụng</h2>
+
+<p>Lựa chọn việc sử dụng một công nghệ nào thường khá là rối rắm. Nếu bạn có thể trả lời ‘Yes’ cho bất kì câu hỏi sau, thì đó là tín hiệu tốt cho việc sử dụng Mnesia mà không phải là ETS hay DETS.</p>
+
+<ul>
+  <li>Tôi có cần chuyển về các transactions cũ không?</li>
+  <li>Liệu tôi có muốn dễ dàng trong việc sử dụng cú pháp cho đọc và ghi?</li>
+  <li>Tôi có nên lưu trữ dữ liệu ở nhiều nodes, thay vì một?</li>
+  <li>Tôi có cần lựa chọn nơi nào để lưu trữ thông tin (RAM or disk)?</li>
+</ul>
+
+<h2 id="schema">Schema</h2>
+
+<p>Bởi vì Mnesia là một phần của Erlang, chứ không phải từ Elixir, chúng ta cần truy suất nó với cú pháp hai chấm (See Lesson: <a href="../../advanced/erlang/">Erlang Interoperability</a>):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="ss">:mnesia</span><span class="o">.</span><span class="n">create_schema</span><span class="p">([</span><span class="n">node</span><span class="p">()])</span>
+
+<span class="c1"># or if you prefer the Elixir feel...</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">alias</span> <span class="ss">:mnesia</span><span class="p">,</span> <span class="ss">as:</span> <span class="no">Mnesia</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_schema</span><span class="p">([</span><span class="n">node</span><span class="p">()])</span>
+</code></pre>
+</div>
+
+<p>Với ví dụ này, chúng ta sẽ chọn hướng tiếp cận sau khi làm việc với Mnesia API. <code class="highlighter-rouge">Mnesia.create_schema/1</code> khởi tạo một schema mới và rỗng sau đó truyền tới Node List. Trong trường hợp này, chúng ta truyền những node liên quan trong IEx session của ta:</p>
+
+<h2 id="nodes">Nodes</h2>
+
+<p>Sau khi chạy <code class="highlighter-rouge">Mnesia.create_schema([node()])</code> câu lệnh thông qua IEx, bạn có thể thấy thư mục tên là <strong>Mnesia.nonode@nohost</strong> hoặc tương tự trong thư mục hiện hành của bạn. Bạn có thể thắc mắc tại sao ý nghĩa của <strong>nonode@nohost</strong> vì chúng ta chưa gặp nó trước đây. Hãy cùng xem nào.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>iex --help
+Usage: iex <span class="o">[</span>options] <span class="o">[</span>.exs file] <span class="o">[</span>data]
+
+  -v                Xuất ra phiên bản
+  -e <span class="s2">"command"</span>      Thực thi cậu lệnh được đưa <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -r <span class="s2">"file"</span>         Yêu cầu files/pattern đưa vào <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -S <span class="s2">"script"</span>       Tìm và thực thi script đưa vào
+  -pr <span class="s2">"file"</span>        Yêu cầu files/patterns đưa vào ở chế động song song<span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -pa <span class="s2">"path"</span>        Chèn trước đường dẫn vào Erlang code path <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  -pz <span class="s2">"path"</span>        Chèn sau đường dẫn vào Erlang code path <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --app <span class="s2">"app"</span>       Chạy với app được đưa vào và các phụ thuộc của nó <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --erl <span class="s2">"switches"</span>  Chuyển đổi sẽ được truyền xuống Erlang <span class="o">(</span><span class="k">*</span><span class="o">)</span>
+  --name <span class="s2">"name"</span>     Tạo và gán tên cho một node phân tán
+  --sname <span class="s2">"name"</span>    Tạo vào gán tên vắn tắt cho một node phân tán
+  --cookie <span class="s2">"cookie"</span> Gán cookie cho một node phân tán
+  --hidden          Tạo một node ẩn
+  --werl            Sử dụng giao diện Erlang Window <span class="o">(</span>chỉ cho Window<span class="o">)</span>
+  --detached        Chạy Erlang VM và tách biệt nó với console
+  --remsh <span class="s2">"name"</span>    Kết nối tới node thông qua remote shell
+  --dot-iex <span class="s2">"path"</span>  Ghi đè mặc định cho .iex.exs file và thay vào đó sử đường dẫn;
+                    đường dẫn này có thể rỗng, khi đó không có file nào được load
+
+<span class="k">**</span> Tham số với dấu <span class="o">(</span><span class="k">*</span><span class="o">)</span> có thể thêm vào nhiều
+<span class="k">**</span> Tham số theo sau .exs file hoặc -- được đưa xuống code thực thi
+<span class="k">**</span> Tham số có thể truyền xuống VM thông qua ELIXIR_ERL_OPTIONS hoặc --erl
+</code></pre>
+</div>
+
+<p>Khi truyền tham số <code class="highlighter-rouge">--help</code> xuống IEx từ dòng lệnh chúng ta được xem tất cả các tham số. Chúng ta có tham số <code class="highlighter-rouge">--name</code> và <code class="highlighter-rouge">--sname</code> được gán thêm thông tin cho nodes. Node chỉ đơn giản là một Erlang Virtual Machine nơi xử lý các giao tiếp, garbage collection, process scheduling, memory và nhiều cái khác nữa. Node mặc định được đánh tên <strong>nonode@nohost</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>iex --name learner@elixirschool.com
+
+Erlang/OTP 19 <span class="o">[</span>erts-8.0.2] <span class="o">[</span><span class="nb">source</span><span class="o">]</span> <span class="o">[</span>64-bit] <span class="o">[</span>smp:4:4] <span class="o">[</span>async-threads:10] <span class="o">[</span>hipe] <span class="o">[</span>kernel-poll:false] <span class="o">[</span>dtrace]
+
+Interactive Elixir <span class="o">(</span>1.3.4<span class="o">)</span> - press Ctrl+C to <span class="nb">exit</span> <span class="o">(</span><span class="nb">type </span>h<span class="o">()</span> ENTER <span class="k">for </span><span class="nb">help</span><span class="o">)</span>
+<span class="gp">iex(learner@elixirschool.com)&gt; </span>Node.self
+:<span class="s2">"learner@elixirschool.com"</span>
+</code></pre>
+</div>
+
+<p>Như bạn thấy, node mà chúng ta chạy là một atom gọi là <code class="highlighter-rouge">:"learned@elixirschool.com"</code>. Nếu bạn chạy <code class="highlighter-rouge">Mnesia.create_schema([node()])</code> một lần nữa, chúng ta sẽ thấy nó tạo một thư mục khác tên là <strong>Mnesia.learner@elixirschool.com</strong>. Mục đích của việc này khá là đơn giản. Node trong Erlang được sử dụng để kết nối với những nodes khác để share (phân tán) thông tin và tài nguyên. Điều này không hạn chế phải là cùng một máy và có thể giao tiếp qua LAN, internet …</p>
+
+<h2 id="chy-mnesia">Chạy Mnesia</h2>
+
+<p>Bây giờ chúng ta đã có kiến thức căn bản về cách thiết lập database, chúng ta đã sẵn sằng để chạy Mnesia DBMS với câu lệnh <code class="highlighter-rouge">Mnesia.start/0</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">alias</span> <span class="ss">:mnesia</span><span class="p">,</span> <span class="ss">as:</span> <span class="no">Mnesia</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_schema</span><span class="p">([</span><span class="n">node</span><span class="p">])</span>
+<span class="ss">:ok</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>Chú ý rằng khi chạy hệ thống phân tán với hai hay nhiều nodes tham gia vào, <code class="highlighter-rouge">Mnesia.start/1</code> phải được thực thi ở tất cả các nodes.</p>
+
+<h2 id="to-bng">Tạo bảng</h2>
+
+<p><code class="highlighter-rouge">Mnesia.create_table/2</code> được sử dụng để tạo trong database của chúng ta. Ở dưới chúng ta tạo bảng với tên <code class="highlighter-rouge">Person</code> và truyền danh sách khoá cái mà định nghĩa schema của bảng.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[</span><span class="ss">attributes:</span> <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">]])</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Chúng ta định nghĩa các cột thông qua atoms <code class="highlighter-rouge">:id</code>, <code class="highlighter-rouge">:name</code> và <code class="highlighter-rouge">:job</code>. Khi chúng ta thực thi <code class="highlighter-rouge">Mnesia.create_table/2</code>, nó sẽ trả về một trong 2 loại sau đây:</p>
+
+<ul>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:atomic,</span><span class="w"> </span><span class="err">:ok</span><span class="p">}</span></code> Nếu thực thi thành công</li>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:aborted,</span><span class="w"> </span><span class="err">Reason</span><span class="p">}</span></code> Nếu thực thi thất bại</li>
+</ul>
+
+<p>Thực tế, nếu bảng tồn tại, lý do sẽ nằm ở mẫu <code class="highlighter-rouge"><span class="p">{</span><span class="err">:already_exists,</span><span class="w"> </span><span class="err">table</span><span class="p">}</span></code> vậy nên chúng ta thử tạo bảng lần thứ 2, chúng ta sẽ nhận được kết quả sau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[</span><span class="ss">attributes:</span> <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">]])</span>
+<span class="p">{</span><span class="ss">:aborted</span><span class="p">,</span> <span class="p">{</span><span class="ss">:already_exists</span><span class="p">,</span> <span class="no">Person</span><span class="p">}}</span>
+</code></pre>
+</div>
+
+<h2 id="phng-php-ngoi-lung">Phương pháp ngoài luồng</h2>
+
+<p>Trước hết chúng ta sẽ nhìn phương pháp ngoài luồng cho việc đọc và ghi và bảng của Mnesia. Điều này thường nên tránh vì thành công sẽ không được bảo đảm, nhưng nó sẽ giúp chúng ta học và trở nên quen thuộc khi làm việc với Mnesia. Cùng thêm vào một vào đối tượng cho bảng <strong>Person</strong> của chúng ta:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Seymour Skinner"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">})</span>
+<span class="ss">:ok</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Homer Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Safety Inspector"</span><span class="p">})</span>
+<span class="ss">:ok</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Moe Szyslak"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Bartender"</span><span class="p">})</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>…và lấy thông tin thông qua <code class="highlighter-rouge">Mnesia.dirty_read/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">})</span>
+<span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Seymour Skinner"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">2</span><span class="p">})</span>
+<span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Homer Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Safety Inspector"</span><span class="p">}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">3</span><span class="p">})</span>
+<span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Moe Szyslak"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Bartender"</span><span class="p">}]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">dirty_read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">})</span>
+<span class="p">[]</span>
+</code></pre>
+</div>
+
+<p>Nếu bạn muốn truy vấn thông tin không tồn tại Mnesia sẽ trả về danh sách rỗng.</p>
+
+<h2 id="transactions">Transactions</h2>
+
+<p>Thông thường chúng ta sử dụng <strong>transactions</strong> để đóng gói lại những truy vấn đọc và ghi tới database. Transactions là một phần quan trọng trong việc thiết kế chống chịu lỗi, đặc biệt trong hệ thống phân tán. Mnesia <em>transaction là một phương pháp mà cho phép một nhóm cách thao tác database có thể thực thi trong một function block</em>. Đầu tiên chúng ta tạo một function nặc danh, trong trường hợp này <code class="highlighter-rouge">data_to_write</code> và sau đó truyền nó vào <code class="highlighter-rouge">Mnesia.transaction</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">data_to_write</span> <span class="o">=</span> <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">home maker"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hans Moleman"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">unknown"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Monty Burns"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Businessman"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Waylon Smithers"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Executive assistant"</span><span class="p">})</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="c1">#Function&lt;20.54118792/0 in :erl_eval.expr/5&gt;</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span><span class="n">data_to_write</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span>
+</code></pre>
+</div>
+<p>Dựa trên kết quả của transaction, chúng ta có thể yên tâm giả định là chúng ta ghi dữ liệu xuống bảng <code class="highlighter-rouge">Person</code>. Hãy sử dụng transaction để đọc từ database để đảm bảo việc này. Chúng ta sẽ sử dụng <code class="highlighter-rouge">Mnesia.read/1</code> để đọc từ database, nhưng là từ một function nặc danh một lần nữa.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">data_to_read</span> <span class="o">=</span> <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>   <span class="no">Mnesia</span><span class="o">.</span><span class="n">read</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">6</span><span class="p">})</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="c1">#Function&lt;20.54118792/0 in :erl_eval.expr/5&gt;</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span><span class="n">data_to_read</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Monty Burns"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Businessman"</span><span class="p">}]}</span>
+</code></pre>
+</div>
+
+<p>Lưu ý rằng nếu bạn muốn cập nhật dữ liệu, bạn chỉ cần gọi <code class="highlighter-rouge">Mnesia.write/1</code> với khoá trùng với dữ liệu cần cập nhật. Vậy nên, để cập nhật dữ liệu cho Hans, bạn có thể làm như sau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hans Moleman"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Ex-Mayor"</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="s-dng-ch-mc">Sử dụng chỉ mục</h2>
+
+<p>Mnesia hỗ trợ chỉ mục cho những cột không phải là khoá và dữ liệu sau đó có thể truy vấn thông qua những chỉ mục trên. Vì vậy, chúng ta có thể thêm chỉ mục ở cột <code class="highlighter-rouge">:job</code> của bảng <code class="highlighter-rouge">Person</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Kết quả tương tự với kết quả từ câu lệnh <code class="highlighter-rouge">Mnesia.create_table/2</code>:</p>
+
+<ul>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:atomic,</span><span class="w"> </span><span class="err">:ok</span><span class="p">}</span></code> nếu thực thi thành công</li>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:aborted,</span><span class="w"> </span><span class="err">Reason</span><span class="p">}</span></code> nếu thực thi thật bại</li>
+</ul>
+
+<p>Thực tế, nếu chỉ mục đã tồn tại, lý do sẽ nằm ở mẫu <code class="highlighter-rouge"><span class="p">{</span><span class="err">:already_exists,</span><span class="w"> </span><span class="err">table,</span><span class="w"> </span><span class="err">attribute_index</span><span class="p">}</span></code> vậy nếu chúng thử thêm vào chỉ một một lần nữa, chúng ta sẽ nhận được kết quả sau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="p">{</span><span class="ss">:aborted</span><span class="p">,</span> <span class="p">{</span><span class="ss">:already_exists</span><span class="p">,</span> <span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">}}</span>
+</code></pre>
+</div>
+
+<p>Một khi chỉ mục thành công, bạn có thể đọc từ đó và lấy danh sách các đối tượng:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">index_read</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Seymour Skinner"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Principal"</span><span class="p">}]}</span>
+</code></pre>
+</div>
+
+<h2 id="so-khp-v-la-chn">So khớp và lựa chọn</h2>
+
+<p>Mnesia hỗ trợ câu truy vấn phức tạp để lấy dữ liệu từ bảng trong kiểu so khớp và ad-hoc trọng việc lựa chọn functions:</p>
+
+<p><code class="highlighter-rouge">Mnesia.match_object/1</code> trả về tất cả các dữ liệu mà khớp với mẫu được đưa ra. Nếu bất kì cột nào trong bảng có chỉ mục, nó có thể tận dụng chúng để truy vấn hiệu quả hơn. Sử dụng một atom đặc biệt <code class="highlighter-rouge">:_</code> để nhận diện những cột nào không có trong so khớp:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">match_object</span><span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:_</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="ss">:_</span><span class="p">})</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[{</span><span class="no">Person</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">home maker"</span><span class="p">}]}</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Mnesia.select/2</code> cho phép bạn dùng một câu truy vấn có tuỳ chỉnh cái mà sử dụng bất kì thao tác hoặc function trong Elixir (hoặc Erlang). Cùng xem ví dụ sau để lấy tất cả các dữ liệu có khoá lớn hơn 3:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span>
+<span class="o">...&gt;</span>   <span class="k">fn</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[{{</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:"$1"</span><span class="p">,</span> <span class="ss">:"$2"</span><span class="p">,</span> <span class="ss">:"$3"</span><span class="p">},</span> <span class="p">[{</span><span class="ss">:&gt;</span><span class="p">,</span> <span class="ss">:"$1"</span><span class="p">,</span> <span class="m">3</span><span class="p">}],</span> <span class="p">[</span><span class="ss">:"$$"</span><span class="p">]}])</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="p">)</span>
+<span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="p">[[</span><span class="m">7</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Waylon Smithers"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Executive assistant"</span><span class="p">],</span> <span class="p">[</span><span class="m">4</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Marge Simpson"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">home maker"</span><span class="p">],</span> <span class="p">[</span><span class="m">6</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Monty Burns"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Businessman"</span><span class="p">],</span> <span class="p">[</span><span class="m">5</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Hans Moleman"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">unknown"</span><span class="p">]]}</span>
+</code></pre>
+</div>
+
+<p>Cùng khám phá nó. Thuộc tính đầu tiên là bảng, <code class="highlighter-rouge">Person</code>, thuộc tính thứ 2 là mẫu với 3 tham số <code class="highlighter-rouge"><span class="p">{</span><span class="err">match,</span><span class="w"> </span><span class="err">[guard],</span><span class="w"> </span><span class="err">[result]</span><span class="p">}</span></code>:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">match</code> giống với những gì bạn truyền cho <code class="highlighter-rouge">Mnesia.match_object/1</code>; tuy nhiên, lưu ý atom đặc biệt <code class="highlighter-rouge">:"$n"</code> cái dùng để xác định vị trí tham số được sử đụng cho phần còn lại của câu truy vấn.</li>
+  <li>danh sách <code class="highlighter-rouge">guard</code> là một danh sách các tuples dùng để xác định những guard function nào được áp dụng, trong trường hợp này là <code class="highlighter-rouge">:&gt;</code> ( lớn hơn) được tạo sẵn trong function với tham số đầu tiên <code class="highlighter-rouge">:"$1"</code> và hằng số 3 như là giá trị.</li>
+  <li>danh sách <code class="highlighter-rouge">result</code> là danh sách các trường mà được trả về bởi câu truy vấn, vị trí các tham số của atom đặc biệt <code class="highlighter-rouge">:"$$"</code> dùng để tham chiếu tới tất cả các trường mà bạn có thể dùng <code class="highlighter-rouge">[:"$1", :"$2"]</code> để trả về 2 trường đầu tiên hoặc <code class="highlighter-rouge">[:"$$"]</code> cho tất cả các trường.</li>
+</ul>
+
+<p>Chi tiết hơn, tham khảo <a href="http://erlang.org/doc/man/mnesia.html#select-2">the Erlang Mnesia documentation for select/2</a>.</p>
+
+<h2 id="khi-to-d-liu-v-chuyn-i">Khởi tạo dữ liệu và chuyển đổi</h2>
+
+<p>Với bất kì giải pháp phần mềm nào, sẽ đến lúc bạn cần nâng cấp phần mềm và chuyển đổi dữ liệu lưu trữ trong database của bạn. Ví dụ, chúng ta muốn thêm cột <code class="highlighter-rouge">:age</code> vào bảng <code class="highlighter-rouge">Person</code> trong v2 của ứng dụng ta. Chúng ta không thể tạo bảng <code class="highlighter-rouge">Person</code> một lần nữa vì nó đã được tạo nhưng chúng ta có thể chuyển đổi chúng. Để làm vậy chúng ta cần biết khi nào cần chuyển, những gì cúng ta có thể làm khi tạo bảng. Để làm điều này, chúng ta có thể sử dụng <code class="highlighter-rouge">Mnesia.table_info/2</code> để lấy thông tin hiện tại về cấu trúc của bảng và <code class="highlighter-rouge">Mnesia.transform_table/3</code> để chuyển nó sang cấu trúc mới.</p>
+
+<p>Cài đặt sau thực hiện chúng thông qua thực thi các cách sau:</p>
+
+<ul>
+  <li>Tạo bảng thuộc tính v2: <code class="highlighter-rouge">[:id, :name, :job, :age]</code></li>
+  <li>Xử lý kết quả tạo bảng trả về:
+    <ul>
+      <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:atomic,</span><span class="w"> </span><span class="err">:ok</span><span class="p">}</span></code>: khởi tạo bảng bằng cách tạo chỉ mục trên <code class="highlighter-rouge">:job</code> và <code class="highlighter-rouge">:age</code></li>
+      <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">:aborted,</span><span class="w"> </span><span class="err">{:already_exists,</span><span class="w"> </span><span class="err">Person</span><span class="p">}</span><span class="err">}</span></code>: kiểm tra những thuộc tính hiện tại trong bảng và thao tác như sau:
+        <ul>
+          <li>nếu nó nằm trong danh sách v1 (<code class="highlighter-rouge">[:id, :name, :job]</code>), chuyển đổi bảng gán mọi người với tuổi 21 và tạo chỉ mục trên <code class="highlighter-rouge">:age</code></li>
+          <li>nếu nó nằm trên dánh sách v2, không làm gì cả, mọi thứ tốt</li>
+          <li>nếu khác nữa, kệ nó</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><code class="highlighter-rouge">Mnesia.transform_table/3</code> function lấy bảng và các tham số, function mà chuyển đổi dữ liệu từ cũ sang kiểu mới và danh sách các thuộc tính mới.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">case</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="p">[</span><span class="ss">attributes:</span> <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">,</span> <span class="ss">:age</span><span class="p">]])</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:atomic</span><span class="p">,</span> <span class="ss">:ok</span><span class="p">}</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:job</span><span class="p">)</span>
+<span class="o">...&gt;</span>     <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:age</span><span class="p">)</span>
+<span class="o">...&gt;</span>   <span class="p">{</span><span class="ss">:aborted</span><span class="p">,</span> <span class="p">{</span><span class="ss">:already_exists</span><span class="p">,</span> <span class="no">Person</span><span class="p">}}</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>     <span class="k">case</span> <span class="no">Mnesia</span><span class="o">.</span><span class="n">table_info</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:attributes</span><span class="p">)</span> <span class="k">do</span>
+<span class="o">...&gt;</span>       <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">]</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>         <span class="no">Mnesia</span><span class="o">.</span><span class="n">transform_table</span><span class="p">(</span>
+<span class="o">...&gt;</span>           <span class="no">Person</span><span class="p">,</span>
+<span class="o">...&gt;</span>           <span class="k">fn</span> <span class="p">({</span><span class="no">Person</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">job</span><span class="p">})</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>             <span class="p">{</span><span class="no">Person</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">job</span><span class="p">,</span> <span class="m">21</span><span class="p">}</span>
+<span class="o">...&gt;</span>           <span class="k">end</span><span class="p">,</span>
+<span class="o">...&gt;</span>           <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">,</span> <span class="ss">:age</span><span class="p">]</span>
+<span class="o">...&gt;</span>           <span class="p">)</span>
+<span class="o">...&gt;</span>         <span class="no">Mnesia</span><span class="o">.</span><span class="n">add_table_index</span><span class="p">(</span><span class="no">Person</span><span class="p">,</span> <span class="ss">:age</span><span class="p">)</span>
+<span class="o">...&gt;</span>       <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:job</span><span class="p">,</span> <span class="ss">:age</span><span class="p">]</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>         <span class="ss">:ok</span>
+<span class="o">...&gt;</span>       <span class="n">other</span> <span class="o">-&gt;</span>
+<span class="o">...&gt;</span>         <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">other</span><span class="p">}</span>
+<span class="o">...&gt;</span>     <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/specifics/mnesia/&title=Mnesia&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/specifics/mnesia/&via=elixirschool&text=ElixirSchool: Mnesia&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/specifics/mnesia/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/specifics/mnesia/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/specifics/mnesia/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Mnesia" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/specifics/mnesia/&title=ElixirSchool: Mnesia&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/specifics/mnesia/&title=ElixirSchool: Mnesia&description=Check out 'Mnesia' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Mnesia&body=Check out 'Mnesia' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/specifics/mnesia/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

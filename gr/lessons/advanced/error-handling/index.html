@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/gr/lessons/advanced/error-handling/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Διαχείριση Σφαλμάτων &middot; Elixir School
+
+">
+  <meta property="og:description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Διαχείριση Σφαλμάτων &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Μαθήματα προγραμματισμού της γλώσσας Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βασικά</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/basics/basics/">Βασικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/basics/collections/">Συλλογές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/basics/pattern-matching/">Αντιπαραβολές Προτύπων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/basics/control-structures/">Δομές Ελέγχου</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/basics/functions/">Συναρτήσεις</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/basics/pipe-operator/">Τελεστής Σωλήνα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/basics/modules/">Ενότητες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/basics/sigils/">Σφραγίδες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/basics/documentation/">Τεκμηρίωση</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/gr/lessons/basics/testing/">Δοκιμές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/gr/lessons/basics/comprehensions/">Ανάγνωση Λιστών</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/gr/lessons/basics/strings/">Αλφαριθμητικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/gr/lessons/basics/mix-tasks/">Ειδικές Εργασίες Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Προχωρημένα</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/advanced/erlang/">Διαλειτουργικότητα με την Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson  active" href="/gr/lessons/advanced/error-handling/">Διαχείριση Σφαλμάτων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/advanced/escripts/">Εκτελέσιμα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/advanced/concurrency/">Συγχρονισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-concurrency/">Συγχρονισμός OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-supervisors/">Επιτηρητές OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/advanced/metaprogramming/">Μεταπρογραμματισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/advanced/umbrella-projects/">Projects Ομπρέλας</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/advanced/typespec/">Προδιαγραφές και τύποι</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/advanced/behaviours/">Συμπεριφορές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Ιδιαιτερότητες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/specifics/eex/">Ένθετη Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βιβλιοθήκες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/libraries/guardian/">Guardian (Βασικά)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/error-handling/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/error-handling/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/error-handling/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/error-handling/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/error-handling/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/error-handling/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/error-handling/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/error-handling/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/error-handling/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/error-handling/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/error-handling/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/error-handling/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/error-handling/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/error-handling/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/error-handling/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/error-handling/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/error-handling/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/error-handling/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/error-handling/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/error-handling/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/error-handling/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Διαχείριση Σφαλμάτων</h1>
+  <p>Παρόλο που είναι πιο συνηθισμένη η επιστροφή της τούπλας <code class="highlighter-rouge"><span class="p">{</span><span class="err">:error,</span><span class="w"> </span><span class="err">reason</span><span class="p">}</span></code>, η Elixir υποστηρίζει εξαιρέσεις και σε αυτό το μάθημα θα δούμε πως να χειριζόμαστε σφάλματα και τους διαφορετικούς μηχανισμούς που μας είναι διαθέσιμοι.</p>
+
+<p>Γενικά η σύμβαση στην Elixir είναι να δημιουργείτε μια συνάρτηση (<code class="highlighter-rouge">example/1</code>) η οποία επιστρέφει <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">result</span><span class="p">}</span></code> και <code class="highlighter-rouge"><span class="p">{</span><span class="err">:error,</span><span class="w"> </span><span class="err">reason</span><span class="p">}</span></code> και μια ξεχωριστή συνάρτηση (<code class="highlighter-rouge">example/1</code>) που επιστρέφει το “σκέτο” <code class="highlighter-rouge">result</code> ή σηκώνει ένα σφάλμα.</p>
+
+<p>Αυτό το μάθημα θα εστιάσει στην αλληλεπίδραση με την τελευταία.</p>
+
+<h2>Πίνακας περιεχομένων</h2>
+<div id="toc"></div>
+
+<h2 id="section">Διαχείριση Σφαλμάτων</h2>
+
+<p>Πριν μπορέσουμε να διαχειριστούμε τα σφάλματα χρειάζεται να τα δημιουργήσουμε και ο πιο απλός τρόπος να το κάνουμε είναι με την <code class="highlighter-rouge">raise/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">raise</span> <span class="sd">"</span><span class="s2">Ωχ όχι!"</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">RuntimeError</span><span class="p">)</span> <span class="err">Ωχ</span> <span class="err">όχι</span><span class="n">!</span>
+</code></pre>
+</div>
+
+<p>Αν θέλουμε να ορίσουμε τον τύπο και το μήνυμα, χρειάζεται η χρήση της <code class="highlighter-rouge">raise/2</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="ss">message:</span> <span class="sd">"</span><span class="s2">Ο τύπος ορίσματος είναι άκυρος"</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span> <span class="err">Ο</span> <span class="err">τύπος</span> <span class="err">ορίσματος</span> <span class="err">είναι</span> <span class="err">άκυρος</span>
+</code></pre>
+</div>
+
+<p>Όταν ξέρουμε ότι ένα σφάλμα μπορεί να προκύψει, θα το χειριστούμε με τη χρήση των <code class="highlighter-rouge">try/rescue</code> και την αντιπαραβολή προτύπων:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">raise</span> <span class="sd">"</span><span class="s2">Ωχ όχι!"</span>
+<span class="o">...&gt;</span> <span class="k">rescue</span>
+<span class="o">...&gt;</span>   <span class="n">e</span> <span class="ow">in</span> <span class="no">RuntimeError</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">Ένα σφάλμα προέκυψε: "</span> <span class="o">&lt;&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="err">Ένα</span> <span class="err">σφάλμα</span> <span class="err">προέκυψε</span><span class="p">:</span> <span class="err">Ωχ</span> <span class="err">όχι</span><span class="n">!</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>Είναι δυνατό να αντιπαραβάλουμε πολλαπλά σφάλματα σε μια και μοναδική rescue:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">try</span> <span class="k">do</span>
+  <span class="n">opts</span>
+  <span class="o">|&gt;</span> <span class="no">Keyword</span><span class="o">.</span><span class="n">fetch!</span><span class="p">(</span><span class="ss">:source_file</span><span class="p">)</span>
+  <span class="o">|&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">read!</span>
+<span class="k">rescue</span>
+  <span class="n">e</span> <span class="ow">in</span> <span class="no">KeyError</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Λείπει η επιλογή :source_file"</span>
+  <span class="n">e</span> <span class="ow">in</span> <span class="no">File</span><span class="o">.</span><span class="no">Error</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Αδύνατη η ανάγνωση από το πηγαίο αρχείο"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="after">After</h2>
+
+<p>Κάποιες φορές μπορεί να είναι απαραίτητο να γίνουν κάποιες ενέργειες μετά τις <code class="highlighter-rouge">try/rescue</code>, άσχετα με το σφάλμα.  Για αυτό έχουμε την <code class="highlighter-rouge">try/after</code>.  Αν είστε εξοικειομένοι με την Ruby, αυτή είναι όμοια με την <code class="highlighter-rouge">begin/rescue/ensure</code> ή την <code class="highlighter-rouge">try/catch/finally</code> στη Java:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">raise</span> <span class="sd">"</span><span class="s2">Ώχ όχι!"</span>
+<span class="o">...&gt;</span> <span class="k">rescue</span>
+<span class="o">...&gt;</span>   <span class="n">e</span> <span class="ow">in</span> <span class="no">RuntimeError</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="sd">"</span><span class="s2">Ένα σφάλμα προέκυψε: "</span> <span class="o">&lt;&gt;</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">after</span>
+<span class="o">...&gt;</span>   <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="s2">Το τέλος!"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="no">An</span> <span class="n">error</span> <span class="ss">occurred:</span> <span class="err">Ώχ</span> <span class="err">όχι</span><span class="n">!</span>
+<span class="err">Το</span> <span class="err">τέλος</span><span class="n">!</span>
+<span class="ss">:ok</span>
+</code></pre>
+</div>
+
+<p>Είναι πολύ συχνή η χρήση της με αρχεία η συνδέσεις που πρέπει να κλείσουν:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">file</span><span class="p">}</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span> <span class="sd">"</span><span class="s2">example.json"</span>
+<span class="k">try</span> <span class="k">do</span>
+   <span class="c1"># Κάντε κάτι καταστροφικό</span>
+<span class="k">after</span>
+   <span class="no">File</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="section-1">Νέα Σφάλματα</h2>
+
+<p>Παρόλο που η Elixir περιλαμβάνει έναν αριθμό προκαθορισμένων τύπων λαθών όπως το <code class="highlighter-rouge">RuntimeError</code>, διατηρούμε τη δυνατότητα να δημιουργήσουμε τα δικά μας αν χρειαζόμαστε κάτι συγκεκριμμένο.  Η δημιουργία ενός νέου σφάλματος είναι έυκολη με την χρήση της μακροεντολής <code class="highlighter-rouge">defexception/1</code> η οποία βολικά δέχεται την επιλογή <code class="highlighter-rouge">:message</code> σαν το προκαθορισμένο μήνυμα σφαλμάτων:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleError</span> <span class="k">do</span>
+  <span class="k">defexception</span> <span class="ss">message:</span> <span class="sd">"</span><span class="s2">προέκυψε ένα παραδειγματικό σφάλμα"</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Ας δοκιμάσουμε το νέο μας σφάλμα:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">raise</span> <span class="no">ExampleError</span>
+<span class="o">...&gt;</span> <span class="k">rescue</span>
+<span class="o">...&gt;</span>   <span class="n">e</span> <span class="ow">in</span> <span class="no">ExampleError</span> <span class="o">-&gt;</span> <span class="n">e</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="p">%</span><span class="no">ExampleError</span><span class="p">{</span><span class="ss">message:</span> <span class="sd">"</span><span class="s2">προέκυψε ένα παραδειγματικό σφάλμα"</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="section-2">Ρίψεις</h2>
+
+<p>Ένας άλλος μηχανισμός για την εργασία με σφάλματα στην Elixir είναι οι <code class="highlighter-rouge">throw</code> και <code class="highlighter-rouge">catch</code>.  Στην πράξη, αυτές προκύπτουν πολύ σπάνια σε νεότερο κώδικα Elixir αλλά είναι σημαντικό να τις ξέρουμε και να τις κατανοούμε πάραυτα.</p>
+
+<p>Η συνάρτηση <code class="highlighter-rouge">throw/1</code> δίνει τη δυνατότητα να βγούμε από την εκτέλεση με μια συγκεκριμμένη τιμή την οποία μπορούμε να πίασουμε (<code class="highlighter-rouge">catch</code>) και χρησιμοποιήσουμε:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">0</span><span class="o">..</span><span class="m">10</span> <span class="k">do</span>
+<span class="o">...&gt;</span>     <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="m">5</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="k">throw</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="o">...&gt;</span>     <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="o">...&gt;</span>   <span class="k">end</span>
+<span class="o">...&gt;</span> <span class="k">catch</span>
+<span class="o">...&gt;</span>   <span class="n">x</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">Πιάστηκε: </span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="m">0</span>
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="m">4</span>
+<span class="sd">"</span><span class="s2">Πιάστηκε: 5"</span>
+</code></pre>
+</div>
+
+<p>Όπως αναφέρθηκε, οι <code class="highlighter-rouge">throw/catch</code> είναι αρκετά σπάνιες και τυπικά υπάρχουν σαν προσωρινές λύσεις όταν βιβλιοθήκες αποτυγχάνουν να παρέχουν επαρκή API.</p>
+
+<h2 id="section-3">Έξοδος</h2>
+
+<p>Ο τελευταίος μηχανισμός που μας παρέχει η Elixir είναι η <code class="highlighter-rouge">exit</code>.  Τα σήματα εξόδου προκύπτουν όταν μια διεργασία πεθαίνει και είναι σημαντικό μέρος της ανοχής σφαλμάτων της Elixir.</p>
+
+<p>Για να βγούμε με σαφήνεια χρησιμοποιούμε την <code class="highlighter-rouge">exit/1</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">spawn_link</span> <span class="k">fn</span> <span class="o">-&gt;</span> <span class="k">exit</span><span class="p">(</span><span class="sd">"</span><span class="s2">oh no"</span><span class="p">)</span> <span class="k">end</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">EXIT</span> <span class="n">from</span> <span class="c1">#PID&lt;0.101.0&gt;) "oh no"</span>
+</code></pre>
+</div>
+
+<p>Παρόλο που είναι πιθανόν να πιάσουμε την έξοδο με τις <code class="highlighter-rouge">try/catch</code>, αυτό είναι <em>εξαιρετικά</em> σπάνιο.  Σχεδόν σε όλες τις περιπτώσεις είναι επωφελές να αφήσουμε τον διαχειριστή να χειριστεί την έξοδο της διεργασίας:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="k">try</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="k">exit</span> <span class="sd">"</span><span class="s2">Ώχ όχι!"</span>
+<span class="o">...&gt;</span> <span class="k">catch</span>
+<span class="o">...&gt;</span>   <span class="ss">:exit</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="sd">"</span><span class="s2">μπλοκαρίστηκε η έξοδος"</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="sd">"</span><span class="s2">μπλοκαρίστηκε η έξοδος"</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/gr/lessons/advanced/error-handling/&title=Διαχείριση Σφαλμάτων&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/gr/lessons/advanced/error-handling/&via=elixirschool&text=ElixirSchool: Διαχείριση Σφαλμάτων&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/gr/lessons/advanced/error-handling/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/gr/lessons/advanced/error-handling/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/gr/lessons/advanced/error-handling/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Διαχείριση Σφαλμάτων" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/gr/lessons/advanced/error-handling/&title=ElixirSchool: Διαχείριση Σφαλμάτων&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/gr/lessons/advanced/error-handling/&title=ElixirSchool: Διαχείριση Σφαλμάτων&description=Check out 'Διαχείριση Σφαλμάτων' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Διαχείριση Σφαλμάτων&body=Check out 'Διαχείριση Σφαλμάτων' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/gr/lessons/advanced/error-handling/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

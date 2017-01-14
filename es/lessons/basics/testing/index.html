@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lecciones acerca del lenguaje de programación Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/es/lessons/basics/testing/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Pruebas &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lecciones acerca del lenguaje de programación Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Pruebas &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lecciones acerca del lenguaje de programación Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Básico</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/basics/basics/">Básico</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/basics/collections/">Colecciones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/basics/pattern-matching/">Coincidencia de Patrones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/es/lessons/basics/control-structures/">Estructuras de control</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/es/lessons/basics/functions/">Funciones</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/es/lessons/basics/pipe-operator/">Operador Pipe</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/es/lessons/basics/modules/">Composición</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/es/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson  active" href="/es/lessons/basics/testing/">Pruebas</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Avanzado</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/advanced/erlang/">Interoperabilidad Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/advanced/error-handling/">Manejo de errores</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/advanced/escripts/">Ejecutables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/advanced/concurrency/">Concurrencia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Específico</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/es/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/es/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/es/lessons/specifics/eex/">Elixir Embebido (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/es/lessons/specifics/ets/">Almacenamiento de términos de Erlang (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/testing/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/testing/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/testing/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/testing/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/testing/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/testing/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/testing/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/testing/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/testing/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/testing/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/testing/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/testing/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/testing/ ">my</a>
+      
+        <a href=" /no/lessons/basics/testing/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/testing/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/testing/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/testing/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/testing/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/testing/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/testing/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/testing/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Pruebas</h1>
+  <p>Las pruebas son una parte importante en el desarrollo de software. En esta lección vamos a ver como hacer pruebas de nuestro código Elixir con ExUnit y también vamos a ver algunas buenas prácticas para hacer las pruebas.</p>
+
+<h2>Tabla de contenidos</h2>
+<div id="toc"></div>
+
+<h2 id="exunit">ExUnit</h2>
+
+<p>El framework de pruebas que viene con Elixir es ExUnit e incluye todo lo que necesitamos para hacer pruebas a fondo de nuestro código. Antes de empezar es importante tener en cuenta que las pruebas en Elixir están implementadas como scripts de Elixir por lo que necesitamos usar la extensión <code class="highlighter-rouge">.exs</code>. Antes de ejecutar nuestras pruebas necesitamos iniciar ExUnit con <code class="highlighter-rouge">ExUnit.start()</code>, esto suele estar hecho en <code class="highlighter-rouge">test/test_helper.exs</code>.</p>
+
+<p>Cuando generamos nuestro proyecto de ejemplo en las lecciones anteriores, mix fue lo suficientemente útil para crear una prueba simple para nosotros, podemos encontrarla en <code class="highlighter-rouge">test/example_test.exs</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="n">doctest</span> <span class="no">Example</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">the truth"</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">2</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Podemos ejecutar las pruebas de nuestro proyecto con <code class="highlighter-rouge">mix test</code>. Si hacemos esto ahora deberíamos ver una salida similar a:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Finished <span class="k">in </span>0.03 seconds <span class="o">(</span>0.02s on load, 0.01s on tests<span class="o">)</span>
+1 tests, 0 failures
+</code></pre>
+</div>
+
+<h3 id="assert">assert</h3>
+
+<p>Si has escrito pruebas antes, entonces debes estar familiarizado con <code class="highlighter-rouge">assert</code>; en algunos frameworks <code class="highlighter-rouge">should</code> o <code class="highlighter-rouge">expect</code> cumplen el rol de <code class="highlighter-rouge">assert</code>.</p>
+
+<p>Usamos el macro <code class="highlighter-rouge">assert</code> para probar que la expresión es verdadera. En el caso que no lo sea, un error será lanzado y nuestras pruebas fallarán. Para probar un error vamos a cambiar nuestro ejemplo y luego ejecutamos <code class="highlighter-rouge">mix test</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="n">doctest</span> <span class="no">Example</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">the truth"</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="m">3</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Ahora deberíamos ver un tipo diferente de salida:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  1<span class="o">)</span> <span class="nb">test </span>the truth <span class="o">(</span>ExampleTest<span class="o">)</span>
+     <span class="nb">test</span>/example_test.exs:5
+     Assertion with <span class="o">==</span> failed
+     code: 1 + 1 <span class="o">==</span> 3
+     lhs:  2
+     rhs:  3
+     stacktrace:
+       <span class="nb">test</span>/example_test.exs:6
+
+......
+
+Finished <span class="k">in </span>0.03 seconds <span class="o">(</span>0.02s on load, 0.01s on tests<span class="o">)</span>
+1 tests, 1 failures
+</code></pre>
+</div>
+
+<p>ExUnit nos dirá exactamente donde están las aserciones que fallaron, cual es el valor esperado y cual fue el valor actual.</p>
+
+<h3 id="refute">refute</h3>
+
+<p><code class="highlighter-rouge">refute</code> es a <code class="highlighter-rouge">assert</code> como <code class="highlighter-rouge">unless</code> es a <code class="highlighter-rouge">if</code>.  Usa <code class="highlighter-rouge">refute</code> cuando deseas asegurarte que una declaración siempre es falsa.</p>
+
+<h3 id="assertraise">assert_raise</h3>
+
+<p>A veces puede ser necesario verificar que un error fue lanzado, podemos hacer esto con <code class="highlighter-rouge">assert_raise</code>. Vamos a ver un ejemplo de <code class="highlighter-rouge">assert_raise</code> en la siguiente lección (Plug).</p>
+
+<h2 id="configuracin-de-pruebas">Configuración de pruebas</h2>
+
+<p>En algunos casos puede ser necesario realizar una configuración antes de ejecutar nuestras pruebas. Para realizar esto podemos usar los macros <code class="highlighter-rouge">setup</code> y <code class="highlighter-rouge">setup_all</code>, <code class="highlighter-rouge">setup</code> se ejecutará antes de cada prueba y <code class="highlighter-rouge">setup_all</code> una vez antes del conjunto de pruebas. Se espera que ellos retornen una tupla de la siguiente forma <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code>, el estado (state) estará disponible para nuestras pruebas.</p>
+
+<p>Por motivo del ejemplo, vamos a cambiar nuestro código para usar <code class="highlighter-rouge">setup_all</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">ExampleTest</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">ExUnit</span><span class="o">.</span><span class="no">Case</span>
+  <span class="n">doctest</span> <span class="no">Example</span>
+
+  <span class="n">setup_all</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="ss">number:</span> <span class="m">2</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">test</span> <span class="sd">"</span><span class="s2">the truth"</span><span class="p">,</span> <span class="n">state</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="m">1</span> <span class="o">+</span> <span class="m">1</span> <span class="o">==</span> <span class="n">state</span><span class="p">[</span><span class="ss">:number</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="mocking-simulaciones">Mocking (simulaciones)</h2>
+
+<p>Hay una simple respuesta para mocking en Elixir: No lo hagas. Instintivamente puedes llegar a los mocks pero estos son altamente desaprobados en la comunidad de Elixir por una buena razón. Si sigues buenos principios de diseño el código resultante será fácil de probar como componentes individuales.</p>
+
+<p>Resiste la tentación.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/es/lessons/basics/testing/&title=Pruebas&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/es/lessons/basics/testing/&via=elixirschool&text=ElixirSchool: Pruebas&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/es/lessons/basics/testing/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/es/lessons/basics/testing/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/es/lessons/basics/testing/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Pruebas" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/es/lessons/basics/testing/&title=ElixirSchool: Pruebas&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/es/lessons/basics/testing/&title=ElixirSchool: Pruebas&description=Check out 'Pruebas' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Pruebas&body=Check out 'Pruebas' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/es/lessons/basics/testing/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

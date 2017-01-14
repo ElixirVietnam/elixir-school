@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="プログラミング言語Elixirのレッスン">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/jp/lessons/basics/enum/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Enum &middot; Elixir School
+
+">
+  <meta property="og:description" content="プログラミング言語Elixirのレッスン">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Enum &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">プログラミング言語Elixirのレッスン</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>基礎</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/basics/basics/">基本</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/basics/collections/">コレクション</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson  active" href="/jp/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/basics/pattern-matching/">パターンマッチング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/basics/control-structures/">制御構造</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/basics/functions/">関数</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/basics/pipe-operator/">パイプライン演算子</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/basics/modules/">モジュール</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/jp/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/jp/lessons/basics/documentation/">ドキュメント</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/jp/lessons/basics/testing/">テスト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/jp/lessons/basics/comprehensions/">内包表記</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/jp/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/jp/lessons/basics/mix-tasks/">カスタムMixタスク</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>上級</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/advanced/erlang/">Erlangとの相互運用</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/advanced/error-handling/">エラーハンドリング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/advanced/escripts/">実行ファイル</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/advanced/concurrency/">並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-concurrency/">OTPの並行性</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/jp/lessons/advanced/otp-supervisors/">OTPスーパーバイザ</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/jp/lessons/advanced/metaprogramming/">メタプログラミング</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/jp/lessons/advanced/umbrella-projects/">アンブレラプロジェクト</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/jp/lessons/advanced/typespec/">仕様と型</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>詳細</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/jp/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/jp/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/jp/lessons/specifics/eex/">埋め込みElixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/jp/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/enum/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/enum/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/enum/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/enum/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/enum/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/enum/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/enum/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/enum/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/enum/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/enum/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/enum/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/enum/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/enum/ ">my</a>
+      
+        <a href=" /no/lessons/basics/enum/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/enum/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/enum/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/enum/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/enum/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/enum/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/enum/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/enum/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Enum</h1>
+  <p>コレクションを列挙していくために用いる一連のアルゴリズム。</p>
+
+<h2>目次</h2>
+<div id="toc"></div>
+
+<h2 id="enum">Enum</h2>
+
+<p><code class="highlighter-rouge">Enum</code>モジュールは前回のレッスンで学習したコレクションを取り扱うための、百を越える関数を含んでいます。</p>
+
+<p>このレッスンは利用可能な関数のうち一部分しか取り上げません。全ての関数を知りたい場合は公式ドキュメントの<a href="http://elixir-lang.org/docs/stable/elixir/Enum.html"><code class="highlighter-rouge">Enum</code></a>を参照してください。尚、列挙の遅延処理では<a href="http://elixir-lang.org/docs/stable/elixir/Stream.html"><code class="highlighter-rouge">Stream</code></a>モジュールを利用してください。</p>
+
+<h3 id="all">all?</h3>
+
+<p><code class="highlighter-rouge">all?</code>を使うとき、そして<code class="highlighter-rouge">Enum</code>の多くのケースで、コレクションの要素に適用する関数を渡します。<code class="highlighter-rouge">all?</code>の場合には、コレクション全体でこの関数は<code class="highlighter-rouge">true</code>と評価されなければならず、これを満たさない場合は<code class="highlighter-rouge">false</code>が返ります。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">all?</span><span class="p">([</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="m">3</span> <span class="k">end</span><span class="p">)</span>
+<span class="no">false</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">all?</span><span class="p">([</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">1</span> <span class="k">end</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="any">any?</h3>
+
+<p>上記と違って、<code class="highlighter-rouge">any?</code>は少なくとも1つの要素が<code class="highlighter-rouge">true</code>と評価された場合に<code class="highlighter-rouge">true</code>を返します:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">any?</span><span class="p">([</span><span class="sd">"</span><span class="s2">foo"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">hello"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="m">5</span> <span class="k">end</span><span class="p">)</span>
+<span class="no">true</span>
+</code></pre>
+</div>
+
+<h3 id="chunk">chunk</h3>
+
+<p>コレクションを小さなグループに分割する必要があるなら、恐らく<code class="highlighter-rouge">chunk</code>こそが探し求めている関数でしょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">chunk</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">],</span> <span class="m">2</span><span class="p">)</span>
+<span class="p">[[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">],</span> <span class="p">[</span><span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">],</span> <span class="p">[</span><span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">]]</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">chunk</code>にはいくつかのオプションがありますが、ここでは触れませんので、詳しく学びたい場合には公式ドキュメントの<a href="http://elixir-lang.org/docs/stable/elixir/Enum.html#chunk/2"><code class="highlighter-rouge">chunk/2</code></a>を調べてみてください。</p>
+
+<h3 id="chunkby">chunk_by</h3>
+
+<p>コレクションを要素数ではない何か他のものでグループにする必要がある場合には、<code class="highlighter-rouge">chunk_by/2</code>メソッドを使うことができます。この関数は列挙可能な値と関数を引数に取り、その関数の返り値が変わると新しいグループが始まります:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">chunk_by</span><span class="p">([</span><span class="sd">"</span><span class="s2">one"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">two"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">three"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">four"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">five"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[[</span><span class="sd">"</span><span class="s2">one"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">two"</span><span class="p">],</span> <span class="p">[</span><span class="sd">"</span><span class="s2">three"</span><span class="p">],</span> <span class="p">[</span><span class="sd">"</span><span class="s2">four"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">five"</span><span class="p">]]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">chunk_by</span><span class="p">([</span><span class="sd">"</span><span class="s2">one"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">two"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">three"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">four"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">five"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">six"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">String</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[[</span><span class="sd">"</span><span class="s2">one"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">two"</span><span class="p">],</span> <span class="p">[</span><span class="sd">"</span><span class="s2">three"</span><span class="p">],</span> <span class="p">[</span><span class="sd">"</span><span class="s2">four"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">five"</span><span class="p">],</span> <span class="p">[</span><span class="sd">"</span><span class="s2">six"</span><span class="p">]]</span>
+</code></pre>
+</div>
+
+<h3 id="each">each</h3>
+
+<p>新しい値を生成することなく、コレクションを反復する必要があるかもしれません。こうした場合には<code class="highlighter-rouge">each</code>を使います:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">each</span><span class="p">([</span><span class="sd">"</span><span class="s2">one"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">two"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">three"</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">end</span><span class="p">)</span>
+<span class="n">one</span>
+<span class="n">two</span>
+<span class="n">three</span>
+</code></pre>
+</div>
+
+<p><strong>注記</strong>: <code class="highlighter-rouge">each</code>メソッドは<code class="highlighter-rouge">:ok</code>というアトムを返します。</p>
+
+<h3 id="map">map</h3>
+
+<p>関数を各要素に適用して新しいコレクションを生み出すには、<code class="highlighter-rouge">map</code>関数に目を向けましょう:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">([</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">-</span> <span class="m">1</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[</span><span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h3 id="min">min</h3>
+
+<p>コレクションの中で最小の(<code class="highlighter-rouge">min</code>)値を探します:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="m">5</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">])</span>
+<span class="o">-</span><span class="m">1</span>
+</code></pre>
+</div>
+
+<h3 id="max">max</h3>
+
+<p>コレクションの中で最大の(<code class="highlighter-rouge">max</code>)値を返します:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="m">5</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">])</span>
+<span class="m">5</span>
+</code></pre>
+</div>
+
+<h3 id="reduce">reduce</h3>
+
+<p><code class="highlighter-rouge">reduce</code>を用いることで、コレクションをまとめ、そこから単一の値を抽出することができます。この処理を実行するにはオプションとしてアキュムレータ(積算器。この例では<code class="highlighter-rouge">10</code>)を関数に渡しますが、アキュムレータが与えられない場合にはコレクションの最初の値が用いられます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">],</span> <span class="m">10</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">acc</span> <span class="k">end</span><span class="p">)</span>
+<span class="m">16</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">],</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">acc</span> <span class="k">end</span><span class="p">)</span>
+<span class="m">6</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">reduce</span><span class="p">([</span><span class="sd">"</span><span class="s2">a"</span><span class="p">,</span><span class="sd">"</span><span class="s2">b"</span><span class="p">,</span><span class="sd">"</span><span class="s2">c"</span><span class="p">],</span> <span class="sd">"</span><span class="s2">1"</span><span class="p">,</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">acc</span><span class="p">)</span><span class="o">-&gt;</span> <span class="n">x</span> <span class="o">&lt;&gt;</span> <span class="n">acc</span> <span class="k">end</span><span class="p">)</span>
+<span class="sd">"</span><span class="s2">cba1"</span>
+</code></pre>
+</div>
+
+<h3 id="sort">sort</h3>
+
+<p>コレクションをソートするのは1つ、ではなく、2つある<code class="highlighter-rouge">sort</code>関数を使えば簡単です。1つ目の選択として用意されているのはElixirのterm orderingを使ってソート順序を決めるというものです:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">])</span>
+<span class="p">[</span><span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">]</span>
+
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="ss">:foo</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">,</span> <span class="no">Enum</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">])</span>
+<span class="p">[</span><span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="no">Enum</span><span class="p">,</span> <span class="ss">:foo</span><span class="p">,</span> <span class="sd">"</span><span class="s2">bar"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>もう1つの選択肢はソート関数を与えてあげるというものです:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># ソート関数あり</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p">([%{</span><span class="ss">:val</span> <span class="o">=&gt;</span> <span class="m">4</span><span class="p">},</span> <span class="p">%{</span><span class="ss">:val</span> <span class="o">=&gt;</span> <span class="m">1</span><span class="p">}],</span> <span class="k">fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="p">[</span><span class="ss">:val</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">[</span><span class="ss">:val</span><span class="p">]</span> <span class="k">end</span><span class="p">)</span>
+<span class="p">[%{</span><span class="ss">val:</span> <span class="m">4</span><span class="p">},</span> <span class="p">%{</span><span class="ss">val:</span> <span class="m">1</span><span class="p">}]</span>
+
+<span class="c1"># なし</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">sort</span><span class="p">([%{</span><span class="ss">:count</span> <span class="o">=&gt;</span> <span class="m">4</span><span class="p">},</span> <span class="p">%{</span><span class="ss">:count</span> <span class="o">=&gt;</span> <span class="m">1</span><span class="p">}])</span>
+<span class="p">[%{</span><span class="ss">count:</span> <span class="m">1</span><span class="p">},</span> <span class="p">%{</span><span class="ss">count:</span> <span class="m">4</span><span class="p">}]</span>
+</code></pre>
+</div>
+
+<h3 id="uniq">uniq</h3>
+
+<p><code class="highlighter-rouge">uniq</code>を使ってコレクションから重複した要素を取り除くことができます:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">uniq</span><span class="p">([</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">])</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span>
+</code></pre>
+</div>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    このページをシェアする
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/jp/lessons/basics/enum/&title=Enum&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/jp/lessons/basics/enum/&via=elixirschool&text=ElixirSchool: Enum&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/jp/lessons/basics/enum/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/jp/lessons/basics/enum/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/jp/lessons/basics/enum/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Enum" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/jp/lessons/basics/enum/&title=ElixirSchool: Enum&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/jp/lessons/basics/enum/&title=ElixirSchool: Enum&description=Check out 'Enum' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Enum&body=Check out 'Enum' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/jp/lessons/basics/enum/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

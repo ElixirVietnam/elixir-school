@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/gr/lessons/basics/comprehensions/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Ανάγνωση Λιστών &middot; Elixir School
+
+">
+  <meta property="og:description" content="Μαθήματα προγραμματισμού της γλώσσας Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Ανάγνωση Λιστών &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Μαθήματα προγραμματισμού της γλώσσας Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Βασικά</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/basics/basics/">Βασικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/basics/collections/">Συλλογές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/basics/pattern-matching/">Αντιπαραβολές Προτύπων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/basics/control-structures/">Δομές Ελέγχου</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/basics/functions/">Συναρτήσεις</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/basics/pipe-operator/">Τελεστής Σωλήνα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/basics/modules/">Ενότητες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/basics/sigils/">Σφραγίδες</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/basics/documentation/">Τεκμηρίωση</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/gr/lessons/basics/testing/">Δοκιμές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson  active" href="/gr/lessons/basics/comprehensions/">Ανάγνωση Λιστών</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/gr/lessons/basics/strings/">Αλφαριθμητικά</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/gr/lessons/basics/mix-tasks/">Ειδικές Εργασίες Mix</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Προχωρημένα</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/advanced/erlang/">Διαλειτουργικότητα με την Erlang</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/advanced/error-handling/">Διαχείριση Σφαλμάτων</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/advanced/escripts/">Εκτελέσιμα</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/advanced/concurrency/">Συγχρονισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-concurrency/">Συγχρονισμός OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/gr/lessons/advanced/otp-supervisors/">Επιτηρητές OTP</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/gr/lessons/advanced/metaprogramming/">Μεταπρογραμματισμός</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/gr/lessons/advanced/umbrella-projects/">Projects Ομπρέλας</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/gr/lessons/advanced/typespec/">Προδιαγραφές και τύποι</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/gr/lessons/advanced/behaviours/">Συμπεριφορές</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/gr/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Ιδιαιτερότητες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/gr/lessons/specifics/eex/">Ένθετη Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/gr/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/gr/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Βιβλιοθήκες</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/gr/lessons/libraries/guardian/">Guardian (Βασικά)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/gr/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/comprehensions/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/comprehensions/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/comprehensions/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/comprehensions/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/comprehensions/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/comprehensions/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/comprehensions/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/comprehensions/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/comprehensions/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/comprehensions/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/comprehensions/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/comprehensions/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/comprehensions/ ">my</a>
+      
+        <a href=" /no/lessons/basics/comprehensions/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/comprehensions/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/comprehensions/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/comprehensions/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/comprehensions/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/comprehensions/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/comprehensions/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/comprehensions/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Ανάγνωση Λιστών</h1>
+  <p>Η ανάγνωση λιστών είναι συντομογραφία για την προσπέλαση συλλογών στην Elixir.  Σε αυτό το μάθημα θα δούμε πως μπορούμε να χρησιμοποιήσουμε τις αναγνώσεις για την επανάληψη και δημιουργία.</p>
+
+<h2>Πίνακας περιεχομένων</h2>
+<div id="toc"></div>
+
+<h2 id="section">Βασικά</h2>
+
+<p>Συχνά οι αναγνώσεις μπορούν να χρησιμοποιηθούν για να παράγουν πιο συνοπτικές εκφράσεις για τις επαναλήψεις <code class="highlighter-rouge">Enum</code> και <code class="highlighter-rouge">Stream</code>.  Ας δούμε μια απλή ανάγνωση και μετά ας την αναλύσουμε:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">16</span><span class="p">,</span> <span class="m">25</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Το πρώτο πράγμα που παρατηρούμε είναι η χρήση της <code class="highlighter-rouge">for</code> και ενός παραγωγού.  Τι είναι ο παραγωγός; Οι παραγωγοί είναι οι εκφράσεις <code class="highlighter-rouge">x &lt;- [1, 2, 3, 4]</code> που βρίσκονται στις αναγνώσεις λιστών, είναι υπεύθυνοι για την παραγωγή της επόμενης τιμής.</p>
+
+<p>Είμαστε τυχεροί που οι αναγνώσεις δεν περιορίζονται στις λίστες, στην πράξη δουλεύουν με όλες τις συλλογές:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># Λίστες λέξεων κλειδί</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">_key</span><span class="p">,</span> <span class="n">val</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+
+<span class="c1"># Χάρτες</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">%{</span><span class="sd">"</span><span class="s2">α"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">Α"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">β"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">Β"</span><span class="p">},</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">α"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Α"</span><span class="p">},</span> <span class="p">{</span><span class="sd">"</span><span class="s2">β"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Β"</span><span class="p">}]</span>
+
+<span class="c1"># Δυαδικά</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="o">&lt;&lt;</span><span class="n">c</span> <span class="o">&lt;-</span> <span class="sd">"</span><span class="s2">γειά"</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&gt;&gt;</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">γ"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">ε"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">ι"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">ά"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Όπως θα παρατηρήσατε, οι παραγωγοί εξαρτώνται από την αντιπαραβολή προτύπων για να συγκρίνει την είσοδο που έχει οριστεί στη μεταβλητή στα αριστερά.  Σε περίπτωση που δεν υπάρξει αντιπαραβολή, η τιμή αγνοείται:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">val</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">ok:</span> <span class="sd">"</span><span class="s2">Γεια σου"</span><span class="p">,</span> <span class="ss">error:</span> <span class="sd">"</span><span class="s2">Αγνωστε"</span><span class="p">,</span> <span class="ss">ok:</span> <span class="sd">"</span><span class="s2">Κόσμε"</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Γεια σου"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">Κόσμε"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Είναι πιθανό να χρησιμοποιήσουμε πολλαπλούς παραγωγούς, όπως περίπου στις ένθετες επαναλήψεις:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">n</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="n">times</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="n">n</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="no">String</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="n">times</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">***"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">***"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">****"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Για να παρουσιάσουμε καλύτερα την επανάληψη που προκύπτει, ας χρησιμοποιήσουμε την <code class="highlighter-rouge">IO.puts</code> για αν εμφανίσουμε τις δύο παραγόμενες τιμές:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">n</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="n">times</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="n">n</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2"> - </span><span class="si">#{</span><span class="n">times</span><span class="si">}</span><span class="s2">"</span>
+<span class="m">1</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">2</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">2</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">3</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">3</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">4</span>
+</code></pre>
+</div>
+
+<p>Οι αναγνώσεις λιστών είναι συντομογραφίες και θα πρέπει να χρησιμοποιούνται μόνο όταν πρέπει.</p>
+
+<h2 id="section-1">Φίλτρα</h2>
+
+<p>Μπορείτε να σκεφτείτε τα φίλτρα σαν ένα είδος προστάτη για αναγνώσεις.  Όταν μια φιλτραρισμένη τιμή επιστρέφει <code class="highlighter-rouge">false</code> ή <code class="highlighter-rouge">nil</code>, εξαιρείται από την τελική λίστα.  Ας κάνουμε μια επανάληψη σε ένα έυρος και να ανησυχήσουμε μόνο για τους ζυγούς αριθμούς. Θα χρησιμοποιήσουμε τη συνάρτηση <code class="highlighter-rouge">is_even/1</code> από την ενότητα Integer για να ελέγξουμε αν μια τιμή είναι ζυγή ή όχι.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Integer</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="m">10</span><span class="p">,</span> <span class="n">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span>
+<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">10</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Όπως τους παραγωγούς, μπορούμε να χρησιμοποιήσουμε πολλαπλά φίλτρα.  Ας επεκτείνουμε το εύρος και να φιλτράρουμε μόνο τις τιμές που είναι ζυγές και διαρέσιμες με το 3.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Integer</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="m">100</span><span class="p">,</span>
+<span class="o">...&gt;</span>   <span class="n">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+<span class="o">...&gt;</span>   <span class="n">rem</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span> <span class="o">==</span> <span class="m">0</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span>
+<span class="p">[</span><span class="m">6</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">18</span><span class="p">,</span> <span class="m">24</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="m">36</span><span class="p">,</span> <span class="m">42</span><span class="p">,</span> <span class="m">48</span><span class="p">,</span> <span class="m">54</span><span class="p">,</span> <span class="m">60</span><span class="p">,</span> <span class="m">66</span><span class="p">,</span> <span class="m">72</span><span class="p">,</span> <span class="m">78</span><span class="p">,</span> <span class="m">84</span><span class="p">,</span> <span class="m">90</span><span class="p">,</span> <span class="m">96</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="into">Χρησιμοποίηση της <code class="highlighter-rouge">:into</code></h2>
+
+<p>Τι γίνεται αν θέλουμε να παράγουμε κάτι άλλο πέρα από λίστα;  Μπορούμε να το κάνουμε χρησιμοποιώντας την <code class="highlighter-rouge">:into</code>! Σε γενικές γραμμές η <code class="highlighter-rouge">:into</code> δέχεται κάθε δομή που υλοποιεί το πρωτόκολο <code class="highlighter-rouge">Collectable</code>.</p>
+
+<p>Χρησιμοποιώντας την <code class="highlighter-rouge">:into</code>, ας δημιουργήσουμε ένα χάρτη από μια λίστα λέξεων κλειδί:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">],</span> <span class="ss">into:</span> <span class="p">%{},</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Από τη στιγμή που τα αλφαριθμητικά bits είναι συλλογές μπορούμε να χρησιμοποιήσουμε την ανάγνωση λιστών και την <code class="highlighter-rouge">:into</code> για να δημιουργήσουμε αλφαριθμητικά:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">c</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="m">72</span><span class="p">,</span> <span class="m">101</span><span class="p">,</span> <span class="m">108</span><span class="p">,</span> <span class="m">108</span><span class="p">,</span> <span class="m">111</span><span class="p">],</span> <span class="ss">into:</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&gt;&gt;</span>
+<span class="sd">"</span><span class="s2">Hello"</span>
+</code></pre>
+</div>
+
+<p>Αυτό ήταν!  Οι αναγνώσεις λιστών είναι ένας έυκολος τρόπος να προσπελάσουμε συλλογές με συνοπτικό τρόπο.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/gr/lessons/basics/comprehensions/&title=Ανάγνωση Λιστών&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/gr/lessons/basics/comprehensions/&via=elixirschool&text=ElixirSchool: Ανάγνωση Λιστών&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/gr/lessons/basics/comprehensions/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/gr/lessons/basics/comprehensions/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/gr/lessons/basics/comprehensions/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Ανάγνωση Λιστών" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/gr/lessons/basics/comprehensions/&title=ElixirSchool: Ανάγνωση Λιστών&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/gr/lessons/basics/comprehensions/&title=ElixirSchool: Ανάγνωση Λιστών&description=Check out 'Ανάγνωση Λιστών' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Ανάγνωση Λιστών&body=Check out 'Ανάγνωση Λιστών' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/gr/lessons/basics/comprehensions/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

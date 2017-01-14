@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Lessons about the Elixir programming language">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/lessons/advanced/behaviours/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Behaviours &middot; Elixir School
+
+">
+  <meta property="og:description" content="Lessons about the Elixir programming language">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Behaviours &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Lessons about the Elixir programming language</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Basics</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/basics/basics/">Basics</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/basics/collections/">Collections</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/basics/pattern-matching/">Pattern Matching</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/basics/control-structures/">Control Structures</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/basics/functions/">Functions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson " href="/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/lessons/basics/mix-tasks/">Custom Mix Tasks</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Advanced</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/advanced/error-handling/">Error Handling</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/advanced/escripts/">Executables</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/advanced/concurrency/">Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/lessons/advanced/umbrella-projects/">Umbrella Projects</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/lessons/advanced/typespec/">Specifications and types</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson  active" href="/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Specifics</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Libraries</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/advanced/behaviours/ ">en</a>
+      
+        <a href=" /jp/lessons/advanced/behaviours/ ">jp</a>
+      
+        <a href=" /cn/lessons/advanced/behaviours/ ">cn</a>
+      
+        <a href=" /es/lessons/advanced/behaviours/ ">es</a>
+      
+        <a href=" /pt/lessons/advanced/behaviours/ ">pt</a>
+      
+        <a href=" /vi/lessons/advanced/behaviours/ ">vi</a>
+      
+        <a href=" /ru/lessons/advanced/behaviours/ ">ru</a>
+      
+        <a href=" /sk/lessons/advanced/behaviours/ ">sk</a>
+      
+        <a href=" /fr/lessons/advanced/behaviours/ ">fr</a>
+      
+        <a href=" /gr/lessons/advanced/behaviours/ ">gr</a>
+      
+        <a href=" /it/lessons/advanced/behaviours/ ">it</a>
+      
+        <a href=" /pl/lessons/advanced/behaviours/ ">pl</a>
+      
+        <a href=" /my/lessons/advanced/behaviours/ ">my</a>
+      
+        <a href=" /no/lessons/advanced/behaviours/ ">no</a>
+      
+        <a href=" /ko/lessons/advanced/behaviours/ ">ko</a>
+      
+        <a href=" /id/lessons/advanced/behaviours/ ">id</a>
+      
+        <a href=" /uk/lessons/advanced/behaviours/ ">uk</a>
+      
+        <a href=" /tr/lessons/advanced/behaviours/ ">tr</a>
+      
+        <a href=" /bg/lessons/advanced/behaviours/ ">bg</a>
+      
+        <a href=" /de/lessons/advanced/behaviours/ ">de</a>
+      
+        <a href=" /bn/lessons/advanced/behaviours/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Behaviours</h1>
+  <p>We learned about Typespecs in the previous lesson, here we’ll learn how to require a module to implement those specifications.  In Elixir, this functionality is referred to as behaviours.</p>
+
+<h2>Table of Contents</h2>
+<div id="toc"></div>
+
+<h2 id="uses">Uses</h2>
+
+<p>Sometimes you want modules to share a public API, the solution for this in Elixir is behaviours. Behaviours perform two primary roles:</p>
+
+<ul>
+  <li>Defining a set of function that must be implemented</li>
+  <li>Checking whether that set was actually implemented</li>
+</ul>
+
+<p>Elixir includes a number of behaviours such as GenServer, but in this lesson we’ll focus on creating our own instead.</p>
+
+<h2 id="defining-a-behaviour">Defining a behaviour</h2>
+
+<p>To better understand behaviours let’s implement one for a worker module.  These workers will be expected to implement two functions: <code class="highlighter-rouge">init/1</code> and <code class="highlighter-rouge">perform/2</code>.</p>
+
+<p>In order to accomplish this, we’ll use the <code class="highlighter-rouge">@callback</code> directive with syntax similar to <code class="highlighter-rouge">@spec</code>, this defines a <strong>required</strong> method; for macros we can use <code class="highlighter-rouge">@macrocallback</code>.  Let’s specify the <code class="highlighter-rouge">init/1</code> and <code class="highlighter-rouge">perform/2</code> methods for our workers:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Worker</span> <span class="k">do</span>
+  <span class="nv">@callback</span> <span class="n">init</span><span class="p">(</span><span class="n">state</span> <span class="p">::</span> <span class="n">term</span><span class="p">)</span> <span class="p">::</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">new_state</span> <span class="p">::</span> <span class="n">term</span><span class="p">}</span> <span class="o">|</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span> <span class="p">::</span> <span class="n">term</span><span class="p">}</span>
+  <span class="nv">@callback</span> <span class="n">perform</span><span class="p">(</span><span class="n">args</span> <span class="p">::</span> <span class="n">term</span><span class="p">,</span> <span class="n">state</span> <span class="p">::</span> <span class="n">term</span><span class="p">)</span> <span class="p">::</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">result</span> <span class="p">::</span> <span class="n">term</span><span class="p">,</span> <span class="n">new_state</span> <span class="p">::</span> <span class="n">term</span><span class="p">}</span> <span class="o">|</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span> <span class="p">::</span> <span class="n">term</span><span class="p">,</span> <span class="n">new_state</span> <span class="p">::</span> <span class="n">term</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Here we’ve defined <code class="highlighter-rouge">init/1</code> as accepting any value and returning a tuple of either <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code> or <code class="highlighter-rouge"><span class="p">{</span><span class="err">:error,</span><span class="w"> </span><span class="err">reason</span><span class="p">}</span></code>, this is a pretty standard initialization.  Our <code class="highlighter-rouge">perform/2</code> method will receive some arguments for the worker along with the state we initialized, we’ll expect <code class="highlighter-rouge">perform/2</code> to return <code class="highlighter-rouge"><span class="p">{</span><span class="err">:ok,</span><span class="w"> </span><span class="err">result,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code> or <code class="highlighter-rouge"><span class="p">{</span><span class="err">:error,</span><span class="w"> </span><span class="err">reason,</span><span class="w"> </span><span class="err">state</span><span class="p">}</span></code> much like GenServers.</p>
+
+<h2 id="using-behaviours">Using behaviours</h2>
+
+<p>Now that we’ve defined our behaviour we can use it to create a variety of modules that all share the same public API.  Adding a behaviour to our module is easy with the <code class="highlighter-rouge">@behaviour</code> attribute.</p>
+
+<p>Using our new behaviour let’s create a module’s task will be downloading a remote file and saving it locally:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Downloader</span> <span class="k">do</span>
+  <span class="nv">@behaviour</span> <span class="no">Example</span><span class="o">.</span><span class="no">Worker</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+
+  <span class="k">def</span> <span class="n">perform</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">url</span>
+    <span class="o">|&gt;</span> <span class="no">HTTPoison</span><span class="o">.</span><span class="n">get!</span>
+    <span class="o">|&gt;</span> <span class="no">Map</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:body</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">write_file</span><span class="p">(</span><span class="n">opts</span><span class="p">[</span><span class="ss">:path</span><span class="p">])</span>
+    <span class="o">|&gt;</span> <span class="n">respond</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">write_file</span><span class="p">(</span><span class="ss">:error</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="ss">:missing_body</span><span class="p">}</span>
+  <span class="k">defp</span> <span class="n">write_file</span><span class="p">({</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">contents</span><span class="p">},</span> <span class="n">path</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">path</span>
+    <span class="o">|&gt;</span> <span class="no">Path</span><span class="o">.</span><span class="n">expand</span>
+    <span class="o">|&gt;</span> <span class="no">File</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">(</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">opts</span><span class="p">[</span><span class="ss">:path</span><span class="p">],</span> <span class="n">opts</span><span class="p">}</span>
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">({</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">},</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Or how about a worker that compresses an array of files?  That’s possible too:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Compressor</span> <span class="k">do</span>
+  <span class="nv">@behaviour</span> <span class="no">Example</span><span class="o">.</span><span class="no">Worker</span>
+
+  <span class="k">def</span> <span class="n">init</span><span class="p">(</span><span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+
+  <span class="k">def</span> <span class="n">perform</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">payload</span>
+    <span class="o">|&gt;</span> <span class="n">compress</span>
+    <span class="o">|&gt;</span> <span class="n">respond</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">compress</span><span class="p">({</span><span class="n">name</span><span class="p">,</span> <span class="n">files</span><span class="p">}),</span> <span class="k">do</span><span class="p">:</span> <span class="ss">:zip</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">({</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">path</span><span class="p">},</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">({</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">},</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>While the work performed is different, the public facing API isn’t, and any code leveraging these modules can interact with them knowing they’ll respond as expected.  This gives us the ability to create any number of workers, all performing different tasks, but conforming to the same public API.</p>
+
+<p>If we happen to add a behaviour but fail to implement all of the required functions, a compile time warning will be raised.  To see this in action let’s modify our <code class="highlighter-rouge">Example.Compressor</code> code by removing the <code class="highlighter-rouge">init/1</code> function:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span><span class="o">.</span><span class="no">Compressor</span> <span class="k">do</span>
+  <span class="nv">@behaviour</span> <span class="no">Example</span><span class="o">.</span><span class="no">Worker</span>
+
+  <span class="k">def</span> <span class="n">perform</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">payload</span>
+    <span class="o">|&gt;</span> <span class="n">compress</span>
+    <span class="o">|&gt;</span> <span class="n">respond</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">compress</span><span class="p">({</span><span class="n">name</span><span class="p">,</span> <span class="n">files</span><span class="p">}),</span> <span class="k">do</span><span class="p">:</span> <span class="ss">:zip</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">({</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">path</span><span class="p">},</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+  <span class="k">defp</span> <span class="n">respond</span><span class="p">({</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">},</span> <span class="n">opts</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="n">opts</span><span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<p>Now when we compile our code we should see a warning:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>lib/example/compressor.ex:1: warning: undefined behaviour <span class="k">function </span>init/1 <span class="o">(</span><span class="k">for </span>behaviour Example.Worker<span class="o">)</span>
+Compiled lib/example/compressor.ex
+</code></pre>
+</div>
+
+<p>That’s it! Now we’re ready to build and share behaviours with others.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Share This Page
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/lessons/advanced/behaviours/&title=Behaviours&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/lessons/advanced/behaviours/&via=elixirschool&text=ElixirSchool: Behaviours&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/lessons/advanced/behaviours/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/lessons/advanced/behaviours/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/lessons/advanced/behaviours/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Behaviours" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/lessons/advanced/behaviours/&title=ElixirSchool: Behaviours&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/lessons/advanced/behaviours/&title=ElixirSchool: Behaviours&description=Check out 'Behaviours' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Behaviours&body=Check out 'Behaviours' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/lessons/advanced/behaviours/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

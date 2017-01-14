@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="프로그래밍 언어 Elixir 배우기">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/ko/lessons/basics/comprehensions/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  해석 &middot; Elixir School
+
+">
+  <meta property="og:description" content="프로그래밍 언어 Elixir 배우기">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  해석 &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">프로그래밍 언어 Elixir 배우기</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>기초</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/basics/basics/">기본</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/basics/collections/">컬렉션</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/basics/pattern-matching/">패턴 매칭</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/basics/control-structures/">제어 구조</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/ko/lessons/basics/functions/">함수</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/basics/pipe-operator/">파이프 연산자</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/basics/modules/">모듈</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/basics/sigils/">시길</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/basics/documentation/">문서화</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/ko/lessons/basics/testing/">테스트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson  active" href="/ko/lessons/basics/comprehensions/">해석</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/ko/lessons/basics/strings/">문자열</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/ko/lessons/basics/mix-tasks/">커스텀 Mix 태스크</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>심화</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/advanced/erlang/">Erlang 상호 운용</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/advanced/error-handling/">에러 처리</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/advanced/escripts/">실행 파일</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/advanced/concurrency/">동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-supervisors/">OTP 슈퍼바이저</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/advanced/otp-concurrency/">OTP 동시성</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/ko/lessons/advanced/metaprogramming/">메타 프로그래밍</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/ko/lessons/advanced/umbrella-projects/">엄브렐라 프로젝트</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/ko/lessons/advanced/typespec/">스펙과 타입</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/ko/lessons/advanced/behaviours/">비헤이비어</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/ko/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>활용</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/ko/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/ko/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/ko/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>라이브러리</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/ko/lessons/libraries/guardian/">Guardian (Basics)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/ko/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/comprehensions/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/comprehensions/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/comprehensions/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/comprehensions/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/comprehensions/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/comprehensions/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/comprehensions/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/comprehensions/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/comprehensions/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/comprehensions/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/comprehensions/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/comprehensions/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/comprehensions/ ">my</a>
+      
+        <a href=" /no/lessons/basics/comprehensions/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/comprehensions/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/comprehensions/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/comprehensions/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/comprehensions/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/comprehensions/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/comprehensions/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/comprehensions/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">해석</h1>
+  <p>리스트 해석(List comprehensions)은 Elixir에서 열거형을 이용하여 반복하는 데 사용되는 편리 문법입니다. 이번 강의에서는 반복과 제너레이션을 위해 어떻게 해석을 사용하는지에 대해 알아봅니다.</p>
+
+<h2>목차</h2>
+<div id="toc"></div>
+
+<h2 id="section">기본</h2>
+
+<p>해석은 대체적으로 <code class="highlighter-rouge">Enum</code>과 <code class="highlighter-rouge">Stream</code> 반복보다 간결한 구문을 작성하기 위해 사용될 수 있습니다. 일단 간단한 해석을 보고 차근차근 파헤쳐 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">16</span><span class="p">,</span> <span class="m">25</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>가장 먼저 눈여겨볼 것은 <code class="highlighter-rouge">for</code>의 사용과 제너레이터입니다. 제너레이터란 무엇일까요? 제너레이터란 리스트 해석에서 볼 수 있는 <code class="highlighter-rouge">x &lt;- [1, 2, 3, 4]</code>과 같은 표현식입니다. 이들은 다음 값을 생성해내는 역할을 맡고 있습니다.</p>
+
+<p>다행스럽게도 해석은 리스트에 한정되지 않습니다. 사실 모든 열거형과 함께 사용할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># 키워드 리스트</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">_key</span><span class="p">,</span> <span class="n">val</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+
+<span class="c1"># 맵</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">%{</span><span class="sd">"</span><span class="s2">a"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">A"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">b"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">B"</span><span class="p">},</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">a"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">A"</span><span class="p">},</span> <span class="p">{</span><span class="sd">"</span><span class="s2">b"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">B"</span><span class="p">}]</span>
+
+<span class="c1"># 바이너리</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="o">&lt;&lt;</span><span class="n">c</span> <span class="o">&lt;-</span> <span class="sd">"</span><span class="s2">hello"</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&gt;&gt;</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">h"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">e"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">l"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">l"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">o"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Elixir의 다른 것들과 비슷하게, 제너레이터는 패턴 매칭에 의존하여 입력 값들의 세트를 왼쪽의 변수와 비교합니다. 패턴이 일치하지 않는 경우에는 해당 값은 무시됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">val</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">ok:</span> <span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="ss">error:</span> <span class="sd">"</span><span class="s2">Unknown"</span><span class="p">,</span> <span class="ss">ok:</span> <span class="sd">"</span><span class="s2">World"</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">World"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>여러 개의 제너레이터를 사용하여 중첩된 반복도 수행할 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">n</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="n">times</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="n">n</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="no">String</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="n">times</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">***"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">***"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">****"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>실행되고 있는 루프를 더 잘 표현하기 위해 <code class="highlighter-rouge">IO.puts</code>를 사용하여 두 개의 생성된 값들을 표시해 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">n</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="n">times</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="n">n</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2"> - </span><span class="si">#{</span><span class="n">times</span><span class="si">}</span><span class="s2">"</span>
+<span class="m">1</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">2</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">2</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">3</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">3</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">4</span>
+</code></pre>
+</div>
+
+<p>리스트 해석은 간편 표기법이며, 적절한 곳에만 사용되어야 합니다.</p>
+
+<h2 id="section-1">필터</h2>
+
+<p>필터는 해석에 사용되는 가드의 일종이라고 볼 수 있습니다. 필터된 값이 <code class="highlighter-rouge">false</code>나 <code class="highlighter-rouge">nil</code>을 반환하는 경우에 그 값은 최종 리스트에서 제외됩니다. 범위 내에서 루프를 돌면서 짝수에만 신경을 써 봅시다. 값이 짝수인지 아닌지 확인하기 위해 Integer 모듈의 <code class="highlighter-rouge">is_even/1</code> 함수를 사용하겠습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Integer</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="m">10</span><span class="p">,</span> <span class="n">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span>
+<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">10</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>제너레이터와 마찬가지로, 필터도 여러 개를 사용할 수 있습니다. 아래의 예제에서는 범위 내에서 짝수가 아닌 수와 3의 약수가 아닌 수를 걸러냅니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Integer</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="m">100</span><span class="p">,</span>
+<span class="o">...&gt;</span>   <span class="n">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+<span class="o">...&gt;</span>   <span class="n">rem</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span> <span class="o">==</span> <span class="m">0</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span>
+<span class="p">[</span><span class="m">6</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">18</span><span class="p">,</span> <span class="m">24</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="m">36</span><span class="p">,</span> <span class="m">42</span><span class="p">,</span> <span class="m">48</span><span class="p">,</span> <span class="m">54</span><span class="p">,</span> <span class="m">60</span><span class="p">,</span> <span class="m">66</span><span class="p">,</span> <span class="m">72</span><span class="p">,</span> <span class="m">78</span><span class="p">,</span> <span class="m">84</span><span class="p">,</span> <span class="m">90</span><span class="p">,</span> <span class="m">96</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="into-"><code class="highlighter-rouge">:into</code> 사용하기</h2>
+
+<p>만약에 리스트가 아닌 다른 무언가를 만들고 싶다면 어떻게 해야 할까요? <code class="highlighter-rouge">:into</code> 옵션이 있다면 할 수 있습니다! 일반적인 경험 법칙에 따르면 <code class="highlighter-rouge">:into</code>에는 <code class="highlighter-rouge">Collectable</code> 프로토콜을 구현하는 어떤 구조체든 사용할 수 있습니다.</p>
+
+<p><code class="highlighter-rouge">:into</code>를 사용하여 키워드 리스트로부터 맵을 만들어 봅시다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">],</span> <span class="ss">into:</span> <span class="p">%{},</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>비트스트링은 열거형이기 때문에 리스트 해석과 <code class="highlighter-rouge">:into</code>를 사용하여 문자열을 만들 수 있습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">c</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="m">72</span><span class="p">,</span> <span class="m">101</span><span class="p">,</span> <span class="m">108</span><span class="p">,</span> <span class="m">108</span><span class="p">,</span> <span class="m">111</span><span class="p">],</span> <span class="ss">into:</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&gt;&gt;</span>
+<span class="sd">"</span><span class="s2">Hello"</span>
+</code></pre>
+</div>
+
+<p>여기까지입니다! 리스트 해석은 컬렉션을 이용한 반복을 간결하게 하기 위한 쉬운 방법입니다.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    이 페이지 공유하기
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/ko/lessons/basics/comprehensions/&title=해석&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/ko/lessons/basics/comprehensions/&via=elixirschool&text=ElixirSchool: 해석&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/ko/lessons/basics/comprehensions/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/ko/lessons/basics/comprehensions/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/ko/lessons/basics/comprehensions/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: 해석" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/ko/lessons/basics/comprehensions/&title=ElixirSchool: 해석&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/ko/lessons/basics/comprehensions/&title=ElixirSchool: 해석&description=Check out '해석' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: 해석&body=Check out '해석' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/ko/lessons/basics/comprehensions/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>

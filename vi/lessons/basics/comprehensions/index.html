@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+
+  <meta name="description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta name="author" content="Sean Callan">
+
+  <meta property="og:url" content="https://elixirschool.com/vi/lessons/basics/comprehensions/">
+  <meta property="og:site_name" content="ElixirSchool">
+  <meta property="og:title" content="
+  Comprehensions &middot; Elixir School
+
+">
+  <meta property="og:description" content="Giáo trình cho ngôn ngữ lập trình Elixir">
+  <meta property="og:image" content="https://elixirschool.com/assets/fb_share.jpg">
+
+  <title>
+    
+  Comprehensions &middot; Elixir School
+
+
+  </title>
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="/assets/app.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <script type="text/javascript">
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+  analytics.load("C0p07Sw9j7mZnycKDCgPOAyqJR5hhyoQ");
+  analytics.page()
+  }}();
+  </script>
+
+</head>
+
+
+  
+  <body class="theme-custom-purple ">
+    <a id="github_ribbon" href="https://github.com/doomspork/elixir_school"><img src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          Elixir School
+        </a>
+      </h1>
+      <p class="lead">Giáo trình cho ngôn ngữ lập trình Elixir</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group basics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-down "></i>
+              <span>Cơ bản</span>
+            </div>
+            <div class="sidebar-nav-list" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/basics/basics/">Cơ bản</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/basics/collections/">Các tập dữ liệu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/basics/enum/">Enum</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/basics/pattern-matching/">Pattern matching (so trùng mẫu)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/basics/control-structures/">Cấu trúc điều khiển</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/basics/functions/">Hàm</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/basics/pipe-operator/">Pipe Operator</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/basics/modules/">Modules</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/basics/mix/">Mix</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/basics/sigils/">Sigils</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/basics/documentation/">Documentation</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  12. <a class="sidebar-lesson " href="/vi/lessons/basics/testing/">Testing</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  13. <a class="sidebar-lesson  active" href="/vi/lessons/basics/comprehensions/">Comprehensions</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  14. <a class="sidebar-lesson " href="/vi/lessons/basics/strings/">Strings</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  15. <a class="sidebar-lesson " href="/vi/lessons/basics/mix-tasks/">Tác vụ Mix tùy biến</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group advanced">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Nâng cao</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/advanced/erlang/">Erlang Interoperability</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/advanced/error-handling/">Xử Lý Lỗi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/advanced/escripts/">File thực thi</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/advanced/concurrency/">Xử lý đồng thời</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-concurrency/">OTP Concurrency</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  6. <a class="sidebar-lesson " href="/vi/lessons/advanced/otp-supervisors/">OTP Supervisors</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  7. <a class="sidebar-lesson " href="/vi/lessons/advanced/metaprogramming/">Metaprogramming</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  8. <a class="sidebar-lesson " href="/vi/lessons/advanced/umbrella-projects/">Các dự án ô</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  9. <a class="sidebar-lesson " href="/vi/lessons/advanced/typespec/">Đặc tả và kiểu</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  10. <a class="sidebar-lesson " href="/vi/lessons/advanced/behaviours/">Behaviours</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  11. <a class="sidebar-lesson " href="/vi/lessons/advanced/gen-stage/">GenStage</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group specifics">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Cụ thể</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  1. <a class="sidebar-lesson " href="/vi/lessons/specifics/plug/">Plug</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/specifics/ecto/">Ecto</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  3. <a class="sidebar-lesson " href="/vi/lessons/specifics/eex/">Embedded Elixir (EEx)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  4. <a class="sidebar-lesson " href="/vi/lessons/specifics/ets/">Erlang Term Storage (ETS)</a>
+                </div>
+              
+                <div class="sidebar-nav-item">
+                  5. <a class="sidebar-lesson " href="/vi/lessons/specifics/mnesia/">Mnesia</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+        
+        
+        
+        
+          <div class="sidebar-nav-group libraries">
+            <div class="sidebar-nav-header">
+              <i class="fa  fa-chevron-right "></i>
+              <span>Thư viện</span>
+            </div>
+            <div class="sidebar-nav-list"  style="display: none;" >
+              
+                <div class="sidebar-nav-item">
+                  2. <a class="sidebar-lesson " href="/vi/lessons/libraries/poolboy/">Poolboy</a>
+                </div>
+              
+            </div>
+          </div>
+        
+      
+    </nav>
+
+    <p>
+      
+
+      
+        <a href=" /lessons/basics/comprehensions/ ">en</a>
+      
+        <a href=" /jp/lessons/basics/comprehensions/ ">jp</a>
+      
+        <a href=" /cn/lessons/basics/comprehensions/ ">cn</a>
+      
+        <a href=" /es/lessons/basics/comprehensions/ ">es</a>
+      
+        <a href=" /pt/lessons/basics/comprehensions/ ">pt</a>
+      
+        <a href=" /vi/lessons/basics/comprehensions/ ">vi</a>
+      
+        <a href=" /ru/lessons/basics/comprehensions/ ">ru</a>
+      
+        <a href=" /sk/lessons/basics/comprehensions/ ">sk</a>
+      
+        <a href=" /fr/lessons/basics/comprehensions/ ">fr</a>
+      
+        <a href=" /gr/lessons/basics/comprehensions/ ">gr</a>
+      
+        <a href=" /it/lessons/basics/comprehensions/ ">it</a>
+      
+        <a href=" /pl/lessons/basics/comprehensions/ ">pl</a>
+      
+        <a href=" /my/lessons/basics/comprehensions/ ">my</a>
+      
+        <a href=" /no/lessons/basics/comprehensions/ ">no</a>
+      
+        <a href=" /ko/lessons/basics/comprehensions/ ">ko</a>
+      
+        <a href=" /id/lessons/basics/comprehensions/ ">id</a>
+      
+        <a href=" /uk/lessons/basics/comprehensions/ ">uk</a>
+      
+        <a href=" /tr/lessons/basics/comprehensions/ ">tr</a>
+      
+        <a href=" /bg/lessons/basics/comprehensions/ ">bg</a>
+      
+        <a href=" /de/lessons/basics/comprehensions/ ">de</a>
+      
+        <a href=" /bn/lessons/basics/comprehensions/ ">bn</a>
+      
+    </p>
+
+    <p>&copy; 2017 <a href="https://github.com/doomspork">Sean Callan</a></p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Comprehensions</h1>
+  <p>List comprehension là một cú pháp hỗ trợ việc lặp qua các phần tử trong Elixir. Trong bài này, chúng ta sẽ cùng xem cách sử dụng comprehension cho iteration và generation.</p>
+
+<h2>Mục lục</h2>
+<div id="toc"></div>
+
+<h2 id="c-bn">Cơ bản</h2>
+
+<p>Comprehension thường được dùng để cung cấp các lời gọi ngắn gọn cho <code class="highlighter-rouge">Enum</code> và <code class="highlighter-rouge">Stream</code>. Hãy cùng bắt đầu với việc xem cách sử dụng comprehension đơn giản, rồi sau đó sẽ chia nhỏ nó:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">9</span><span class="p">,</span> <span class="m">16</span><span class="p">,</span> <span class="m">25</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Điều đầu tiên chúng ta chú ý đó là việc sử dụng <code class="highlighter-rouge">for</code> và một generator. Generator là gì? Generator là biểu thức <code class="highlighter-rouge">x &lt;- [1, 2, 3, 4]</code> được sử dụng trong list comprehension. Chúng chịu trách nhiệm cho việc sinh ra giá trị tiếp theo.</p>
+
+<p>May mắn cho chúng ta, comprehension không chỉ bị giới hạn trong các list, thực tế chúng có thể làm việc với bất cứ kiểu enumerable nào:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># Keyword Lists</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">_key</span><span class="p">,</span> <span class="n">val</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span>
+<span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">]</span>
+
+<span class="c1"># Maps</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">%{</span><span class="sd">"</span><span class="s2">a"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">A"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">b"</span> <span class="o">=&gt;</span> <span class="sd">"</span><span class="s2">B"</span><span class="p">},</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span>
+<span class="p">[{</span><span class="sd">"</span><span class="s2">a"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">A"</span><span class="p">},</span> <span class="p">{</span><span class="sd">"</span><span class="s2">b"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">B"</span><span class="p">}]</span>
+
+<span class="c1"># Binaries</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="o">&lt;&lt;</span><span class="n">c</span> <span class="o">&lt;-</span> <span class="sd">"</span><span class="s2">hello"</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&gt;&gt;</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">h"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">e"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">l"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">l"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">o"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Giống như rất nhiều thứ khác trong Elixir, generator dựa vào pattern matching để so sánh giá trị input với các biến bên trái. Nếu chúng không thể so trùng với nhau, các giá trị sẽ bị bỏ qua:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">val</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">ok:</span> <span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="ss">error:</span> <span class="sd">"</span><span class="s2">Unknown"</span><span class="p">,</span> <span class="ss">ok:</span> <span class="sd">"</span><span class="s2">World"</span><span class="p">],</span> <span class="k">do</span><span class="p">:</span> <span class="n">val</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">Hello"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">World"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Chúng ta có thể sử dụng nhiều generator, cũng như sử dụng các vòng lặp lồng nhau:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">]</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">n</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="n">times</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="n">n</span> <span class="k">do</span>
+<span class="o">...&gt;</span>   <span class="no">String</span><span class="o">.</span><span class="n">duplicate</span><span class="p">(</span><span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="n">times</span><span class="p">)</span>
+<span class="o">...&gt;</span> <span class="k">end</span>
+<span class="p">[</span><span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">***"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">*"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">**"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">***"</span><span class="p">,</span> <span class="sd">"</span><span class="s2">****"</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Để mô tả chi tiết hơn cách vòng lặp thực hiện, hãy cùng sử dung <code class="highlighter-rouge">IO.puts</code> để hiện thị 2 giá trị được sinh ra:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">n</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">,</span> <span class="n">times</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="n">n</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2"> - </span><span class="si">#{</span><span class="n">times</span><span class="si">}</span><span class="s2">"</span>
+<span class="m">1</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">2</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">2</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">3</span> <span class="o">-</span> <span class="m">3</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">1</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">2</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">3</span>
+<span class="m">4</span> <span class="o">-</span> <span class="m">4</span>
+</code></pre>
+</div>
+
+<p>List comprehension là một cú pháp hỗ trợ, và nên được sử dụng chỉ khi cần thiết.</p>
+
+<h2 id="cc-b-lc">Các bộ lọc</h2>
+
+<p>Bạn có thể nghĩ các bộ lọc như là các bảo vệ cho comprehension. Khi một giá trị lọc trả về <code class="highlighter-rouge">false</code> hoặc <code class="highlighter-rouge">nil</code> nó sẽ bị loại bỏ khỏi list kết quả. Hãy cùng lặp qua một khoảng, và trả về các số chẵn. Chúng ta sẽ sử dụng hàm <code class="highlighter-rouge">is_even/1</code> từ module Integer để kiểm tra xem một số là chẵn hay lẻ.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Integer</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="m">10</span><span class="p">,</span> <span class="n">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span>
+<span class="p">[</span><span class="m">2</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">8</span><span class="p">,</span> <span class="m">10</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p>Giống như các generator, chúng ta có thể sử dụng các bộ lọc nhiều lần. Hãy cùng mở rộng khoảng của chúng ta, và chỉ lấy các số vừa chẵn và vừa chia hết cho 3.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="no">Integer</span>
+<span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">x</span> <span class="o">&lt;-</span> <span class="m">1</span><span class="o">..</span><span class="m">100</span><span class="p">,</span>
+<span class="o">...&gt;</span>   <span class="n">is_even</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+<span class="o">...&gt;</span>   <span class="n">rem</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span> <span class="o">==</span> <span class="m">0</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="n">x</span>
+<span class="p">[</span><span class="m">6</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">18</span><span class="p">,</span> <span class="m">24</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="m">36</span><span class="p">,</span> <span class="m">42</span><span class="p">,</span> <span class="m">48</span><span class="p">,</span> <span class="m">54</span><span class="p">,</span> <span class="m">60</span><span class="p">,</span> <span class="m">66</span><span class="p">,</span> <span class="m">72</span><span class="p">,</span> <span class="m">78</span><span class="p">,</span> <span class="m">84</span><span class="p">,</span> <span class="m">90</span><span class="p">,</span> <span class="m">96</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<h2 id="s-dng-into">Sử dụng <code class="highlighter-rouge">:into</code></h2>
+
+<p>Nếu muốn cung cấp các kết quả khác thay vì chỉ một list, chúng ta sẽ sử dụng lựa chọn <code class="highlighter-rouge">:into</code> để làm điều đó. <code class="highlighter-rouge">:into</code> chấp nhận bất cứ cấu trúc nào cài đặt protocol <code class="highlighter-rouge">Collectable</code>.</p>
+
+<p>Sử dụng <code class="highlighter-rouge">:into</code>, chúng ta sẽ tạo nên một map từ một keyword list:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">],</span> <span class="ss">into:</span> <span class="p">%{},</span> <span class="k">do</span><span class="p">:</span> <span class="p">{</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">}</span>
+<span class="p">%{</span><span class="ss">one:</span> <span class="m">1</span><span class="p">,</span> <span class="ss">three:</span> <span class="m">3</span><span class="p">,</span> <span class="ss">two:</span> <span class="m">2</span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Từ việc bitstring cũng là enumerable, chúng ta có thể sử dụng list comprehension và <code class="highlighter-rouge">:into</code> để tạo nên các xâu:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="o">&gt;</span> <span class="n">for</span> <span class="n">c</span> <span class="o">&lt;-</span> <span class="p">[</span><span class="m">72</span><span class="p">,</span> <span class="m">101</span><span class="p">,</span> <span class="m">108</span><span class="p">,</span> <span class="m">108</span><span class="p">,</span> <span class="m">111</span><span class="p">],</span> <span class="ss">into:</span> <span class="sd">"</span><span class="s2">"</span><span class="p">,</span> <span class="k">do</span><span class="p">:</span> <span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&gt;&gt;</span>
+<span class="sd">"</span><span class="s2">Hello"</span>
+</code></pre>
+</div>
+
+<p>Vậy là hết chương rồi. List comprehension là một cách đơn giản để duyệt qua các bộ theo một cách ngắn gọn.</p>
+
+
+  
+
+<hr />
+<h3 id="social">
+  
+    Chia sẻ trang này
+  
+</h3>
+<div class="social__container">
+  <div class="social__item">
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://elixirschool.com/vi/lessons/basics/comprehensions/&title=Comprehensions&summary=description&source=https://elixirschool.com" class="social__icon--linkedin"><i class="icon--linkedin"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://twitter.com/intent/tweet?url=https://elixirschool.com/vi/lessons/basics/comprehensions/&via=elixirschool&text=ElixirSchool: Comprehensions&hashtags=learnelixir%2Celixirlang&" class="social__icon--twitter"><i class="icon--twitter"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://plus.google.com/share?url=https://elixirschool.com/vi/lessons/basics/comprehensions/" class="social__icon--googleplus"><i class="icon--googleplus"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://elixirschool.com/vi/lessons/basics/comprehensions/" class="social__icon--facebook"><i class="icon--facebook"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.pinterest.com/pin/create/link/?url=https://elixirschool.com/vi/lessons/basics/comprehensions/&media=https://elixirschool.com/assets/fb_share.jpg&description=ElixirSchool: Comprehensions" class="social__icon--pinterest"><i class="icon--pinterest"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://www.evernote.com/noteit.action?url=https://elixirschool.com/vi/lessons/basics/comprehensions/&title=ElixirSchool: Comprehensions&suggestTags=elixir,programming" class="social__icon--evernote"><i class="icon--evernote"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="https://vk.com/share.php?url=https://elixirschool.com/vi/lessons/basics/comprehensions/&title=ElixirSchool: Comprehensions&description=Check out 'Comprehensions' on ElixirSchool" class="social__icon--vk" style="margin-left: 2px;"><i class="icon--vk"></i></a>
+  </div>
+  <div class="social__item">
+    <a target="_blank" href="mailto:?&subject=ElixirSchool: Comprehensions&body=Check out 'Comprehensions' on ElixirSchool%0D%0A%0D%0Ahttps://elixirschool.com/vi/lessons/basics/comprehensions/" class="social__icon--email"><i class="icon--email"></i></a>
+  </div>
+  <div class="social__item">
+    <a href="javascript:window.print()" class="social__icon--print"><i class="icon--print"></i></a>
+  </div>
+</div>
+</div>
+    </div>
+  <script type="text/javascript" src="/assets/app.js"></script>
+  </body>
+</html>
